@@ -48,8 +48,9 @@ run_pacman() {
 search_local() {
   local LC_ALL='C'
 
-  # "$term-[0-9].*" limits it to exactly the package passed
-  locals=( $(find /var/cache/pacman/pkg -name "$term-[0-9].*.pkg.tar.[gx]z" | sort -rV) )
+  # we use the $term-[0-9]* glob to disambiguate cases like foo-1.0 and
+  # foo-completion-1.0.
+  locals=( $(find /var/cache/pacman/pkg -name "$term-[0-9]*.pkg.tar.[gx]z" | sort -rV) )
 
   [[ ${#locals[@]} -ne 0 ]] && return 0 || return 1
 } 
