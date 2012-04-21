@@ -79,7 +79,9 @@ arm_packages() {
   for entry in "${tmp[@]}"; do
     IFS='/' read -r _ _ _ repo _ _ pack _ <<< "$entry"
 
-    if [[ "$repo" == 'testing' ]] && \
+    # check for duplicates in testing, community-testing and
+    # multilib-testing.
+    if [[ "$repo" =~ testing$ ]] && \
       printf "%s\n" "${tmp[@]}" | grep -Fxv "$entry" | grep -Fq "$pack"; then
 
       continue
