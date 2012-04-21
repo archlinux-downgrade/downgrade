@@ -16,6 +16,7 @@ message() {
       -d,--pkgdir       set download directory (A.R.M. only), default is \`~/Packages'
       -m,--arch         set search architecture (A.R.M. only), default is determined by \`uname -m\`
       -a,--noarm        don't search the A.R.M when nothing's available in cache
+      -c,--nocache      don't look in cache, go directly to A.R.M
       -i,--noinstalled  don't show [installed] next to installed versions (speed up)
 
       -p,--pacman       (deprecated, set a PACMAN env var if not using just \`pacman')
@@ -47,6 +48,9 @@ run_pacman() {
 # sets $locals[], returns true if results are found
 search_local() {
   local LC_ALL='C'
+
+  # user disabled cache
+  $searchcache || return 1
 
   # we use the $term-[0-9]* glob to disambiguate cases like foo-1.0 and
   # foo-completion-1.0.
@@ -175,6 +179,7 @@ parse_options() {
       -d|--pkgdir)      shift; pkgdir="${1/\~/$HOME}" ;;
       -m|--arch)        shift; arch="$1"              ;;
       -a|--noarm)       searcharm=false               ;;
+      -c|--nocache)     searchcache=false             ;;
       -i|--noinstalled) showinstalled=false           ;;
       --)               break                         ;;
       -*)               message                       ;;
@@ -233,6 +238,7 @@ main() {
 # set defaults
 pkgdir="$HOME/Packages"  # where to put packages
 searcharm=true           # search arm if not in cache
+searchcache=true         # check in cache before arm
 showinstalled=true       # show [installed] next to installed versions
 
 [[ "$(uname -m)" = 'x86_64' ]] && arch=64 || arch=32
