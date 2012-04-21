@@ -49,7 +49,7 @@ search_local() {
   local LC_ALL='C'
 
   # "$term-[0-9].*" limits it to exactly the package passed
-  locals=( $(find /var/cache/pacman/pkg -name "$term-[0-9].*.pkg.tar.[gx]z" | sort -r) )
+  locals=( $(find /var/cache/pacman/pkg -name "$term-[0-9].*.pkg.tar.[gx]z" | sort -rV) )
 
   [[ ${#locals[@]} -ne 0 ]] && return 0 || return 1
 } 
