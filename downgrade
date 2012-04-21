@@ -95,7 +95,7 @@ print_table() {
   local func="$1"; shift
   local i=0 arg repo pack
 
-  local fmt="    %-4.4s  %-10.10s  %s\n"
+  local fmt="    %-4.4s  %-17.17s  %s\n"
 
   for arg; do
     i=$((i+1))
