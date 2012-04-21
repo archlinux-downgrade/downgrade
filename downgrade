@@ -11,7 +11,7 @@ errorout() { echo "error: $*" >&2; exit 1; }
 message() {
   cat << EOF
 
-  usage: downgrade [ -d <dir> ] [ -m <32|64> ] [ -a ] [ -i ] [ -- ] <pkg> ...
+  usage: downgrade [ -d <dir> ] [ -m <32|64> ] [ -a | -c ] [ -i ] [ -- ] <pkg> ...
     options:
       -d,--pkgdir       set download directory (A.R.M. only), default is \`~/Packages'
       -m,--arch         set search architecture (A.R.M. only), default is determined by \`uname -m\`
@@ -57,7 +57,8 @@ prompt_with_quit() {
 local_packages() {
   local term="$1"
 
-  find /var/cache/pacman/pkg -name "$term-[0-9]*.pkg.tar.[gx]z" | LC_ALL='C' sort -rV
+  # the R is a special case for erlang, others may exist
+  find /var/cache/pacman/pkg -name "$term-[0-9R]*.pkg.tar.[gx]z" | LC_ALL='C' sort -rV
 }
 
 # find packages available in the A.R.M. removes packages duplicated
@@ -74,10 +75,8 @@ arm_packages() {
 
   tmp=( $(wget -q -O - "$url" 2>/dev/null | grep -v sig$ | sort -rV) )
 
-  # if packages appear in both testing and non-testing, only show the
-  # non-testing entry.
   for entry in "${tmp[@]}"; do
-    IFS='/' read -r _ _ _ repo _ _ pack _ <<< "$entry"
+    read -r repo pack < <(format_arm "$entry")
 
     # check for duplicates in testing, community-testing and
     # multilib-testing.
@@ -97,13 +96,12 @@ print_table() {
   local func="$1"; shift
   local i=0 arg repo pack
 
-  local fmt="    %-4.4s  %-17.17s  %s\n"
+  local fmt=" %4.4s)  %-17.17s  %s\n"
 
   for arg; do
-    i=$((i+1))
-
     read -r repo pack < <($func "$arg")
 
+    i=$((i+1))
     case $pack in
       ${installed// /-}*) printf "$fmt" "$i" "$repo" "$pack [installed]" ;;
       *)                  printf "$fmt" "$i" "$repo" "$pack" ;;
