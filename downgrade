@@ -107,7 +107,6 @@ search_and_print_arm() {
   done
 
   # updated url
-  #url="http://arm.kh.nu/search/raw.php?a=$arch&q=^$term\$$repos"
   url="http://arm.konnichi.com/search/raw.php?a=$arch&q=^$term\$$repos"
 
   # TODO: download and use signatures
@@ -116,12 +115,12 @@ search_and_print_arm() {
   if [[ ${#arms[@]} -ne 0 ]]; then
     echo -e "\n The following packages are available from the A.R.M.:"
 
-    # separate repo and packagename
     for ((i=0; i<${#arms[@]}; i++)); do 
       n=$((i+1))
-      repo="$(echo ${arms[$i]} | awk -F '/' '{print $4}')"
-      pack="$(echo ${arms[$i]} | awk -F '/' '{print $7}')"
-      
+
+      # read repo and package from the url
+      IFS='/' read -r _ _ _ repo _ _ pack _ <<< "${arms[$i]}"
+
       # flag the installed version
       case $pack in
         ${installed// /-}*) echo -e "\t$n\t$repo\t$pack [installed]" ;;
