@@ -28,12 +28,102 @@ EOF
 # return the enabled repos in the order of pacman.conf
 enabled_repos() { sed '/^\[\(.*\)\]$/!d;s//\1/g;/options/d' /etc/pacman.conf; } 
 
-# run a pacman command using either sudo or su root
+# returns true if the first argument is a valid index into the array of
+# remaining arguments
+is_valid_index() {
+  local i="$1"; shift
+
+  [[ -z "$i"           ]] && return 1 # no index
+  [[ -n "${i//[0-9]/}" ]] && return 1 # not positive integer
+  [[ $i -ge "$#"       ]] && return 1 # out of range
+
+  return 0
+}
+
+# prompts for user input and adds a quit option. first argument is the
+# variable to set with the user's response, second is the prompt
+# message.
+prompt_with_quit() {
+  local var="$1" msg="$2"
+
+  echo
+  echo -n "$msg or [q]uit: " && read -r $var
+
+  [[ "${!var}" == 'q' ]] && exit 1
+}
+
+# find local packages reverse sorted by version. we use the $term-[0-9]*
+# glob to disambiguate cases like foo-1.0 and foo-completion-1.0.
+local_packages() {
+  local term="$1"
+
+  find /var/cache/pacman/pkg -name "$term-[0-9]*.pkg.tar.[gx]z" | LC_ALL='C' sort -rV
+}
+
+# find packages available in the A.R.M. removes packages duplicated
+# between testing and non-testing repos.
+arm_packages() {
+  local term="$1" repos repo url tmp entry pack
+
+  repos=
+  for repo in $(enabled_repos); do
+    repos="${repos}&${repo}=1"
+  done
+
+  url="http://arm.konnichi.com/search/raw.php?a=$arch&q=^$term\$$repos"
+
+  tmp=( $(wget -q -O - "$url" 2>/dev/null | grep -v sig$ | sort -rV) )
+
+  # if packages appear in both testing and non-testing, only show the
+  # non-testing entry.
+  for entry in "${tmp[@]}"; do
+    IFS='/' read -r _ _ _ repo _ _ pack _ <<< "$entry"
+
+    if [[ "$repo" == 'testing' ]] && \
+      printf "%s\n" "${tmp[@]}" | grep -Fxv "$entry" | grep -Fq "$pack"; then
+
+      continue
+    fi
+
+    echo "$entry"
+  done
+}
+
+# print numbered entries in tabular form. uses the named function to
+# extract repo and package out of each item.
+print_table() {
+  local func="$1"; shift
+  local i n args fmt
+
+  args=( "$@" )
+
+  for ((i=0; i<${#args[@]}; i++)); do 
+    n=$((i+1))
+
+    read -r repo pack < <($func "${args[$i]}")
+
+    fmt="    %-4.4s  %-10.10s  %s\n"
+
+    case $pack in
+      ${installed// /-}*) printf "$fmt" "$n" "$repo" "$pack [installed]" ;;
+      *)                  printf "$fmt" "$n" "$repo" "$pack" ;;
+    esac
+  done
+}
+
+# hardcode a local repo and take the basename for package.
+format_local() { echo "local $(basename "$1")"; }
+
+# read the 4th and 7th element out of the url, indexed by forward slash.
+format_arm() { set ${1//\// }; echo "$3 $6"; }
+
+# run a pacman command using either sudo or su root. uses PACMAN env var
+# or a default of just 'pacman'.
 run_pacman() {
   local pacman="${PACMAN:-pacman}" cmd
 
   if [[ $UID -eq 0 ]]; then
-    errorout "please do not run downgrade as root su/sudo will be used when needed"
+    errorout 'please do not run downgrade as root; su/sudo will be used when needed'
   fi
 
   if type -p sudo &>/dev/null; then
@@ -45,204 +135,106 @@ run_pacman() {
   su root -c "$cmd"
 }
 
-# sets $locals[], returns true if results are found
-search_local() {
-  local LC_ALL='C'
-
-  # user disabled cache
+# checks for local packages, presents them in a numbered table, if a
+# choise is made, installs the package.
+check_local_packages() {
   $searchcache || return 1
 
-  # we use the $term-[0-9]* glob to disambiguate cases like foo-1.0 and
-  # foo-completion-1.0.
-  locals=( $(find /var/cache/pacman/pkg -name "$term-[0-9]*.pkg.tar.[gx]z" | sort -rV) )
+  local term="$1" pkg
+  local locals=( $(local_packages "$term") )
 
-  [[ ${#locals[@]} -ne 0 ]] && return 0 || return 1
-} 
+  [[ ${#locals[@]} -eq 0 ]] && return 1
 
-# sets $num, returns true if user makes a selection
-print_local() {
-  local repo pack n
+  echo
+  echo 'The following packages are available in your cache:'
+  echo
 
-  echo -e "\n The following packages are available in your cache:"
-
-  for ((i=0; i<${#locals[@]}; i++)); do 
-    n=$((i+1))
-    repo='local'
-    pack=$(basename ${locals[$i]})
-
-    case $pack in
-      ${installed// /-}*) echo -e "\t$n\t$repo\t$pack [installed]" ;;
-      *)                  echo -e "\t$n\t$repo\t$pack" ;;
-    esac
-  done
+  print_table format_local "${locals[@]}"
 
   if $searcharm; then
-    echo -en "\n\tplease choose a version, [s]earch A.R.M., or [q]uit: " && read num
+    prompt_with_quit num 'please choose a version, [s]earch A.R.M'
   else
-    echo -en "\n\tplease choose a version or [q]uit: " && read num
+    prompt_with_quit num 'please choose a version'
   fi
 
-  [[ "$num" = 'q' ]] && exit 0
-  [[ "$num" = 's' ]] && return 1 || return 0
-}
+  [[ "$num" = 's' ]] && return 1
 
-# sets $pkg, errors out on bad choice
-get_local() {
-  if [[ -z "$num" ]] || [[ -n "${num//[0-9]/}" ]]; then
+  if ! is_valid_index "$num" "${locals[@]}"; then
     errorout 'invalid choice.'
   fi
 
-  pkg=${locals[$((num-1))]}
-
-  [[ -z "$pkg" ]] && errorout 'invalid choice.'
+  pkg="${locals[$((num-1))]}"
+  run_pacman -U "$pkg" || errorout "could not install package $pkg"
 }
 
-# sets $num, errors out on no results, returns true if user makes a
-# selection
-search_and_print_arm() {
-  local LC_ALL='C' repos repo url n pack tmp
-
-  # user disabled A.R.M
+# checks for packages in A.R.M., presents them in a numbered table, if a
+# choice is made, downloads and installs the package.
+check_arm_packages() {
   $searcharm || return 1
 
-  repos=
-  for repo in $(enabled_repos); do
-    repos="${repos}&${repo}=1"
-  done
+  [[ "$arch" =~ ^(32|64)$ ]] || errorout "$arch is invalid, must be 32 or 64"
 
-  url="http://arm.konnichi.com/search/raw.php?a=$arch&q=^$term\$$repos"
+  local term="$1" url pkg
+  local arms=( $(arm_packages "$term") )
 
-   tmp=( $(wget -q -O - "$url" 2>/dev/null | grep -v sig$ | sort -rV) )
-  arms=( $(remove_duplicate_testing "${tmp[@]}") )
+  [[ ${#arms[@]} -eq 0 ]] && return 1
 
-  if [[ ${#arms[@]} -ne 0 ]]; then
-    echo -e "\n The following packages are available from the A.R.M.:"
+  echo
+  echo 'The following packages are available from the A.R.M.:'
+  echo
 
-    for ((i=0; i<${#arms[@]}; i++)); do 
-      n=$((i+1))
+  print_table format_arm "${arms[@]}"
 
-      # read repo and package from the url
-      IFS='/' read -r _ _ _ repo _ _ pack _ <<< "${arms[$i]}"
+  prompt_with_quit num 'please choose a version'
 
-      # flag the installed version
-      case $pack in
-        ${installed// /-}*) echo -e "\t$n\t$repo\t$pack [installed]" ;;
-        *)                  echo -e "\t$n\t$repo\t$pack" ;;
-      esac
-    done
-
-    echo -en "\n\tplease choose a version or [q]uit: " && read num
-
-    [[ "$num" = 'q' ]] && return 1 || return 0
-  else
-    exit 0
-  fi
-}
-
-remove_duplicate_testing() {
-  local entry
-
-  for entry; do
-    IFS='/' read -r _ _ _ repo _ _ pack _ <<< "$entry"
-
-    if [[ "$repo" == 'testing' ]]; then
-      if printf "%s\n" "$@" | grep -Fxv "$entry" | grep -Fq "$pack"; then
-        continue
-      fi
-    fi
-
-    echo "$entry"
-  done
-}
-
-# downloads, sets $pkg, errors out on bad choice or failed copy
-get_arm() {
-  if [[ -z "$num" ]] || [[ -n "${num//[0-9]/}" ]]; then
+  if ! is_valid_index "$num" "${arms[@]}"; then
     errorout 'invalid choice.'
   fi
 
   url=${arms[$((num-1))]}
-
-  [[ -z "$url" ]] && errorout 'invalid choice.'
-
   pkg="$pkgdir/$(basename $url)"
+
+  if [[ ! -d "$pkgdir" ]]; then
+    mkdir -p "$pkgdir" || errorout "unable to create $pkgdir"
+  fi
+
   wget -O "$pkg" "$url" || errorout "could not download package $pkg"
+  run_pacman -U "$pkg" || errorout "could not install package $pkg"
 }
 
-# sets constants and fills $args[]
-parse_options() {
-  args=()
+[[ "$#" -eq 0 ]] && message
 
-  while [[ -n "$1" ]]; do
-    case "$1" in
-      -p|--pacman)      shift; PACMAN="$1"            ;;
-      -d|--pkgdir)      shift; pkgdir="${1/\~/$HOME}" ;;
-      -m|--arch)        shift; arch="$1"              ;;
-      -a|--noarm)       searcharm=false               ;;
-      -c|--nocache)     searchcache=false             ;;
-      -i|--noinstalled) showinstalled=false           ;;
-      --)               break                         ;;
-      -*)               message                       ;;
-      *)                args+=( "$1" )                ;;
-    esac
-    shift
-  done
+args=()
 
-  # any args after --
-  [[ -n "$1" ]] && args+=( "$@" )
-
-  # no args?
-  [[ "${#args[@]}" -eq 0 ]] && message
-
-  # pkgdir must exist if we're searching/downloading
-  [[ ! -d "$pkgdir" ]] && $searcharm && mkdir -p "$pkgdir"
-
-  # arch must be 32 or 64
-  [[ "$arch" =~ ^(32|64)$ ]] || message
-}
-
-# logic
-main() {
-  term=
-  installed=
-  pkg=
-
-  for term in "${args[@]}"; do
-
-    # check for installed version if desired
-    $showinstalled && installed=$(pacman -Q $term 2>/dev/null)
-    installed=${installed:-DummyPkg}
-
-    if search_local; then
-      if print_local; then
-        get_local
-
-      elif search_and_print_arm; then
-        get_arm
-      else
-        exit 1
-      fi
-
-    elif search_and_print_arm; then
-      get_arm
-    else
-      exit 1
-    fi
-
-    # if here, $pkg is valid
-    run_pacman -U "$pkg" || errorout "could not install package $pkg"
-
-  done
-}
-
-# set defaults
-pkgdir="$HOME/Packages"  # where to put packages
-searcharm=true           # search arm if not in cache
-searchcache=true         # check in cache before arm
-showinstalled=true       # show [installed] next to installed versions
+# Defaults
+pkgdir="$HOME/Packages" # where to put packages
+searcharm=true          # search arm if not in cache
+searchcache=true        # check in cache before arm
+showinstalled=true      # show [installed] next to installed versions
 
 [[ "$(uname -m)" = 'x86_64' ]] && arch=64 || arch=32
 
-# go
-parse_options "$@"
-main
+# Options
+while [[ -n "$1" ]]; do
+  case "$1" in
+    -p|--pacman)      shift; PACMAN="$1"            ;;
+    -d|--pkgdir)      shift; pkgdir="${1/\~/$HOME}" ;;
+    -m|--arch)        shift; arch="$1"              ;;
+    -a|--noarm)       searcharm=false               ;;
+    -c|--nocache)     searchcache=false             ;;
+    -i|--noinstalled) showinstalled=false           ;;
+    --)               shift; args+=( "$@" ); break  ;;
+    -*)               message                       ;;
+    *)                args+=( "$1" )                ;;
+  esac
+  shift
+done
+
+# Main
+for term in "${args[@]}"; do
+  # check for installed version if desired
+  $showinstalled && installed=$(pacman -Q $term 2>/dev/null)
+  installed=${installed:-DummyPkg}
+
+  check_local_packages "$term" || check_arm_packages "$term"
+done
