@@ -6,7 +6,7 @@
 #
 ###
 
-errorout() { echo " $*" >&2; exit 1; }
+errorout() { echo "error: $*" >&2; exit 1; }
 
 message() {
   cat << EOF
@@ -93,20 +93,18 @@ arm_packages() {
 # extract repo and package out of each item.
 print_table() {
   local func="$1"; shift
-  local i n args fmt
+  local i=0 arg repo pack
 
-  args=( "$@" )
+  local fmt="    %-4.4s  %-10.10s  %s\n"
 
-  for ((i=0; i<${#args[@]}; i++)); do 
-    n=$((i+1))
+  for arg; do
+    i=$((i+1))
 
-    read -r repo pack < <($func "${args[$i]}")
-
-    fmt="    %-4.4s  %-10.10s  %s\n"
+    read -r repo pack < <($func "$arg")
 
     case $pack in
-      ${installed// /-}*) printf "$fmt" "$n" "$repo" "$pack [installed]" ;;
-      *)                  printf "$fmt" "$n" "$repo" "$pack" ;;
+      ${installed// /-}*) printf "$fmt" "$i" "$repo" "$pack [installed]" ;;
+      *)                  printf "$fmt" "$i" "$repo" "$pack" ;;
     esac
   done
 }
@@ -136,7 +134,7 @@ run_pacman() {
 }
 
 # checks for local packages, presents them in a numbered table, if a
-# choise is made, installs the package.
+# choice is made, installs the package.
 check_local_packages() {
   $searchcache || return 1
 
@@ -161,9 +159,7 @@ check_local_packages() {
 
   n=$((num-1))
 
-  if ! is_valid_index "$n" "${locals[@]}"; then
-    errorout 'invalid choice.'
-  fi
+  is_valid_index "$n" "${locals[@]}" || errorout 'invalid choice.'
 
   pkg="${locals[$n]}"
   run_pacman -U "$pkg" || errorout "could not install package $pkg"
@@ -191,9 +187,7 @@ check_arm_packages() {
 
   n=$((num-1))
 
-  if ! is_valid_index "$n" "${arms[@]}"; then
-    errorout 'invalid choice.'
-  fi
+  is_valid_index "$n" "${arms[@]}" || errorout 'invalid choice.'
 
   url=${arms[$n]}
   pkg="$pkgdir/$(basename $url)"
@@ -202,8 +196,8 @@ check_arm_packages() {
     mkdir -p "$pkgdir" || errorout "unable to create $pkgdir"
   fi
 
-  wget -O "$pkg" "$url" || errorout "could not download package $pkg"
-  run_pacman -U "$pkg" || errorout "could not install package $pkg"
+  wget -O "$pkg" "$url" || errorout "failed downloading $url"
+  run_pacman -U "$pkg"  || errorout "could not install package $pkg"
 }
 
 [[ "$#" -eq 0 ]] && message
