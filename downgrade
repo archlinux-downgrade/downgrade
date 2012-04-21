@@ -140,7 +140,7 @@ run_pacman() {
 check_local_packages() {
   $searchcache || return 1
 
-  local term="$1" pkg
+  local term="$1" pkg n
   local locals=( $(local_packages "$term") )
 
   [[ ${#locals[@]} -eq 0 ]] && return 1
@@ -159,11 +159,13 @@ check_local_packages() {
 
   [[ "$num" = 's' ]] && return 1
 
-  if ! is_valid_index "$num" "${locals[@]}"; then
+  n=$((num-1))
+
+  if ! is_valid_index "$n" "${locals[@]}"; then
     errorout 'invalid choice.'
   fi
 
-  pkg="${locals[$((num-1))]}"
+  pkg="${locals[$n]}"
   run_pacman -U "$pkg" || errorout "could not install package $pkg"
 }
 
@@ -174,7 +176,7 @@ check_arm_packages() {
 
   [[ "$arch" =~ ^(32|64)$ ]] || errorout "$arch is invalid, must be 32 or 64"
 
-  local term="$1" url pkg
+  local term="$1" url pkg n
   local arms=( $(arm_packages "$term") )
 
   [[ ${#arms[@]} -eq 0 ]] && return 1
@@ -187,11 +189,13 @@ check_arm_packages() {
 
   prompt_with_quit num 'please choose a version'
 
-  if ! is_valid_index "$num" "${arms[@]}"; then
+  n=$((num-1))
+
+  if ! is_valid_index "$n" "${arms[@]}"; then
     errorout 'invalid choice.'
   fi
 
-  url=${arms[$((num-1))]}
+  url=${arms[$n]}
   pkg="$pkgdir/$(basename $url)"
 
   if [[ ! -d "$pkgdir" ]]; then
