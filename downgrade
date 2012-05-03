@@ -9,6 +9,8 @@
 errorout() { echo "error: $*" >&2; exit 1; }
 
 message() {
+  local exit_code="${1:-0}"
+
   cat << EOF
 
   usage: downgrade [ -d <dir> ] [ -m <32|64> ] [ -a | -c ] [ -i ] [ -- ] <pkg> ...
@@ -22,7 +24,8 @@ message() {
       -p,--pacman       (deprecated, set a PACMAN env var if not using just \`pacman')
 
 EOF
-  exit 1
+
+  exit $exit_code
 }
 
 # return the enabled repos in the order of pacman.conf
@@ -120,7 +123,7 @@ format_arm() { set ${1//\// }; echo "$3 $6"; }
 run_pacman() {
   local pacman="${PACMAN:-pacman}" cmd
 
-  if [[ $UID -eq 0 ]]; then
+  if ! (( $UID )); then
     errorout 'please do not run downgrade as root; su/sudo will be used when needed'
   fi
 
@@ -141,7 +144,7 @@ check_local_packages() {
   local term="$1" pkg n
   local locals=( $(local_packages "$term") )
 
-  [[ ${#locals[@]} -eq 0 ]] && return 1
+  (( ${#locals[@]} )) || return 1
 
   echo
   echo 'The following packages are available in your cache:'
@@ -175,7 +178,7 @@ check_arm_packages() {
   local term="$1" url pkg n
   local arms=( $(arm_packages "$term") )
 
-  [[ ${#arms[@]} -eq 0 ]] && return 1
+  (( ${#arms[@]} )) || return 1
 
   echo
   echo 'The following packages are available from the A.R.M.:'
@@ -200,7 +203,7 @@ check_arm_packages() {
   run_pacman -U "$pkg"  || errorout "could not install package $pkg"
 }
 
-[[ "$#" -eq 0 ]] && message
+(( "$#" )) || message 1
 
 args=()
 
@@ -221,8 +224,9 @@ while [[ -n "$1" ]]; do
     -a|--noarm)       searcharm=false               ;;
     -c|--nocache)     searchcache=false             ;;
     -i|--noinstalled) showinstalled=false           ;;
+    -h|--help)        message                       ;;
     --)               shift; args+=( "$@" ); break  ;;
-    -*)               message                       ;;
+    -*)               message 1                     ;;
     *)                args+=( "$1" )                ;;
   esac
   shift
