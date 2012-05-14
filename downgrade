@@ -72,7 +72,7 @@ arm_packages() {
     repos="${repos}&${repo}=1"
   done
 
-  url="http://arm.konnichi.com/search/raw.php?a=$arch&q=^$term\$$repos"
+  url="http://arm.konnichi.com/search/raw.php?a=$arch&q=%5E$term%24$repos"
 
   tmp=( $(wget -q -O - "$url" 2>/dev/null | grep -v sig$ | sort -rV) )
 
