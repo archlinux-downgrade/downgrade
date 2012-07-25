@@ -20,6 +20,7 @@ message() {
       -a,--noarm        don't search the A.R.M. when nothing's available in cache
       -c,--nocache      don't look in cache, go directly to A.R.M.
       -i,--noinstalled  don't show [installed] next to installed versions (speed up)
+      -s,--nosudo       don't use sudo, even when available
 
 EOF
 
@@ -125,7 +126,7 @@ run_pacman() {
     errorout 'please do not run downgrade as root; su/sudo will be used when needed'
   fi
 
-  if type -p sudo &>/dev/null; then
+  if $usesudo && type -p sudo &>/dev/null; then
     sudo $pacman "$@"
     return $?
   fi
@@ -210,6 +211,7 @@ pkgdir='/tmp'      # where to put packages
 searcharm=true     # search arm if not in cache
 searchcache=true   # check in cache before arm
 showinstalled=true # show [installed] next to installed versions
+usesudo=true       # use sudo if present
 
 [[ "$(uname -m)" = 'x86_64' ]] && arch=64 || arch=32
 
@@ -222,6 +224,7 @@ while [[ -n "$1" ]]; do
     -a|--noarm)       searcharm=false               ;;
     -c|--nocache)     searchcache=false             ;;
     -i|--noinstalled) showinstalled=false           ;;
+    -s|--nosudo)      usesudo=false                 ;;
     -h|--help)        message                       ;;
     --)               shift; args+=( "$@" ); break  ;;
     -*)               message 1                     ;;
