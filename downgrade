@@ -42,6 +42,18 @@ is_valid_index() {
   return 0
 }
 
+# run the command via sudo or su to root, depending on availability and
+# configuration
+as_root() {
+  if $usesudo && type -p sudo &>/dev/null; then
+    sudo "$@"
+    return $?
+  fi
+
+  printf -v cmd "%q " "$@"
+  su root -c "$cmd"
+}
+
 # prompts for user input and adds a quit option. first argument is the
 # variable to set with the user's response, second is the prompt
 # message.
@@ -120,19 +132,13 @@ format_arm() { set ${1//\// }; echo "$3 $6"; }
 # run a pacman command using either sudo or su root. uses PACMAN env var
 # or a default of just 'pacman'.
 run_pacman() {
-  local pacman="${PACMAN:-pacman}" cmd
+  local pacman="${PACMAN:-pacman}"
 
   if ! (( $UID )); then
     errorout 'please do not run downgrade as root; su/sudo will be used when needed'
   fi
 
-  if $usesudo && type -p sudo &>/dev/null; then
-    sudo $pacman "$@"
-    return $?
-  fi
-
-  printf -v cmd "%q " "$pacman" "$@"
-  su root -c "$cmd"
+  as_root "$pacman" "$@"
 }
 
 # checks for local packages, presents them in a numbered table, if a
