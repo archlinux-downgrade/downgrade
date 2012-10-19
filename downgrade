@@ -208,6 +208,23 @@ check_arm_packages() {
   run_pacman -U "$pkg"  || errorout "could not install package $pkg"
 }
 
+# prompt then add the argument to the IgnorePkg setting in pacman.conf.
+# won't handle non-standard formatting well, just tacks the argument
+# onto the end of the IgnorePkg line (iff not already present).
+prompt_to_ignore() {
+  local pkg="$1" ans
+  local pacman_conf="${PACMAN_CONF:-/etc/pacman.conf}"
+
+  prompt_with_quit ans "Add $pkg to IgnorePkg in $pacman_conf"
+
+  if [[ $ans =~ ^(y|Y) ]]; then
+    # ensure we don't add duplicates
+    if ! grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$pacman_conf"; then
+      as_root sed -i "s/^IgnorePkg.*/& $pkg/" "$pacman_conf"
+    fi
+  fi
+}
+
 (( "$#" )) || message 1
 
 args=()
@@ -245,5 +262,5 @@ for term in "${args[@]}"; do
   $showinstalled && installed=$(pacman -Q $term 2>/dev/null)
   installed=${installed:-DummyPkg}
 
-  check_local_packages "$term" || check_arm_packages "$term"
+  ( check_local_packages "$term" || check_arm_packages "$term" ) && prompt_to_ignore "$term"
 done
