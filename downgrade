@@ -5,7 +5,6 @@
 # downgrade one or more packages from cache or A.R.M.
 #
 ###
-
 errorout() { echo "error: $*" >&2; exit 1; }
 
 message() {
@@ -27,11 +26,8 @@ EOF
   exit $exit_code
 }
 
-# return the enabled repos in the order of pacman.conf
 enabled_repos() { sed '/^\[\(.*\)\]$/!d;s//\1/g;/options/d' /etc/pacman.conf; } 
 
-# returns true if the first argument is a valid index into the array of
-# remaining arguments
 is_valid_index() {
   local i="$1"; shift
 
@@ -42,8 +38,7 @@ is_valid_index() {
   return 0
 }
 
-# run the command via sudo or su to root, depending on availability and
-# configuration
+# uses sudo or su to root depending on availability and configuration
 as_root() {
   if ! (( $UID )); then
     errorout 'please do not run downgrade as root; su/sudo will be used when needed'
@@ -58,9 +53,7 @@ as_root() {
   su root -c "$cmd"
 }
 
-# prompts for user input and adds a quit option. first argument is the
-# variable to set with the user's response, second is the prompt
-# message.
+# first argument is the variable to set with the user's response.
 prompt_with_quit() {
   local var="$1" msg="$2"
 
@@ -70,8 +63,8 @@ prompt_with_quit() {
   [[ "${!var}" == 'q' ]] && exit 1
 }
 
-# find local packages reverse sorted by version. we use the $term-[0-9]*
-# glob to disambiguate cases like foo-1.0 and foo-completion-1.0.
+# we use the $term-[0-9]* glob to disambiguate cases like foo-1.0 and
+# foo-completion-1.0.
 local_packages() {
   local term="$1"
 
@@ -79,8 +72,7 @@ local_packages() {
   find /var/cache/pacman/pkg -name "$term-[0-9R]*.pkg.tar.[gx]z" | LC_ALL='C' sort -rV
 }
 
-# find packages available in the A.R.M. removes packages duplicated
-# between testing and non-testing repos.
+# removes packages duplicated between testing and non-testing repos.
 arm_packages() {
   local term="$1" repos repo url tmp entry pack
 
@@ -96,8 +88,6 @@ arm_packages() {
   for entry in "${tmp[@]}"; do
     read -r repo pack < <(format_arm "$entry")
 
-    # check for duplicates in testing, community-testing and
-    # multilib-testing.
     if [[ "$repo" =~ testing$ ]] && \
       printf "%s\n" "${tmp[@]}" | grep -Fxv "$entry" | grep -Fq "$pack"; then
 
@@ -108,8 +98,7 @@ arm_packages() {
   done
 }
 
-# print numbered entries in tabular form. uses the named function to
-# extract repo and package out of each item.
+# uses the named function to extract repo and package out of each item.
 print_table() {
   local func="$1"; shift
   local i=0 arg repo pack
@@ -127,20 +116,19 @@ print_table() {
   done
 }
 
-# hardcode a local repo and take the basename for package.
 format_local() { echo "local $(basename "$1")"; }
 
-# read the 4th and 7th element out of the url, indexed by forward slash.
+# set elements out of the url, indexed by forward slash.
 format_arm() { set ${1//\// }; echo "$3 $6"; }
 
-# uses PACMAN env var
 install_pkg() {
-  local pacman="${PACMAN:-pacman}" pkg="$1"
+  local pkg="$1"
+  local pacman="${PACMAN:-pacman}"
+
   as_root "$pacman" -U "$pkg" || errorout "could not install package $pkg"
 }
 
-# checks for local packages, presents them in a numbered table, if a
-# choice is made, installs the package.
+# if a choice is made, installs the package.
 check_local_packages() {
   $searchcache || return 1
 
@@ -169,8 +157,7 @@ check_local_packages() {
   install_pkg "${locals[$n]}"
 }
 
-# checks for packages in A.R.M., presents them in a numbered table, if a
-# choice is made, downloads and installs the package.
+# if a choice is made, downloads and installs the package.
 check_arm_packages() {
   $searcharm || return 1
 
@@ -204,7 +191,6 @@ check_arm_packages() {
   install_pkg "$pkg"
 }
 
-# prompt then add the argument to the IgnorePkg setting in pacman.conf.
 # won't handle non-standard formatting well, just tacks the argument
 # onto the end of the IgnorePkg line (iff not already present).
 prompt_to_ignore() {
@@ -254,7 +240,7 @@ done
 
 # Main
 for term in "${args[@]}"; do
-  # check for installed version if desired
+  # parse installed version if desired
   $showinstalled && installed=$(pacman -Q $term 2>/dev/null)
   installed=${installed:-DummyPkg}
 
