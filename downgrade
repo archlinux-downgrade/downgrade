@@ -45,6 +45,10 @@ is_valid_index() {
 # run the command via sudo or su to root, depending on availability and
 # configuration
 as_root() {
+  if ! (( $UID )); then
+    errorout 'please do not run downgrade as root; su/sudo will be used when needed'
+  fi
+
   if $usesudo && type -p sudo &>/dev/null; then
     sudo "$@"
     return $?
@@ -129,16 +133,10 @@ format_local() { echo "local $(basename "$1")"; }
 # read the 4th and 7th element out of the url, indexed by forward slash.
 format_arm() { set ${1//\// }; echo "$3 $6"; }
 
-# run a pacman command using either sudo or su root. uses PACMAN env var
-# or a default of just 'pacman'.
-run_pacman() {
-  local pacman="${PACMAN:-pacman}"
-
-  if ! (( $UID )); then
-    errorout 'please do not run downgrade as root; su/sudo will be used when needed'
-  fi
-
-  as_root "$pacman" "$@"
+# uses PACMAN env var
+install_pkg() {
+  local pacman="${PACMAN:-pacman}" pkg="$1"
+  as_root "$pacman" -U "$pkg" || errorout "could not install package $pkg"
 }
 
 # checks for local packages, presents them in a numbered table, if a
@@ -168,9 +166,7 @@ check_local_packages() {
   n=$((num-1))
 
   is_valid_index "$n" "${locals[@]}" || errorout 'invalid choice.'
-
-  pkg="${locals[$n]}"
-  run_pacman -U "$pkg" || errorout "could not install package $pkg"
+  install_pkg "${locals[$n]}"
 }
 
 # checks for packages in A.R.M., presents them in a numbered table, if a
@@ -205,7 +201,7 @@ check_arm_packages() {
   fi
 
   wget -O "$pkg" "$url" || errorout "failed downloading $url"
-  run_pacman -U "$pkg"  || errorout "could not install package $pkg"
+  install_pkg "$pkg"
 }
 
 # prompt then add the argument to the IgnorePkg setting in pacman.conf.
