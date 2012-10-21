@@ -58,9 +58,18 @@ prompt_with_quit() {
   local var="$1" msg="$2"
 
   echo
-  echo -n "$msg or [q]uit: " && read -r $var
+  read -r -p "$msg or [q]uit: " $var
 
   [[ "${!var}" == 'q' ]] && exit 1
+}
+
+prompt_yn() {
+  local msg="$*" ans
+
+  echo
+  read -r -p "$msg? [y/n] " ans
+
+  [[ $ans =~ ^(y|Y) ]]
 }
 
 # we use the $term-[0-9]* glob to disambiguate cases like foo-1.0 and
@@ -197,11 +206,9 @@ prompt_to_ignore() {
   local pkg="$1" ans
   local pacman_conf="${PACMAN_CONF:-/etc/pacman.conf}"
 
-  prompt_with_quit ans "Add $pkg to IgnorePkg in $pacman_conf"
-
-  if [[ $ans =~ ^(y|Y) ]]; then
-    # ensure we don't add duplicates
-    if ! grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$pacman_conf"; then
+  # don't even prompt if already present
+  if ! grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$pacman_conf"; then
+    if prompt_yn "Add $pkg to IgnorePkg in $pacman_conf"; then
       as_root sed -i "s/^IgnorePkg.*/& $pkg/" "$pacman_conf"
     fi
   fi
