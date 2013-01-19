@@ -92,7 +92,7 @@ arm_packages() {
 
   url="http://arm.konnichi.com/search/raw.php?a=$arch&q=%5E$term%24$repos"
 
-  tmp=( $(wget -q -O - "$url" 2>/dev/null | grep -v sig$ | sort -rV) )
+  tmp=( $(curl --silent --fail "$url" | grep -v sig$ | sort -rV) )
 
   for entry in "${tmp[@]}"; do
     read -r repo pack < <(format_arm "$entry")
@@ -196,7 +196,7 @@ check_arm_packages() {
     mkdir -p "$pkgdir" || errorout "unable to create $pkgdir"
   fi
 
-  wget -O "$pkg" "$url" || errorout "failed downloading $url"
+  curl -# "$url" > "$pkg" || errorout "failed downloading $url"
   install_pkg "$pkg"
 }
 
