@@ -7,7 +7,6 @@ arch=('any')
 url="https://github.com/pbrisbin/downgrade"
 license="GPL" 
 source=($pkgname)
-depends=('wget')
 optdepends=('sudo: for installation via sudo')
 
 package() {
