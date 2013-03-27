@@ -5,23 +5,21 @@
 # downgrade one or more packages from cache or A.R.M.
 #
 ###
-errorout() { echo "error: $*" >&2; exit 1; }
+TEXTDOMAINDIR=/usr/share/locale
+TEXTDOMAIN=downgrade
+errorout() { echo $"error: $*" >&2; exit 1; }
 
 message() {
   local exit_code="${1:-0}"
 
-  cat << EOF
-
-  usage: downgrade [ -d <dir> ] [ -m <32|64> ] [ -a | -c ] [ -i ] [ -- ] <pkg> ...
+echo $"usage: downgrade [ -d <dir> ] [ -m <32|64> ] [ -a | -c ] [ -i ] [ -- ] <pkg> ...
     options:
       -d,--pkgdir       set download directory (A.R.M. only), default is \`/tmp'
       -m,--arch         set search architecture (A.R.M. only), default is determined by \`uname -m\`
       -a,--noarm        don't search the A.R.M. when nothing's available in cache
       -c,--nocache      don't look in cache, go directly to A.R.M.
       -i,--noinstalled  don't show [installed] next to installed versions (speed up)
-      -s,--nosudo       don't use sudo, even when available
-
-EOF
+      -s,--nosudo       don't use sudo, even when available"
 
   exit $exit_code
 }
@@ -41,7 +39,7 @@ is_valid_index() {
 # uses sudo or su to root depending on availability and configuration
 as_root() {
   if ! (( $UID )); then
-    errorout 'please do not run downgrade as root; su/sudo will be used when needed'
+    errorout $"please do not run downgrade as root; su/sudo will be used when needed"
   fi
 
   if $usesudo && type -p sudo &>/dev/null; then
@@ -58,9 +56,9 @@ prompt_with_quit() {
   local var="$1" msg="$2"
 
   echo
-  read -r -p "$msg or [q]uit: " $var
+  read -r -p $"$msg or [q]uit: " $var
 
-  [[ "${!var}" == 'q' ]] && exit 1
+  [[ "${!var}" == $"q" ]] && exit 1
 }
 
 prompt_yn() {
@@ -119,7 +117,7 @@ print_table() {
 
     i=$((i+1))
     case $pack in
-      ${installed// /-}*) printf "$fmt" "$i" "$repo" "$pack [installed]" ;;
+      ${installed// /-}*) printf "$fmt" "$i" "$repo" $"$pack [installed]" ;;
       *)                  printf "$fmt" "$i" "$repo" "$pack" ;;
     esac
   done
@@ -134,7 +132,7 @@ install_pkg() {
   local pkg="$1"
   local pacman="${PACMAN:-pacman}"
 
-  as_root "$pacman" -U "$pkg" || errorout "could not install package $pkg"
+  as_root "$pacman" -U "$pkg" || errorout $"could not install package $pkg"
 }
 
 # if a choice is made, installs the package.
@@ -147,22 +145,22 @@ check_local_packages() {
   (( ${#locals[@]} )) || return 1
 
   echo
-  echo 'The following packages are available in your cache:'
+  echo $"The following packages are available in your cache:"
   echo
 
   print_table format_local "${locals[@]}"
 
   if $searcharm; then
-    prompt_with_quit num 'please choose a version, [s]earch A.R.M'
+    prompt_with_quit num $"please choose a version, [s]earch A.R.M"
   else
-    prompt_with_quit num 'please choose a version'
+    prompt_with_quit num $"please choose a version"
   fi
 
-  [[ "$num" = 's' ]] && return 1
+  [[ "$num" = $"s" ]] && return 1
 
   n=$((num-1))
 
-  is_valid_index "$n" "${locals[@]}" || errorout 'invalid choice.'
+  is_valid_index "$n" "${locals[@]}" || errorout $"invalid choice."
   install_pkg "${locals[$n]}"
 }
 
@@ -170,7 +168,7 @@ check_local_packages() {
 check_arm_packages() {
   $searcharm || return 1
 
-  [[ "$arch" =~ ^(32|64)$ ]] || errorout "$arch is invalid, must be 32 or 64"
+  [[ "$arch" =~ ^(32|64)$ ]] || errorout $"$arch is invalid, must be 32 or 64"
 
   local term="$1" url pkg n
   local arms=( $(arm_packages "$term") )
@@ -178,22 +176,22 @@ check_arm_packages() {
   (( ${#arms[@]} )) || return 1
 
   echo
-  echo 'The following packages are available from the A.R.M.:'
+  echo $"The following packages are available from the A.R.M.:"
   echo
 
   print_table format_arm "${arms[@]}"
 
-  prompt_with_quit num 'please choose a version'
+  prompt_with_quit num $"please choose a version"
 
   n=$((num-1))
 
-  is_valid_index "$n" "${arms[@]}" || errorout 'invalid choice.'
+  is_valid_index "$n" "${arms[@]}" || errorout $"invalid choice."
 
   url=${arms[$n]}
   pkg="$pkgdir/$(basename $url)"
 
   if [[ ! -d "$pkgdir" ]]; then
-    mkdir -p "$pkgdir" || errorout "unable to create $pkgdir"
+    mkdir -p "$pkgdir" || errorout $"unable to create $pkgdir"
   fi
 
   curl -# "$url" > "$pkg" || errorout "failed downloading $url"
@@ -208,7 +206,7 @@ prompt_to_ignore() {
 
   # don't even prompt if already present
   if ! grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$pacman_conf"; then
-    if prompt_yn "Add $pkg to IgnorePkg in $pacman_conf"; then
+    if prompt_yn $"Add $pkg to IgnorePkg in $pacman_conf"; then
       as_root sed -i "s/^IgnorePkg.*/& $pkg/" "$pacman_conf"
     fi
   fi
