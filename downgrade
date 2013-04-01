@@ -65,7 +65,7 @@ prompt_yn() {
   local msg="$*" ans ques=$"y"
 
   echo
-  read -r -p "$msg? [$ques/n] " ans
+  read -r -p "$msg? [$ques/$"n"] " ans
   ans=$(echo $ans |tr '[A-Z]' '[a-z]')
 
   [[ $ans =~ ^($ques) ]]
