@@ -7,17 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-27 19:03+0200\n"
-"PO-Revision-Date: 2013-03-27 19:16+0300\n"
+"POT-Creation-Date: 2013-04-01 18:12+0300\n"
+"PO-Revision-Date: 2013-04-01 18:12+0300\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
-"Language: lt\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: downgrade:15
+#: ../downgrade:10
+msgid "error: $*"
+msgstr "klaida: $*"
+
+#: ../downgrade:15
 msgid ""
 "usage: downgrade [ -d <dir> ] [ -m <32|64> ] [ -a | -c ] [ -i ] [ -- ] "
 "<pkg> ...\n"
@@ -45,66 +49,70 @@ msgstr ""
 "      -i,--noinstalled  nerodyti [įdiegta] šalia įdiegtų versijų (greičiau)\n"
 "      -s,--nosudo      nenaudoti sudo, net jei galima"
 
-#: downgrade:42
+#: ../downgrade:42
 msgid "please do not run downgrade as root; su/sudo will be used when needed"
 msgstr ""
 "nevykdykite „downgrade“ kaip root naudotojas; kai reikės su/sudo bus "
 "panaudota"
 
-#: downgrade:59
+#: ../downgrade:59
 #, sh-format
 msgid "$msg or [q]uit: "
 msgstr "$msg arba [i]šeikite: "
 
-#: downgrade:61
+#: ../downgrade:61
 msgid "q"
 msgstr "i"
 
-#: downgrade:120
+#: ../downgrade:65
+msgid "y"
+msgstr "t"
+
+#: ../downgrade:122
 #, sh-format
 msgid "$pack [installed]"
 msgstr "$pack [įdiegta]"
 
-#: downgrade:135
+#: ../downgrade:137
 #, sh-format
 msgid "could not install package $pkg"
 msgstr "paketo $pkg įdiegti nepavyko"
 
-#: downgrade:148
+#: ../downgrade:150
 msgid "The following packages are available in your cache:"
 msgstr "Iš jūsų podėlio prieinami šie paketai:"
 
-#: downgrade:154
+#: ../downgrade:156
 msgid "please choose a version, [s]earch A.R.M"
 msgstr "pasirinkite versiją, [i]eškoti A.R.M"
 
-#: downgrade:156 downgrade:184
+#: ../downgrade:158 ../downgrade:186
 msgid "please choose a version"
 msgstr "pasirinkite versiją"
 
-#: downgrade:159
+#: ../downgrade:161
 msgid "s"
 msgstr "i"
 
-#: downgrade:163 downgrade:188
+#: ../downgrade:165 ../downgrade:190
 msgid "invalid choice."
 msgstr "netinkamas pasirinkimas."
 
-#: downgrade:171
+#: ../downgrade:173
 #, sh-format
 msgid "$arch is invalid, must be 32 or 64"
 msgstr "$arch netinkama, turi būti 32 arba 64"
 
-#: downgrade:179
+#: ../downgrade:181
 msgid "The following packages are available from the A.R.M.:"
 msgstr "Iš A.R.M. prieinami šie paketai :"
 
-#: downgrade:194
+#: ../downgrade:196
 #, sh-format
 msgid "unable to create $pkgdir"
 msgstr "nepavyko sukurti $pkgdir"
 
-#: downgrade:209
+#: ../downgrade:212
 #, sh-format
 msgid "Add $pkg to IgnorePkg in $pacman_conf"
 msgstr "Pridėti „$pkg“ į IgnorePkg faile $pacman_conf"

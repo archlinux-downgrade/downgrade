@@ -62,12 +62,14 @@ prompt_with_quit() {
 }
 
 prompt_yn() {
-  local msg="$*" ans
+  local msg="$*" ans ques=$"y"
 
   echo
-  read -r -p "$msg? [y/n] " ans
+  read -r -p "$msg? [$ques/$"n"] " ans
+  ans=$(echo $ans |tr '[A-Z]' '[a-z]')
 
-  [[ $ans =~ ^(y|Y) ]]
+  [[ $ans =~ ^($ques) ]]
+  
 }
 
 # we use the $term-[0-9]* glob to disambiguate cases like foo-1.0 and
@@ -202,6 +204,7 @@ check_arm_packages() {
 # onto the end of the IgnorePkg line (iff not already present).
 prompt_to_ignore() {
   local pkg="$1" ans
+  ans=$(echo $ans |tr '[A-Z]' '[a-z]')
   local pacman_conf="${PACMAN_CONF:-/etc/pacman.conf}"
 
   # don't even prompt if already present

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-27 19:45+0200\n"
+"POT-Creation-Date: 2013-04-01 18:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,51 +51,55 @@ msgstr ""
 msgid "q"
 msgstr ""
 
-#: ../downgrade:120
+#: ../downgrade:65
+msgid "y"
+msgstr ""
+
+#: ../downgrade:122
 #, sh-format
 msgid "$pack [installed]"
 msgstr ""
 
-#: ../downgrade:135
+#: ../downgrade:137
 #, sh-format
 msgid "could not install package $pkg"
 msgstr ""
 
-#: ../downgrade:148
+#: ../downgrade:150
 msgid "The following packages are available in your cache:"
 msgstr ""
 
-#: ../downgrade:154
+#: ../downgrade:156
 msgid "please choose a version, [s]earch A.R.M"
 msgstr ""
 
-#: ../downgrade:156 ../downgrade:184
+#: ../downgrade:158 ../downgrade:186
 msgid "please choose a version"
 msgstr ""
 
-#: ../downgrade:159
+#: ../downgrade:161
 msgid "s"
 msgstr ""
 
-#: ../downgrade:163 ../downgrade:188
+#: ../downgrade:165 ../downgrade:190
 msgid "invalid choice."
 msgstr ""
 
-#: ../downgrade:171
+#: ../downgrade:173
 #, sh-format
 msgid "$arch is invalid, must be 32 or 64"
 msgstr ""
 
-#: ../downgrade:179
+#: ../downgrade:181
 msgid "The following packages are available from the A.R.M.:"
 msgstr ""
 
-#: ../downgrade:194
+#: ../downgrade:196
 #, sh-format
 msgid "unable to create $pkgdir"
 msgstr ""
 
-#: ../downgrade:209
+#: ../downgrade:212
 #, sh-format
 msgid "Add $pkg to IgnorePkg in $pacman_conf"
 msgstr ""
