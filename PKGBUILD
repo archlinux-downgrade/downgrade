@@ -10,7 +10,7 @@ source=($pkgname lt.po)
 optdepends=('sudo: for installation via sudo')
 
 package() {
-  local locales="lt" # space separated
+  local locales="lt nb nn" # space separated
 
   for i in $locales; do
     mkdir -p "$pkgdir/usr/share/locale/$i/LC_MESSAGES/"
