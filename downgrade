@@ -12,7 +12,7 @@ errorout() { echo $"error: $*" >&2; exit 1; }
 message() {
   local exit_code="${1:-0}"
 
-echo $"usage: downgrade [ -d <dir> ] [ -m <32|64> ] [ -a | -c ] [ -i ] [ -- ] <pkg> ...
+echo $"usage: downgrade [ -d <dir> ] [ -m <i686|x86_64> ] [ -a | -c ] [ -i ] [ -- ] <pkg> ...
     options:
       -d,--pkgdir       set download directory (A.R.M. only), default is \`/tmp'
       -m,--arch         set search architecture (A.R.M. only), default is determined by \`uname -m\`
@@ -85,14 +85,9 @@ local_packages() {
 arm_packages() {
   local term="$1" repos repo url tmp entry pack
 
-  repos=
-  for repo in $(enabled_repos); do
-    repos="${repos}&${repo}=1"
-  done
+  url="http://repo-arm.archlinuxcn.org/search?arch=$arch&pkgname=$term"
 
-  url="http://arm.konnichi.com/search/raw.php?a=$arch&q=%5E$term%24$repos"
-
-  tmp=( $(curl --silent --fail "$url" | grep -v sig$ | sort -rV) )
+  tmp=( $(curl --silent --fail "$url" | grep -v sig$ | cut -d '|' -f 5 | sort -rV) )
 
   for entry in "${tmp[@]}"; do
     read -r repo pack < <(format_arm "$entry")
@@ -170,7 +165,7 @@ check_local_packages() {
 check_arm_packages() {
   $searcharm || return 1
 
-  [[ "$arch" =~ ^(32|64)$ ]] || errorout $"$arch is invalid, must be 32 or 64"
+  [[ "$arch" =~ ^(i686|x86_64)$ ]] || errorout $"$arch is invalid, must be 32 or 64"
 
   local term="$1" url pkg n
   local arms=( $(arm_packages "$term") )
@@ -226,7 +221,7 @@ searchcache=true   # check in cache before arm
 showinstalled=true # show [installed] next to installed versions
 usesudo=true       # use sudo if present
 
-[[ "$(uname -m)" = 'x86_64' ]] && arch=64 || arch=32
+arch=$(uname -m)
 
 # Options
 while [[ -n "$1" ]]; do

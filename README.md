@@ -3,7 +3,7 @@
 Eases downgrading packages in Arch Linux.
 
 ~~~
-  usage: downgrade [ -d <dir> ] [ -m <32|64> ] [ -a | -c ] [ -i ] [ -- ] <pkg> ...
+  usage: downgrade [ -d <dir> ] [ -m <i686|x86_64> ] [ -a | -c ] [ -i ] [ -- ] <pkg> ...
     options:
       -d,--pkgdir       set download directory (A.R.M. only), default is `/tmp'
       -m,--arch         set search architecture (A.R.M. only), default is determined by `uname -m`
