@@ -24,7 +24,15 @@ echo $"usage: downgrade [ -d <dir> ] [ -m <i686|x86_64> ] [ -a | -c ] [ -i ] [ -
   exit $exit_code
 }
 
-enabled_repos() { sed '/^\[\(.*\)\]$/!d;s//\1/g;/options/d' /etc/pacman.conf; } 
+enabled_repos() { sed '/^\[\(.*\)\]$/!d;s//\1/g;/options/d' /etc/pacman.conf; }
+
+pacman_cache() {
+  local cache
+
+  read -r cache < <(sed '/^ *CacheDir *= *\(.*\)$/!d;s//\1/' /etc/pacman.conf)
+
+  echo "${cache:-/var/cache/pacman/pkg/}"
+}
 
 is_valid_index() {
   local i="$1"; shift
@@ -78,7 +86,7 @@ local_packages() {
   local term="$1"
 
   # the R is a special case for erlang, others may exist
-  find /var/cache/pacman/pkg -name "$term-[0-9R]*.pkg.tar.[gx]z" | LC_ALL='C' sort -rV
+  find "$(pacman_cache)" -name "$term-[0-9R]*.pkg.tar.[gx]z" | LC_ALL='C' sort -rV
 }
 
 # removes packages duplicated between testing and non-testing repos.
