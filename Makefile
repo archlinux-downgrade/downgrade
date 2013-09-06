@@ -23,7 +23,7 @@ distcheck: man pkgver md5sums
 
 dist: man pkgver md5sums
 	makepkg --source --clean
-	git commit -am "Releasing $(VERSION)-$(RELEASE)"
+	git commit -am "Releasing $(VERSION)-$(RELEASE)" || true
 	git tag -a -m v$(VERSION) v$(VERSION)
 
 clean:
