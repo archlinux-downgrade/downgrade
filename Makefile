@@ -21,10 +21,10 @@ distcheck: man pkgver md5sums
 	makepkg --install --clean
 	rm $(NAME)-$(VERSION)-$(RELEASE)-any.pkg.tar.xz
 
-dist: man pkgver md5sums
+dist: man pkgver md5sums clean
 	makepkg --source --clean
-	git commit -am "Releasing $(VERSION)-$(RELEASE)"
-	git tag -a -m v$(VERSION) v$(VERSION)
+	git commit -am "Releasing $(VERSION)-$(RELEASE)" || true
+	git tag -a -m v$(VERSION) v$(VERSION) || true
 
 clean:
 	rm -f $(NAME)-$(VERSION)-$(RELEASE).src.tar.gz
