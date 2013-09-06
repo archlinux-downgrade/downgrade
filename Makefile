@@ -1,10 +1,8 @@
 NAME    = downgrade
-VERSION = 4.2
+VERSION = 4.2.1
 RELEASE = 1
 AUTHOR  = pbrisbin
 URL     = https://github.com/$(AUTHOR)/$(NAME)
-
-PREFIX ?= /usr/local
 
 pkgver:
 	sed -i "s/^pkgver=.*/pkgver=$(VERSION)/" PKGBUILD
@@ -14,11 +12,16 @@ md5sums:
 	sed -i '/^md5sums=.*/,$$d' PKGBUILD
 	makepkg --geninteg --clean >> PKGBUILD
 
-distcheck: pkgver md5sums
+man: $(NAME).8
+
+$(NAME).8: doc/$(NAME).8.md
+	kramdown-man doc/$(NAME).8.md > $(NAME).8
+
+distcheck: man pkgver md5sums
 	makepkg --install --clean
 	rm $(NAME)-$(VERSION)-$(RELEASE)-any.pkg.tar.xz
 
-dist: pkgver md5sums
+dist: man pkgver md5sums
 	makepkg --source --clean
 	git commit -am "Releasing $(VERSION)-$(RELEASE)"
 	git tag -a -m v$(VERSION) v$(VERSION)
@@ -26,4 +29,4 @@ dist: pkgver md5sums
 clean:
 	rm -f $(NAME)-$(VERSION)-$(RELEASE).src.tar.gz
 
-.PHONY: dist distcheck md5sums pkgver clean
+.PHONY: dist distcheck man md5sums pkgver clean
