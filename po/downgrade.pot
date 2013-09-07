@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-01 18:12+0300\n"
+"POT-Creation-Date: 2013-09-07 10:33-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../downgrade:10
+#: ../downgrade:5
 msgid "error: $*"
 msgstr ""
 
-#: ../downgrade:15
+#: ../downgrade:10
 msgid ""
 "usage: downgrade [ -d <dir> ] [ -m <i686|x86_64> ] [ -a | -c ] [ -i ] [ -- ] "
 "<pkg> ...\n"
@@ -55,51 +55,51 @@ msgstr ""
 msgid "y"
 msgstr ""
 
-#: ../downgrade:122
+#: ../downgrade:121
 #, sh-format
 msgid "$pack [installed]"
 msgstr ""
 
-#: ../downgrade:137
+#: ../downgrade:136
 #, sh-format
 msgid "could not install package $pkg"
 msgstr ""
 
-#: ../downgrade:150
+#: ../downgrade:148
 msgid "The following packages are available in your cache:"
 msgstr ""
 
-#: ../downgrade:156
+#: ../downgrade:154
 msgid "please choose a version, [s]earch A.R.M"
 msgstr ""
 
-#: ../downgrade:158 ../downgrade:186
+#: ../downgrade:156 ../downgrade:183
 msgid "please choose a version"
 msgstr ""
 
-#: ../downgrade:161
+#: ../downgrade:159
 msgid "s"
 msgstr ""
 
-#: ../downgrade:165 ../downgrade:190
+#: ../downgrade:163 ../downgrade:187
 msgid "invalid choice."
 msgstr ""
 
-#: ../downgrade:173
+#: ../downgrade:170
 #, sh-format
-msgid "$arch is invalid, must be 32 or 64"
+msgid "$arch is invalid, must be i686 or x86_64"
 msgstr ""
 
-#: ../downgrade:181
+#: ../downgrade:178
 msgid "The following packages are available from the A.R.M.:"
 msgstr ""
 
-#: ../downgrade:196
+#: ../downgrade:193
 #, sh-format
 msgid "unable to create $pkgdir"
 msgstr ""
 
-#: ../downgrade:212
+#: ../downgrade:206
 #, sh-format
 msgid "Add $pkg to IgnorePkg in $pacman_conf"
 msgstr ""

@@ -167,7 +167,7 @@ check_local_packages() {
 check_arm_packages() {
   $searcharm || return 1
 
-  [[ "$arch" =~ ^(i686|x86_64)$ ]] || errorout $"$arch is invalid, must be 32 or 64"
+  [[ "$arch" =~ ^(i686|x86_64)$ ]] || errorout $"$arch is invalid, must be i686 or x86_64"
 
   local term="$1" url pkg n
   local arms=( $(arm_packages "$term") )
