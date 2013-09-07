@@ -79,9 +79,9 @@ local_packages() {
 }
 
 arm_api() {
-  local pkgname="$1" url='http://repo-arm.archlinuxcn.org/search'
+  local pkgname="$1" url='http://repo-arm.archlinuxcn.org/exact'
 
-  curl -G \
+  curl \
     --silent --fail \
     --data "arch=$arch" \
     --data-urlencode "pkgname=$term" "$url"
