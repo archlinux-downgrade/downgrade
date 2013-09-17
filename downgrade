@@ -201,6 +201,7 @@ prompt_to_ignore() {
   local pkg="$1"
   local pacman_conf="${PACMAN_CONF:-/etc/pacman.conf}"
 
+  grep -Eq "^#IgnorePkg" "$pacman_conf" && as_root sed -i "s/^#IgnorePkg/IgnorePkg/" "$pacman_conf"
   grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$pacman_conf" && return 0
 
   if prompt_yn $"Add $pkg to IgnorePkg in $pacman_conf"; then
