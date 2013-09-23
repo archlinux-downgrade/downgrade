@@ -66,12 +66,16 @@ prompt_yn() {
   [[ "${ans,,}" =~ ^($ques) ]]
 }
 
+sort_packages() {
+  awk -F/ '{ print $NF, $0 }' | LC_ALL='C' sort -rV | sed 's|^[^/]*/|/|'
+}
+
 local_packages() {
   local term="$1"
 
   # we use the $term-[0-9]* glob to disambiguate cases like foo-1.0 and
   # foo-completion-1.0. the R is a special case for erlang.
-  find "$(pacman_cache)" -name "$term-[0-9R]*.pkg.tar.[gx]z" | LC_ALL='C' sort -rV
+  find $(pacman_caches) -name "$term-[0-9R]*.pkg.tar.[gx]z" | sort_packages
 }
 
 arm_api() {
