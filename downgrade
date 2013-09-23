@@ -208,8 +208,6 @@ prompt_to_ignore() {
   fi
 }
 
-(( "$#" )) || message 1
-
 pkgdir='/tmp'
 arch=$(uname -m)
 searcharm=true
@@ -218,6 +216,10 @@ showinstalled=true
 usesudo=true
 
 args=()
+
+[[ -n "$TESTDIR" ]] && return
+
+(( "$#" )) || message 1
 
 while [[ -n "$1" ]]; do
   case "$1" in
