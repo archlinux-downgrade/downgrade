@@ -19,12 +19,8 @@ message() {
   exit $exit_code
 }
 
-pacman_cache() {
-  local cache
-
-  read -r cache < <(sed '/^ *CacheDir *= *\(.*\)$/!d;s//\1/' /etc/pacman.conf)
-
-  echo "${cache:-/var/cache/pacman/pkg/}"
+pacman_caches() {
+  sed '/^ *CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF"
 }
 
 is_valid_index() {
@@ -131,9 +127,8 @@ format_arm() { set ${1//\// }; echo "$3 $6"; }
 
 install_pkg() {
   local pkg="$1"
-  local pacman="${PACMAN:-pacman}"
 
-  as_root "$pacman" -U "$pkg" || errorout $"could not install package $pkg"
+  as_root "$PACMAN" -U "$pkg" || errorout $"could not install package $pkg"
 }
 
 check_local_packages() {
@@ -199,12 +194,11 @@ check_arm_packages() {
 
 prompt_to_ignore() {
   local pkg="$1"
-  local pacman_conf="${PACMAN_CONF:-/etc/pacman.conf}"
 
-  grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$pacman_conf" && return 0
+  grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$PACMAN_CONF" && return 0
 
-  if prompt_yn $"Add $pkg to IgnorePkg in $pacman_conf"; then
-    as_root sed -i "s/^#\?\(IgnorePkg.*\)/\1 $pkg/" "$pacman_conf"
+  if prompt_yn $"Add $pkg to IgnorePkg in $PACMAN_CONF"; then
+    as_root sed -i "s/^#\?\(IgnorePkg.*\)/\1 $pkg/" "$PACMAN_CONF"
   fi
 }
 
@@ -216,6 +210,9 @@ showinstalled=true
 usesudo=true
 
 args=()
+
+PACMAN="${PACMAN:-pacman}"
+PACMAN_CONF="${PACMAN_CONF:-/etc/pacman.conf}"
 
 [[ -n "$TESTDIR" ]] && return
 
@@ -238,7 +235,7 @@ while [[ -n "$1" ]]; do
 done
 
 for term in "${args[@]}"; do
-  $showinstalled && installed=$(pacman -Q $term 2>/dev/null)
+  $showinstalled && installed=$($PACMAN -Q $term 2>/dev/null)
   installed=${installed:-DummyPkg}
 
   ( check_local_packages "$term" || check_arm_packages "$term" ) && prompt_to_ignore "$term"
