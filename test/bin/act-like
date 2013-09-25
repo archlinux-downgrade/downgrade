@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+program="$1"; shift
+base="${program##*/}"
+
+fixtures="${TESTDIR:-test}/fixtures/$base/$(echo $* | md5sum | cut -d ' ' -f 1)"
+
+if [[ ! -d "$fixtures" ]]; then
+  mkdir -p "$fixtures"
+  $program "$@" >"$fixtures/stdout" 2>"$fixtures/stderr"
+  echo $? > "$fixtures/exit_code"
+fi
+
+cat "$fixtures/stdout"
+cat "$fixtures/stderr" >&2
+
+read -r exit_code < "$fixtures/exit_code"
+
+exit $exit_code

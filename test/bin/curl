@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+act-like /usr/bin/curl "$@"
