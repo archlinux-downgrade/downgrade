@@ -10,8 +10,7 @@
 .SH DESCRIPTION
 .LP
 .PP
-Downgrade Arch Linux packages by installing versions found in a local 
-package cache or the Arch Rollback Machine\.
+Downgrade Arch Linux packages\.
 .LP
 .PP
 https:\[sl]\[sl]github\.com\[sl]pbrisbin\[sl]downgrade
@@ -19,61 +18,40 @@ https:\[sl]\[sl]github\.com\[sl]pbrisbin\[sl]downgrade
 .SH OPTIONS
 .LP
 .TP
-\fB-d\fR,\fB--pkgdir\fR \fIDIRECTORY\fP
-Set download directory (A\.R\.M\. only)\. Default is \fI\[sl]tmp\fP\.
-.LP
-.TP
 \fB-m\fR, \fB--arch\fR \fIx86\[ru]64\fP\[or]\fIi686\fP
-Set search architecture (A\.R\.M\. only)\. Default is determined by 
-\fBuname(1)\fR\.
+Specify the target architecture\. Default is determined by \fBuname(1)\fR\.
 .LP
 .TP
-\fB-a\fR, \fB--noarm\fR
-Don\[cq]t search the A\.R\.M\. when nothing is available in cache\.
-.LP
-.TP
-\fB-c\fR, \fB--nocache\fR
-Don\[cq]t look in cache, go directly to the A\.R\.M\.
-.LP
-.TP
-\fB-i\fR, \fB--noinstalled\fR
-Don\[cq]t show \fI\[lB]installed\[rB]\fP next to installed versions (doing so has a 
-minor performance impact)\.
+\fB-p\fR, \fB--provider\fR \fIarm\fP\[or]\fIcache\fP\[or]\fIall\fP
+Specify which provider(s) to use\. Default is \fIall\fP\.
 .LP
 .TP
 \fB-s\fR, \fB--nosudo\fR
 Don\[cq]t use \fBsudo(8)\fR, even if available (\fBsu(1)\fR is used in stead)\.
 .LP
-.SH ARCH ROLLBACK MACHINE
+.SH PROVIDERS
 .LP
 .PP
-The Arch Rollback Machine is a community\-hosted set of older packages 
-and an API for searching and retrieving them\.
+A provider is a source for package files\. All it must do is output a 
+list of URLs or absolute file paths\. URLs will be downloaded into the 
+current directory then installed\. Files are installed directly\.
+.LP
+.SS ARCH ROLLBACK MACHINE (ARM)
 .LP
 .PP
-The A\.R\.M\. is presently located at:
+The \fIarm\fP provider searches for packages by performing an HTTP POST to 
+\fI\[Do]ARM\[ru]URL\[sl]exact\[sl]\fP\. The server is expected to return fully qualified 
+package URLs as the fifth field in pipe\-separated lines\.
+.LP
+.SS CACHE
 .LP
 .PP
-\fBhttp://repo-arm.archlinuxcn.org\fR
-.LP
-.SH CACHE LOCATION
-.LP
-.PP
-The location of the local package cache is determined by reading 
-\fI\[Do]PACMAN\[ru]CONF\fP for the \fICacheDir\fP directive\. By default, this value has 
-a trailing slash\. If your cache happens to be a symlink, the trailing 
-slash is required\.
-.LP
-.SH IGNORING PACKAGES
+The \fIcache\fP provider searches for packages by calling \fBfind(1)\fR in all 
+\fBCacheDir\fRs as defined in \fI\[Do]PACMAN\[ru]CONF\fP\.
 .LP
 .PP
-As it is common to add a package to the \fIIgnorePkg\fP directive in one\[cq]s 
-pacman configuration after downgrading, \fBdowngrade\fR offers to do this 
-for you automatically\.
-.LP
-.PP
-The process is skipped if the package name is already present in 
-\fIIgnorePkg\fP\.
+Note that downgrade will read \fBCacheDir\fR directives even if commented\. 
+This is a feature, not a bug\.
 .LP
 .SH ENVIRONMENT VARIABLES
 .LP
@@ -84,6 +62,11 @@ The pacman command\. Default is \fIpacman\fP\.
 .TP
 \fIPACMAN\[ru]CONF\fP
 Your pacman configuration file\. Default is \fI\[sl]etc\[sl]pacman\.conf\fP\.
+.LP
+.TP
+\fIARM\[ru]URL\fP
+The location of an A\.R\.M\. server\. Default is 
+\fIhttp:\[sl]\[sl]repo\-arm\.archlinuxcn\.org\fP\.
 .LP
 .SH AUTHOR
 .LP

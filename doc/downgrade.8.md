@@ -29,16 +29,16 @@ current directory then installed. Files are installed directly.
 
 ### ARCH ROLLBACK MACHINE (ARM)
 
-The `arm` provider searches for packages by *POST*ing *arch* and 
-*pkgname* to *$ARM_URL/exact/*. The server is expected to return fully 
-qualified package URLs as the fifth field in pipe-separated lines.
+The *arm* provider searches for packages by performing an HTTP POST to 
+*$ARM_URL/exact/*. The server is expected to return fully qualified 
+package URLs as the fifth field in pipe-separated lines.
 
 ### CACHE
 
-The `cache` provider searches for packages by calling `find(1)` in all 
-*CacheDir*s which are defined in *$PACMAN_CONF*.
+The *cache* provider searches for packages by calling `find(1)` in all 
+`CacheDir`s as defined in *$PACMAN_CONF*.
 
-*NOTE*: downgrade will read *CacheDir* directives even if commented. 
+Note that downgrade will read `CacheDir` directives even if commented. 
 This is a feature, not a bug.
 
 ## ENVIRONMENT VARIABLES
