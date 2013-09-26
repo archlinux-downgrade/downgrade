@@ -19,11 +19,7 @@ prompt_to_install() {
   printf "\nselect a package by number: "; read -r ans
   printf "\n"
 
-  pkg="${!ans}"
-
-  [[ -n "$pkg" ]] || return 1
-
-  install_pkg "$pkg"
+  (( ans > 0 && ans <= $# )) && install_pkg "${!ans}"
 }
 
 prompt_to_ignore() {
@@ -35,30 +31,22 @@ prompt_to_ignore() {
   printf "\nadd %s to IgnorePkg? [y/n] " "$pkg"; read -r ans
   printf "\n"
 
-  if [[ "${ans,,}" == 'y' ]]; then
+  if [[ "${ans,,}" == 'y'* ]]; then
     as_root sed -i "s/^#\?\(IgnorePkg.*\)/\1 $pkg/" "$PACMAN_CONF"
   fi
 }
 
 search_arm() {
-  curl \
-    --fail --silent \
-    --data "arch=$arch" \
-    --data-urlencode "pkgname=$1" "$ARM_URL/exact" \
-    | cut -d '|' -f 5
+  curl --fail --silent --data "arch=$arch" \
+       --data-urlencode "pkgname=$1" "$ARM_URL/exact" | cut -d '|' -f 5
 }
 
 search_cache() {
-  # We use the -[0-9]* glob to disambiguate cases like foo-1.0 and
-  # foo-completion-1.0. The R is a special case for erlang.
   find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
-    -name "$1-[0-9R]*.pkg.tar.[gx]z" -print
+    -name "$1-[0-9R]*.pkg.tar.[gx]z"
 }
 
-search_all() {
-  search_arm "$1"
-  search_cache "$1"
-}
+search_all() { search_arm "$1"; search_cache "$1"; }
 
 sort_packages() {
   grep -Fv 'testing/' \
@@ -68,10 +56,8 @@ sort_packages() {
 
 output_package() {
   local n="$1"
-  local package=$(sed '
-    s|http://.*/\([^/]\+\)$|\1 (remote)|;
-    s|^/.*/\([^/]\+\)$|\1 (local)|;
-  ' <<< "$2")
+  local package=$(sed 's|http://.*/\([^/]\+\)$|\1 (remote)|;
+                       s|^/.*/\([^/]\+\)$|\1 (local)|;' <<< "$2")
 
   printf "%4.4s) %s\n" "$n" "$package"
 }
@@ -79,7 +65,7 @@ output_package() {
 install_pkg() {
   local pkg="$1" url
 
-  if [[ "$pkg" == http://* ]]; then
+  if [[ "$pkg" == 'http://'* ]]; then
     url="$pkg"
     pkg="${url##*/}"
 
