@@ -11,20 +11,10 @@ source=(
   ${pkgname}.8
   bash_completion
   zsh_completion
-  lt.po
-  nb.po
-  nn.po
 )
 optdepends=('sudo: for installation via sudo')
 
 package() {
-  local locales="lt nb nn" # space separated
-
-  for i in $locales; do
-    mkdir -p "$pkgdir/usr/share/locale/$i/LC_MESSAGES/"
-    msgfmt "$srcdir/$i.po" -o "$pkgdir/usr/share/locale/$i/LC_MESSAGES/$pkgname"
-  done
-
   install -Dm755 $pkgname        "$pkgdir/usr/bin/$pkgname"
   install -Dm644 ${pkgname}.8    "$pkgdir/usr/share/man/man8/${pkgname}.8"
   install -Dm644 bash_completion "$pkgdir/etc/bash_completion.d/downgrade"
