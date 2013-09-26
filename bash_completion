@@ -11,18 +11,15 @@ _downgrade() {
   prev=${COMP_WORDS[COMP_CWORD-1]}
 
   options='
-    -d --pkgdir
+    -p --provider
     -m --arch
-    -a --noarm
-    -c --nocache
-    -i --noinstalled
     -s --nosudo
   '
 
   case "$prev" in
-    *downgrade)  COMPREPLY=($(compgen -W "$options"    -- $cur)) ;;
-    -d|--pkgdir) COMPREPLY=($(compgen -o dirnames      -- $cur)) ;;
-    -m|--arch)   COMPREPLY=($(compgen -W 'x86_64 i686' -- $cur)) ;;
+    *downgrade)    COMPREPLY=($(compgen -W "$options"      -- $cur)) ;;
+    -m|--arch)     COMPREPLY=($(compgen -W 'x86_64 i686'   -- $cur)) ;;
+    -p|--provider) COMPREPLY=($(compgen -W 'arm cache all' -- $cur)) ;;
     *)
       case "$cur" in
         -*)  COMPREPLY=($(compgen -W "$options" -- $cur)) ;;
