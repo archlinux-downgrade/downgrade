@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
-message() {
-  printf "usage: downgrade [option, ...] [--] <pkg>, ...\n" >&2
-  printf "see downgrade(8) for details.\n" >&2
-}
-
 prompt_to_install() {
   local pkg ans i=1
 
-  (( $# )) || return 1
+  (($#)) || return 1
 
   printf "Available packages:\n\n"
 
@@ -19,7 +14,7 @@ prompt_to_install() {
   printf "\nselect a package by number: "; read -r ans
   printf "\n"
 
-  (( ans > 0 && ans <= $# )) && install_pkg "${!ans}"
+  ((ans > 0 && ans <= $#)) && install_pkg "${!ans}"
 }
 
 prompt_to_ignore() {
@@ -32,21 +27,19 @@ prompt_to_ignore() {
   printf "\n"
 
   if [[ "${ans,,}" == 'y'* ]]; then
-    as_root sed -i "s/^#\?\(IgnorePkg.*\)/\1 $pkg/" "$PACMAN_CONF"
+    sudo sed -i "s/^#\?\(IgnorePkg.*\)/\1 $pkg/" "$PACMAN_CONF"
   fi
 }
 
-search_arm() {
-  curl --fail --silent --data "arch=$arch" \
-       --data-urlencode "pkgname=$1" "$ARM_URL/exact" | cut -d '|' -f 5
-}
+search_packages() {
+  ((NOARM)) || \
+    curl --fail --silent --data "arch=$(uname -m)" \
+         --data-urlencode "pkgname=$1" "$ARM_URL/exact" | cut -d '|' -f 5
 
-search_cache() {
-  find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
-    -name "$1-[0-9R]*.pkg.tar.[gx]z"
+  ((NOCACHE)) || \
+    find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
+      -name "$1-[0-9R]*.pkg.tar.[gx]z"
 }
-
-search_all() { search_arm "$1"; search_cache "$1"; }
 
 sort_packages() {
   grep -Fv 'testing/' \
@@ -55,11 +48,9 @@ sort_packages() {
 }
 
 output_package() {
-  local n="$1"
-  local package=$(sed 's|http://.*/\([^/]\+\)$|\1 (remote)|;
-                       s|^/.*/\([^/]\+\)$|\1 (local)|;' <<< "$2")
-
-  printf "%4.4s) %s\n" "$n" "$package"
+  printf "%4.4s) %s\n" "$1" "$(
+    sed 's|http://.*/\([^/]\+\)$|\1 (remote)|;
+         s|^/.*/\([^/]\+\)$|\1 (local)|;' <<< "$2")"
 }
 
 install_pkg() {
@@ -72,44 +63,30 @@ install_pkg() {
     curl --silent "$url" > "$pkg"
   fi
 
-  [[ -f "$pkg" ]] && as_root "$PACMAN" -U "$pkg"
+  [[ -f "$pkg" ]] && sudo "$PACMAN" -U "$pkg"
 }
-
-as_root() {
-  if (( use_sudo )) && type -p sudo &>/dev/null; then
-    sudo "$@"
-  else
-    printf -v cmd "%q " "$@"
-    su root -c "$cmd"
-  fi
-}
-
-arch=$(uname -m)
-provider='all'
-use_sudo=1
 
 PACMAN="${PACMAN:-pacman}"
 PACMAN_CONF="${PACMAN_CONF:-/etc/pacman.conf}"
 ARM_URL="${ARM_URL:-http://repo-arm.archlinuxcn.org}"
+NOARM=${NOARM:-0}
+NOCACHE=${NOCACHE:-0}
+NOSUDO=${NOSUDO:-0}
 
-args=()
+if [[ -z "$1" ]]; then
+  printf "usage: downgrade <pkg>, ...\n"   >&2
+  printf "see downgrade(8) for details.\n" >&2
+  exit 1
+fi
 
-while [[ -n "$1" ]]; do
-  case "$1" in
-    -m|--arch)        shift; arch="$1"             ;;
-    -p|--provider)    shift; provider="$1"         ;;
-    -s|--nosudo)      use_sudo=0                   ;;
-    -h|--help)        message; exit                ;;
-    --)               shift; args+=( "$@" ); break ;;
-    -*)               message; exit 1              ;;
-    *)                args+=( "$1" )               ;;
-  esac
-  shift
-done
+if ((NOSUDO)) || !type -p sudo &>/dev/null; then
+  sudo() {
+    printf -v cmd "%q " "$@"
+    su root -c "$cmd"
+  }
+fi
 
-[[ "$provider" =~ arm|cache|all ]] || provider='all'
-
-for term in "${args[@]}"; do
-  candidates=( $(search_$provider "$term" | sort_packages) )
+for term; do
+  candidates=( $(search_packages "$term" | sort_packages) )
   prompt_to_install "${candidates[@]}" && prompt_to_ignore "$term"
 done
