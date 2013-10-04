@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`downgrade` [OPTION, ...] [PACKAGE, ...]
+`downgrade` [PACKAGE, ...]
 
 ## DESCRIPTION
 
@@ -10,36 +10,22 @@ Downgrade Arch Linux packages.
 
 https://github.com/pbrisbin/downgrade
 
-## OPTIONS
-
-`-m`, `--arch` *x86_64*|*i686*
-  Specify the target architecture. Default is determined by `uname(1)`.
-
-`-p`, `--provider` *arm*|*cache*|*all*
-  Specify which provider(s) to use. Default is *all*.
-
-`-s`, `--nosudo`
-  Don't use `sudo(8)`, even if available (`su(1)` is used in stead).
-
-## PROVIDERS
-
-A provider is a source for package files. All it must do is output a 
-list of URLs or absolute file paths. URLs will be downloaded into the 
-current directory then installed. Files are installed directly.
+## PACKAGE SOURCES
 
 ### ARCH ROLLBACK MACHINE (ARM)
 
-The *arm* provider searches for packages by performing an HTTP POST to 
-*$ARM_URL/exact/*. The server is expected to return fully qualified 
-package URLs as the fifth field in pipe-separated lines.
+Effectively,
+
+  `curl -d "arch=$(uname -m)" -d "pkgname=${pkg}" "$ARM_URL/exact"`
 
 ### CACHE
 
-The *cache* provider searches for packages by calling `find(1)` in all 
-`CacheDir`s as defined in *$PACMAN_CONF*.
+Effectively,
 
-Note that downgrade will read `CacheDir` directives even if commented. 
-This is a feature, not a bug.
+  `find $caches -name "${pkg}-[0-9R]*.pkg.tar.[gx]z"`
+
+Where `$caches` is the list of all `CacheDir`s as defined in 
+*$PACMAN_CONF* (commented or not).
 
 ## ENVIRONMENT VARIABLES
 
@@ -53,10 +39,20 @@ This is a feature, not a bug.
   The location of an A.R.M. server. Default is 
   *http://repo-arm.archlinuxcn.org*.
 
+*NOARM*
+  Do not search the A.R.M. Default is *0*.
+
+*NOCACHE*
+  Do not search your local cache. Default is *0*.
+
+*NOSUDO*
+  Do not use `sudo(8)` even when available, use `su(1)` always. Default 
+  is *0*.
+
 ## AUTHOR
 
 Patrick Brisbin <pbrisbin@gmail.com>
 
 ## SEE ALSO
 
-pacman(8), pacman.conf(5)
+pacman(8), pacman.conf(5), find(1), sudo(8), su(1)
