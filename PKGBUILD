@@ -20,7 +20,7 @@ package() {
   install -Dm644 bash_completion "$pkgdir/etc/bash_completion.d/downgrade"
   install -Dm644 zsh_completion  "$pkgdir/usr/share/zsh/site-functions/_downgrade"
 }
-md5sums=('d153fe7167948bd52339147318e83c94'
-         '5f753e77d8cade845057cd0f414bbb41'
+md5sums=('e88d751dbedd9c2555bd453ea7a1b7f6'
+         'dfa9884fa1e844a20651f6e3f7c3b0e1'
          '93207b3ee72b385de20ef66c7079f56b'
          '974d73ca7455068beefca20b1255c970')

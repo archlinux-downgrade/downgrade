@@ -5,7 +5,7 @@
 .SH SYNOPSIS
 .LP
 .HP
-\fBdowngrade\fR \[lB]OPTION, ...\[rB] \[lB]PACKAGE, ...\[rB]
+\fBdowngrade\fR \[lB]PACKAGE, ...\[rB]
 .LP
 .SH DESCRIPTION
 .LP
@@ -15,43 +15,27 @@ Downgrade Arch Linux packages\.
 .PP
 https:\[sl]\[sl]github\.com\[sl]pbrisbin\[sl]downgrade
 .LP
-.SH OPTIONS
-.LP
-.TP
-\fB-m\fR, \fB--arch\fR \fIx86\[ru]64\fP\[or]\fIi686\fP
-Specify the target architecture\. Default is determined by \fBuname(1)\fR\.
-.LP
-.TP
-\fB-p\fR, \fB--provider\fR \fIarm\fP\[or]\fIcache\fP\[or]\fIall\fP
-Specify which provider(s) to use\. Default is \fIall\fP\.
-.LP
-.TP
-\fB-s\fR, \fB--nosudo\fR
-Don\[cq]t use \fBsudo(8)\fR, even if available (\fBsu(1)\fR is used in stead)\.
-.LP
-.SH PROVIDERS
-.LP
-.PP
-A provider is a source for package files\. All it must do is output a 
-list of URLs or absolute file paths\. URLs will be downloaded into the 
-current directory then installed\. Files are installed directly\.
+.SH PACKAGE SOURCES
 .LP
 .SS ARCH ROLLBACK MACHINE (ARM)
 .LP
 .PP
-The \fIarm\fP provider searches for packages by performing an HTTP POST to 
-\fI\[Do]ARM\[ru]URL\[sl]exact\[sl]\fP\. The server is expected to return fully qualified 
-package URLs as the fifth field in pipe\-separated lines\.
+Effectively,
+.LP
+.PP
+\fBcurl -d "arch=$(uname -m)" -d "pkgname=${pkg}" "$ARM_URL/exact"\fR
 .LP
 .SS CACHE
 .LP
 .PP
-The \fIcache\fP provider searches for packages by calling \fBfind(1)\fR in all 
-\fBCacheDir\fRs as defined in \fI\[Do]PACMAN\[ru]CONF\fP\.
+Effectively,
 .LP
 .PP
-Note that downgrade will read \fBCacheDir\fR directives even if commented\. 
-This is a feature, not a bug\.
+\fBfind $caches -name "${pkg}-[0-9R]*.pkg.tar.[gx]z"\fR
+.LP
+.PP
+Where \fB$caches\fR is the list of all \fBCacheDir\fRs as defined in 
+\fI\[Do]PACMAN\[ru]CONF\fP (commented or not)\.
 .LP
 .SH ENVIRONMENT VARIABLES
 .LP
@@ -68,6 +52,19 @@ Your pacman configuration file\. Default is \fI\[sl]etc\[sl]pacman\.conf\fP\.
 The location of an A\.R\.M\. server\. Default is 
 \fIhttp:\[sl]\[sl]repo\-arm\.archlinuxcn\.org\fP\.
 .LP
+.TP
+\fINOARM\fP
+Do not search the A\.R\.M\. Default is \fI0\fP\.
+.LP
+.TP
+\fINOCACHE\fP
+Do not search your local cache\. Default is \fI0\fP\.
+.LP
+.TP
+\fINOSUDO\fP
+Do not use \fBsudo(8)\fR even when available, use \fBsu(1)\fR always\. Default 
+is \fI0\fP\.
+.LP
 .SH AUTHOR
 .LP
 .PP
@@ -78,4 +75,4 @@ Patrick Brisbin
 .SH SEE ALSO
 .LP
 .PP
-pacman(8), pacman\.conf(5)
+pacman(8), pacman\.conf(5), find(1), sudo(8), su(1)
