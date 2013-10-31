@@ -11,6 +11,7 @@ source=(
   ${pkgname}.8
   bash_completion
   zsh_completion
+  fr.po
   lt.po
   nb.po
   nn.po
@@ -36,6 +37,7 @@ md5sums=('1298f90167d205e87ea7121d8e7ac050'
          'dfa9884fa1e844a20651f6e3f7c3b0e1'
          'b8f59170b6a14dcef429199bfa341efc'
          '7dfcbe3c86f264e0cb2f3ad24be6e082'
+         '3c9edea24e01627bbf0e7d8c13c97585'
          'a4c2c7eb45e75b6d28579d95bd37da45'
          '80b5d7748a3a6c8d7dfa4768a37cf961'
          '738166fd54119d2878c030c253f426f0')
