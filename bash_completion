@@ -1,34 +1,8 @@
 #!/bin/bash
-
 _downgrade() {
-  local cur prev ng_set options
+  local cur=${COMP_WORDS[COMP_CWORD]}
 
-  ng_set=$(shopt -p nullglob)
-  shopt -s nullglob
-
-  COMPREPLY=()
-  cur=${COMP_WORDS[COMP_CWORD]}
-  prev=${COMP_WORDS[COMP_CWORD-1]}
-
-  options='
-    -p --provider
-    -m --arch
-    -s --nosudo
-  '
-
-  case "$prev" in
-    *downgrade)    COMPREPLY=($(compgen -W "$options"      -- $cur)) ;;
-    -m|--arch)     COMPREPLY=($(compgen -W 'x86_64 i686'   -- $cur)) ;;
-    -p|--provider) COMPREPLY=($(compgen -W 'arm cache all' -- $cur)) ;;
-    *)
-      case "$cur" in
-        -*)  COMPREPLY=($(compgen -W "$options" -- $cur)) ;;
-        *)   COMPREPLY=($(compgen -W "$(pacman -Qqs "^$cur")")) ;;
-      esac
-      ;;
-  esac
-
-  $ng_set
+  COMPREPLY=($(compgen -W "$(pacman -Qqs "^$cur")")) ;;
 }
 
 complete -F _downgrade downgrade

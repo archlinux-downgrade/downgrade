@@ -1,24 +1,4 @@
 #compdef downgrade
-
-_downgrade_options=(
-  {-m,--arch}'[Set search architecture]:arch:_arches'
-  {-p,--provider}'[Set providers to use]:provider:_providers'
-  {-s,--nosudo}'[Don'\''t use sudo]'
-  {-h,--help}'[Display help]'
-)
-
-_arches() {
-  local -a arches
-  arches=(x86_64 i686)
-  compadd "$@" -a arches
-}
-
-_providers() {
-  local -a providers
-  providers=(arm cache all)
-  compadd "$@" -a providers
-}
-
 _packages() {
   local -a packages
   packages=($(pacman -Qsq "^$words[current]" 2>/dev/null))
@@ -26,14 +6,7 @@ _packages() {
 }
 
 _downgrade() {
-  if (( $#words[@] == 2 )); then
-    _arguments -s -w : \
-      "$_downgrade_options[@]"
-  else
-    _arguments -s -w : \
-      "$_downgrade_options[@]" \
-      '*:package:_packages'
-  fi
+  _arguments -s -w : '*:package:_packages'
 }
 
 _downgrade "$@"
