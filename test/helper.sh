@@ -1,2 +1,2 @@
 export PATH="$TESTDIR/bin:$PATH"
-source "$TESTDIR/../downgrade"
+LIB=1 source "$TESTDIR/../downgrade"

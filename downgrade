@@ -73,7 +73,7 @@ NOARM=${NOARM:-0}
 NOCACHE=${NOCACHE:-0}
 NOSUDO=${NOSUDO:-0}
 
-if [[ -z "$1" ]]; then
+if [[ -z "$1" ]] && ((!LIB)); then
   printf "usage: downgrade <pkg>, ...\n"   >&2
   printf "see downgrade(8) for details.\n" >&2
   exit 1
