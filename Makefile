@@ -4,6 +4,13 @@ RELEASE = 1
 AUTHOR  = pbrisbin
 URL     = https://github.com/$(AUTHOR)/$(NAME)
 
+potfile: $(NAME)
+	xgettext \
+	  --from-code=utf-8 -L shell \
+	  --package-name=downgrade \
+	  --copyright-holder=$(AUTHOR) \
+	  -o $(NAME).pot ./$(NAME)
+
 pkgver:
 	sed -i "s/^pkgver=.*/pkgver=$(VERSION)/" PKGBUILD
 	sed -i "s/^pkgrel=.*/pkgrel=$(RELEASE)/" PKGBUILD

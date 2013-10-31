@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
+. gettext.sh
+TEXTDOMAIN=downgrade
+TEXTDOMAINDIR=/usr/share/locale
+
 prompt_to_install() {
   local pkg ans i=1
 
   (($#)) || return 1
 
-  printf "Available packages:\n\n"
+  gettext 'Available packages:'
+  printf "\n\n"
 
   for entry; do
     output_package "$((i++))" "$entry"
   done
 
-  # note: read -p doesn't work in cram tests
-  printf "\nselect a package by number: "; read -r ans
+  printf "\n"
+  gettext 'select a package by number: '; read -r ans
   printf "\n"
 
   ((ans > 0 && ans <= $#)) && install_pkg "${!ans}"
@@ -22,11 +27,11 @@ prompt_to_ignore() {
 
   grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$PACMAN_CONF" && return 0
 
-  # note: read -p doesn't work in cram tests
-  printf "\nadd %s to IgnorePkg? [y/n] " "$pkg"; read -r ans
+  printf "\n"
+  eval_gettext "add \$pkg to IgnorePkg? [y/n] "; read -r ans
   printf "\n"
 
-  if [[ "${ans,,}" == 'y'* ]]; then
+  if [[ "${ans,,}" == $(gettext 'y')* ]]; then
     sudo sed -i "s/^#\?\(IgnorePkg.*\)/\1 $pkg/" "$PACMAN_CONF"
   fi
 }
@@ -49,8 +54,8 @@ sort_packages() {
 
 output_package() {
   printf "%4.4s) %s\n" "$1" "$(
-    sed 's|http://.*/\([^/]\+\)$|\1 (remote)|;
-         s|^/.*/\([^/]\+\)$|\1 (local)|;' <<< "$2")"
+    sed 's|http://.*/\([^/]\+\)$|\1 ('$(gettext 'remote')')|;
+         s|^/.*/\([^/]\+\)$|\1 ('$(gettext 'local')')|;' <<< "$2")"
 }
 
 install_pkg() {
@@ -74,8 +79,9 @@ NOCACHE=${NOCACHE:-0}
 NOSUDO=${NOSUDO:-0}
 
 if [[ -z "$1" ]] && ((!LIB)); then
-  printf "usage: downgrade <pkg>, ...\n"   >&2
-  printf "see downgrade(8) for details.\n" >&2
+  ( gettext 'usage: downgrade <pkg>, ...'; echo
+    gettext 'see downgrade(8) for details.'; echo
+  ) >&2
   exit 1
 fi
 
