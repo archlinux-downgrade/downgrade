@@ -15,7 +15,7 @@ From a single directory
   > echo 'Baz = bat/'                 >> $CRAMTMP/pacman.conf
   > echo                              >> $CRAMTMP/pacman.conf
 
-  $ PACMAN_CONF=$CRAMTMP/pacman.conf search_cache 'foo'
+  $ PACMAN_CONF=$CRAMTMP/pacman.conf NOARM=1 search_packages 'foo'
   /tmp/*/cache/foo-1.1.pkg.tar.gz (glob)
   /tmp/*/cache/foo-3.5.pkg.tar.xz (glob)
   /tmp/*/cache/foo-2.0.pkg.tar.gz (glob)
@@ -37,7 +37,7 @@ From multiple directories
   > echo "Baz = bat/"                   >> $CRAMTMP/pacman.conf
   > echo                                >> $CRAMTMP/pacman.conf
 
-  $ PACMAN_CONF=$CRAMTMP/pacman.conf search_cache 'foo'
+  $ PACMAN_CONF=$CRAMTMP/pacman.conf NOARM=1 search_packages 'foo'
   /tmp/*/cache_1/foo-3.5.pkg.tar.xz (glob)
   /tmp/*/cache_1/foo-1.0.pkg.tar.gz (glob)
   /tmp/*/cache_2/foo-1.1.pkg.tar.gz (glob)

@@ -1,6 +1,6 @@
   $ source "$TESTDIR/helper.sh"
   > export PACMAN_CONF="$CRAMTMP/pacman.conf"
-  > as_root() { "$@"; } # just do it
+  > sudo() { "$@"; } # just do it
 
 Adds the package to IgnorePkg
 

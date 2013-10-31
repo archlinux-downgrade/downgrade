@@ -1,5 +1,5 @@
   $ source "$TESTDIR/helper.sh"
-  > as_root() { "$@"; } # just do it
+  > sudo() { "$@"; } # just do it
   > pacman() { echo "pacman $*"; }
 
 Installing local file
