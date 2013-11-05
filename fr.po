@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 12:01-0400\n"
 "PO-Revision-Date: 2013-10-31 12:56-0400\n"
-"Last-Translator:  <pbrisbin@gmail.com>\n"
+"Last-Translator:  <jagw40k@free.fr>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -19,33 +19,33 @@ msgstr ""
 
 #: downgrade:11
 msgid "Available packages:"
-msgstr ""
+msgstr "Paquêts disponibles :"
 
 #: downgrade:19
 msgid "select a package by number: "
-msgstr ""
+msgstr "Sélectionner le paquet numéro : "
 
 #: downgrade:31
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
-msgstr ""
+msgstr "Ajouter $pkg dans la liste des paquets à ne pas mettre à jour automatiquement ? [o/n] "
 
 #: downgrade:34
 msgid "y"
-msgstr ""
+msgstr "o"
 
 #: downgrade:57
 msgid "remote"
-msgstr ""
+msgstr "distant"
 
 #: downgrade:58
 msgid "local"
-msgstr ""
+msgstr "local"
 
 #: downgrade:82
 msgid "usage: downgrade <pkg>, ..."
-msgstr ""
+msgstr "Utilisation : downgrade <pkg>, ..."
 
 #: downgrade:83
 msgid "see downgrade(8) for details."
-msgstr ""
+msgstr "Voir downgrade(8) pour plus de détails."
