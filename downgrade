@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 . gettext.sh
-TEXTDOMAIN=downgrade
-TEXTDOMAINDIR=/usr/share/locale
+export TEXTDOMAIN=downgrade
+export TEXTDOMAINDIR=/usr/share/locale
 
 prompt_to_install() {
   local pkg ans i=1
@@ -25,7 +25,7 @@ prompt_to_install() {
 prompt_to_ignore() {
   local pkg="$1" ans
 
-  grep -Eq "^IgnorePkg.*( |=)$pkg( |$)" "$PACMAN_CONF" && return 0
+  grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
 
   printf "\n"
   eval_gettext "add \$pkg to IgnorePkg? [y/n] "; read -r ans
@@ -54,8 +54,8 @@ sort_packages() {
 
 output_package() {
   printf "%4.4s) %s\n" "$1" "$(
-    sed 's|http://.*/\([^/]\+\)$|\1 ('$(gettext 'remote')')|;
-         s|^/.*/\([^/]\+\)$|\1 ('$(gettext 'local')')|;' <<< "$2")"
+    sed 's|http://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
+         s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<< "$2")"
 }
 
 install_pkg() {
@@ -85,7 +85,7 @@ if [[ -z "$1" ]] && ((!LIB)); then
   exit 1
 fi
 
-if ((NOSUDO)) || !type -p sudo &>/dev/null; then
+if ((NOSUDO)) || ! type -p sudo &>/dev/null; then
   sudo() {
     printf -v cmd "%q " "$@"
     su root -c "$cmd"
