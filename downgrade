@@ -38,7 +38,7 @@ prompt_to_ignore() {
 
 search_packages() {
   ((NOARM)) || \
-    curl --fail --silent --data "arch=$(uname -m)" \
+    curl --fail --silent --data "arch=$ARCH" \
          --data-urlencode "pkgname=$1" "$ARM_URL/exact" | cut -d '|' -f 5
 
   ((NOCACHE)) || \
@@ -63,6 +63,7 @@ install_pkg() {
 
   if [[ "$pkg" == 'http://'* ]]; then
     url="$pkg"
+    url="${url/\/undefined\///$ARCH/}"
     pkg="${url##*/}"
 
     curl --silent "$url" > "$pkg"
@@ -71,6 +72,7 @@ install_pkg() {
   [[ -f "$pkg" ]] && sudo "$PACMAN" -U "$pkg"
 }
 
+ARCH=${ARCH:-$(uname -m)}
 PACMAN="${PACMAN:-pacman}"
 PACMAN_CONF="${PACMAN_CONF:-/etc/pacman.conf}"
 ARM_URL="${ARM_URL:-http://repo-arm.archlinuxcn.org}"

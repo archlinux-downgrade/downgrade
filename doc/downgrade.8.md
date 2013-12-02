@@ -29,6 +29,9 @@ Where `$caches` is the list of all `CacheDir`s as defined in
 
 ## ENVIRONMENT VARIABLES
 
+*ARCH*
+  Target architecture. Default is determined by `uname -m`.
+
 *PACMAN*
   The pacman command. Default is *pacman*.
 
