@@ -63,7 +63,6 @@ install_pkg() {
 
   if [[ "$pkg" == 'http://'* ]]; then
     url="$pkg"
-    url="${url/\/undefined\///$ARCH/}"
     pkg="${url##*/}"
 
     curl --silent "$url" > "$pkg"
