@@ -1,6 +1,6 @@
 # Author: Patrick Brisbin <pbrisbin@gmail.com>
 pkgname=downgrade
-pkgver=5.0.2
+pkgver=5.0.3
 pkgrel=1
 pkgdesc="Bash script for downgrading one or more packages to a version in your cache or the A.R.M."
 arch=('any')
@@ -35,7 +35,7 @@ package() {
 }
 md5sums=('53356fda6ea666334ea2b207df99b027'
          'bce61c026931ea4b9c99e3cbc7ef9c1c'
-         'b8f59170b6a14dcef429199bfa341efc'
+         '38c8fc5c15d36252cb703f568d5a4544'
          '7dfcbe3c86f264e0cb2f3ad24be6e082'
          '49e286b0064071356aa7791d2530bebf'
          'd3818b3b5d85f83e425d8d1c614fdfa2'
