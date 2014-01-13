@@ -1,8 +1,13 @@
 #!/bin/bash
 _downgrade() {
-  local cur=${COMP_WORDS[COMP_CWORD]}
+  local cur=${COMP_WORDS[COMP_CWORD]} ng_set
 
-  COMPREPLY=($(compgen -W "$(pacman -Qqs "^$cur")")) ;;
+  ng_set=$(shopt -p nullglob)
+  shopt -s nullglob
+
+  COMPREPLY=($(compgen -W "$(pacman -Ssq "^$cur")" -- $cur))
+
+  $ng_set
 }
 
 complete -F _downgrade downgrade
