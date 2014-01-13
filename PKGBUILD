@@ -1,6 +1,6 @@
 # Author: Patrick Brisbin <pbrisbin@gmail.com>
 pkgname=downgrade
-pkgver=5.0.1
+pkgver=5.0.2
 pkgrel=1
 pkgdesc="Bash script for downgrading one or more packages to a version in your cache or the A.R.M."
 arch=('any')
@@ -33,7 +33,7 @@ package() {
   install -Dm644 bash_completion "$pkgdir/etc/bash_completion.d/downgrade"
   install -Dm644 zsh_completion  "$pkgdir/usr/share/zsh/site-functions/_downgrade"
 }
-md5sums=('3aefa5438acc9f1933298d6f7e35cb2f'
+md5sums=('53356fda6ea666334ea2b207df99b027'
          'bce61c026931ea4b9c99e3cbc7ef9c1c'
          'b8f59170b6a14dcef429199bfa341efc'
          '7dfcbe3c86f264e0cb2f3ad24be6e082'
