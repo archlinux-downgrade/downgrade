@@ -1,5 +1,5 @@
 NAME    = downgrade
-VERSION = 5.0.2
+VERSION = 5.0.3
 RELEASE = 1
 AUTHOR  = pbrisbin
 URL     = https://github.com/$(AUTHOR)/$(NAME)
