@@ -24,16 +24,29 @@ man: $(NAME).8
 $(NAME).8: doc/$(NAME).8.md
 	kramdown-man doc/$(NAME).8.md > $(NAME).8
 
-distcheck: man pkgver md5sums
-	makepkg --install --clean
-	rm $(NAME)-$(VERSION)-$(RELEASE)-any.pkg.tar.xz
+test:
+	cram test
 
-dist: man pkgver md5sums clean
-	makepkg --source --clean
-	git commit -am "Releasing $(VERSION)-$(RELEASE)" || true
-	git tag -a -m v$(VERSION) v$(VERSION) || true
+release_aur:
+	mkaurball
+	aur-submit $(NAME)-$(VERSION)-$(RELEASE).src.tar.gz
+
+release_git:
+	git add PKGBUILD \
+		downgrade \
+		downgrade.8 \
+		bash_completion \
+		zsh_completion \
+		*.po
+	git commit -m "Releasing $(VERSION)-$(RELEASE)"
+	git tag -a -m v$(VERSION) v$(VERSION)
+	git push
+	git push --tags
+
+release: test man pkgver md5sums release_aur release_git clean
 
 clean:
 	rm -f $(NAME)-$(VERSION)-$(RELEASE).src.tar.gz
+	rm -f $(NAME)-$(VERSION)-$(RELEASE)-any.pkg.tar.xz
 
-.PHONY: dist distcheck man md5sums pkgver clean
+.PHONY: test release release_aur release_git md5sums pkgver clean
