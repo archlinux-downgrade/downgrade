@@ -15,6 +15,7 @@ source=(
   lt.po
   nb.po
   nn.po
+  zh_CN.po
 )
 optdepends=('sudo: for installation via sudo')
 
@@ -25,7 +26,7 @@ package() {
     locale="${po_file%.po}"
 
     mkdir -p "$pkgdir/usr/share/locale/$locale/LC_MESSAGES/"
-    msgfmt "$po_file" -o "$pkgdir/usr/share/locale/$locale/LC_MESSAGES/$pkgname"
+    msgfmt "$po_file" -o "$pkgdir/usr/share/locale/$locale/LC_MESSAGES/$pkgname.mo"
   done
 
   install -Dm755 $pkgname        "$pkgdir/usr/bin/$pkgname"
@@ -33,11 +34,12 @@ package() {
   install -Dm644 bash_completion "$pkgdir/etc/bash_completion.d/downgrade"
   install -Dm644 zsh_completion  "$pkgdir/usr/share/zsh/site-functions/_downgrade"
 }
-md5sums=('53356fda6ea666334ea2b207df99b027'
+md5sums=('077ebd7143a1a5627dcae67c9018706c'
          'bce61c026931ea4b9c99e3cbc7ef9c1c'
          '38c8fc5c15d36252cb703f568d5a4544'
          '7dfcbe3c86f264e0cb2f3ad24be6e082'
          '49e286b0064071356aa7791d2530bebf'
          'd3818b3b5d85f83e425d8d1c614fdfa2'
          '31beb2bd6ca7ed713eb5601ba3147f77'
-         '6a7723c9634d39d25a8f29483995d40b')
+         '6a7723c9634d39d25a8f29483995d40b'
+         'dd61159825cadb14063998ef3e9b120f')
