@@ -32,7 +32,7 @@ prompt_to_ignore() {
   printf "\n"
 
   if [[ "${ans,,}" == $(gettext 'y')* ]]; then
-    sudo sed -i "s/^#\?\(IgnorePkg.*\)/\1 $pkg/" "$PACMAN_CONF"
+    sudo sed -i "s/^\(# *\)\?\(IgnorePkg.*\)/\2 $pkg/" "$PACMAN_CONF"
   fi
 }
 
