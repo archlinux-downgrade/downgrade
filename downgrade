@@ -111,8 +111,20 @@ NOARM=${NOARM:-0}
 NOCACHE=${NOCACHE:-0}
 NOSUDO=${NOSUDO:-0}
 
-if [[ -z "$1" ]] && ((!LIB)); then
-  ( gettext 'usage: downgrade <pkg>, ...'; echo
+declare -a terms
+declare -a to_ignore
+declare -a to_install
+declare -a pacman_args
+
+while [[ -n "$1" ]]; do
+  case "$1" in
+    --) shift; pacman_args=( "$@" ); break ;;
+    *)  terms+=( "$1" ); shift ;;
+  esac
+done
+
+if (( ! "${#terms[@]}" )) && ((!LIB)); then
+  ( gettext 'usage: downgrade <pkg>, ... [-- <pacman options>]'; echo
     gettext 'see downgrade(8) for details.'; echo
   ) >&2
   exit 1
@@ -125,9 +137,8 @@ if ((NOSUDO)) || ! type -p sudo &>/dev/null; then
   }
 fi
 
-declare -a to_ignore
-declare -a to_install
-
-if main "$@"; then
-  sudo pacman -U "${to_install[@]}" && prompt_to_ignore "${to_ignore[@]}"
+if main "${terms[@]}"; then
+  if sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"; then
+    prompt_to_ignore "${to_ignore[@]}"
+  fi
 fi

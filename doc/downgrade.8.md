@@ -1,8 +1,8 @@
-# downgrade 8 "September 2013" downgrade "User Manuals"
+# downgrade 8 "August 2014" downgrade "User Manuals"
 
 ## SYNOPSIS
 
-`downgrade` [PACKAGE, ...]
+`downgrade` [PACKAGE, ...] [-- [PACMAN OPTIONS]]
 
 ## DESCRIPTION
 
