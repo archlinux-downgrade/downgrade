@@ -5,19 +5,23 @@
 Adds the package to IgnorePkg
 
   $ echo 'IgnorePkg = foo bar' > "$PACMAN_CONF"
-  > echo 'y' | prompt_to_ignore 'baz'
+  > echo 'y' | prompt_to_ignore 'baz'; echo
   > cat "$PACMAN_CONF"
-  
   add baz to IgnorePkg? [y/n] 
   IgnorePkg = foo bar baz
+
+Accepts multiple arguments
+
+  $ echo 'IgnorePkg = foo bar' > "$PACMAN_CONF"
+  > yes | prompt_to_ignore 'baz' 'bat' 'quix' >/dev/null
+  > cat "$PACMAN_CONF"
+  IgnorePkg = foo bar baz bat quix
 
 Uncomments a commented line before adding
 
   $ echo '#IgnorePkg = foo bar' > "$PACMAN_CONF"
-  > echo 'y' | prompt_to_ignore 'baz'
+  > echo 'y' | prompt_to_ignore 'baz' >/dev/null
   > cat "$PACMAN_CONF"
-  
-  add baz to IgnorePkg? [y/n] 
   IgnorePkg = foo bar baz
 
   $ echo '# IgnorePkg  = foo' > "$PACMAN_CONF"
@@ -37,8 +41,7 @@ Does nothing when present
 Does nothing when told no
 
   $ echo 'IgnorePkg = foo bar' > "$PACMAN_CONF"
-  > echo 'n' | prompt_to_ignore 'baz'
+  > echo 'n' | prompt_to_ignore 'baz'; echo
   > cat "$PACMAN_CONF"
-  
   add baz to IgnorePkg? [y/n] 
   IgnorePkg = foo bar
