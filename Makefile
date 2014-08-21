@@ -23,6 +23,7 @@ man: $(NAME).8
 
 $(NAME).8: doc/$(NAME).8.md
 	kramdown-man doc/$(NAME).8.md > $(NAME).8
+	[ -s $(NAME).8 ]
 
 test:
 	cram test
