@@ -44,7 +44,7 @@ download_when_remote() {
 }
 
 prompt_to_ignore() {
-  local pkg ans
+  local pkg ans ln
 
   for pkg; do
     grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
@@ -52,7 +52,19 @@ prompt_to_ignore() {
     eval_gettext "add \$pkg to IgnorePkg? [y/n] "; read -r ans
 
     if [[ "${ans,,}" == $(gettext 'y')* ]]; then
-      sudo sed -i "s/^\(# *\)\?\(IgnorePkg.*\)/\2 $pkg/" "$PACMAN_CONF"
+      ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
+      if [ -n "$ln" ]; then
+        sudo sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF"
+        continue
+      fi
+
+      ln="$(grep -n '^# *IgnorePkg' "$PACMAN_CONF" | tail -n 1 | cut -d : -f 1)"
+      if [ -n "$ln" ]; then
+        sudo sed -i "$ln s/.*/&\nIgnorePkg = $pkg/" "$PACMAN_CONF"
+        continue
+      fi
+
+      sudo printf "IgnorePkg = %s\n" "$pkg" >> "$PACMAN_CONF"
     fi
   done
 }

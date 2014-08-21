@@ -1,47 +1,70 @@
   $ source "$TESTDIR/helper.sh"
-  > export PACMAN_CONF="$CRAMTMP/pacman.conf"
+  > PACMAN_CONF="$CRAMTMP/pacman.conf"
   > sudo() { "$@"; } # just do it
+  > ignore() { yes | prompt_to_ignore "$@" >/dev/null; }
 
-Adds the package to IgnorePkg
+Adds the package to existing IgnorePkg entries
 
-  $ echo 'IgnorePkg = foo bar' > "$PACMAN_CONF"
-  > echo 'y' | prompt_to_ignore 'baz'; echo
-  > cat "$PACMAN_CONF"
-  add baz to IgnorePkg? [y/n] 
+  $ printf "%s\n" \
+  >   'OptionBefore' \
+  >   'IgnorePkg = foo bar' \
+  >   'OptionAfter' > "$PACMAN_CONF"
+  > ignore baz; cat "$PACMAN_CONF"
+  OptionBefore
   IgnorePkg = foo bar baz
+  OptionAfter
 
 Accepts multiple arguments
 
   $ echo 'IgnorePkg = foo bar' > "$PACMAN_CONF"
-  > yes | prompt_to_ignore 'baz' 'bat' 'quix' >/dev/null
-  > cat "$PACMAN_CONF"
+  > ignore baz bat quix; cat "$PACMAN_CONF"
   IgnorePkg = foo bar baz bat quix
 
-Uncomments a commented line before adding
+Adds an entry if existing is commented
 
-  $ echo '#IgnorePkg = foo bar' > "$PACMAN_CONF"
-  > echo 'y' | prompt_to_ignore 'baz' >/dev/null
-  > cat "$PACMAN_CONF"
-  IgnorePkg = foo bar baz
+  $ echo '#IgnorePkg =' > "$PACMAN_CONF"
+  > ignore foo; cat "$PACMAN_CONF"
+  #IgnorePkg =
+  IgnorePkg = foo
 
-  $ echo '# IgnorePkg  = foo' > "$PACMAN_CONF"
-  > echo 'y' | prompt_to_ignore 'baz'
-  > cat "$PACMAN_CONF"
-  
-  add baz to IgnorePkg? [y/n] 
-  IgnorePkg  = foo baz
+Adds after last entry if multiple are commented
 
-Does nothing when present
+  $ printf "%s\n" \
+  >   '#IgnorePkg = foo' \
+  >   '#IgnorePkg = bar' > "$PACMAN_CONF"
+  > ignore bat; cat "$PACMAN_CONF"
+  #IgnorePkg = foo
+  #IgnorePkg = bar
+  IgnorePkg = bat
+
+Affects the first uncommented entry if present
+
+  $ printf "%s\n" \
+  >   '#IgnorePkg = foo' \
+  >   '#IgnorePkg = bar' \
+  >   'IgnorePkg = baz' > "$PACMAN_CONF"
+  > ignore bat; cat "$PACMAN_CONF"
+  #IgnorePkg = foo
+  #IgnorePkg = bar
+  IgnorePkg = baz bat
+
+Adds to end of file if no entry present
+
+  $ printf "%s\n" "Option" "OtherOption" > "$PACMAN_CONF"
+  > ignore foo; cat "$PACMAN_CONF"
+  Option
+  OtherOption
+  IgnorePkg = foo
+
+Does nothing when already present
 
   $ echo 'IgnorePkg = foo bar baz' > "$PACMAN_CONF"
-  > echo 'y' | prompt_to_ignore 'bar'
-  > cat "$PACMAN_CONF"
+  > ignore foo; cat "$PACMAN_CONF"
   IgnorePkg = foo bar baz
 
 Does nothing when told no
 
   $ echo 'IgnorePkg = foo bar' > "$PACMAN_CONF"
-  > echo 'n' | prompt_to_ignore 'baz'; echo
+  > echo n | prompt_to_ignore baz >/dev/null
   > cat "$PACMAN_CONF"
-  add baz to IgnorePkg? [y/n] 
   IgnorePkg = foo bar
