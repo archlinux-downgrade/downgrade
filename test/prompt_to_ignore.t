@@ -14,6 +14,17 @@ Adds the package to existing IgnorePkg entries
   IgnorePkg = foo bar baz
   OptionAfter
 
+Handles whitespace accordingly
+
+  $ printf "%s\n" \
+  >   'OptionBefore' \
+  >   '  IgnorePkg = foo bar' \
+  >   'OptionAfter' > "$PACMAN_CONF"
+  > ignore baz; cat "$PACMAN_CONF"
+  OptionBefore
+    IgnorePkg = foo bar baz
+  OptionAfter
+
 Accepts multiple arguments
 
   $ echo 'IgnorePkg = foo bar' > "$PACMAN_CONF"
@@ -25,6 +36,12 @@ Adds an entry if existing is commented
   $ echo '#IgnorePkg =' > "$PACMAN_CONF"
   > ignore foo; cat "$PACMAN_CONF"
   #IgnorePkg =
+  IgnorePkg = foo
+
+Handles whitespace accordingly
+  $ echo '#  IgnorePkg =' > "$PACMAN_CONF"
+  > ignore foo; cat "$PACMAN_CONF"
+  #  IgnorePkg =
   IgnorePkg = foo
 
 Adds after last entry if multiple are commented
