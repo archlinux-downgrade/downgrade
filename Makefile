@@ -16,8 +16,7 @@ pkgver:
 	sed -i "s/^pkgrel=.*/pkgrel=$(RELEASE)/" PKGBUILD
 
 md5sums:
-	sed -i '/^md5sums=.*/,$$d' PKGBUILD
-	makepkg --geninteg --clean >> PKGBUILD
+	updpkgsums
 
 man: $(NAME).8
 
