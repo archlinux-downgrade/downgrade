@@ -40,7 +40,7 @@ release_git:
 		zsh_completion \
 		*.po
 	git commit -m "Releasing $(VERSION)-$(RELEASE)"
-	git tag -a -m v$(VERSION) v$(VERSION)
+	git tag -s -m v$(VERSION) v$(VERSION)
 	git push
 	git push --tags
 
