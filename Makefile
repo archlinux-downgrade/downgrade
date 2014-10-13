@@ -1,53 +1,32 @@
-NAME    = downgrade
-VERSION = 5.1
-RELEASE = 1
-AUTHOR  = pbrisbin
-URL     = https://github.com/$(AUTHOR)/$(NAME)
+PREFIX    ?= /usr/local
+MANPREFIX ?= $(PREFIX)/share/man
 
-potfile: $(NAME)
+potfile: downgrade
 	xgettext \
 		--from-code=utf-8 -L shell \
 		--package-name=downgrade \
 		--copyright-holder=$(AUTHOR) \
-		-o $(NAME).pot ./$(NAME)
+		-o downgrade.pot ./downgrade
 
-pkgver:
-	sed -i "s/^pkgver=.*/pkgver=$(VERSION)/" PKGBUILD
-	sed -i "s/^pkgrel=.*/pkgrel=$(RELEASE)/" PKGBUILD
+downgrade.8: doc/downgrade.8.md
+	kramdown-man doc/downgrade.8.md > doc/downgrade.8
+	[ -s doc/downgrade.8 ]
 
-md5sums:
-	sed -i '/^md5sums=.*/,$$d' PKGBUILD
-	makepkg --geninteg --clean >> PKGBUILD
-
-man: $(NAME).8
-
-$(NAME).8: doc/$(NAME).8.md
-	kramdown-man doc/$(NAME).8.md > $(NAME).8
-	[ -s $(NAME).8 ]
+man: downgrade.8
 
 test:
 	cram test
 
-release_aur:
-	mkaurball
-	aur-submit $(NAME)-$(VERSION)-$(RELEASE).src.tar.gz
+install:
+	install -Dm755 downgrade $(DESTDIR)/$(PREFIX)/bin/downgrade
+	install -Dm644 doc/downgrade.8 $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8
+	install -Dm644 completion/bash $(DESTDIR)/$(PREFIX)/bash_completion.d/downgrade
+	install -Dm644 completion/zsh $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
-release_git:
-	git add PKGBUILD \
-		downgrade \
-		downgrade.8 \
-		bash_completion \
-		zsh_completion \
-		*.po
-	git commit -m "Releasing $(VERSION)-$(RELEASE)"
-	git tag -s -m v$(VERSION) v$(VERSION)
-	git push
-	git push --tags
+uninstall:
+	$(RM) $(DESTDIR)/$(PREFIX)/bin/downgrade \
+	  $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8 \
+	  $(DESTDIR)/$(PREFIX)/bash_completion.d/downgrade \
+	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
-release: test man pkgver md5sums release_aur release_git clean
-
-clean:
-	rm -f $(NAME)-$(VERSION)-$(RELEASE).src.tar.gz
-	rm -f $(NAME)-$(VERSION)-$(RELEASE)-any.pkg.tar.xz
-
-.PHONY: test release release_aur release_git md5sums pkgver clean
+.PHONY: test install uninstall
