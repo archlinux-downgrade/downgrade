@@ -34,7 +34,7 @@ download_when_remote() {
     url="$pkg"
     pkg="${url##*/}"
 
-    if ! curl --silent "$url" > "$pkg"; then
+    if ! curl --progress-bar "$url" > "$pkg"; then
       rm "$pkg"
       return 1
     fi
