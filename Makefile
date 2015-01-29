@@ -20,13 +20,13 @@ test:
 install:
 	install -Dm755 downgrade $(DESTDIR)/$(PREFIX)/bin/downgrade
 	install -Dm644 doc/downgrade.8 $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8
-	install -Dm644 completion/bash $(DESTDIR)/$(PREFIX)/bash_completion.d/downgrade
+	install -Dm644 completion/bash $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade
 	install -Dm644 completion/zsh $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
 uninstall:
 	$(RM) $(DESTDIR)/$(PREFIX)/bin/downgrade \
 	  $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8 \
-	  $(DESTDIR)/$(PREFIX)/bash_completion.d/downgrade \
+	  $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
 .PHONY: test install uninstall
