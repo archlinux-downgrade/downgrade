@@ -38,6 +38,10 @@ download_when_remote() {
       rm "$pkg"
       return 1
     fi
+    if ! curl --progress-bar "${url}.sig" > "${pkg}.sig"; then
+      rm "$pkg" "${pkg}.sig"
+      return 1
+    fi
   fi
 
   [[ -f "$pkg" ]] && printf "%s" "$pkg"
