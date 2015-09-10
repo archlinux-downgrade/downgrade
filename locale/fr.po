@@ -19,7 +19,7 @@ msgstr ""
 
 #: downgrade:11
 msgid "Available packages:"
-msgstr "Paquêts disponibles :"
+msgstr "Paquets disponibles :"
 
 #: downgrade:19
 msgid "select a package by number: "
