@@ -40,7 +40,8 @@ It does nothing on non-presence/failed download
      2) foo
      3) foo
   
-  select a package by number: 
+  select a package by number: foo
+  
   exit code: 1
   0
   0
@@ -56,7 +57,8 @@ It adds the term and package to global arrays if successful
   
      1) foo.pkg (local)
   
-  select a package by number: 
+  select a package by number: /tmp/cramtests-*/tmp/foo.pkg (glob)
+  
   exit code: 0
   foo
   /tmp/cramtests-*/tmp/foo.pkg (glob)

@@ -34,11 +34,11 @@ download_when_remote() {
     url="$pkg"
     pkg="${url##*/}"
 
-    if ! curl --progress-bar "$url" > "$pkg"; then
+    if ! curl --silent "$url" > "$pkg"; then
       rm "$pkg"
       return 1
     fi
-    if ! curl --progress-bar "${url}.sig" > "${pkg}.sig"; then
+    if ! curl --silent "${url}.sig" > "${pkg}.sig"; then
       rm "$pkg" "${pkg}.sig"
       return 1
     fi
@@ -105,6 +105,8 @@ main() {
 
     if present_packages "${candidates[@]}"; then
       if choice="$(read_selection "${candidates[@]}")"; then
+        printf "%s\n" "$choice"
+
         if pkg="$(download_when_remote "$choice")"; then
           to_ignore+=( "$term" )
           to_install+=( "$pkg" )
