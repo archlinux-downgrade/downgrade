@@ -30,21 +30,16 @@ read_selection() {
 download_when_remote() {
   local pkg="$1" url
 
-  if [[ "$pkg" == 'http://'* ]]; then
+  if [[ "$pkg" == 'https://'* ]]; then
     url="$pkg"
     pkg="${url##*/}"
 
-    if ! curl --silent "$url" > "$pkg"; then
-      rm "$pkg"
-      return 1
-    fi
-    if ! curl --silent "${url}.sig" > "${pkg}.sig"; then
-      rm "$pkg" "${pkg}.sig"
-      return 1
-    fi
-  fi
+    curl --remote-name "$url{,.sig}" || exit 1
 
-  [[ -f "$pkg" ]] && printf "%s" "$pkg"
+    return 0
+  else
+    return 1
+  fi
 }
 
 prompt_to_ignore() {
@@ -74,9 +69,11 @@ prompt_to_ignore() {
 }
 
 search_packages() {
+  local index="$ARM_URL/packages/${1:0:1}/$1/"
+
   ((NOARM)) || \
-    curl --fail --silent --data "arch=$ARCH" \
-         --data-urlencode "pkgname=$1" "$ARM_URL/exact" | cut -d '|' -f 5
+    curl --fail --silent "$index" \
+      | sed '/.* href="\('"$name"'.*'"$ARCH"'\.pkg\.tar\.xz\)".*/!d; s||'"$index"'\1|g'
 
   ((NOCACHE)) || \
     find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
@@ -91,7 +88,7 @@ sort_packages() {
 
 output_package() {
   printf "%4.4s) %s\n" "$1" "$(
-    sed 's|http://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
+    sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
          s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<< "$2")"
 }
 
@@ -105,13 +102,15 @@ main() {
 
     if present_packages "${candidates[@]}"; then
       if choice="$(read_selection "${candidates[@]}")"; then
-        printf "%s\n" "$choice"
+        to_ignore+=( "$term" )
 
-        if pkg="$(download_when_remote "$choice")"; then
-          to_ignore+=( "$term" )
-          to_install+=( "$pkg" )
-          continue
+        if download_when_remote "$choice"; then
+          to_install+=( "${choice##*/}" )
+        else
+          to_install+=( "${choice}" )
         fi
+
+        continue
       fi
     fi
 
@@ -124,7 +123,7 @@ main() {
 ARCH=${ARCH:-$(uname -m)}
 PACMAN="${PACMAN:-pacman}"
 PACMAN_CONF="${PACMAN_CONF:-/etc/pacman.conf}"
-ARM_URL="${ARM_URL:-http://repo-arm.archlinuxcn.org}"
+ARM_URL="${ARM_URL:-https://archive.archlinux.org}"
 NOARM=${NOARM:-0}
 NOCACHE=${NOCACHE:-0}
 NOSUDO=${NOSUDO:-0}

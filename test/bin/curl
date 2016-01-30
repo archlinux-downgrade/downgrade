@@ -1,2 +1,9 @@
 #!/usr/bin/env bash
-act-like /usr/bin/curl "$@"
+if [[ "$1" == --remote-name ]]; then
+  url=${2%\{*}
+  url=${url##*/}
+  echo "downloaded package" > "$url"
+  echo "downloaded signature" > "$url.sig"
+else
+  act-like /usr/bin/curl "$@"
+fi
