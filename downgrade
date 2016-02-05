@@ -73,7 +73,7 @@ search_packages() {
 
   ((NOARM)) || \
     curl --fail --silent "$index" \
-      | sed '/.* href="\('"$name"'.*'"$ARCH"'\.pkg\.tar\.xz\)".*/!d; s||'"$index"'\1|g'
+      | sed '/.* href="\('"$name"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d; s||'"$index"'\1|g'
 
   ((NOCACHE)) || \
     find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
