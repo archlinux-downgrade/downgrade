@@ -72,8 +72,9 @@ search_packages() {
   local index="$ARM_URL/packages/${1:0:1}/$1/"
 
   ((NOARM)) || \
-    curl --fail --silent "$index" \
-      | sed '/.* href="\('"$name"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d; s||'"$index"'\1|g'
+    curl --fail --silent "$index" | sed '
+      /.* href="\('"$name"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
+      s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
 
   ((NOCACHE)) || \
     find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
