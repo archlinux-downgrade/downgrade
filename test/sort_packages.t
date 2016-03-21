@@ -16,4 +16,4 @@ Omits testing and sorts by package/version descending
   /tmp/pacman/cache/foo-2.0.pkg.tar.gz
   http://repo-arm-download.archlinuxcn.org/extra/os/x86_64/foo-1.2.1-1-x86_64.pkg.tar.xz
   /tmp/pacman/cache/foo-1.1.pkg.tar.gz
-  /tmp/pacman/cache/foo-1.0.pkg.tar.gz
+  /tmp/pacman/cache/foo-1.0.pkg.tar.gz (no-eol)
