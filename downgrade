@@ -87,9 +87,10 @@ sort_packages() {
 }
 
 output_package() {
-  printf "%4.4s) %s\n" "$1" "$(
+  printf "%4.4s) %s\n" "$1" "$({
     sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
-         s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<< "$2")"
+         s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;
+         s|+| |g;s|%|\\x|' | xargs -0 printf "%b"; } <<< "$2")"
 }
 
 main() {
