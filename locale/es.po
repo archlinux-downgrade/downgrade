@@ -23,12 +23,12 @@ msgstr "Paquetes disponibles:"
 
 #: downgrade:19
 msgid "select a package by number: "
-msgstr "Selecciona un paquete por su número"
+msgstr "Selecciona un paquete por su número: "
 
 #: downgrade:31
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
-msgstr "Añadir $pkg a paquetes ignorados [s/n]"
+msgstr "Añadir $pkg a paquetes ignorados [s/n] "
 
 #: downgrade:34
 msgid "y"
