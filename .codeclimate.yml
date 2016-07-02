@@ -1,0 +1,9 @@
+engines:
+  shellcheck:
+    enabled: true
+ratings:
+  paths:
+  - "downgrade"
+exclude_paths:
+  - "completion/*"
+  - "test/*"
