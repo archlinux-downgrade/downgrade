@@ -1,19 +1,21 @@
   $ source "$TESTDIR/helper.sh"
 
-Omits testing and sorts by package/version descending
+Omits testing entries from remote packages
 
-  $ cat | sort_packages << EOF
-  > /tmp/pacman/cache/foo-2.0.pkg.tar.gz
-  > /tmp/pacman/cache/foo-1.0.pkg.tar.gz
-  > /tmp/pacman/cache/foo-3.5.pkg.tar.xz
+  $ sort_packages << EOF
   > /tmp/pacman/cache/foo-1.1.pkg.tar.gz
   > http://repo-arm-download.archlinuxcn.org/testing/os/x86_64/foo-4.0-1-x86_64.pkg.tar.xz
   > http://repo-arm-download.archlinuxcn.org/extra/os/x86_64/foo-4.0-1-x86_64.pkg.tar.xz
-  > http://repo-arm-download.archlinuxcn.org/extra/os/x86_64/foo-1.2.1-1-x86_64.pkg.tar.xz
   > EOF
-  http://repo-arm-download.archlinuxcn.org/extra/os/x86_64/foo-4.0-1-x86_64.pkg.tar.xz
-  /tmp/pacman/cache/foo-3.5.pkg.tar.xz
-  /tmp/pacman/cache/foo-2.0.pkg.tar.gz
-  http://repo-arm-download.archlinuxcn.org/extra/os/x86_64/foo-1.2.1-1-x86_64.pkg.tar.xz
   /tmp/pacman/cache/foo-1.1.pkg.tar.gz
-  /tmp/pacman/cache/foo-1.0.pkg.tar.gz (no-eol)
+  http://repo-arm-download.archlinuxcn.org/extra/os/x86_64/foo-4.0-1-x86_64.pkg.tar.xz
+
+Prepends the filename for the sorting utility
+
+  $ pacsort() { cat >&2; }
+  > sort_packages >/dev/null << EOF
+  > /tmp/pacman/cache/foo-1.1.pkg.tar.gz
+  > http://repo-arm-download.archlinuxcn.org/extra/os/x86_64/foo-4.0-1-x86_64.pkg.tar.xz
+  > EOF
+  foo-1.1.pkg.tar.gz|/tmp/pacman/cache/foo-1.1.pkg.tar.gz
+  foo-4.0-1-x86_64.pkg.tar.xz|http://repo-arm-download.archlinuxcn.org/extra/os/x86_64/foo-4.0-1-x86_64.pkg.tar.xz

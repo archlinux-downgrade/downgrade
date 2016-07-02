@@ -8,4 +8,6 @@ dependencies:
 
 test:
   override:
+    - echo "Removing sort test because it requires Arch's pacsort"
+    - rm test/sort_packages.t
     - make test
