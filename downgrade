@@ -77,6 +77,7 @@ search_packages() {
       /.* href="\('"$1"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
       s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
 
+  # shellcheck disable=SC2046
   ((NOCACHE)) || \
     find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
       -name "$1-[0-9R]*.pkg.tar.[gx]z"
