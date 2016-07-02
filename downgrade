@@ -64,7 +64,7 @@ prompt_to_ignore() {
         continue
       fi
 
-      sudo printf "IgnorePkg = %s\n" "$pkg" >> "$PACMAN_CONF"
+      printf "IgnorePkg = %s\n" "$pkg" | sudo tee -a "$PACMAN_CONF"
     fi
   done
 }
