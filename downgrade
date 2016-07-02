@@ -74,7 +74,7 @@ search_packages() {
 
   ((NOARM)) || \
     curl --fail --silent "$index" | sed '
-      /.* href="\('"$name"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
+      /.* href="\('"$1"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
       s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
 
   ((NOCACHE)) || \
