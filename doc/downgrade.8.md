@@ -40,7 +40,7 @@ Where `$caches` is the list of all `CacheDir`s as defined in
 
 *ARM_URL*
   The location of an A.R.M. server. Default is 
-  *http://repo-arm.archlinuxcn.org*.
+  *https://archive.archlinux.org*.
 
 *NOARM*
   Do not search the A.R.M. Default is *0*.
