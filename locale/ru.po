@@ -1,0 +1,51 @@
+# Russian translations for downgrade package.
+# Copyright (C) 2016 pbrisbin
+# This file is distributed under the same license as the downgrade package.
+#  <pbrisbin@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: downgrade\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-18 14:25-0300\n"
+"PO-Revision-Date: 2016-11-18 14:25-0300\n"
+"Last-Translator: Nurlan <nurlancik1@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: downgrade:11
+msgid "Available packages:"
+msgstr "Доступные пакеты:"
+
+#: downgrade:19
+msgid "select a package by number: "
+msgstr "выберите пакет по номеру: "
+
+#: downgrade:31
+#, sh-format
+msgid "add $pkg to IgnorePkg? [y/n] "
+msgstr "добавить $pkg в список проигнорированных пакетов? [д/н] "
+
+#: downgrade:34
+msgid "y"
+msgstr "д"
+
+#: downgrade:57
+msgid "remote"
+msgstr "дистанционно"
+
+#: downgrade:58
+msgid "local"
+msgstr "локально"
+
+#: downgrade:82
+msgid "usage: downgrade <pkg>, ... [-- <pacman options>]"
+msgstr "использование: downgrade <pkg>, ... [-- <pacman options>]"
+
+#: downgrade:83
+msgid "see downgrade(8) for details."
+msgstr "см. downgrade(8) для подробностей."
