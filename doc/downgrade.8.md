@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`downgrade` [PACKAGE, ...] [-- [PACMAN OPTIONS]]
+`downgrade` [PACKAGE, ...] [-v <version>] [-- [PACMAN OPTIONS]]
 
 ## DESCRIPTION
 
@@ -24,7 +24,7 @@ Effectively,
 
   `find $caches -name "${pkg}-[0-9R]*.pkg.tar.[gx]z"`
 
-Where `$caches` is the list of all `CacheDir`s as defined in 
+Where `$caches` is the list of all `CacheDir`s as defined in
 *$PACMAN_CONF* (commented or not).
 
 ## ENVIRONMENT VARIABLES
@@ -39,7 +39,7 @@ Where `$caches` is the list of all `CacheDir`s as defined in
   Your pacman configuration file. Default is */etc/pacman.conf*.
 
 *ARM_URL*
-  The location of an A.R.M. server. Default is 
+  The location of an A.R.M. server. Default is
   *https://archive.archlinux.org*.
 
 *NOARM*
@@ -49,7 +49,7 @@ Where `$caches` is the list of all `CacheDir`s as defined in
   Do not search your local cache. Default is *0*.
 
 *NOSUDO*
-  Do not use `sudo(8)` even when available, use `su(1)` always. Default 
+  Do not use `sudo(8)` even when available, use `su(1)` always. Default
   is *0*.
 
 ## AUTHOR

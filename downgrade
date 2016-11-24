@@ -75,12 +75,14 @@ search_packages() {
   ((NOARM)) || \
     curl --fail --silent "$index" | sed '
       /.* href="\('"$1"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
-      s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
+      s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b" | grep "\-$version"
+
+  local version_pattern="${version:-[0-9R]}"
 
   # shellcheck disable=SC2046
   ((NOCACHE)) || \
     find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
-      -name "$1-[0-9R]*.pkg.tar.[gx]z"
+      -name "$1-$version_pattern*.pkg.tar.[gx]z"
 }
 
 sort_packages() {
@@ -95,6 +97,14 @@ output_package() {
          s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<< "$2")"
 }
 
+check_packages() {
+  test "${#candidates[@]}" -gt 1 && present_packages "${candidates[@]}"
+}
+
+check_selection() {
+  test "${#candidates[@]}" -gt 1 && choice="$(read_selection "${candidates[@]}")"
+}
+
 main() {
   local term candidates choice pkg exit_code=0
 
@@ -103,8 +113,8 @@ main() {
   for term; do
     candidates=( $(search_packages "$term" | sort_packages) )
 
-    if present_packages "${candidates[@]}"; then
-      if choice="$(read_selection "${candidates[@]}")"; then
+    if check_packages || test "${#candidates[@]}" -gt 0; then
+      if check_selection || choice="${candidates[0]}"; then
         to_ignore+=( "$term" )
 
         if download_when_remote "$choice"; then
@@ -135,16 +145,18 @@ declare -a terms
 declare -a to_ignore
 declare -a to_install
 declare -a pacman_args
+declare -a version
 
 while [[ -n "$1" ]]; do
   case "$1" in
     --) shift; pacman_args=( "$@" ); break ;;
+    -v) shift; version=( "$1" ); break ;;
     *)  terms+=( "$1" ); shift ;;
   esac
 done
 
 if (( ! "${#terms[@]}" )) && ((!LIB)); then
-  ( gettext 'usage: downgrade <pkg>, ... [-- <pacman options>]'; echo
+  ( gettext 'usage: downgrade <pkg>, ... [-v <version of package>] [-- <pacman options>]'; echo
     gettext 'see downgrade(8) for details.'; echo
   ) >&2
   exit 1

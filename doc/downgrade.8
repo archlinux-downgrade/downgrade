@@ -5,7 +5,7 @@
 .SH SYNOPSIS
 .LP
 .HP
-\fBdowngrade\fR \[lB]PACKAGE, ...\[rB] \[lB]\-\- \[lB]PACMAN OPTIONS\[rB]\[rB]
+\fBdowngrade\fR \[lB]PACKAGE, ...\[rB] \[lB]\-v \<version>\[rB] \[lB]\-\- \[lB]PACMAN OPTIONS\[rB]\[rB]
 .LP
 .SH DESCRIPTION
 .LP
@@ -34,7 +34,7 @@ Effectively,
 \fBfind $caches -name "${pkg}-[0-9R]*.pkg.tar.[gx]z"\fR
 .LP
 .PP
-Where \fB$caches\fR is the list of all \fBCacheDir\fRs as defined in 
+Where \fB$caches\fR is the list of all \fBCacheDir\fRs as defined in
 \fI\[Do]PACMAN\[ru]CONF\fP (commented or not)\.
 .LP
 .SH ENVIRONMENT VARIABLES
@@ -53,7 +53,7 @@ Your pacman configuration file\. Default is \fI\[sl]etc\[sl]pacman\.conf\fP\.
 .LP
 .TP
 \fIARM\[ru]URL\fP
-The location of an A\.R\.M\. server\. Default is 
+The location of an A\.R\.M\. server\. Default is
 \fIhttps:\[sl]\[sl]archive\.archlinux\.org\fP\.
 .LP
 .TP
@@ -66,13 +66,13 @@ Do not search your local cache\. Default is \fI0\fP\.
 .LP
 .TP
 \fINOSUDO\fP
-Do not use \fBsudo(8)\fR even when available, use \fBsu(1)\fR always\. Default 
+Do not use \fBsudo(8)\fR even when available, use \fBsu(1)\fR always\. Default
 is \fI0\fP\.
 .LP
 .SH AUTHOR
 .LP
 .PP
-Patrick Brisbin 
+Patrick Brisbin
 .MT pbrisbin\[at]gmail\.com
 .ME
 .LP
