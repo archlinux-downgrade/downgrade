@@ -12,6 +12,12 @@ Downgrade some packages, checking both local cache and the A.R.M.:
 $ downgrade foo bar
 ```
 
+Downgrade some package to a specific version:
+
+```
+$ downgrade <package> [-v version]
+```
+
 Downgrade a package, looking in only local cache:
 
 ```
@@ -24,7 +30,7 @@ Downgrade a package, looking in only the A.R.M.:
 $ NOCACHE=1 downgrade foo
 ```
 
-Downgrade a package, looking only in local cache, and favoring `su` over 
+Downgrade a package, looking only in local cache, and favoring `su` over
 `sudo` even when `sudo` is available:
 
 ```
