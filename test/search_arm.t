@@ -168,3 +168,9 @@ URL decoding packages
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-1.1.6-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-1.1.5-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-1.0-1-any.pkg.tar.xz
+
+Searching the A.R.M. for specific version
+
+  $ ARCH=x86_64
+  > NOCACHE=1 search_packages 'xorg-twm-1.0.7'
+  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.7-1-x86_64.pkg.tar.xz
