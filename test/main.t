@@ -4,6 +4,7 @@
 It does nothing if there are no candidates
 
   $ search_packages() { :; }
+  > to_ignore=(); to_install=()
   > main foo; printf "exit code: %s\n" "$?"
   > printf "%s\n" "${#to_ignore[@]}"
   > printf "%s\n" "${#to_install[@]}"
@@ -14,6 +15,7 @@ It does nothing if there are no candidates
 It does nothing on an invalid choice
 
   $ search_packages() { printf "%s\n" foo foo foo; }
+  > to_ignore=(); to_install=()
   > main foo < <(echo -1); printf "\nexit code: %s\n" "$?"
   > printf "%s\n" "${#to_ignore[@]}"
   > printf "%s\n" "${#to_install[@]}"
@@ -33,6 +35,7 @@ It adds the term and package to global arrays if successful
   $ touch "$TMP/foo.pkg"
   > search_packages() { printf "%s\n" "$TMP/foo.pkg"; }
   > download_when_remote() { return 1; }
+  > to_ignore=(); to_install=()
   > main foo < <(echo 1); printf "\nexit code: %s\n" "$?"
   > printf "%s\n" "${to_ignore[@]}" "${to_install[@]}"
   Available packages:
