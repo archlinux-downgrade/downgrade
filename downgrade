@@ -70,17 +70,27 @@ prompt_to_ignore() {
 }
 
 search_packages() {
-  local index="$ARM_URL/packages/${1:0:1}/$1/"
+  local name version index
+
+  if [[ "$1" =~ -([0-9R].*)$ ]]; then
+    version=${BASH_REMATCH[1]}
+    name=${1%-$version}
+  else
+    version='[0-9R]'
+    name=$1
+  fi
+
+  index="$ARM_URL/packages/${name:0:1}/$name/"
 
   ((NOARM)) || \
     curl --fail --silent "$index" | sed '
-      /.* href="\('"$1"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
+      /.* href="\('"$name-$version"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
       s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
 
   # shellcheck disable=SC2046
   ((NOCACHE)) || \
     find $( sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF" ) \
-      -name "$1-[0-9R]*.pkg.tar.[gx]z"
+      -name "$name-$version*.pkg.tar.[gx]z"
 }
 
 sort_packages() {
