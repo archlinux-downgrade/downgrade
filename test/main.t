@@ -33,7 +33,8 @@ It does nothing on an invalid choice
 It adds the term and package to global arrays if successful
 
   $ touch "$TMP/foo.pkg"
-  > search_packages() { printf "%s\n" "$TMP/foo.pkg"; }
+  > touch "$TMP/bar.pkg"
+  > search_packages() { printf "%s\n" "$TMP/foo.pkg" "$TMP/bar.pkg"; }
   > download_when_remote() { return 1; }
   > to_ignore=(); to_install=()
   > main foo < <(echo 1); printf "\nexit code: %s\n" "$?"
