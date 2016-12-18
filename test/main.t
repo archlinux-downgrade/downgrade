@@ -42,8 +42,21 @@ It adds the term and package to global arrays if successful
   Available packages:
   
      1) foo.pkg (local)
+     2) bar.pkg (local)
   
   select a package by number: 
+  exit code: 0
+  foo
+  /tmp/cramtests-*/tmp/foo.pkg (glob)
+
+It doesn't present packages when there's only one choice
+
+  $ touch "$TMP/foo.pkg"
+  > search_packages() { printf "%s\n" "$TMP/foo.pkg"; }
+  > download_when_remote() { return 1; }
+  > to_ignore=(); to_install=()
+  > main foo; printf "exit code: %s\n" "$?"
+  > printf "%s\n" "${to_ignore[@]}" "${to_install[@]}"
   exit code: 0
   foo
   /tmp/cramtests-*/tmp/foo.pkg (glob)
