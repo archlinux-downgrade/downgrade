@@ -87,11 +87,13 @@ search_packages() {
       /.* href="\('"$name-$version"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
       s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
 
-  cache_dirs=$(sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF")
-  cache_dirs=${cache_dirs:-$PACMAN_CACHE}
+  if ((!NOCACHE)); then
+    cache_dirs=$(sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF")
+    cache_dirs=${cache_dirs:-$PACMAN_CACHE}
 
-  # shellcheck disable=SC2086
-  ((NOCACHE)) || find $cache_dirs -name "$name-$version*.pkg.tar.[gx]z"
+    # shellcheck disable=SC2086
+    find $cache_dirs -name "$name-$version*.pkg.tar.[gx]z"
+  fi
 }
 
 sort_packages() {
