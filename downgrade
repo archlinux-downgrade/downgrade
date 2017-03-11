@@ -28,21 +28,6 @@ read_selection() {
   ((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
 }
 
-download_when_remote() {
-  local pkg="$1" url
-
-  if [[ "$pkg" == 'https://'* ]]; then
-    url="$pkg"
-    pkg="${url##*/}"
-
-    curl --remote-name "$url{,.sig}" || exit 1
-
-    return 0
-  else
-    return 1
-  fi
-}
-
 prompt_to_ignore() {
   local pkg ans ln
 
@@ -124,13 +109,7 @@ main() {
 
     if [[ -n "$choice" ]]; then
       to_ignore+=( "$term" )
-
-      if download_when_remote "$choice"; then
-        to_install+=( "${choice##*/}" )
-      else
-        to_install+=( "${choice}" )
-      fi
-
+      to_install+=( "${choice}" )
       continue
     fi
 
