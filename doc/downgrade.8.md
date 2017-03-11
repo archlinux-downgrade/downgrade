@@ -10,25 +10,7 @@ Downgrade Arch Linux packages.
 
 https://github.com/pbrisbin/downgrade
 
-## PACKAGE SOURCES
-
-### ARCH LINUX ARCHIVE (ALA)
-
-See <https://wiki.archlinux.org/index.php/Arch_Linux_Archive>
-
-### CACHE
-
-Effectively,
-
-  `find $caches -name "${pkg}-[0-9R]*.pkg.tar.[gx]z"`
-
-Where `$caches` is the list of all `CacheDir`s as defined in 
-*$PACMAN_CONF* (commented or not).
-
 ## ENVIRONMENT VARIABLES
-
-*ARCH*
-  Target architecture. Default is determined by `uname -m`.
 
 *PACMAN*
   The pacman command. Default is *pacman*.
@@ -36,17 +18,24 @@ Where `$caches` is the list of all `CacheDir`s as defined in
 *PACMAN_CONF*
   Your pacman configuration file. Default is */etc/pacman.conf*.
 
-*ALA_URL*
+*PACMAN_CACHE*
+  Your package cache directory. Default is read from `$PACMAN_CONF`, or set to
+  */var/pacman/pkg/* when not found.
+
+*DOWNGRADE_ARCH*
+  Target architecture. Default is determined by `uname -m`.
+
+*DOWNGRADE_ALA_URL*
   The location of an A.L.A. server. Default is 
   *https://archive.archlinux.org*.
 
-*NOALA*
-  Do not search the A.L.A. Default is *0*.
+*DOWNGRADE_FROM_ALA*
+  Search the A.L.A. Default is *1*.
 
-*NOCACHE*
-  Do not search your local cache. Default is *0*.
+*DOWNGRADE_FROM_CACHE*
+  Search your local cache. Default is *1*.
 
-*NOSUDO*
+*DOWNGRADE_NOSUDO*
   Do not use `sudo(8)` even when available, use `su(1)` always. Default 
   is *0*.
 

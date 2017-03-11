@@ -65,14 +65,15 @@ search_packages() {
     name=$1
   fi
 
-  index="$ALA_URL/packages/${name:0:1}/$name/"
+  index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
-  ((NOALA)) || \
+  if ((DOWNGRADE_FROM_ALA)); then
     curl --fail --silent "$index" | sed '
-      /.* href="\('"$name-$version"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
+      /.* href="\('"$name-$version"'.*\(any\|'"$DOWNGRADE_ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
       s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
+  fi
 
-  if ((!NOCACHE)); then
+  if ((DOWNGRADE_FROM_CACHE)); then
     cache_dirs=$(sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF")
     cache_dirs=${cache_dirs:-$PACMAN_CACHE}
 
@@ -119,19 +120,25 @@ main() {
   return $exit_code
 }
 
-# Deprecated conversions
-ALA_URL=$ARM_URL
-NOALA=$NOARM
+# Up-convert older variables
+: "${DOWNGRADE_ARCH:=$ARCH}"
+: "${DOWNGRADE_ALA_URL:=$ALA_URL}"
+: "${DOWNGRADE_ALA_URL:=$ARM_URL}"
+: "${DOWNGRADE_NOSUDO:=$NOSUDO}"
 
-# Defaults
-: ARCH=${ARCH:=$(uname -m)}
-: PACMAN=${PACMAN:=pacman}
-: PACMAN_CONF=${PACMAN_CONF:=/etc/pacman.conf}
-: PACMAN_CACHE=${PACMAN_CACHE:=/var/cache/pacman/pkg/}
-: ALA_URL=${ALA_URL:=https://archive.archlinux.org}
-: NOALA=${NOALA:=0}
-: NOCACHE=${NOCACHE:=0}
-: NOSUDO=${NOSUDO:=0}
+[ "$NOALA" = "1" ] && DOWNGRADE_FROM_ALA=0
+[ "$NOARM" = "1" ] && DOWNGRADE_FROM_ALA=0
+[ "$NOCACHE" = "1" ] && DOWNGRADE_FROM_CACHE=0
+
+# Set script defaults
+: "${PACMAN:=pacman}"
+: "${PACMAN_CONF:=/etc/pacman.conf}"
+: "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
+: "${DOWNGRADE_ARCH:=$(uname -m)}"
+: "${DOWNGRADE_ALA_URL:=https://archive.archlinux.org}"
+: "${DOWNGRADE_FROM_ALA:=1}"
+: "${DOWNGRADE_FROM_CACHE:=1}"
+: "${DOWNGRADE_NOSUDO:=0}"
 
 declare -a terms
 declare -a to_ignore
@@ -152,7 +159,7 @@ if (( ! "${#terms[@]}" )) && ((!LIB)); then
   exit 1
 fi
 
-if ((NOSUDO)) || ! type -p sudo &>/dev/null; then
+if ((DOWNGRADE_NOSUDO)) || ! type -p sudo &>/dev/null; then
   sudo() {
     printf -v cmd "%q " "$@"
     su root -c "$cmd"

@@ -2,8 +2,8 @@
 
 Searching the A.L.A.
 
-  $ ARCH=x86_64
-  > NOCACHE=1 search_packages 'xorg-twm'
+  $ DOWNGRADE_ARCH=x86_64
+  > DOWNGRADE_FROM_CACHE=0 search_packages 'xorg-twm'
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.7-1-x86_64.pkg.tar.xz
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-1-x86_64.pkg.tar.xz
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-2-x86_64.pkg.tar.xz
@@ -12,8 +12,8 @@ Searching the A.L.A.
 
 Searching the A.L.A. for other architectures
 
-  $ ARCH=i686
-  > NOCACHE=1 search_packages 'xorg-twm'
+  $ DOWNGRADE_ARCH=i686
+  > DOWNGRADE_FROM_CACHE=0 search_packages 'xorg-twm'
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.7-1-i686.pkg.tar.xz
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-1-i686.pkg.tar.xz
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-2-i686.pkg.tar.xz
@@ -22,7 +22,7 @@ Searching the A.L.A. for other architectures
 
 Searching the A.L.A. for -any packages
 
-  $ NOCACHE=1 search_packages 'ansible'
+  $ DOWNGRADE_FROM_CACHE=0 search_packages 'ansible'
   https://archive.archlinux.org/packages/a/ansible/ansible-1.4.4-4-any.pkg.tar.xz
   https://archive.archlinux.org/packages/a/ansible/ansible-1.4.5-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/a/ansible/ansible-1.5-1-any.pkg.tar.xz
@@ -60,7 +60,7 @@ Searching the A.L.A. for -any packages
 
 URL decoding packages
 
-  $ NOCACHE=1 search_packages 'python-setuptools' | sort -rV
+  $ DOWNGRADE_FROM_CACHE=0 search_packages 'python-setuptools' | sort -rV
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-4.0.1-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-4.0-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-3.6-1-any.pkg.tar.xz
@@ -171,6 +171,6 @@ URL decoding packages
 
 Searching the A.L.A. for specific version
 
-  $ ARCH=x86_64
-  > NOCACHE=1 search_packages 'xorg-twm-1.0.7'
+  $ DOWNGRADE_ARCH=x86_64
+  > DOWNGRADE_FROM_CACHE=0 search_packages 'xorg-twm-1.0.7'
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.7-1-x86_64.pkg.tar.xz

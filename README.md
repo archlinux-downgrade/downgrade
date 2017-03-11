@@ -21,20 +21,20 @@ $ downgrade foo bar
 Downgrade a package, looking in only local cache:
 
 ```
-$ NOALA=1 downgrade foo
+$ DOWNGRADE_FROM_ALA=0 downgrade foo
 ```
 
 Downgrade a package, looking in only the A.L.A.:
 
 ```
-$ NOCACHE=1 downgrade foo
+$ DOWNGRADE_FROM_CACHE=0 downgrade foo
 ```
 
 Downgrade a package, looking only in local cache, and favoring `su` over 
 `sudo` even when `sudo` is available:
 
 ```
-$ NOALA=1 NOSUDO=1 downgrade foo
+$ DOWNGRADE_FROM_ALA=0 DOWNGRADE_NOSUDO=1 downgrade foo
 ```
 
 ## Development & Testing
