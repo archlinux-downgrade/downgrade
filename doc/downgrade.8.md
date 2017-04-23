@@ -12,11 +12,9 @@ https://github.com/pbrisbin/downgrade
 
 ## PACKAGE SOURCES
 
-### ARCH ROLLBACK MACHINE (ARM)
+### ARCH LINUX ARCHIVE (ALA)
 
-Effectively,
-
-  `curl -d "arch=$(uname -m)" -d "pkgname=${pkg}" "$ARM_URL/exact"`
+See <https://wiki.archlinux.org/index.php/Arch_Linux_Archive>
 
 ### CACHE
 
@@ -38,12 +36,12 @@ Where `$caches` is the list of all `CacheDir`s as defined in
 *PACMAN_CONF*
   Your pacman configuration file. Default is */etc/pacman.conf*.
 
-*ARM_URL*
-  The location of an A.R.M. server. Default is 
+*ALA_URL*
+  The location of an A.L.A. server. Default is 
   *https://archive.archlinux.org*.
 
-*NOARM*
-  Do not search the A.R.M. Default is *0*.
+*NOALA*
+  Do not search the A.L.A. Default is *0*.
 
 *NOCACHE*
   Do not search your local cache. Default is *0*.

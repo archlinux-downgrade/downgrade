@@ -1,6 +1,6 @@
   $ source "$TESTDIR/helper.sh"
 
-Searching the A.R.M.
+Searching the A.L.A.
 
   $ ARCH=x86_64
   > NOCACHE=1 search_packages 'xorg-twm'
@@ -10,7 +10,7 @@ Searching the A.R.M.
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-3-x86_64.pkg.tar.xz
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.9-1-x86_64.pkg.tar.xz
 
-Searching the A.R.M. for other architectures
+Searching the A.L.A. for other architectures
 
   $ ARCH=i686
   > NOCACHE=1 search_packages 'xorg-twm'
@@ -20,7 +20,7 @@ Searching the A.R.M. for other architectures
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-3-i686.pkg.tar.xz
   https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.9-1-i686.pkg.tar.xz
 
-Searching the A.R.M. for -any packages
+Searching the A.L.A. for -any packages
 
   $ NOCACHE=1 search_packages 'ansible'
   https://archive.archlinux.org/packages/a/ansible/ansible-1.4.4-4-any.pkg.tar.xz
@@ -169,7 +169,7 @@ URL decoding packages
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-1.1.5-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-1.0-1-any.pkg.tar.xz
 
-Searching the A.R.M. for specific version
+Searching the A.L.A. for specific version
 
   $ ARCH=x86_64
   > NOCACHE=1 search_packages 'xorg-twm-1.0.7'

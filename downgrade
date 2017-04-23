@@ -65,9 +65,9 @@ search_packages() {
     name=$1
   fi
 
-  index="$ARM_URL/packages/${name:0:1}/$name/"
+  index="$ALA_URL/packages/${name:0:1}/$name/"
 
-  ((NOARM)) || \
+  ((NOALA)) || \
     curl --fail --silent "$index" | sed '
       /.* href="\('"$name-$version"'.*\(any\|'"$ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
       s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
@@ -119,14 +119,19 @@ main() {
   return $exit_code
 }
 
-ARCH=${ARCH:-$(uname -m)}
-PACMAN="${PACMAN:-pacman}"
-PACMAN_CONF="${PACMAN_CONF:-/etc/pacman.conf}"
-PACMAN_CACHE="${PACMAN_CACHE:-/var/cache/pacman/pkg/}"
-ARM_URL="${ARM_URL:-https://archive.archlinux.org}"
-NOARM=${NOARM:-0}
-NOCACHE=${NOCACHE:-0}
-NOSUDO=${NOSUDO:-0}
+# Deprecated conversions
+ALA_URL=$ARM_URL
+NOALA=$NOARM
+
+# Defaults
+: ARCH=${ARCH:=$(uname -m)}
+: PACMAN=${PACMAN:=pacman}
+: PACMAN_CONF=${PACMAN_CONF:=/etc/pacman.conf}
+: PACMAN_CACHE=${PACMAN_CACHE:=/var/cache/pacman/pkg/}
+: ALA_URL=${ALA_URL:=https://archive.archlinux.org}
+: NOALA=${NOALA:=0}
+: NOCACHE=${NOCACHE:=0}
+: NOSUDO=${NOSUDO:=0}
 
 declare -a terms
 declare -a to_ignore

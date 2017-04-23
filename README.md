@@ -10,7 +10,9 @@ Install via the [AUR](https://aur.archlinux.org/packages/downgrade/).
 
 ## Usage
 
-Downgrade some packages, checking both local cache and the A.R.M.:
+Downgrade some packages, checking both local cache and the [A.L.A.][ala]:
+
+[ala]: https://wiki.archlinux.org/index.php/Arch_Linux_Archive
 
 ```
 $ downgrade foo bar
@@ -19,10 +21,10 @@ $ downgrade foo bar
 Downgrade a package, looking in only local cache:
 
 ```
-$ NOARM=1 downgrade foo
+$ NOALA=1 downgrade foo
 ```
 
-Downgrade a package, looking in only the A.R.M.:
+Downgrade a package, looking in only the A.L.A.:
 
 ```
 $ NOCACHE=1 downgrade foo
@@ -32,7 +34,7 @@ Downgrade a package, looking only in local cache, and favoring `su` over
 `sudo` even when `sudo` is available:
 
 ```
-$ NOARM=1 NOSUDO=1 downgrade foo
+$ NOALA=1 NOSUDO=1 downgrade foo
 ```
 
 ## Development & Testing
