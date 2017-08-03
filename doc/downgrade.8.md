@@ -43,6 +43,9 @@ https://github.com/pbrisbin/downgrade
   Do not use `sudo(8)` even when available, use `su(1)` always. Default 
   is *0*.
 
+*DOWNGRADE_PAGE_SIZE*
+  How many results to present at a time. Default is *30*.
+
 ## AUTHOR
 
 Patrick Brisbin <pbrisbin@gmail.com>
