@@ -1,4 +1,5 @@
   $ source "$TESTDIR/../helper.sh"
+  > PACMAN_LOG=/dev/null
 
 It doesn't present packages when there's only one choice
 

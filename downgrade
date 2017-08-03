@@ -4,6 +4,19 @@
 export TEXTDOMAIN=downgrade
 export TEXTDOMAINDIR=/usr/share/locale
 
+read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
+
+previously_installed() {
+  # Delay this defaulting so #read_pacman_conf behavior is tested
+  : "${PACMAN_LOG:=$(read_pacman_conf LogFile)}"
+  : "${PACMAN_LOG:=/var/log/pacman.log}"
+
+  sed '
+    /.*\(installed\|upgraded\) \('"$1"'\) (\(.* -> \)\?\([^)]*\))/!d
+    s//\2-\4/
+  ' "$PACMAN_LOG"
+}
+
 present_packages() {
   local i=1
 
@@ -55,7 +68,7 @@ prompt_to_ignore() {
 }
 
 search_packages() {
-  local name version index cache_dirs
+  local name version index
 
   if [[ "$1" =~ -([0-9R].*)$ ]]; then
     version=${BASH_REMATCH[1]}
@@ -74,11 +87,12 @@ search_packages() {
   fi
 
   if ((DOWNGRADE_FROM_CACHE)); then
-    cache_dirs=$(sed '/^#\?CacheDir *= *\(.*\)$/!d;s//\1/' "$PACMAN_CONF")
-    cache_dirs=${cache_dirs:-$PACMAN_CACHE}
+    # Delay this defaulting so #read_pacman_conf behavior is tested
+    : "${PACMAN_CACHE:=$(read_pacman_conf CacheDir)}"
+    : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
 
     # shellcheck disable=SC2086
-    find $cache_dirs -name "$name-$version*.pkg.tar.[gx]z"
+    find $PACMAN_CACHE -name "$name-$version*.pkg.tar.[gx]z"
   fi
 }
 
@@ -89,7 +103,18 @@ sort_packages() {
 }
 
 output_package() {
-  printf "%4.4s) %s\n" "$1" "$(
+  local pkg indicator=" "
+
+  for pkg in "${installed[@]}"; do
+    case "$2" in
+      *$pkg*)
+        indicator="*"
+        break
+        ;;
+    esac
+  done
+
+  printf "%s%3.4s) %s\n" "$indicator" "$1" "$(
     sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
          s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<< "$2")"
 }
@@ -100,6 +125,7 @@ main() {
   (($#)) || return 1
 
   for term; do
+    installed=( $(previously_installed "$term") )
     candidates=( $(search_packages "$term" | sort_packages) )
 
     if (( "${#candidates[@]}" == 1 )); then
@@ -133,7 +159,6 @@ main() {
 # Set script defaults
 : "${PACMAN:=pacman}"
 : "${PACMAN_CONF:=/etc/pacman.conf}"
-: "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
 : "${DOWNGRADE_ARCH:=$(uname -m)}"
 : "${DOWNGRADE_ALA_URL:=https://archive.archlinux.org}"
 : "${DOWNGRADE_FROM_ALA:=1}"
@@ -144,6 +169,7 @@ declare -a terms
 declare -a to_ignore
 declare -a to_install
 declare -a pacman_args
+declare -a installed
 
 while [[ -n "$1" ]]; do
   case "$1" in
