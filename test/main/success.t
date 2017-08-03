@@ -1,4 +1,5 @@
   $ source "$TESTDIR/../helper.sh"
+  > PACMAN_LOG=/dev/null
 
 It adds the term and package to global arrays if successful
 

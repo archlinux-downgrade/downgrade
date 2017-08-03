@@ -22,6 +22,10 @@ https://github.com/pbrisbin/downgrade
   Your package cache directory. Default is read from `$PACMAN_CONF`, or set to
   */var/pacman/pkg/* when not found.
 
+*PACMAN_LOG*
+  Your pacman log file. Default is read from `$PACMAN_CONF`, or set to
+  */var/log/pacman.log* when not found.
+
 *DOWNGRADE_ARCH*
   Target architecture. Default is determined by `uname -m`.
 

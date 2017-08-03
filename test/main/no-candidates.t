@@ -1,4 +1,5 @@
   $ source "$TESTDIR/../helper.sh"
+  > PACMAN_LOG=/dev/null
 
 It does nothing if there are no candidates
 
