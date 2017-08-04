@@ -2,7 +2,7 @@
 program="$1"; shift
 base="${program##*/}"
 
-fixtures="${TESTDIR:-test}/fixtures/$base/$(echo $* | md5sum | cut -d ' ' -f 1)"
+fixtures="$SRCDIR/test/fixtures/$base/$(echo $* | md5sum | cut -d ' ' -f 1)"
 
 if [[ ! -d "$fixtures" ]]; then
   mkdir -p "$fixtures"

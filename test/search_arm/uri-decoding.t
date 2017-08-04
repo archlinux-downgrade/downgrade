@@ -1,66 +1,8 @@
-  $ source "$TESTDIR/helper.sh"
-
-Searching the A.L.A.
-
-  $ DOWNGRADE_ARCH=x86_64
-  > DOWNGRADE_FROM_CACHE=0 search_packages 'xorg-twm'
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.7-1-x86_64.pkg.tar.xz
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-1-x86_64.pkg.tar.xz
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-2-x86_64.pkg.tar.xz
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-3-x86_64.pkg.tar.xz
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.9-1-x86_64.pkg.tar.xz
-
-Searching the A.L.A. for other architectures
-
-  $ DOWNGRADE_ARCH=i686
-  > DOWNGRADE_FROM_CACHE=0 search_packages 'xorg-twm'
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.7-1-i686.pkg.tar.xz
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-1-i686.pkg.tar.xz
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-2-i686.pkg.tar.xz
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.8-3-i686.pkg.tar.xz
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.9-1-i686.pkg.tar.xz
-
-Searching the A.L.A. for -any packages
-
-  $ DOWNGRADE_FROM_CACHE=0 search_packages 'ansible'
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.4.4-4-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.4.5-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.5-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.5-2-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.5.3-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.5.4-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.5.5-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.6-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.6.1-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.6.10-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.6.2-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.6.5-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.6.6-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.6.8-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.6.9-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.7-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.7.1-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.7.1-2-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.7.1-3-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.7.2-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.8.1-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.8.1-2-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.8.2-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.8.2-2-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.8.4-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.9.0.1-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.9.1-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.9.1-2-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.9.2-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.9.3-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-1.9.4-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-2.0.0.1-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-2.0.0.2-1-any.pkg.tar.xz
-  https://archive.archlinux.org/packages/a/ansible/ansible-2.0.0.2-2-any.pkg.tar.xz
+  $ source "$TESTDIR/../helper.sh"
 
 URL decoding packages
 
-  $ DOWNGRADE_FROM_CACHE=0 search_packages 'python-setuptools' | sort -rV
+  $ DOWNGRADE_FROM_ALA=1 search_packages 'python-setuptools' | sort -rV
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-4.0.1-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-4.0-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-3.6-1-any.pkg.tar.xz
@@ -168,9 +110,3 @@ URL decoding packages
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-1.1.6-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-1.1.5-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-1.0-1-any.pkg.tar.xz
-
-Searching the A.L.A. for specific version
-
-  $ DOWNGRADE_ARCH=x86_64
-  > DOWNGRADE_FROM_CACHE=0 search_packages 'xorg-twm-1.0.7'
-  https://archive.archlinux.org/packages/x/xorg-twm/xorg-twm-1.0.7-1-x86_64.pkg.tar.xz
