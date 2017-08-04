@@ -1,5 +1,6 @@
 ## [*Unreleased*](https://github.com/pbrisbin/downgrade/compare/v5.4.0...master)
 
+- [NEW] Render results one page at a time
 - [NEW] Render an asterisk next to previously-installed versions
 - [NEW] Prefix most configuration variables with `DOWNGRADE_`
 - [FIX] Fix conversion of legacy `ARM_` variables
