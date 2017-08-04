@@ -119,6 +119,26 @@ output_package() {
          s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<< "$2")"
 }
 
+process_term() {
+  local term=$1 candidates choice
+
+  candidates=( $(search_packages "$term" | sort_packages) )
+
+  if (( "${#candidates[@]}" == 1 )); then
+    choice=${candidates[0]}
+  elif present_packages "${candidates[@]}"; then
+    choice=$(read_selection "${candidates[@]}")
+  fi
+
+  if [[ -n "$choice" ]]; then
+    to_ignore+=( "$term" )
+    to_install+=( "$choice" )
+    return 0
+  fi
+
+  return 1
+}
+
 main() {
   local term candidates choice pkg exit_code=0
 
@@ -126,21 +146,7 @@ main() {
 
   for term; do
     installed=( $(previously_installed "$term") )
-    candidates=( $(search_packages "$term" | sort_packages) )
-
-    if (( "${#candidates[@]}" == 1 )); then
-      choice=${candidates[0]}
-    elif present_packages "${candidates[@]}"; then
-      choice="$(read_selection "${candidates[@]}")"
-    fi
-
-    if [[ -n "$choice" ]]; then
-      to_ignore+=( "$term" )
-      to_install+=( "${choice}" )
-      continue
-    fi
-
-    exit_code=1
+    process_term "$term" || exit_code=1
   done
 
   return $exit_code
