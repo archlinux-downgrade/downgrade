@@ -2,7 +2,7 @@
 export LIB=1
 
 # Provide access to project root
-export SRCDIR=${TESTDIR/\/test\/*/}
+export SRCDIR=${TESTDIR/\/test*/}
 
 # Place mocks on $PATH (e.g. curl)
 export PATH="$SRCDIR/test/bin:$PATH"
