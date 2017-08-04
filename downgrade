@@ -69,7 +69,7 @@ prompt_to_ignore() {
   for pkg; do
     grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
 
-    eval_gettext "add \$pkg to IgnorePkg? [y/n] "; read -r ans
+    eval_gettext "Add \$pkg to IgnorePkg? [y/n] "; read -r ans
 
     if [[ "${ans,,}" == $(gettext 'y')* ]]; then
       ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
@@ -170,7 +170,7 @@ process_term() {
 }
 
 main() {
-  local term candidates choice pkg exit_code=0
+  local term candidates
 
   (($#)) || return 1
 
@@ -216,8 +216,8 @@ while [[ -n "$1" ]]; do
 done
 
 if (( ! "${#terms[@]}" )) && ((!LIB)); then
-  ( gettext 'usage: downgrade <pkg>, ... [-- <pacman options>]'; echo
-    gettext 'see downgrade(8) for details.'; echo
+  ( gettext 'Usage: downgrade <pkg>, ... [-- <pacman options>]'; echo
+    gettext 'See downgrade(8) for details.'; echo
   ) >&2
   exit 1
 fi
