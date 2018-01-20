@@ -39,6 +39,12 @@ previously_installed() {
   ' "$PACMAN_LOG"
 }
 
+currently_installed() {
+  LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2> /dev/null \
+  | tr '\n' '\t' \
+  | sed 's#^Name\s*: \([^\t]*\)\t.*Version\s*: \([^\t]*\).*$#\1-\2#'
+}
+
 present_packages() {
   local i=1
 
@@ -181,13 +187,7 @@ main() {
 
   for term; do
     installed=( $(previously_installed "$term") )
-    current=$(
-      {
-        LC_ALL=C.UTF8 "$PACMAN" -Qi "$term" 2> /dev/null \
-        | tr '\n' '\t' \
-        | sed 's#^Name\s*: \([^\t]*\)\t.*Version\s*: \([^\t]*\).*$#\1-\2#'
-      } || ''
-    )
+    current=( $(currently_installed "$term") )
     process_term "$term" || exit_code=1
   done
 
