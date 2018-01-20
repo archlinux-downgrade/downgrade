@@ -182,7 +182,7 @@ main() {
   for term; do
     installed=( $(previously_installed "$term") )
     current=$(
-      LC_ALL=C.UTF8 "$PACMAN" -Qi linux \
+      LC_ALL=C.UTF8 "$PACMAN" -Qi "$term" \
       | tr '\n' '\t' \
       | sed 's#^Name\s*: \([^\t]*\)\t.*Version\s*: \([^\t]*\).*$#\1-\2#'
     )
