@@ -1,0 +1,22 @@
+Name            : dia
+Version         : 0.2.2
+Description     : A GTK+ based diagram creation program
+Architecture    : x86_64
+URL             : http://live.gnome.org/Dia
+Licenses        : GPL
+Groups          : None
+Provides        : None
+Depends On      : libxslt  gtk2
+Optional Deps   : python2 [installed]
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 19.63 MiB
+Packager        : Ball
+Build Date      : Fri Jan 27 15:37:08 2017
+Install Date    : Sat Jan 20 21:35:31 2018
+Install Reason  : Installed as a dependency for another package
+Install Script  : No
+Validated By    : Signature
+
