@@ -127,14 +127,19 @@ sort_packages() {
 output_package() {
   local pkg indicator=" "
 
-  for pkg in "${installed[@]}"; do
-    case "$2" in
-      *$pkg*)
-        indicator="*"
+  if [[ $2 == *"${current}"* ]]; then
+    # Currently installed
+    indicator="+"
+  else
+    for pkg in "${installed[@]}"; do
+      case "$2" in
+        *$pkg*)
+        indicator="-"
         break
         ;;
     esac
-  done
+    done
+  fi
 
   printf "%s%3.4s) %s\n" "$indicator" "$1" "$(
     sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
@@ -176,6 +181,11 @@ main() {
 
   for term; do
     installed=( $(previously_installed "$term") )
+    current=$(
+      LC_ALL=C.UTF8 "$PACMAN" -Qi linux \
+      | tr '\n' '\t' \
+      | sed 's#^Name\s*: \([^\t]*\)\t.*Version\s*: \([^\t]*\).*$#\1-\2#'
+    )
     process_term "$term" || exit_code=1
   done
 
@@ -207,6 +217,7 @@ declare -a to_ignore
 declare -a to_install
 declare -a pacman_args
 declare -a installed
+declare -a current
 
 while [[ -n "$1" ]]; do
   case "$1" in
