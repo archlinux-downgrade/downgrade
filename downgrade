@@ -133,16 +133,16 @@ sort_packages() {
 output_package() {
   local pkg indicator=" "
 
-  if [[ ! -z $current ]] && [[ $2 == *"$current"* ]]; then
+  if [[ -n "$current" ]] && [[ "$2" == *"$current"* ]]; then
     # Currently installed
     indicator="+"
   else
     for pkg in "${installed[@]}"; do
       case "$2" in
         *$pkg*)
-        indicator="-"
-        break
-        ;;
+          indicator="-"
+          break
+          ;;
     esac
     done
   fi
