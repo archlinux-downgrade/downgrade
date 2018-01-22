@@ -145,7 +145,7 @@ output_package() {
           indicator="-"
           break
           ;;
-    esac
+      esac
     done
   fi
 
