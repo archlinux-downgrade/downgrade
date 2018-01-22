@@ -40,9 +40,11 @@ previously_installed() {
 }
 
 currently_installed() {
-  LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2> /dev/null \
-  | tr '\n' '\t' \
-  | sed 's#^Name\s*: \([^\t]*\)\t.*Version\s*: \([^\t]*\).*$#\1-\2#'
+  LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2> /dev/null | awk -F " : " '
+    /^Name / { name=$2 };
+    /^Version / { version=$2 };
+    END { if (name != "") printf("%s-%s\n", name, version) }
+  '
 }
 
 present_packages() {
