@@ -187,7 +187,7 @@ main() {
 
   for term; do
     installed=( $(previously_installed "$term") )
-    current=( $(currently_installed "$term") )
+    current=$(currently_installed "$term")
     process_term "$term" || exit_code=1
   done
 
@@ -219,7 +219,6 @@ declare -a to_ignore
 declare -a to_install
 declare -a pacman_args
 declare -a installed
-declare -a current
 
 while [[ -n "$1" ]]; do
   case "$1" in
