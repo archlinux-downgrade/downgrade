@@ -1,6 +1,6 @@
   $ source "$TESTDIR/../helper.sh"
 
-Outputs an indicator next to previously installed packages
+Outputs an indicator next to currently installed packages
 
   $ pacman_log=$(mktemp)
   > printf "%s\n" \
