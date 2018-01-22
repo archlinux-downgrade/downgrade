@@ -39,6 +39,14 @@ previously_installed() {
   ' "$PACMAN_LOG"
 }
 
+currently_installed() {
+  LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2> /dev/null | awk -F " : " '
+    /^Name / { name=$2 };
+    /^Version / { version=$2 };
+    END { if (name != "") printf("%s-%s\n", name, version) }
+  '
+}
+
 present_packages() {
   local i=1
 
@@ -127,14 +135,19 @@ sort_packages() {
 output_package() {
   local pkg indicator=" "
 
-  for pkg in "${installed[@]}"; do
-    case "$2" in
-      *$pkg*)
-        indicator="*"
-        break
-        ;;
-    esac
-  done
+  if [[ -n "$current" ]] && [[ "$2" == *"$current"* ]]; then
+    # Currently installed
+    indicator="+"
+  else
+    for pkg in "${installed[@]}"; do
+      case "$2" in
+        *$pkg*)
+          indicator="-"
+          break
+          ;;
+      esac
+    done
+  fi
 
   printf "%s%3.4s) %s\n" "$indicator" "$1" "$(
     sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
@@ -176,6 +189,7 @@ main() {
 
   for term; do
     installed=( $(previously_installed "$term") )
+    current=$(currently_installed "$term")
     process_term "$term" || exit_code=1
   done
 
