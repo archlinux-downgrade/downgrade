@@ -1,16 +1,16 @@
-# downgrade 8 "August 2014" downgrade "User Manuals"
+% DOWNGRADE(8) User Manuals
+% Patrick Brisbin <pbrisbin@gmail.com>
+% August 2017
 
-## SYNOPSIS
+# SYNOPSIS
 
-`downgrade` [PACKAGE, ...] [-- [PACMAN OPTIONS]]
+**downgrade** [*PACKAGE*, *...*] [*--* [*PACMAN OPTIONS*]]
 
-## DESCRIPTION
+# DESCRIPTION
 
 Downgrade Arch Linux packages.
 
-https://github.com/pbrisbin/downgrade
-
-## ENVIRONMENT VARIABLES
+# ENVIRONMENT VARIABLES
 
 *PACMAN*
   The pacman command. Default is *pacman*.
@@ -46,10 +46,6 @@ https://github.com/pbrisbin/downgrade
 *DOWNGRADE_PAGE_SIZE*
   How many results to present at a time. Default is *30*.
 
-## AUTHOR
+# SEE ALSO
 
-Patrick Brisbin <pbrisbin@gmail.com>
-
-## SEE ALSO
-
-pacman(8), pacman.conf(5), find(1), sudo(8), su(1)
+**pacman**(8), **pacman.conf**(5), **find**(1), **sudo**(8), **su**(1).

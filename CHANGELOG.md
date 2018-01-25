@@ -1,4 +1,9 @@
-## [*Unreleased*](https://github.com/pbrisbin/downgrade/compare/v5.4.0...master)
+## [*Unreleased*](https://github.com/pbrisbin/downgrade/compare/v6.0.0...master)
+
+- [NEW] Render "+" for currently installed, "-" for previously installed
+  (@Thomaash)
+
+## [v6.0.0](https://github.com/pbrisbin/downgrade/compare/v5.4.0...v6.0.0)
 
 - [NEW] Render results one page at a time
 - [NEW] Render an asterisk next to previously-installed versions

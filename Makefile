@@ -1,5 +1,6 @@
 PREFIX    ?= /usr/local
 MANPREFIX ?= $(PREFIX)/share/man
+PANDOC    ?= $(shell which pandoc)
 
 potfile: downgrade
 	xgettext \
@@ -9,8 +10,7 @@ potfile: downgrade
 		-o downgrade.pot ./downgrade
 
 downgrade.8: doc/downgrade.8.md
-	kramdown-man doc/downgrade.8.md > doc/downgrade.8
-	[ -s doc/downgrade.8 ]
+	$(PANDOC) --standalone --to man doc/downgrade.8.md -o doc/downgrade.8
 
 man: downgrade.8
 
