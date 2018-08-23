@@ -43,8 +43,8 @@ msgid "local"
 msgstr "本地"
 
 #: downgrade:82
-msgid "usage: downgrade <pkg>, ..."
-msgstr "用法： downgrade <包>, ..."
+msgid "usage: downgrade <pkg> [pkg...] [-- pacman_option...]"
+msgstr "用法： downgrade <包> [包...] [-- pacman_option...]"
 
 #: downgrade:83
 msgid "see downgrade(8) for details."

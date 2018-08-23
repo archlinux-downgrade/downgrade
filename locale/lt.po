@@ -44,8 +44,8 @@ msgid "local"
 msgstr "vietinis"
 
 #: downgrade:82
-msgid "usage: downgrade <pkg>, ... [-- <pacman options>]"
-msgstr "naudojimas: downgrade <paketas>, ... [-- <pacman options>]"
+msgid "usage: downgrade <pkg> [pkg...] [-- pacman_option...]"
+msgstr "naudojimas: downgrade <paketas> [paketas...] [-- pacman_options...]"
 
 #: downgrade:83
 msgid "see downgrade(8) for details."

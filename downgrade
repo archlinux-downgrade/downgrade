@@ -241,7 +241,7 @@ done
 
 if ((!"${#terms[@]}")) && ((!LIB)); then
   (
-    gettext 'usage: downgrade <pkg>, ... [-- <pacman_options>]'
+    gettext 'usage: downgrade <pkg> [pkg...] [-- pacman_option...]'
     echo
     gettext 'see downgrade(8) for details.'
     echo

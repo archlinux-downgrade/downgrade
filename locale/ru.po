@@ -43,8 +43,8 @@ msgid "local"
 msgstr "локально"
 
 #: downgrade:82
-msgid "usage: downgrade <pkg>, ... [-- <pacman options>]"
-msgstr "использование: downgrade <pkg>, ... [-- <pacman options>]"
+msgid "usage: downgrade <pkg> [pkg...] [-- pacman_option...]"
+msgstr "использование: downgrade <pkg> [pkg...] [-- pacman_option...]"
 
 #: downgrade:83
 msgid "see downgrade(8) for details."
