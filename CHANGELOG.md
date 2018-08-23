@@ -2,6 +2,7 @@
 
 - [NEW] Render "+" for currently installed, "-" for previously installed
   (@Thomaash)
+- [FIX] Tweak usage formatting to follow POSIX spec
 
 ## [v6.0.0](https://github.com/pbrisbin/downgrade/compare/v5.4.0...v6.0.0)
 
