@@ -9,11 +9,11 @@ slice() {
 
   shift 2
 
-  (( offset >= $# )) && return 1
+  ((offset >= $#)) && return 1
 
   shift "$offset"
 
-  while (( $# )) && (( i < limit )); do
+  while (($#)) && ((i < limit)); do
     printf "%s\n" "$1"
     let i++
     shift
@@ -21,9 +21,10 @@ slice() {
 }
 
 slice_page() {
-  local page=$1; shift
+  local page=$1
+  shift
 
-  slice "$((page*DOWNGRADE_PAGE_SIZE))" "$DOWNGRADE_PAGE_SIZE" "$@"
+  slice "$((page * DOWNGRADE_PAGE_SIZE))" "$DOWNGRADE_PAGE_SIZE" "$@"
 }
 
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
@@ -40,7 +41,7 @@ previously_installed() {
 }
 
 currently_installed() {
-  LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2> /dev/null | awk -F " : " '
+  LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2>/dev/null | awk -F " : " '
     /^Name / { name=$2 };
     /^Version / { version=$2 };
     END { if (name != "") printf("%s-%s\n", name, version) }
@@ -77,7 +78,8 @@ prompt_to_ignore() {
   for pkg; do
     grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
 
-    eval_gettext "add \$pkg to IgnorePkg? [y/n] "; read -r ans
+    eval_gettext "add \$pkg to IgnorePkg? [y/n] "
+    read -r ans
 
     if [[ "${ans,,}" == $(gettext 'y')* ]]; then
       ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
@@ -127,9 +129,9 @@ search_packages() {
 }
 
 sort_packages() {
-  grep -Fv 'testing/' \
-    | awk 'BEGIN { FS="/"; OFS="|" } { print $NF, $0 }' \
-    | pacsort -f -r -t '|' -k 1 | cut -d '|' -f 2-
+  grep -Fv 'testing/' |
+    awk 'BEGIN { FS="/"; OFS="|" } { print $NF, $0 }' |
+    pacsort -f -r -t '|' -k 1 | cut -d '|' -f 2-
 }
 
 output_package() {
@@ -151,31 +153,32 @@ output_package() {
 
   printf "%s%3.4s) %s\n" "$indicator" "$1" "$(
     sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
-         s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<< "$2")"
+         s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<<"$2"
+  )"
 }
 
 process_term() {
   local term=$1 candidates choice
 
-  candidates=( $(search_packages "$term" | sort_packages) )
+  candidates=($(search_packages "$term" | sort_packages))
 
-  if (( "${#candidates[@]}" == 1 )); then
+  if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
   else
     local page=0
-    local page_data=( $(slice_page "$page" "${candidates[@]}") )
+    local page_data=($(slice_page "$page" "${candidates[@]}"))
 
     while present_packages "${page_data[@]}"; do
       choice=$(read_selection "${page_data[@]}")
       [[ -n "$choice" ]] && break
-      page=$((page+1))
-      page_data=( $(slice_page "$page" "${candidates[@]}") )
+      page=$((page + 1))
+      page_data=($(slice_page "$page" "${candidates[@]}"))
     done
   fi
 
   if [[ -n "$choice" ]]; then
-    to_ignore+=( "$term" )
-    to_install+=( "$choice" )
+    to_ignore+=("$term")
+    to_install+=("$choice")
     return 0
   fi
 
@@ -188,7 +191,7 @@ main() {
   (($#)) || return 1
 
   for term; do
-    installed=( $(previously_installed "$term") )
+    installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
     process_term "$term" || exit_code=1
   done
@@ -224,14 +227,24 @@ declare -a installed
 
 while [[ -n "$1" ]]; do
   case "$1" in
-    --) shift; pacman_args=( "$@" ); break ;;
-    *)  terms+=( "$1" ); shift ;;
+    --)
+      shift
+      pacman_args=("$@")
+      break
+      ;;
+    *)
+      terms+=("$1")
+      shift
+      ;;
   esac
 done
 
-if (( ! "${#terms[@]}" )) && ((!LIB)); then
-  ( gettext 'usage: downgrade <pkg>, ... [-- <pacman options>]'; echo
-    gettext 'see downgrade(8) for details.'; echo
+if ((!"${#terms[@]}")) && ((!LIB)); then
+  (
+    gettext 'usage: downgrade <pkg>, ... [-- <pacman_options>]'
+    echo
+    gettext 'see downgrade(8) for details.'
+    echo
   ) >&2
   exit 1
 fi
