@@ -124,7 +124,7 @@ search_packages() {
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
 
     # shellcheck disable=SC2086
-    find $PACMAN_CACHE -name "$name-$version*.pkg.tar.[gx]z"
+    find $PACMAN_CACHE -maxdepth 1 -name "$name-$version*.pkg.tar.[gx]z"
   fi
 }
 
