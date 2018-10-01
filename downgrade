@@ -5,43 +5,43 @@ export TEXTDOMAIN=downgrade
 export TEXTDOMAINDIR=/usr/share/locale
 
 slice() {
-  local offset=$1 limit=$2 i=0
+	local offset=$1 limit=$2 i=0
 
-  shift 2
+	shift 2
 
-  ((offset >= $#)) && return 1
+	((offset >= $#)) && return 1
 
-  shift "$offset"
+	shift "$offset"
 
-  while (($#)) && ((i < limit)); do
-    printf "%s\n" "$1"
-    let i++
-    shift
-  done
+	while (($#)) && ((i < limit)); do
+		printf "%s\n" "$1"
+		let i++
+		shift
+	done
 }
 
 slice_page() {
-  local page=$1
-  shift
+	local page=$1
+	shift
 
-  slice "$((page * DOWNGRADE_PAGE_SIZE))" "$DOWNGRADE_PAGE_SIZE" "$@"
+	slice "$((page * DOWNGRADE_PAGE_SIZE))" "$DOWNGRADE_PAGE_SIZE" "$@"
 }
 
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
 previously_installed() {
-  # Delay this defaulting so #read_pacman_conf behavior is tested
-  : "${PACMAN_LOG:=$(read_pacman_conf LogFile)}"
-  : "${PACMAN_LOG:=/var/log/pacman.log}"
+	# Delay this defaulting so #read_pacman_conf behavior is tested
+	: "${PACMAN_LOG:=$(read_pacman_conf LogFile)}"
+	: "${PACMAN_LOG:=/var/log/pacman.log}"
 
-  sed '
+	sed '
     /.*\(installed\|upgraded\) \('"$1"'\) (\(.* -> \)\?\([^)]*\))/!d
     s//\2-\4/
   ' "$PACMAN_LOG"
 }
 
 currently_installed() {
-  LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2>/dev/null | awk -F " : " '
+	LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2>/dev/null | awk -F " : " '
     /^Name / { name=$2 };
     /^Version / { version=$2 };
     END { if (name != "") printf("%s-%s\n", name, version) }
@@ -49,154 +49,154 @@ currently_installed() {
 }
 
 present_packages() {
-  local i=1
+	local i=1
 
-  (($#)) || return 1
+	(($#)) || return 1
 
-  gettext 'Available packages:'
-  printf "\n\n"
+	gettext 'Available packages:'
+	printf "\n\n"
 
-  for entry; do
-    output_package "$((i++))" "$entry"
-  done
+	for entry; do
+		output_package "$((i++))" "$entry"
+	done
 
-  printf "\n"
-  gettext 'select a package by number: '
+	printf "\n"
+	gettext 'select a package by number: '
 }
 
 read_selection() {
-  local ans
+	local ans
 
-  read -r ans
+	read -r ans
 
-  ((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
+	((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
 }
 
 prompt_to_ignore() {
-  local pkg ans ln
+	local pkg ans ln
 
-  for pkg; do
-    grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
+	for pkg; do
+		grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
 
-    eval_gettext "add \$pkg to IgnorePkg? [y/n] "
-    read -r ans
+		eval_gettext "add \$pkg to IgnorePkg? [y/n] "
+		read -r ans
 
-    if [[ "${ans,,}" == $(gettext 'y')* ]]; then
-      ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
-      if [ -n "$ln" ]; then
-        sudo sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF"
-        continue
-      fi
+		if [[ "${ans,,}" == $(gettext 'y')* ]]; then
+			ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
+			if [ -n "$ln" ]; then
+				sudo sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF"
+				continue
+			fi
 
-      ln="$(grep -n '^# *IgnorePkg' "$PACMAN_CONF" | tail -n 1 | cut -d : -f 1)"
-      if [ -n "$ln" ]; then
-        sudo sed -i "$ln s/.*/&\nIgnorePkg = $pkg/" "$PACMAN_CONF"
-        continue
-      fi
+			ln="$(grep -n '^# *IgnorePkg' "$PACMAN_CONF" | tail -n 1 | cut -d : -f 1)"
+			if [ -n "$ln" ]; then
+				sudo sed -i "$ln s/.*/&\nIgnorePkg = $pkg/" "$PACMAN_CONF"
+				continue
+			fi
 
-      printf "IgnorePkg = %s\n" "$pkg" | sudo tee -a "$PACMAN_CONF"
-    fi
-  done
+			printf "IgnorePkg = %s\n" "$pkg" | sudo tee -a "$PACMAN_CONF"
+		fi
+	done
 }
 
 search_packages() {
-  local name version index
+	local name version index
 
-  if [[ "$1" =~ -([0-9R].*)$ ]]; then
-    version=${BASH_REMATCH[1]}
-    name=${1%-$version}
-  else
-    version='[0-9R]'
-    name=$1
-  fi
+	if [[ "$1" =~ -([0-9R].*)$ ]]; then
+		version=${BASH_REMATCH[1]}
+		name=${1%-$version}
+	else
+		version='[0-9R]'
+		name=$1
+	fi
 
-  index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
+	index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
-  if ((DOWNGRADE_FROM_ALA)); then
-    curl --fail --silent "$index" | sed '
+	if ((DOWNGRADE_FROM_ALA)); then
+		curl --fail --silent "$index" | sed '
       /.* href="\('"$name-$version"'.*\(any\|'"$DOWNGRADE_ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
       s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
-  fi
+	fi
 
-  if ((DOWNGRADE_FROM_CACHE)); then
-    # Delay this defaulting so #read_pacman_conf behavior is tested
-    : "${PACMAN_CACHE:=$(read_pacman_conf CacheDir)}"
-    : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
+	if ((DOWNGRADE_FROM_CACHE)); then
+		# Delay this defaulting so #read_pacman_conf behavior is tested
+		: "${PACMAN_CACHE:=$(read_pacman_conf CacheDir)}"
+		: "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
 
-    # shellcheck disable=SC2086
-    find $PACMAN_CACHE -maxdepth 1 -name "$name-$version*.pkg.tar.[gx]z"
-  fi
+		# shellcheck disable=SC2086
+		find $PACMAN_CACHE -maxdepth 1 -name "$name-$version*.pkg.tar.[gx]z"
+	fi
 }
 
 sort_packages() {
-  grep -Fv 'testing/' |
-    awk 'BEGIN { FS="/"; OFS="|" } { print $NF, $0 }' |
-    pacsort -f -r -t '|' -k 1 | cut -d '|' -f 2-
+	grep -Fv 'testing/' |
+		awk 'BEGIN { FS="/"; OFS="|" } { print $NF, $0 }' |
+		pacsort -f -r -t '|' -k 1 | cut -d '|' -f 2-
 }
 
 output_package() {
-  local pkg indicator=" "
+	local pkg indicator=" "
 
-  if [[ -n "$current" ]] && [[ "$2" == *"$current"* ]]; then
-    # Currently installed
-    indicator="+"
-  else
-    for pkg in "${installed[@]}"; do
-      case "$2" in
-        *$pkg*)
-          indicator="-"
-          break
-          ;;
-      esac
-    done
-  fi
+	if [[ -n "$current" ]] && [[ "$2" == *"$current"* ]]; then
+		# Currently installed
+		indicator="+"
+	else
+		for pkg in "${installed[@]}"; do
+			case "$2" in
+			*$pkg*)
+				indicator="-"
+				break
+				;;
+			esac
+		done
+	fi
 
-  printf "%s%3.4s) %s\n" "$indicator" "$1" "$(
-    sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
+	printf "%s%3.4s) %s\n" "$indicator" "$1" "$(
+		sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
          s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<<"$2"
-  )"
+	)"
 }
 
 process_term() {
-  local term=$1 candidates choice
+	local term=$1 candidates choice
 
-  candidates=($(search_packages "$term" | sort_packages))
+	candidates=($(search_packages "$term" | sort_packages))
 
-  if (("${#candidates[@]}" == 1)); then
-    choice=${candidates[0]}
-  else
-    local page=0
-    local page_data=($(slice_page "$page" "${candidates[@]}"))
+	if (("${#candidates[@]}" == 1)); then
+		choice=${candidates[0]}
+	else
+		local page=0
+		local page_data=($(slice_page "$page" "${candidates[@]}"))
 
-    while present_packages "${page_data[@]}"; do
-      choice=$(read_selection "${page_data[@]}")
-      [[ -n "$choice" ]] && break
-      page=$((page + 1))
-      page_data=($(slice_page "$page" "${candidates[@]}"))
-    done
-  fi
+		while present_packages "${page_data[@]}"; do
+			choice=$(read_selection "${page_data[@]}")
+			[[ -n "$choice" ]] && break
+			page=$((page + 1))
+			page_data=($(slice_page "$page" "${candidates[@]}"))
+		done
+	fi
 
-  if [[ -n "$choice" ]]; then
-    to_ignore+=("$term")
-    to_install+=("$choice")
-    return 0
-  fi
+	if [[ -n "$choice" ]]; then
+		to_ignore+=("$term")
+		to_install+=("$choice")
+		return 0
+	fi
 
-  return 1
+	return 1
 }
 
 main() {
-  local term candidates choice pkg exit_code=0
+	local term candidates choice pkg exit_code=0
 
-  (($#)) || return 1
+	(($#)) || return 1
 
-  for term; do
-    installed=($(previously_installed "$term"))
-    current=$(currently_installed "$term")
-    process_term "$term" || exit_code=1
-  done
+	for term; do
+		installed=($(previously_installed "$term"))
+		current=$(currently_installed "$term")
+		process_term "$term" || exit_code=1
+	done
 
-  return $exit_code
+	return $exit_code
 }
 
 # Up-convert older variables
@@ -226,38 +226,38 @@ declare -a pacman_args
 declare -a installed
 
 while [[ -n "$1" ]]; do
-  case "$1" in
-    --)
-      shift
-      pacman_args=("$@")
-      break
-      ;;
-    *)
-      terms+=("$1")
-      shift
-      ;;
-  esac
+	case "$1" in
+	--)
+		shift
+		pacman_args=("$@")
+		break
+		;;
+	*)
+		terms+=("$1")
+		shift
+		;;
+	esac
 done
 
 if ((!"${#terms[@]}")) && ((!LIB)); then
-  (
-    gettext 'usage: downgrade <pkg> [pkg...] [-- pacman_option...]'
-    echo
-    gettext 'see downgrade(8) for details.'
-    echo
-  ) >&2
-  exit 1
+	(
+		gettext 'usage: downgrade <pkg> [pkg...] [-- pacman_option...]'
+		echo
+		gettext 'see downgrade(8) for details.'
+		echo
+	) >&2
+	exit 1
 fi
 
 if ((DOWNGRADE_NOSUDO)) || ! type -p sudo &>/dev/null; then
-  sudo() {
-    printf -v cmd "%q " "$@"
-    su root -c "$cmd"
-  }
+	sudo() {
+		printf -v cmd "%q " "$@"
+		su root -c "$cmd"
+	}
 fi
 
 if main "${terms[@]}"; then
-  if sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"; then
-    prompt_to_ignore "${to_ignore[@]}"
-  fi
+	if sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"; then
+		prompt_to_ignore "${to_ignore[@]}"
+	fi
 fi
