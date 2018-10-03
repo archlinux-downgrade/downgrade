@@ -14,8 +14,8 @@ slice() {
   shift "$offset"
 
   while (($#)) && ((i < limit)); do
-    printf "%s\n" "$1"
-    let i++
+    printf "%s\\n" "$1"
+    ((i++))
     shift
   done
 }
@@ -54,13 +54,13 @@ present_packages() {
   (($#)) || return 1
 
   gettext 'Available packages:'
-  printf "\n\n"
+  printf '\n\n'
 
   for entry; do
     output_package "$((i++))" "$entry"
   done
 
-  printf "\n"
+  printf '\n'
   gettext 'select a package by number: '
 }
 
@@ -90,11 +90,11 @@ prompt_to_ignore() {
 
       ln="$(grep -n '^# *IgnorePkg' "$PACMAN_CONF" | tail -n 1 | cut -d : -f 1)"
       if [ -n "$ln" ]; then
-        sudo sed -i "$ln s/.*/&\nIgnorePkg = $pkg/" "$PACMAN_CONF"
+        sudo sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
         continue
       fi
 
-      printf "IgnorePkg = %s\n" "$pkg" | sudo tee -a "$PACMAN_CONF"
+      printf "IgnorePkg = %s\\n" "$pkg" | sudo tee -a "$PACMAN_CONF"
     fi
   done
 }
@@ -151,12 +151,13 @@ output_package() {
     done
   fi
 
-  printf "%s%3.4s) %s\n" "$indicator" "$1" "$(
+  printf "%s%3.4s) %s\\n" "$indicator" "$1" "$(
     sed 's|https://.*/\([^/]\+\)$|\1 ('"$(gettext 'remote')"')|;
          s|^/.*/\([^/]\+\)$|\1 ('"$(gettext 'local')"')|;' <<<"$2"
   )"
 }
 
+# shellcheck disable=SC2207
 process_term() {
   local term=$1 candidates choice
 
@@ -191,6 +192,7 @@ main() {
   (($#)) || return 1
 
   for term; do
+    # shellcheck disable=SC2207
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
     process_term "$term" || exit_code=1
