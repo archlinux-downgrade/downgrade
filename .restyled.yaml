@@ -1,0 +1,8 @@
+---
+- shfmt:
+    include:
+      - downgrade
+    arguments:
+      - -i
+      - "2"
+      - -ci
