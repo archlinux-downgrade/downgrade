@@ -12,7 +12,12 @@ jobs:
       - checkout
       - run:
           name: Setup
-          command: pip install cram
+          command: |
+            # Install gettext
+            apt-get update -q -y
+            apt-get install -q -y gettext
+
+            pip install cram
       - run:
           name: Test
           command: make test
