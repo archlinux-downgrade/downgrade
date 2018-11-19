@@ -1,6 +1,6 @@
 # Downgrade
 
-[![Build Status](https://travis-ci.org/pbrisbin/downgrade.svg?branch=master)](https://travis-ci.org/pbrisbin/downgrade)
+[![CircleCI](https://circleci.com/gh/pbrisbin/downgrade.svg?style=svg)](https://circleci.com/gh/pbrisbin/downgrade)
 
 Eases downgrading packages in Arch Linux.
 
