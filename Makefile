@@ -3,7 +3,8 @@ MANPREFIX ?= $(PREFIX)/share/man
 PANDOC    ?= $(shell which pandoc)
 
 setup:
-	command -v cram || aurget cram
+	command -v cram   || aurget cram
+	command -v vbump  || aurget vbump-git
 	command -v pandoc || stack install pandoc
 
 potfile: downgrade
@@ -34,3 +35,22 @@ uninstall:
 	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
 .PHONY: setup test install uninstall
+
+.PHONY: release.major
+release.major: VERSION=$(shell git tag | vbump major | sed 's/^v//')
+release.major: release
+
+.PHONY: release.minor
+release.minor: VERSION=$(shell git tag | vbump minor | sed 's/^v//')
+release.minor: release
+
+.PHONY: release.match
+release.patch: VERSION=$(shell git tag | vbump patch | sed 's/^v//')
+release.patch: release
+
+.PHONY: release
+release:
+	[ -n "$(VERSION)" ]
+	git tag -s -m v$(VERSION) v$(VERSION)
+	git push --follow-tags
+	aur-release downgrade "$(VERSION)"
