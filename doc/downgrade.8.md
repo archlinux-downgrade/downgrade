@@ -1,6 +1,6 @@
 % DOWNGRADE(8) User Manuals
 % Patrick Brisbin <pbrisbin@gmail.com>
-% August 2017
+% March 2019
 
 # SYNOPSIS
 
@@ -42,9 +42,6 @@ Downgrade Arch Linux packages.
 *DOWNGRADE_NOSUDO*
   Do not use `sudo(8)` even when available, use `su(1)` always. Default 
   is *0*.
-
-*DOWNGRADE_PAGE_SIZE*
-  How many results to present at a time. Default is *30*.
 
 # SEE ALSO
 
