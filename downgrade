@@ -4,29 +4,6 @@
 export TEXTDOMAIN=downgrade
 export TEXTDOMAINDIR=/usr/share/locale
 
-slice() {
-  local offset=$1 limit=$2 i=0
-
-  shift 2
-
-  ((offset >= $#)) && return 1
-
-  shift "$offset"
-
-  while (($#)) && ((i < limit)); do
-    printf "%s\\n" "$1"
-    ((i++))
-    shift
-  done
-}
-
-slice_page() {
-  local page=$1
-  shift
-
-  slice "$((page * DOWNGRADE_PAGE_SIZE))" "$DOWNGRADE_PAGE_SIZE" "$@"
-}
-
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
 previously_installed() {
@@ -166,15 +143,9 @@ process_term() {
   if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
   else
-    local page=0
-    local page_data=($(slice_page "$page" "${candidates[@]}"))
-
-    while present_packages "${page_data[@]}"; do
-      choice=$(read_selection "${page_data[@]}")
-      [[ -n "$choice" ]] && break
-      page=$((page + 1))
-      page_data=($(slice_page "$page" "${candidates[@]}"))
-    done
+    if present_packages "${candidates[@]}"; then
+      choice=$(read_selection "${candidates[@]}")
+    fi
   fi
 
   if [[ -n "$choice" ]]; then
@@ -219,7 +190,6 @@ main() {
 : "${DOWNGRADE_FROM_ALA:=1}"
 : "${DOWNGRADE_FROM_CACHE:=1}"
 : "${DOWNGRADE_NOSUDO:=0}"
-: "${DOWNGRADE_PAGE_SIZE:=30}"
 
 declare -a terms
 declare -a to_ignore
