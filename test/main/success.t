@@ -3,8 +3,8 @@
 
 It adds the term and package to global arrays if successful
 
-  $ touch "$TMP/foo.pkg" "$TMP/bar.pkg"
-  > search_packages() { printf "%s\n" "$TMP/foo.pkg" "$TMP/bar.pkg"; }
+  $ touch "$TMP/foo.pkg" "$TMP/foo.pkg"
+  > search_packages() { printf "%s\n" "$TMP/foo.pkg" "$TMP/foo.pkg"; }
   > main foo < <(echo 1); exit_code=$?
   > echo
   > printf "ignore: %s\n" "${to_ignore[@]}"
@@ -12,8 +12,8 @@ It adds the term and package to global arrays if successful
   > printf "exit code: %s\n" "$exit_code"
   Available packages:
   
-     1) foo.pkg (local)
-     2) bar.pkg (local)
+     1)  foo          (local)
+     2)  foo          (local)
   
   select a package by number: 
   ignore: foo

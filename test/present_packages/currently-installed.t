@@ -12,12 +12,12 @@ Outputs an indicator next to currently installed packages
   > write_pacman_conf "LogFile = $pacman_log"
   > installed=( $(previously_installed dia) )
   > current=( $(currently_installed dia) )
-  > present_packages dia-0.1.0 dia-0.1.1 dia-0.2.2 dia-0.3.3
+  > present_packages dia dia-0.1.0 dia-0.1.1 dia-0.2.2 dia-0.3.3
   Available packages:
   
-     1) dia-0.1.0
-  -  2) dia-0.1.1
-  +  3) dia-0.2.2
-     4) dia-0.3.3
+     1)  dia    0.1.0      (remote)
+  -  2)  dia    0.1.1      (remote)
+  +  3)  dia    0.2.2      (remote)
+     4)  dia    0.3.3      (remote)
   
   select a package by number:  (no-eol)
