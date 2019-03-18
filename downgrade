@@ -108,7 +108,7 @@ search_packages() {
 sort_packages() {
   grep -Fv 'testing/' |
     awk 'BEGIN { FS="/"; OFS="|" } { print $NF, $0 }' |
-    pacsort -f -r -t '|' -k 1 | cut -d '|' -f 2-
+    pacsort -f -t '|' -k 1 | cut -d '|' -f 2-
 }
 
 output_package() {
