@@ -2,6 +2,10 @@ PREFIX    ?= /usr/local
 MANPREFIX ?= $(PREFIX)/share/man
 PANDOC    ?= $(shell which pandoc)
 
+setup:
+	command -v cram || aurget cram
+	command -v pandoc || stack install pandoc
+
 potfile: downgrade
 	xgettext \
 		--from-code=utf-8 -L shell \
@@ -29,4 +33,4 @@ uninstall:
 	  $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
-.PHONY: test install uninstall
+.PHONY: setup test install uninstall
