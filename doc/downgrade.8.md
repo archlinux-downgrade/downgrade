@@ -43,6 +43,16 @@ Downgrade Arch Linux packages.
   Do not use `sudo(8)` even when available, use `su(1)` always. Default 
   is *0*.
 
+# EXIT CODES
+
+Downgrade will stop further processing and exit non-zero if it encounters any of
+the following scenarios for any of its arguments:
+
+- No results found
+- Results found, but you made an invalid selection
+- `pacman -U` returned non-zero
+- Unexpected error when handling `IgnorePkg` additions
+
 # SEE ALSO
 
 **pacman**(8), **pacman.conf**(5), **find**(1), **sudo**(8), **su**(1).

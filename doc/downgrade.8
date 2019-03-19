@@ -41,6 +41,18 @@ Default is \f[I]1\f[R].
 \f[I]DOWNGRADE_NOSUDO\f[R] Do not use \f[C]sudo(8)\f[R] even when
 available, use \f[C]su(1)\f[R] always.
 Default is \f[I]0\f[R].
+.SH EXIT CODES
+.PP
+Downgrade will stop further processing and exit non\-zero if it
+encounters any of the following scenarios for any of its arguments:
+.IP \[bu] 2
+No results found
+.IP \[bu] 2
+Results found, but you made an invalid selection
+.IP \[bu] 2
+\f[C]pacman \-U\f[R] returned non\-zero
+.IP \[bu] 2
+Unexpected error when handling \f[C]IgnorePkg\f[R] additions
 .SH SEE ALSO
 .PP
 \f[B]pacman\f[R](8), \f[B]pacman.conf\f[R](5), \f[B]find\f[R](1),
