@@ -270,8 +270,7 @@ if ((DOWNGRADE_NOSUDO)) || ! type -p sudo &>/dev/null; then
   }
 fi
 
-if main "${terms[@]}"; then
-  if sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"; then
-    prompt_to_ignore "${to_ignore[@]}"
-  fi
-fi
+set -e
+main "${terms[@]}"
+sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
+prompt_to_ignore "${to_ignore[@]}"
