@@ -49,7 +49,7 @@ release.patch: VERSION=$(shell git tag | vbump patch | sed 's/^v//')
 release.patch: release
 
 .PHONY: release
-release:
+release: test
 	[ -n "$(VERSION)" ]
 	git tag -s -m v$(VERSION) v$(VERSION)
 	git push --follow-tags
