@@ -141,12 +141,8 @@ output_package() {
     location="$(gettext 'remote')"
   fi
 
-  {
-    read -r epoch
-    read -r version
-    read -r release
-    read -r arch
-  } < <(extract_version_parts "$pkgname" "$path")
+  IFS=, read -r epoch version release arch \
+    < <(extract_version_parts "$pkgname" "$path")
 
   printf "%s\t%s)\t%s\t%s\t%s\t%s\t%s\t(%s)\n" \
     "$indicator" "$number" "$pkgname" "$epoch" "$version" "$release" "$arch" "$location"
@@ -154,45 +150,21 @@ output_package() {
 
 # <package name> <package path>
 extract_version_parts() {
-  local pkgname="$1" path="$2" location version epoch arch release
+  local pkgname=$1 path=$2 location version epoch arch release
 
-  # Remove the path, package name and extensions
-  # [epoch:]version-release-arch
-  version="$(
-    sed 's|^.*/||;
-         s|^.\{'${#pkgname}'\}-\?||;
-         s|\.pkg\(\.tar\)\?\(\.[a-z0-9A-Z]\+\)\?$||;' <<<"$path"
-  )"
+  sed '
+    # Strip first path component
+    s|^.*/||;
 
-  # Move the epoch (if present) to it's own variable
-  if [[ $version =~ ^[0-9]+: ]]; then
-    epoch="$(
-      sed 's|:.*||;' <<<"$version"
-    )"
-    version="${version:$((${#epoch} + 1))}"
-  fi
+    # Strip package name
+    s|^.\{'${#pkgname}'\}-\?||;
 
-  # Move the architecture to it's own variable
-  if [[ $version =~ -[^-]+-[^-]+$ ]]; then
-    arch="$(
-      sed 's|^.*-||;' <<<"$version"
-    )"
-    version="${version:0:-$((${#arch} + 1))}"
-  fi
+    # Strip package extension
+    s|\.pkg\(\.tar\)\?\(\.[a-z0-9A-Z]\+\)\?$||;
 
-  # Move the relase to it's own variable
-  if [[ $version =~ -[^-]+$ ]]; then
-    release="$(
-      sed 's|^.*-||;' <<<"$version"
-    )"
-    version="${version:0:-$((${#release} + 1))}"
-  fi
-  # Only the pure version is left now
-
-  echo "$epoch"
-  echo "$version"
-  echo "$release"
-  echo "$arch"
+    # (epoch:)?version(-release)?(-arch)? -> epoch,version,release,arch
+    s|\(\([^:]*\):\)\?\([^-]*\)\(-\([^-]*\)\)\?\(-\(.*\)\)\?|\2,\3,\5,\7|;
+  ' <<<"$path"
 }
 
 # shellcheck disable=SC2207
