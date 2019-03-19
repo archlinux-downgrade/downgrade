@@ -239,38 +239,44 @@ declare -a to_install
 declare -a pacman_args
 declare -a installed
 
-while [[ -n "$1" ]]; do
-  case "$1" in
-    --)
-      shift
-      pacman_args=("$@")
-      break
-      ;;
-    *)
-      terms+=("$1")
-      shift
-      ;;
-  esac
-done
+cli() {
+  while [[ -n "$1" ]]; do
+    case "$1" in
+      --)
+        shift
+        pacman_args=("$@")
+        break
+        ;;
+      *)
+        terms+=("$1")
+        shift
+        ;;
+    esac
+  done
 
-if ((!"${#terms[@]}")) && ((!LIB)); then
-  (
-    gettext 'usage: downgrade <pkg> [pkg...] [-- pacman_option...]'
-    echo
-    gettext 'see downgrade(8) for details.'
-    echo
-  ) >&2
-  exit 1
+  if ((!"${#terms[@]}")); then
+    (
+      gettext 'usage: downgrade <pkg> [pkg...] [-- pacman_option...]'
+      echo
+      gettext 'see downgrade(8) for details.'
+      echo
+    ) >&2
+    exit 1
+  fi
+
+  if ((DOWNGRADE_NOSUDO)) || ! type -p sudo &>/dev/null; then
+    sudo() {
+      printf -v cmd "%q " "$@"
+      su root -c "$cmd"
+    }
+  fi
+
+  main "${terms[@]}"
+  sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
+  prompt_to_ignore "${to_ignore[@]}"
+}
+
+if ((!LIB)); then
+  set -e
+  cli "$@"
 fi
-
-if ((DOWNGRADE_NOSUDO)) || ! type -p sudo &>/dev/null; then
-  sudo() {
-    printf -v cmd "%q " "$@"
-    su root -c "$cmd"
-  }
-fi
-
-set -e
-main "${terms[@]}"
-sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
-prompt_to_ignore "${to_ignore[@]}"
