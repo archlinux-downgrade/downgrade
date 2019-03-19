@@ -12,8 +12,8 @@ It adds the term and package to global arrays if successful
   > printf "exit code: %s\n" "$exit_code"
   Available packages:
   
-     1)  foo          (local)
-     2)  foo          (local)
+    | 1) | foo |  |  |  |  | (local)
+    | 2) | foo |  |  |  |  | (local)
   
   select a package by number: 
   ignore: foo
