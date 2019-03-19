@@ -39,8 +39,8 @@ present_packages() {
   for entry; do
     output_package "$((i++))" "$entry" "$pkgname"
   done | column -s '	' -t -R 2,4,6
-  # Expand tabs in the output of output_package to spaces as needed to create a table.
-  # Right align numerical columns 2 (index), 4 (epoch) and 6 (release).
+  # Expand tabs in the output of output_package to spaces as needed to create a
+  # table. Right align numerical columns 2 (index), 4 (epoch) and 6 (release).
 
   printf '\n'
   gettext 'select a package by number: '
