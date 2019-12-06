@@ -32,8 +32,10 @@ The columns have the following meaning:
 
 *indicator*
   Possible values: -, +
-  - indicates, that the version was already once installed.
-  + indicates the currently installed version.
+  
+  \- indicates, that the version was already once installed.
+  
+  \+ indicates the currently installed version.
 
 *enumeration*
   An enumeration of the entries for selection.
@@ -51,7 +53,9 @@ The columns have the following meaning:
   The architecture of the package as noted in the A.L.A.
 
 *location*
+
   Possible values: (remote), (local)
+
   If you have already downloaded this version, it will show *local*.
   *remote* indicates that the version is available on the A.L.A.
 
