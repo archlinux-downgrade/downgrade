@@ -1,10 +1,8 @@
-% DOWNGRADE(8) User Manuals
-% Patrick Brisbin <pbrisbin@gmail.com>
-% March 2019
+% DOWNGRADE(8) User Manuals % Patrick Brisbin <pbrisbin@gmail.com> % March 2019
 
 # SYNOPSIS
 
-**downgrade** [*PACKAGE*, *...*] [*--* [*PACMAN OPTIONS*]]
+**downgrade** [*PACKAGE*, *...*]_--_ [*PACMAN OPTIONS*]]
 
 # DESCRIPTION
 
@@ -14,7 +12,7 @@ Downgrade Arch Linux packages.
 
 Just calling `downgrade package` will lead to the following output:
 
-*Example:*
+_Example:_
 
     Available packages:
 
@@ -30,66 +28,50 @@ Just calling `downgrade package` will lead to the following output:
 
 The columns have the following meaning:
 
-*indicator*
-  Possible values: -, +
+_indicator_ Possible values: -, +
 
-  \- indicates, that the version was already once installed.
+\- indicates, that the version was already once installed.
 
-  \+ indicates the currently installed version.
+\+ indicates the currently installed version.
 
-*enumeration*
-  An enumeration of the entries for selection.
+_enumeration_ An enumeration of the entries for selection.
 
-*package name*
-  The name of the package.
+_package name_ The name of the package.
 
-*package version*
-  The version of the package in cache or A.L.A.
+_package version_ The version of the package in cache or A.L.A.
 
-*package release*
-  The release of the package in cache or A.L.A.
+_package release_ The release of the package in cache or A.L.A.
 
-*architecture*
-  The architecture of the package in cache or A.L.A.
+_architecture_ The architecture of the package in cache or A.L.A.
 
-*location*
-  Possible values: (remote), (local)
+_location_ Possible values: (remote), (local)
 
-  If you have already downloaded this version, it will show *local*.
-  *remote* indicates that the version is available on the A.L.A.
+If you have already downloaded this version, it will show _local_. _remote_
+indicates that the version is available on the A.L.A.
 
 # ENVIRONMENT VARIABLES
 
-*PACMAN*
-  The pacman command. Default is *pacman*.
+_PACMAN_ The pacman command. Default is _pacman_.
 
-*PACMAN_CONF*
-  Your pacman configuration file. Default is */etc/pacman.conf*.
+_PACMAN_CONF_ Your pacman configuration file. Default is _/etc/pacman.conf_.
 
-*PACMAN_CACHE*
-  Your package cache directory. Default is read from `$PACMAN_CONF`, or set to
-  */var/pacman/pkg/* when not found.
+_PACMAN_CACHE_ Your package cache directory. Default is read from
+`$PACMAN_CONF`, or set to _/var/pacman/pkg/_ when not found.
 
-*PACMAN_LOG*
-  Your pacman log file. Default is read from `$PACMAN_CONF`, or set to
-  */var/log/pacman.log* when not found.
+_PACMAN_LOG_ Your pacman log file. Default is read from `$PACMAN_CONF`, or set
+to _/var/log/pacman.log_ when not found.
 
-*DOWNGRADE_ARCH*
-  Target architecture. Default is determined by `uname -m`.
+_DOWNGRADE_ARCH_ Target architecture. Default is determined by `uname -m`.
 
-*DOWNGRADE_ALA_URL*
-  The location of an A.L.A. server. Default is 
-  *https://archive.archlinux.org*.
+_DOWNGRADE_ALA_URL_ The location of an A.L.A. server. Default is
+_https://archive.archlinux.org_.
 
-*DOWNGRADE_FROM_ALA*
-  Search the A.L.A. Default is *1*.
+_DOWNGRADE_FROM_ALA_ Search the A.L.A. Default is _1_.
 
-*DOWNGRADE_FROM_CACHE*
-  Search your local cache. Default is *1*.
+_DOWNGRADE_FROM_CACHE_ Search your local cache. Default is _1_.
 
-*DOWNGRADE_NOSUDO*
-  Do not use `sudo(8)` even when available, use `su(1)` always. Default 
-  is *0*.
+_DOWNGRADE_NOSUDO_ Do not use `sudo(8)` even when available, use `su(1)` always.
+Default is _0_.
 
 # EXIT CODES
 
