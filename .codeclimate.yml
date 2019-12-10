@@ -1,6 +1,11 @@
 engines:
   shellcheck:
     enabled: true
+  markdownlint:
+    enabled: true
+    exclude_paths:
+      - "**/*"
+      - "!**/*.md"
 ratings:
   paths:
   - "downgrade"
