@@ -10,6 +10,55 @@
 
 Downgrade Arch Linux packages.
 
+# OUTPUT
+
+Just calling `downgrade package` will lead to the following output:
+
+*Example:*
+
+    Available packages:
+
+    -   1)  terraform    0.11.11  2  x86_64  (remote)
+    -   2)  terraform    0.11.12  1  x86_64  (local)
+    +   3)  terraform    0.11.13  1  x86_64  (remote)
+    +   4)  terraform    0.11.13  1  x86_64  (local)
+    -   5)  terraform    0.12.0   1  x86_64  (remote)
+    -   6)  terraform    0.12.0   1  x86_64  (local)
+        7)  terraform    0.12.1   1  x86_64  (remote)
+
+    select a package by number:
+
+The columns have the following meaning:
+
+*indicator*
+  Possible values: -, +
+  
+  \- indicates, that the version was already once installed.
+  
+  \+ indicates the currently installed version.
+
+*enumeration*
+  An enumeration of the entries for selection.
+
+*package name*
+  The name of the package.
+
+*package version*
+  The version of the package as noted in the A.L.A.
+
+*package release*
+  The release of the package as noted in the A.L.A.
+
+*architecture*
+  The architecture of the package as noted in the A.L.A.
+
+*location*
+
+  Possible values: (remote), (local)
+
+  If you have already downloaded this version, it will show *local*.
+  *remote* indicates that the version is available on the A.L.A.
+
 # ENVIRONMENT VARIABLES
 
 *PACMAN*
