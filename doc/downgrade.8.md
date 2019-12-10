@@ -32,9 +32,9 @@ The columns have the following meaning:
 
 *indicator*
   Possible values: -, +
-  
+
   \- indicates, that the version was already once installed.
-  
+
   \+ indicates the currently installed version.
 
 *enumeration*
@@ -44,16 +44,15 @@ The columns have the following meaning:
   The name of the package.
 
 *package version*
-  The version of the package as noted in the A.L.A.
+  The version of the package in cache or A.L.A.
 
 *package release*
-  The release of the package as noted in the A.L.A.
+  The release of the package in cache or A.L.A.
 
 *architecture*
-  The architecture of the package as noted in the A.L.A.
+  The architecture of the package in cache or A.L.A.
 
 *location*
-
   Possible values: (remote), (local)
 
   If you have already downloaded this version, it will show *local*.
