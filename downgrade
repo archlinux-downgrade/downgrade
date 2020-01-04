@@ -52,7 +52,7 @@ read_selection() {
   read -r ans
 
   if [ "$ans" == "q" ]; then
-      printf "$ans"
+      printf "%s" "$ans"
   else
       ((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
   fi
@@ -105,7 +105,7 @@ downgrade_dependencies() {
         # clear pactree reverse graph of original function
         for target in "${delete[@]}"; do
             for i in "${!dep_array[@]}"; do
-                if [[ ${dep_array[i]} = $target ]]; then
+                if [[ ${dep_array[i]} == "$target" ]]; then
                     unset 'dep_array[i]'
                 fi
             done
@@ -122,7 +122,7 @@ downgrade_dependencies() {
                 while true
                 do
                     printf 'Dependency graph:\n\n'
-                    printf "$tree"
+                    printf "%s" "$tree"
                     printf '\n\n'
                     gettext 'Dependencies to downgrade:'
                     printf '\n'
@@ -130,7 +130,7 @@ downgrade_dependencies() {
                     printf '\n'
                     gettext 'select a package by number: '
                     choice=$(read_selection "${dep_array[@]}")
-                    if [ $choice == "q" ]; then
+                    if [ "$choice" == "q" ]; then
                         break
                     else
                         unset to_install
