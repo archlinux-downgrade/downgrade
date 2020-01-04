@@ -51,7 +51,20 @@ read_selection() {
 
   read -r ans
 
-  ((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
+  if [ "$ans" == "q" ]; then
+      printf "$ans"
+  else
+      ((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
+  fi
+}
+
+enumerate_array() {
+    local i=1
+    local array=("$@")
+    for entry in "${array[@]}"; do
+        printf "%s)\t%s\n" "$((i++))" "$entry"
+    done
+    printf "q)\texit\n"
 }
 
 prompt_to_ignore() {
@@ -82,20 +95,54 @@ prompt_to_ignore() {
 }
 
 downgrade_dependencies() {
-    local pkg
-    # TODO after downgrading and adding to ignorepackage
-    # TODO remove self option
-    # create dependency graph and show, then ask if should downgrade dependencies
-    # add exit option
-    # if no, exit
-    # if yes, show enumerated list of dependencies, which will pipe back to main
-    # return to enumerated list
-    # TODO exception for only one dependency versus many
-    # TODO use existing functions as much as possible
-    # TODO possible error of lower level dependency change before higher
-    Tree=$(pactree -r "$pkg")
-    echo "$tree"
-    return 0
+    # create localized variables
+    local pkg tree delete dep_array ans target i
+    for pkg; do
+        # assign initial variables
+        tree=$(pactree -r "$pkg")
+        delete=("$pkg")
+        dep_array=($(pactree -r -u -l "$pkg"))
+        # clear pactree reverse graph of original function
+        for target in "${delete[@]}"; do
+            for i in "${!dep_array[@]}"; do
+                if [[ ${dep_array[i]} = $target ]]; then
+                    unset 'dep_array[i]'
+                fi
+            done
+        done
+        # check if there are dependencies at all
+        if [ ${#dep_array[@]} -eq 0 ]; then
+            return 0
+        # if dependencies are detected, enter loop
+        else
+            # while loop to downgrade dependencies
+            eval_gettext "review and downgrade depedencies of \$pkg? [y/n] "
+            read -r ans
+            if [[ "${ans,,}" == $(gettext 'y')* ]]; then
+                while true
+                do
+                    printf 'Dependency graph:\n\n'
+                    printf "$tree"
+                    printf '\n\n'
+                    gettext 'Dependencies to downgrade:'
+                    printf '\n'
+                    enumerate_array "${dep_array[@]}"
+                    printf '\n'
+                    gettext 'select a package by number: '
+                    choice=$(read_selection "${dep_array[@]}")
+                    if [ $choice == "q" ]; then
+                        break
+                    else
+                        unset to_install
+                        unset to_ignore
+                        main "$choice"
+                        sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
+                        prompt_to_ignore "${to_ignore[@]}"
+                    fi
+                done
+            fi
+        fi
+    done
 }
 
 search_packages() {
@@ -291,6 +338,7 @@ cli() {
   main "${terms[@]}"
   sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
   prompt_to_ignore "${to_ignore[@]}"
+  downgrade_dependencies "${terms[@]}"
 }
 
 if ((!LIB)); then
