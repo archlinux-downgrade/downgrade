@@ -81,6 +81,23 @@ prompt_to_ignore() {
   done
 }
 
+downgrade_dependencies() {
+    local pkg
+    # TODO after downgrading and adding to ignorepackage
+    # TODO remove self option
+    # create dependency graph and show, then ask if should downgrade dependencies
+    # add exit option
+    # if no, exit
+    # if yes, show enumerated list of dependencies, which will pipe back to main
+    # return to enumerated list
+    # TODO exception for only one dependency versus many
+    # TODO use existing functions as much as possible
+    # TODO possible error of lower level dependency change before higher
+    Tree=$(pactree -r "$pkg")
+    echo "$tree"
+    return 0
+}
+
 search_packages() {
   local name version index
 
