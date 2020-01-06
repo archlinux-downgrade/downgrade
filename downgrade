@@ -124,7 +124,7 @@ downgrade_dependencies() {
       # if dependencies are detected, enter loop
     else
       # while loop to downgrade dependencies
-      eval_gettext "review and downgrade depedencies of \$pkg? [y/n] "
+      eval_gettext "review and downgrade dependencies of \$pkg? [y/n] "
       read -r ans
       if [[ "${ans,,}" == $(gettext 'y')* ]]; then
         while true; do
