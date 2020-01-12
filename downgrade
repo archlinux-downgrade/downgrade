@@ -96,7 +96,7 @@ search_packages() {
 
   if ((DOWNGRADE_FROM_ALA)); then
     curl --fail --silent "$index" | sed '
-      /.* href="\('"$name-$version"'.*\(any\|'"$DOWNGRADE_ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
+      /.* href="\('"$name-$version"'.*\(any\|'"$DOWNGRADE_ARCH"'\)\.pkg\.tar\.\(gz\|xz\|zst\)\)".*/!d;
       s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
   fi
 
@@ -106,7 +106,7 @@ search_packages() {
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
 
     # shellcheck disable=SC2086
-    find $PACMAN_CACHE -maxdepth 1 -name "$name-$version*.pkg.tar.[gx]z"
+    find $PACMAN_CACHE -maxdepth 1 -name "$name-$version*.pkg.tar.*" | grep '\.\(gz\|xz\|zst\)$'
   fi
 }
 
