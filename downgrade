@@ -97,7 +97,7 @@ search_packages() {
   if ((DOWNGRADE_FROM_ALA)); then
     curl --fail --silent "$index" | sed '
       /.* href="\('"$name-$version"'.*\(any\|'"$DOWNGRADE_ARCH"'\)\.pkg\.tar\.\(gz\|xz\|zst\)\)".*/!d;
-      s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
+      s||'"$index"'\1|g; s|+| |g; s|%|\\x|g' | xargs -0 printf "%b"
   fi
 
   if ((DOWNGRADE_FROM_CACHE)); then
