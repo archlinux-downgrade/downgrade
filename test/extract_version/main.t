@@ -1,19 +1,14 @@
   $ source "$TESTDIR/../helper.sh"
 
-It works on a package with only version
-
-  $ extract_version_parts foo '/tmp/pacman/cache/foo-1.1-any.pkg.tar.gz'
-  ,1.1,,
-
 It works on a package with epoch:version-release
 
-  $ extract_version_parts foo '/tmp/pacman/cache/foo-7:1.1-any.pkg.tar.gz'
-  7,1.1,,
+  $ extract_version_parts foo '/tmp/pacman/cache/foo-7:1.1-1-any.pkg.tar.gz'
+  7,1.1,1,any
 
 It works on a package with only version-release
 
   $ extract_version_parts foo '/tmp/pacman/cache/foo-1.1-4-any.pkg.tar.gz'
-  ,1.1,4,
+  ,1.1,4,any
 
 It works on a package with version-release-arch
 
