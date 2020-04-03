@@ -1,6 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR pbrisbin
-# This file is distributed under the same license as the PACKAGE package.
+# This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 12:01-0400\n"
+"POT-Creation-Date: 2020-04-02 20:17-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +16,35 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: downgrade:11
+#: downgrade:36
 msgid "Available packages:"
 msgstr ""
 
-#: downgrade:19
+#: downgrade:46
 msgid "select a package by number: "
 msgstr ""
 
-#: downgrade:31
+#: downgrade:63
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr ""
 
-#: downgrade:34
+#: downgrade:66
 msgid "y"
 msgstr ""
 
-#: downgrade:57
-msgid "remote"
-msgstr ""
-
-#: downgrade:58
+#: downgrade:141
 msgid "local"
 msgstr ""
 
-#: downgrade:82
+#: downgrade:143
+msgid "remote"
+msgstr ""
+
+#: downgrade:260
 msgid "usage: downgrade <pkg> [pkg...] [-- pacman_option...]"
 msgstr ""
 
-#: downgrade:83
+#: downgrade:262
 msgid "see downgrade(8) for details."
 msgstr ""
