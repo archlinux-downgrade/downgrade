@@ -7,12 +7,12 @@ setup:
 	command -v vbump  || aurget vbump-git
 	command -v pandoc || stack install pandoc
 
-potfile: downgrade
+locale/downgrade.pot: downgrade
 	xgettext \
 		--from-code=utf-8 -L shell \
 		--package-name=downgrade \
 		--copyright-holder=$(AUTHOR) \
-		-o downgrade.pot ./downgrade
+		-o $@ $<
 
 downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man doc/downgrade.8.md -o doc/downgrade.8
