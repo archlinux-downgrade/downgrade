@@ -67,11 +67,12 @@ read_selection_dependencies() {
 }
 
 enumerate_array() {
-  local i=1
-  local array=("$@")
+  local i=1 array=("$@")
+
   for entry in "${array[@]}"; do
     printf "%s)\t%s\n" "$((i++))" "$entry"
   done
+
   printf "q)\texit\n"
 }
 
