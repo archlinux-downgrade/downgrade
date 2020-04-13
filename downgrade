@@ -154,22 +154,23 @@ downgrade_dependencies() {
 }
 
 search_packages() {
-  local name version index
+  local name version pkgfile_re index
 
   if [[ "$1" =~ -([0-9R].*)$ ]]; then
-    version=${BASH_REMATCH[1]}
+    version="${BASH_REMATCH[1]}"
     name=${1%-$version}
+    version="$version.*"
   else
-    version='[0-9R]'
+    version="[^-]+-[0-9.]+"
     name=$1
   fi
-
+  pkgfile_re="$name-$version-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
   index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
   if ((DOWNGRADE_FROM_ALA)); then
-    curl --fail --silent "$index" | sed '
-      /.* href="\('"$name-$version"'.*\(any\|'"$DOWNGRADE_ARCH"'\)\.pkg\.tar\.xz\)".*/!d;
-      s||'"$index"'\1|g; s|+| |g; s|%|\\x|' | xargs -0 printf "%b"
+    curl --fail --silent "$index" | sed -E '
+      /.* href="('"$pkgfile_re"')".*/!d;
+      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
   fi
 
   if ((DOWNGRADE_FROM_CACHE)); then
@@ -178,7 +179,7 @@ search_packages() {
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
 
     # shellcheck disable=SC2086
-    find $PACMAN_CACHE -maxdepth 1 -name "$name-$version*.pkg.tar.[gx]z"
+    find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended -regex ".*/$pkgfile_re"
   fi
 }
 

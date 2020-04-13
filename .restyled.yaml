@@ -2,7 +2,4 @@
 - shfmt:
     include:
       - downgrade
-    arguments:
-      - -i
-      - "2"
-      - -ci
+    image: restyled/restyler-shfmt:v3.0.1
