@@ -4,6 +4,30 @@
 export TEXTDOMAIN=downgrade
 export TEXTDOMAINDIR=/usr/share/locale
 
+usage() {
+  cat <<EOF
+Usage: downgrade [option...] <pkg> [pkg...] [-- [pacman_option...]]
+
+  Options:
+    --pacman <command>
+                    pacman command to use, defaults to "pacman"
+    --pacman-conf <directory>
+                    pacman configuration file, defaults to "/etc/pacman.conf"
+    --arch <architecture>
+                    target architecture, defaults to output of "uname -m"
+    --ala-url <url>
+                    location of ALA server, defaults to "https://archive.archlinux.org"
+    --ala-only      only use ALA server
+    --cached-only   only use cached packages
+    --nosudo        do not use sudo, even when available
+    -h, --help      show help script
+
+  Note:
+    Any options after the -- character sequence will be treated as pacman options.
+    See "man downgrade" for further details.
+EOF
+}
+
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
 previously_installed() {
@@ -188,6 +212,12 @@ process_term() {
   else
     if present_packages "$term" "${candidates[@]}"; then
       choice=$(read_selection "${candidates[@]}")
+      if [[ -z "$choice" ]]; then
+        {
+          gettext "Invalid choice"
+          echo
+        } >&2
+      fi
     fi
   fi
 
@@ -209,7 +239,10 @@ main() {
     # shellcheck disable=SC2207
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
-    process_term "$term" || exit_code=1
+    if ! process_term "$term"; then
+      gettext "Unable to downgrade $term" >&2
+      exit_code=1
+    fi
   done
 
   return $exit_code
@@ -243,6 +276,73 @@ declare -a installed
 cli() {
   while [[ -n "$1" ]]; do
     case "$1" in
+      --pacman)
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN="$1"
+        else
+          {
+            gettext "Missing --pacman argument"
+            echo
+            gettext "$(usage)"
+          } >&2
+          exit 1
+        fi
+        ;;
+      --pacman-conf)
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN_CONF="$1"
+        else
+          {
+            gettext "Missing --pacman-conf argument"
+            echo
+            gettext "$(usage)"
+          } >&2
+          exit 1
+        fi
+        ;;
+      --arch)
+        if [[ -n "$2" ]]; then
+          shift
+          DOWNGRADE_ARCH="$1"
+        else
+          {
+            gettext "Missing --arch argument"
+            echo
+            gettext "$(usage)"
+          } >&2
+          exit 1
+        fi
+        ;;
+      --ala-url)
+        if [[ -n "$2" ]]; then
+          shift
+          DOWNGRADE_ALA_URL="$1"
+        else
+          {
+            gettext "Missing --ala-url argument"
+            echo
+            gettext "$(usage)"
+          } >&2
+          exit 1
+        fi
+        ;;
+      --ala)
+        DOWNGRADE_FROM_ALA=1
+        DOWNGRADE_FROM_CACHE=0
+        ;;
+      --cached)
+        DOWNGRADE_FROM_ALA=0
+        DOWNGRADE_FROM_CACHE=1
+        ;;
+      --nosudo)
+        DOWNGRADE_NOSUDO=1
+        ;;
+      -h | --help)
+        gettext "$(usage)"
+        exit 1
+        ;;
       --)
         shift
         pacman_args=("$@")
@@ -250,18 +350,17 @@ cli() {
         ;;
       *)
         terms+=("$1")
-        shift
         ;;
     esac
+    shift
   done
 
   if ((!"${#terms[@]}")); then
-    (
-      gettext 'usage: downgrade <pkg> [pkg...] [-- pacman_option...]'
+    {
+      gettext "No packages provided for downgrading"
       echo
-      gettext 'see downgrade(8) for details.'
-      echo
-    ) >&2
+      gettext "$(usage)"
+    } >&2
     exit 1
   fi
 
