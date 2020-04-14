@@ -206,7 +206,7 @@ process_term() {
   local term=$1 candidates choice
 
   candidates=($(search_packages "$term" | sort_packages))
-  [ ${#candidates[@]} -eq 0 ] && gettext "No package with name $term found" && echo && gettext "$(usage)" && exit 1
+  [ ${#candidates[@]} -eq 0 ] && gettext "No package with name $term found" && echo && gettext "$(usage)"
 
   if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
