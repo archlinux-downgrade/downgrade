@@ -4,6 +4,30 @@
 export TEXTDOMAIN=downgrade
 export TEXTDOMAINDIR=/usr/share/locale
 
+usage() {
+  cat <<EOF
+Usage: downgrade [options] [pacman_options] [packages]
+
+  Options:
+    --pacman <command>
+                    pacman command to use, defaults to "pacman"
+    --pacman-conf <directory>
+                    pacman configuration file, defaults to "/etc/pacman.conf"
+    --arch <architecture>
+                    target architecture, defaults to output of "uname -m"
+    --ala-url <url>
+                    location of ALA server, defaults to "https://archive.archlinux.org"
+    --ala           only use ALA server
+    --cached        only use cached packages
+    --nosudo        do not use sudo, even when available
+    -h, --help      show help script
+
+  Note:
+    Any unrecognized options will be assumed as pacman options.
+    See "man downgrade" for further details.
+EOF
+  }
+
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
 previously_installed() {
@@ -182,6 +206,7 @@ process_term() {
   local term=$1 candidates choice
 
   candidates=($(search_packages "$term" | sort_packages))
+  [ ${#candidates[@]} -eq 0 ] && gettext "No package with name $term found" && echo && gettext "$(usage)" && exit 1
 
   if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
@@ -244,20 +269,16 @@ cli() {
   while [[ -n "$1" ]]; do
     case "$1" in
       --pacman)
-        shift
-        [[ -n "$1" ]] && PACMAN="$1"
+        ([[ -n "$2" ]] && shift && PACMAN="$1") || (gettext "Missing --pacman argument" && echo && gettext "$(usage)")
         ;;
       --pacman-conf)
-        shift
-        [[ -n "$1" ]] && PACMAN_CONF="$1"
+        ([[ -n "$2" ]] && shift && PACMAN_CONF="$1") || (gettext "Missing --pacman-conf argument" && echo && gettext "$(usage)")
         ;;
       --arch)
-        shift
-        [[ -n "$1" ]] && DOWNGRADE_ARCH="$1"
+        ([[ -n "$2" ]] && shift && DOWNGRADE_ARCH="$1") || (gettext "Missing --arch argument" && echo && gettext "$(usage)")
         ;;
       --ala-url)
-        shift
-        [[ -n "$1" ]] && DOWNGRADE_ALA_URL="$1"
+        ([[ -n "$2" ]] && shift && DOWNGRADE_ALA_URL="$1") || (gettext "Missing --ala-url argument" && echo && gettext "$(usage)")
         ;;
       --ala)
         DOWNGRADE_FROM_ALA=1
@@ -269,6 +290,10 @@ cli() {
         ;;
       --nosudo)
         DOWNGRADE_NOSUDO=1
+        ;;
+      -h|--help)
+        gettext "$(usage)"
+        exit 1
         ;;
       -*)
         pacman_args+=("$1")
@@ -282,10 +307,9 @@ cli() {
 
   if ((!"${#terms[@]}")); then
     (
-      gettext 'usage: downgrade <pkg> [pkg...] [-- pacman_option...]'
+      gettext "No packages provided for downgrading"
       echo
-      gettext 'see downgrade(8) for details.'
-      echo
+      gettext "$(usage)"
     ) >&2
     exit 1
   fi
