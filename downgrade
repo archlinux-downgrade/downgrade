@@ -268,24 +268,48 @@ cli() {
   while [[ -n "$1" ]]; do
     case "$1" in
       --pacman)
-        [[ -n "$2" ]] || (gettext "Missing --pacman argument" && echo && gettext "$(usage)" && exit 1)
-        shift
-        PACMAN="$1"
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN="$1"
+        else
+          gettext "Missing --pacman argument"
+          echo
+          gettext "$(usage)"
+          exit 1
+        fi
         ;;
       --pacman-conf)
-        [[ -n "$2" ]] || (gettext "Missing --pacman-conf argument" && echo && gettext "$(usage)" && exit 1)
-        shift
-        PACMAN_CONF="$1"
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN_CONF="$1"
+        else
+          gettext "Missing --pacman-conf argument"
+          echo
+          gettext "$(usage)"
+          exit 1
+        fi
         ;;
       --arch)
-        [[ -n "$2" ]] || (gettext "Missing --arch argument" && echo && gettext "$(usage)" && exit 1)
-        shift
-        DOWNGRADE_ARCH="$1"
+        if [[ -n "$2" ]]; then
+          shift
+          DOWNGRADE_ARCH="$1"
+        else
+          gettext "Missing --arch argument"
+          echo
+          gettext "$(usage)"
+          exit 1
+        fi
         ;;
       --ala-url)
-        [[ -n "$2" ]] || (gettext "Missing --ala-url argument" && echo && gettext "$(usage)" && exit 1)
-        shift
+        if [[ -n "$2" ]]; then
+          shift
         DOWNGRADE_ALA_URL="$1"
+        else
+          gettext "Missing --ala-url argument"
+          echo
+          gettext "$(usage)"
+          exit 1
+        fi
         ;;
       --ala)
         DOWNGRADE_FROM_ALA=1
@@ -313,11 +337,9 @@ cli() {
   done
 
   if ((!"${#terms[@]}")); then
-    (
-      gettext "No packages provided for downgrading"
-      echo
-      gettext "$(usage)"
-    ) >&2
+    gettext "No packages provided for downgrading"
+    echo
+    gettext "$(usage)"
     exit 1
   fi
 
