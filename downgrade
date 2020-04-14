@@ -260,13 +260,13 @@ cli() {
         [[ -n "$1" ]] && DOWNGRADE_ALA_URL="$1"
         ;;
       --ala)
-        [[ -n "$1" ]] && DOWNGRADE_FROM_ALA=1 && DOWNGRADE_FROM_CACHE=0
+        DOWNGRADE_FROM_ALA=1 && DOWNGRADE_FROM_CACHE=0
         ;;
       --cached)
-        [[ -n "$1" ]] && DOWNGRADE_FROM_ALA=0 && DOWNGRADE_FROM_CACHE=1
+        DOWNGRADE_FROM_ALA=0 && DOWNGRADE_FROM_CACHE=1
         ;;
       --nosudo)
-        [[ -n "$1" ]] && DOWNGRADE_NOSUDO=1
+        DOWNGRADE_NOSUDO=1
         ;;
       -*)
         pacman_args+=("$1")
