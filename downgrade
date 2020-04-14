@@ -268,16 +268,24 @@ cli() {
   while [[ -n "$1" ]]; do
     case "$1" in
       --pacman)
-        [[ -n "$2" ]] && shift && PACMAN="$1" || (gettext "Missing --pacman argument" && echo && gettext "$(usage)" && exit 1)
+        [[ -n "$2" ]] || (gettext "Missing --pacman argument" && echo && gettext "$(usage)" && exit 1)
+        shift
+        PACMAN="$1"
         ;;
       --pacman-conf)
-        [[ -n "$2" ]] && shift && PACMAN_CONF="$1" || (gettext "Missing --pacman-conf argument" && echo && gettext "$(usage)" && exit 1)
+        [[ -n "$2" ]] || (gettext "Missing --pacman-conf argument" && echo && gettext "$(usage)" && exit 1)
+        shift
+        PACMAN_CONF="$1"
         ;;
       --arch)
-        [[ -n "$2" ]] && shift && DOWNGRADE_ARCH="$1" || (gettext "Missing --arch argument" && echo && gettext "$(usage)" && exit 1)
+        [[ -n "$2" ]] || (gettext "Missing --arch argument" && echo && gettext "$(usage)" && exit 1)
+        shift
+        DOWNGRADE_ARCH="$1"
         ;;
       --ala-url)
-        [[ -n "$2" ]] && shift && DOWNGRADE_ALA_URL="$1" || (gettext "Missing --ala-url argument" && echo && gettext "$(usage)" && exit 1)
+        [[ -n "$2" ]] || (gettext "Missing --ala-url argument" && echo && gettext "$(usage)" && exit 1)
+        shift
+        DOWNGRADE_ALA_URL="$1"
         ;;
       --ala)
         DOWNGRADE_FROM_ALA=1
