@@ -206,7 +206,6 @@ process_term() {
   local term=$1 candidates choice
 
   candidates=($(search_packages "$term" | sort_packages))
-  [ ${#candidates[@]} -eq 0 ] && gettext "No package with name $term found" && echo && gettext "$(usage)"
 
   if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
@@ -321,7 +320,9 @@ cli() {
     }
   fi
 
-  main "${terms[@]}"
+  for term in "${terms[@]}"; do
+    main "$term" || (gettext "No package with name $term found" && echo && gettext "$(usage)" && exit 1)
+  done
   sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
   prompt_to_ignore "${to_ignore[@]}"
 }
