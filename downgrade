@@ -303,7 +303,7 @@ cli() {
       --ala-url)
         if [[ -n "$2" ]]; then
           shift
-        DOWNGRADE_ALA_URL="$1"
+          DOWNGRADE_ALA_URL="$1"
         else
           gettext "Missing --ala-url argument"
           echo
