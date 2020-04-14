@@ -26,7 +26,7 @@ Usage: downgrade [options] [pacman_options] [packages]
     Any unrecognized options will be assumed as pacman options.
     See "man downgrade" for further details.
 EOF
-  }
+}
 
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
@@ -290,7 +290,7 @@ cli() {
       --nosudo)
         DOWNGRADE_NOSUDO=1
         ;;
-      -h|--help)
+      -h | --help)
         gettext "$(usage)"
         exit 1
         ;;
