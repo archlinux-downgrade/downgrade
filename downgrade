@@ -6,7 +6,7 @@ export TEXTDOMAINDIR=/usr/share/locale
 
 usage() {
   cat <<EOF
-Usage: downgrade [options] [pacman_options] [packages]
+Usage: downgrade [options] [packages] [pacman_options]
 
   Options:
     --pacman <command>
@@ -326,8 +326,11 @@ cli() {
         gettext "$(usage)"
         exit 1
         ;;
+      --)
+        ;;
       -*)
-        pacman_args+=("$1")
+        pacman_args=("$@")
+        break
         ;;
       *)
         terms+=("$1")
