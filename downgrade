@@ -326,8 +326,8 @@ cli() {
         gettext "$(usage)"
         exit 1
         ;;
-      --)
-        ;;
+      --) ;;
+
       -*)
         pacman_args=("$@")
         break
