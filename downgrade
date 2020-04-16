@@ -6,8 +6,8 @@ export TEXTDOMAINDIR=/usr/share/locale
 
 usage() {
   cat <<EOF
-Usage: downgrade [options] <package>... [-- [pacman_options]]
-       downgrade <package>... [options] [-- [pacman_options]]
+Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
+       downgrade <pkg> [pkg...] [option...] [-- pacman_option...]
 
   Options:
     --pacman <command>
