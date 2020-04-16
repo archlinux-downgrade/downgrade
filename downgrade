@@ -233,7 +233,10 @@ main() {
     # shellcheck disable=SC2207
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
-    process_term "$term" || { exit_code=1; gettext "No package with name $term found"; }
+    process_term "$term" || {
+      exit_code=1
+      gettext "No package with name $term found"
+    }
   done
 
   return $exit_code
