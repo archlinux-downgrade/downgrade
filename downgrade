@@ -212,7 +212,10 @@ process_term() {
     choice=${candidates[0]}
   else
     if present_packages "$term" "${candidates[@]}"; then
-      choice=$(read_selection "${candidates[@]}") || gettext "Invalid choice"
+      choice=$(read_selection "${candidates[@]}")
+      if [ -z "$choice" ]; then
+        ( gettext "Invalid choice" && echo ) >&2
+      fi
     fi
   fi
 
@@ -235,7 +238,7 @@ main() {
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
     if ! process_term "$term"; then
-      gettext "Unable to downgrade $term"
+      ( gettext "Unable to downgrade $term" ) >&2
       exit_code=1
     fi
   done
@@ -276,9 +279,11 @@ cli() {
           shift
           PACMAN="$1"
         else
+          (
           gettext "Missing --pacman argument"
           echo
           gettext "$(usage)"
+          ) >&2
           exit 1
         fi
         ;;
@@ -287,9 +292,11 @@ cli() {
           shift
           PACMAN_CONF="$1"
         else
+          (
           gettext "Missing --pacman-conf argument"
           echo
           gettext "$(usage)"
+          ) >&2
           exit 1
         fi
         ;;
@@ -298,9 +305,11 @@ cli() {
           shift
           DOWNGRADE_ARCH="$1"
         else
+          (
           gettext "Missing --arch argument"
           echo
           gettext "$(usage)"
+          ) >&2
           exit 1
         fi
         ;;
@@ -309,9 +318,11 @@ cli() {
           shift
           DOWNGRADE_ALA_URL="$1"
         else
+          (
           gettext "Missing --ala-url argument"
           echo
           gettext "$(usage)"
+          ) >&2
           exit 1
         fi
         ;;
@@ -343,9 +354,11 @@ cli() {
   done
 
   if ((!"${#terms[@]}")); then
+    (
     gettext "No packages provided for downgrading"
     echo
     gettext "$(usage)"
+    ) >&2
     exit 1
   fi
 
