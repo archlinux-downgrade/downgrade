@@ -211,7 +211,7 @@ process_term() {
     choice=${candidates[0]}
   else
     if present_packages "$term" "${candidates[@]}"; then
-      choice=$(read_selection "${candidates[@]}")
+      choice=$(read_selection "${candidates[@]}") || gettext "Invalid choice"
     fi
   fi
 
@@ -233,10 +233,8 @@ main() {
     # shellcheck disable=SC2207
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
-    process_term "$term" || {
-      exit_code=1
-      gettext "No package with name $term found"
-    }
+    [[ -z "$current" ]] && gettext "No package with name $term found"
+    process_term "$term" || exit_code=1
   done
 
   return $exit_code
