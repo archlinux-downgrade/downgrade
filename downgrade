@@ -233,8 +233,10 @@ main() {
     # shellcheck disable=SC2207
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
-    [[ -z "$current" ]] && gettext "No package with name $term found"
-    process_term "$term" || exit_code=1
+    if ! process_term "$term"; then
+      gettext "Unable to downgrade $term"
+      exit_code=1
+    fi
   done
 
   return $exit_code
