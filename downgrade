@@ -6,7 +6,7 @@ export TEXTDOMAINDIR=/usr/share/locale
 
 usage() {
   cat <<EOF
-Usage: downgrade [options] [packages] [pacman_options]
+Usage: downgrade [options] [packages] -- [pacman_options]
 
   Options:
     --pacman <command>
@@ -17,8 +17,8 @@ Usage: downgrade [options] [packages] [pacman_options]
                     target architecture, defaults to output of "uname -m"
     --ala-url <url>
                     location of ALA server, defaults to "https://archive.archlinux.org"
-    --ala           only use ALA server
-    --cached        only use cached packages
+    --ala-only      only use ALA server
+    --cached-only   only use cached packages
     --nosudo        do not use sudo, even when available
     -h, --help      show help script
 
@@ -233,7 +233,7 @@ main() {
     # shellcheck disable=SC2207
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
-    process_term "$term" || exit_code=1
+    process_term "$term" || { exit_code=1; gettext "No package with name $term found"; }
   done
 
   return $exit_code
@@ -326,9 +326,8 @@ cli() {
         gettext "$(usage)"
         exit 1
         ;;
-      --) ;;
-
-      -*)
+      --)
+        shift
         pacman_args=("$@")
         break
         ;;
@@ -353,9 +352,7 @@ cli() {
     }
   fi
 
-  for term in "${terms[@]}"; do
-    main "$term" || (gettext "No package with name $term found" && echo && gettext "$(usage)" && exit 1)
-  done
+  main "${terms[@]}"
   sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
   prompt_to_ignore "${to_ignore[@]}"
 }
