@@ -213,7 +213,7 @@ process_term() {
   else
     if present_packages "$term" "${candidates[@]}"; then
       choice=$(read_selection "${candidates[@]}")
-      if [ -z "$choice" ]; then
+      if [[ -z "$choice" ]]; then
         {
           gettext "Invalid choice"
           echo
