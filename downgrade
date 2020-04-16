@@ -23,7 +23,7 @@ Usage: downgrade [options] [packages] -- [pacman_options]
     -h, --help      show help script
 
   Note:
-    Any unrecognized options will be assumed as pacman options.
+    Any options after the -- character sequence will be treated as pacman options.
     See "man downgrade" for further details.
 EOF
 }
