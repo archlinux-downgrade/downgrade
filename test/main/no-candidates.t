@@ -4,7 +4,7 @@
 It does nothing if there are no candidates
 
   $ search_packages() { :; }
-  > main foo; exit_code=$?
+  > main foo 2>/dev/null; exit_code=$?
   > printf "ignore: %s\n" "${to_ignore[@]}"
   > printf "install: %s\n" "${to_install[@]}"
   > printf "exit code: %s\n" "$exit_code"
