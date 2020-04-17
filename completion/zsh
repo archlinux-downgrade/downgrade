@@ -1,7 +1,7 @@
 #compdef downgrade
 
 _downgrade(){
-  _arguments -S -C '*: :->pkg' \
+  _arguments -S -C '*:*:->pkg' \
 		         '--pacman[Specify pacman command]' \
 		         '--pacman-conf[Specify pacman configuration file]:config:_files' \
 		         '--arch[Speciy target architecture]' \
@@ -12,19 +12,19 @@ _downgrade(){
 		         {-h,--help}'[Show help]'
 
 	case "$state" in
-		pkg)
+    pkg)
       if [[ ! $words =~ "\s\-\-\s" ]]; then
-        local -a packages
+				local -a packages
         packages=($(pacman -Qsq "^$words[current]" 2>/dev/null))
         _describe 'packages' packages
-      else
-        # adapted from: https://unix.stackexchange.com/a/403841
-        if ((!$+functions[_pacman_comp])); then
-          autoload +X +U _pacman
-          functions[_pacman]=${functions[_pacman]%$'\n'*}
-          _pacman
-        fi
-        _pacman_zsh_comp "$words[current]"
+        # else
+        #   # adapted from: https://unix.stackexchange.com/a/403841
+        #   if ((!$+functions[_pacman_comp])); then
+        #     autoload +X +U _pacman
+        #     functions[_pacman]=${functions[_pacman]%$'\n'*}
+        #     _pacman
+        #   fi
+        #   _pacman_zsh_comp "$words[current]"
       fi
 			;;
 	esac
