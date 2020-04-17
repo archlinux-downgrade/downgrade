@@ -13,7 +13,7 @@ Install via the [AUR](https://aur.archlinux.org/packages/downgrade/).
 Below is the usage script for `downgrade`:
 
 ```
-Usage: downgrade [option...] <pkg> [pkg...] [-- [pacman_option...]]
+Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
   Options:
     --pacman <command>

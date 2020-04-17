@@ -6,7 +6,7 @@ export TEXTDOMAINDIR=/usr/share/locale
 
 usage() {
   cat <<EOF
-Usage: downgrade [option...] <pkg> [pkg...] [-- [pacman_option...]]
+Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
   Options:
     --pacman <command>
@@ -328,11 +328,11 @@ cli() {
           exit 1
         fi
         ;;
-      --ala)
+      --ala-only)
         DOWNGRADE_FROM_ALA=1
         DOWNGRADE_FROM_CACHE=0
         ;;
-      --cached)
+      --cached-only)
         DOWNGRADE_FROM_ALA=0
         DOWNGRADE_FROM_CACHE=1
         ;;

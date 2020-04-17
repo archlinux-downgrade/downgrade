@@ -5,7 +5,7 @@
 .SH USAGE
 .PP
 \f[B]downgrade\f[R] [option\&...] <pkg>\ [pkg\&...] [\f[B]--\f[R]
-[pacman_option\&...]]
+pacman_option\&...]
 .SH DESCRIPTION
 .PP
 Downgrade Arch Linux packages.
@@ -67,7 +67,7 @@ If you have already downloaded this version, it will show
 .PD
 .RS
 .PP
-The pacman command, default is \f[I]pacman\f[R].
+Pacman command, default is \f[I]pacman\f[R].
 .RE
 .PP
 \f[B]--pacman-conf\f[R] \f[I]<file-path>\f[R]
@@ -76,7 +76,7 @@ The pacman command, default is \f[I]pacman\f[R].
 .PD
 .RS
 .PP
-Your pacman configuration file, default is \f[I]/etc/pacman.conf\f[R].
+Pacman configuration file, default is \f[I]/etc/pacman.conf\f[R].
 .RE
 .PP
 \f[B]--arch\f[R] \f[I]<architecture>\f[R]
@@ -94,7 +94,7 @@ Target architecture, default is determined by \f[C]uname -m\f[R].
 .PD
 .RS
 .PP
-The location of an ALA server, default is
+Location of an ALA server, default is
 \f[I]https://archive.archlinux.org\f[R].
 .RE
 .PP
@@ -104,7 +104,7 @@ The location of an ALA server, default is
 .PD
 .RS
 .PP
-Search the ALA only.
+Search ALA only.
 .RE
 .PP
 \f[B]--cached-only\f[R]
@@ -113,7 +113,7 @@ Search the ALA only.
 .PD
 .RS
 .PP
-Search your local cache only.
+Search local cache only.
 .RE
 .PP
 \f[B]--nosudo\f[R]
@@ -132,7 +132,7 @@ character sequence will be treated as pacman arguments.
 .SS DEFAULT BEHAVIORS
 .PP
 By default, \f[B]downgrade\f[R] will search both local caches and the
-ALA
+ALA.
 .PP
 The package cache directory is read from the pacman configuration file
 by default, or set to \f[I]/var/pacman/pkg/\f[R] when not found.

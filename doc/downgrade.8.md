@@ -4,7 +4,7 @@
 
 # USAGE
 
-**downgrade** [option...] \<pkg>\ [pkg...] [**\--** [pacman_option...]]
+**downgrade** [option...] \<pkg>\ [pkg...] [**\--** pacman_option...]
 
 # DESCRIPTION
 
@@ -64,11 +64,11 @@ The columns have the following meaning:
 
 **\--pacman** *\<command\>*\
 
-> The pacman command, default is *pacman*.
+> Pacman command, default is *pacman*.
 
 **\--pacman-conf** *\<file-path\>*\
   
-> Your pacman configuration file, default is */etc/pacman.conf*.
+> Pacman configuration file, default is */etc/pacman.conf*.
 
 **\--arch** *\<architecture\>*\
 
@@ -76,15 +76,15 @@ The columns have the following meaning:
 
 **\--ala-url** *\<url\>*\
 	
-> The location of an ALA server, default is *https://archive.archlinux.org*.
+> Location of an ALA server, default is *https://archive.archlinux.org*.
 
 **\--ala-only**\
 
-> Search the ALA only.
+> Search ALA only.
 
 **\--cached-only**\
 
-> Search your local cache only.
+> Search local cache only.
 
 **\--nosudo**\
 
@@ -96,7 +96,7 @@ As per the usage sytax, any arguments supplied after the **\--** character seque
 
 ## DEFAULT BEHAVIORS
 
-By default, **downgrade** will search both local caches and the ALA
+By default, **downgrade** will search both local caches and the ALA.
 
 The package cache directory is read from the pacman configuration file by default, or set to */var/pacman/pkg/* when not found.
 
