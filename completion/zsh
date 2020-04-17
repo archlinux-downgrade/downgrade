@@ -31,3 +31,4 @@ _downgrade(){
 }
 
 _downgrade "$@"
+# vim: syntax=Shell
