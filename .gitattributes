@@ -1,1 +1,3 @@
 completion/zsh linguist-language=Shell
+completion/zsh linguist-detectable
+test/* linguist-documentation
