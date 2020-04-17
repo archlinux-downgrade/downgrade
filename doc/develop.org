@@ -1,0 +1,10 @@
+* To-do's
+** TODO modify tests to add new command-line arguments to catch possible bugs
+** TODO finish up translations for other languages
+** TODO check whether pacman_log and pacman_cache should be arguments supplied as well
+** complete man doc and ask whether own name can be included
+** check whether additional information should be added to the docu stating that downgrade can also install non-existing packages
+
+* Completed
+** DONE work out zsh autocompletions -> local downgrade ones followed by pacman ones
+   CLOSED: [2020-04-17 Fri 21:36]
