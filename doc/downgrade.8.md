@@ -92,7 +92,7 @@ The columns have the following meaning:
 
 ## PACMAN OPTIONS
 
-As per the usage sytax, any arguments supplied after the **\--** character sequence will be treated as pacman arguments.
+As per the usage syntax, any options supplied after the **\--** character sequence will be treated as pacman options.
 
 ## DEFAULT BEHAVIORS
 
