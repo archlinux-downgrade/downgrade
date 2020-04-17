@@ -1,31 +1,31 @@
 #compdef downgrade
 
 _downgrade(){
-	_arguments -S -C '*: :->pkg' \
-		'--pacman[Specify pacman command]' \
-		'--pacman-conf[Specify pacman configuration file]:config:_files' \
-		'--arch[Speciy target architecture]' \
-		'--ala--url[Specify location of ALA server]' \
-		'--ala-only[Option enables only ALA server search]' \
-		'--cached-only[Option enables only cached search]' \
-		'--nosudo[Option enables only su even when sudo is present]' \
-		{-h,--help}'[Show help]'
+  _arguments -S -C '*: :->pkg' \
+		         '--pacman[Specify pacman command]' \
+		         '--pacman-conf[Specify pacman configuration file]:config:_files' \
+		         '--arch[Speciy target architecture]' \
+		         '--ala--url[Specify location of ALA server]' \
+		         '--ala-only[Option enables only ALA server search]' \
+		         '--cached-only[Option enables only cached search]' \
+		         '--nosudo[Option enables only su even when sudo is present]' \
+		         {-h,--help}'[Show help]'
 
 	case "$state" in
-			pkg)
-        if [[ ! $words =~ "\s\-\-\s" ]]; then
-          local -a packages
-          packages=($(pacman -Qsq "^$words[current]" 2>/dev/null))
-          _describe 'packages' packages
-        else
-          # adapted from: https://unix.stackexchange.com/a/403841
-          if ((!$+functions[_pacman_comp])); then
-            autoload +X +U _pacman
-            functions[_pacman]=${functions[_pacman]%$'\n'*}
-            _pacman
-          fi
-          _pacman_zsh_comp "$words[current]"
+		pkg)
+      if [[ ! $words =~ "\s\-\-\s" ]]; then
+        local -a packages
+        packages=($(pacman -Qsq "^$words[current]" 2>/dev/null))
+        _describe 'packages' packages
+      else
+        # adapted from: https://unix.stackexchange.com/a/403841
+        if ((!$+functions[_pacman_comp])); then
+          autoload +X +U _pacman
+          functions[_pacman]=${functions[_pacman]%$'\n'*}
+          _pacman
         fi
+        _pacman_zsh_comp "$words[current]"
+      fi
 			;;
 	esac
 }
