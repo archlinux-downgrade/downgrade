@@ -240,7 +240,10 @@ main() {
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
     if ! process_term "$term"; then
-      gettext "Unable to downgrade $term" >&2
+      {
+        gettext "Unable to downgrade $term"
+        echo
+      } >&2
       exit_code=1
     fi
   done

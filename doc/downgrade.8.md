@@ -109,7 +109,7 @@ the following scenarios for any of its arguments:
 
 - No argument value(s) supplied where necessary
 - No package(s) found
-- Package(s) found, but you made an invalid selection
+- Package(s) found, but an invalid selection was made
 - `pacman -U` returned non-zero
 - Unexpected error when handling `IgnorePkg` additions
 
