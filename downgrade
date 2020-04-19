@@ -373,13 +373,12 @@ cli() {
       su root -c "$cmd"
     }
   fi
-
-  main "${terms[@]}"
-  sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
-  prompt_to_ignore "${to_ignore[@]}"
 }
 
 if ((!LIB)); then
   set -e
   cli "$@"
+  main "${terms[@]}"
+  sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
+  prompt_to_ignore "${to_ignore[@]}"
 fi
