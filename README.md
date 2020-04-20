@@ -10,8 +10,6 @@ Install via the [AUR](https://aur.archlinux.org/packages/downgrade/).
 
 ## Usage
 
-Below is the usage script for `downgrade`:
-
 ```
 Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
@@ -49,7 +47,7 @@ $ downgrade --cached-only foo
 Downgrade a package, looking in only the A.L.A.:
 
 ```
-$ downgrade --ala-only foo 
+$ downgrade --ala-only foo
 ```
 
 Downgrade a package, looking only in local cache, and favoring `su` over 

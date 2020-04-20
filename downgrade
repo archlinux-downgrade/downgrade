@@ -276,7 +276,7 @@ declare -a to_install
 declare -a pacman_args
 declare -a installed
 
-cli() {
+parse_options() {
   while [[ -n "$1" ]]; do
     case "$1" in
       --pacman)
@@ -375,10 +375,14 @@ cli() {
   fi
 }
 
-if ((!LIB)); then
-  set -e
-  cli "$@"
+cli() {
+  parse_options "$@"
   main "${terms[@]}"
   sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
   prompt_to_ignore "${to_ignore[@]}"
+}
+
+if ((!LIB)); then
+  set -e
+  cli "$@"
 fi

@@ -3,3 +3,17 @@
     include:
       - downgrade
     image: restyled/restyler-shfmt:v3.0.1
+
+---
+image: restyled/restyler-prettier:v2.0.2-1
+command:
+- prettier
+- "--write"
+arguments:
+- "--print-width"
+- '80'
+- "--prose-wrap"
+- always
+include:
+- "README.md"
+interpreters: []

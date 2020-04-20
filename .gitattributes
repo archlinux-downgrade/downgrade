@@ -1,1 +1,1 @@
-test/* linguist-documentation
+*.t -linguist-detectable

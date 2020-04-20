@@ -1,6 +1,6 @@
 % DOWNGRADE(8) User Manual
 %
-% April 2019
+% April 2020
 
 # USAGE
 
