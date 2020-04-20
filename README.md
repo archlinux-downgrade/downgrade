@@ -31,7 +31,7 @@ Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
   Note:
     Any options after the -- character sequence will be treated as pacman options.
-    See "man downgrade" for further details.
+    See downgrade(8) for further details.
 ```
 
 Downgrade packages checking both local cache and the [A.L.A.](https://wiki.archlinux.org/index.php/Arch_Linux_Archive), which is the default behavior.

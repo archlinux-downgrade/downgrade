@@ -24,7 +24,7 @@ Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
   Note:
     Any options after the -- character sequence will be treated as pacman options.
-    See "man downgrade" for further details.
+    See downgrade(8) for further details.
 EOF
 }
 
