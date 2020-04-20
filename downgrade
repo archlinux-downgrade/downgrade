@@ -241,7 +241,7 @@ main() {
     current=$(currently_installed "$term")
     if ! process_term "$term"; then
       {
-        gettext "Unable to downgrade $term"
+        eval_gettext "Unable to downgrade \$term"
         echo
       } >&2
       exit_code=1
