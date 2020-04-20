@@ -1,6 +1,6 @@
 # Downgrade
 
-[![CircleCI](https://circleci.com/gh/pbrisbin/downgrade.svg?style=svg)](https://circleci.com/gh/pbrisbin/downgrade)
+[![CircleCI](https://circleci.com/gh/pbrisbin/downgrade.svg?style=shield)](https://circleci.com/gh/pbrisbin/downgrade)
 
 Eases downgrading packages in Arch Linux.
 
