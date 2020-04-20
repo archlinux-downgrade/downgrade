@@ -32,7 +32,9 @@ Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
     See downgrade(8) for further details.
 ```
 
-Downgrade packages checking both local cache and the [A.L.A.](https://wiki.archlinux.org/index.php/Arch_Linux_Archive), which is the default behavior.
+Downgrade packages checking both local cache and the
+[A.L.A.](https://wiki.archlinux.org/index.php/Arch_Linux_Archive), which is the
+default behavior.
 
 ```
 $ downgrade foo bar
@@ -50,8 +52,8 @@ Downgrade a package, looking in only the A.L.A.:
 $ downgrade --ala-only foo
 ```
 
-Downgrade a package, looking only in local cache, and favoring `su` over 
-`sudo` even when `sudo` is available:
+Downgrade a package, looking only in local cache, and favoring `su` over `sudo`
+even when `sudo` is available:
 
 ```
 $ downgrade --cached-only --nosudo foo
