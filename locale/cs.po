@@ -1,15 +1,15 @@
 # Czech translations for downgrade package.
 # Copyright (C) 2018 pbrisbin
 # This file is distributed under the same license as the downgrade package.
-#  <tom.vycital@gmail.com>, 2018.
+# <tom.vycital@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 12:01-0400\n"
-"PO-Revision-Date: 2018-01-26 21:10+0100\n"
-"Last-Translator:  <tom.vycital@gmail.com>\n"
+"PO-Revision-Date: 2020-04-21 21:10+0100\n"
+"Last-Translator: <tom.vycital@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"

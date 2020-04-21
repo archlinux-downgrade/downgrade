@@ -1,15 +1,15 @@
 # Norwegian Nynorsk translations for downgrade package.
 # Copyright (C) 2013 pbrisbin
 # This file is distributed under the same license as the downgrade package.
-#  <pbrisbin@gmail.com>, 2013.
+# <pbrisbin@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 12:01-0400\n"
-"PO-Revision-Date: 2013-10-31 12:48-0400\n"
-"Last-Translator: Håkon Vågsether <hauk142@gmail.com>\n"
+"PO-Revision-Date: 2020-04-21 12:48-0400\n"
+"Last-Translator: Håkon Vågsether <hauk142@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"

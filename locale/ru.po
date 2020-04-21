@@ -1,15 +1,15 @@
 # Russian translations for downgrade package.
 # Copyright (C) 2016 pbrisbin
 # This file is distributed under the same license as the downgrade package.
-#  <pbrisbin@gmail.com>, 2016.
+# <pbrisbin@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-18 14:25-0300\n"
-"PO-Revision-Date: 2016-11-18 14:25-0300\n"
-"Last-Translator: Nurlan <nurlancik1@gmail.com>\n"
+"PO-Revision-Date: 2020-04-21 14:25-0300\n"
+"Last-Translator: Nurlan <nurlancik1@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
