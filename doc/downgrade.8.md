@@ -1,10 +1,8 @@
-% DOWNGRADE(8) User Manual
-%
-% April 2020
+% DOWNGRADE(8) User Manual % % April 2020
 
 # USAGE
 
-**downgrade** [option...] \<pkg>\ [pkg...] [**\--** pacman_option...]
+**downgrade** [option...] \<pkg>\ [pkg...][**\--** pacman_option...]
 
 # DESCRIPTION
 
@@ -14,7 +12,7 @@ Downgrade Arch Linux packages.
 
 Just calling `downgrade` on a package will lead to the following output:
 
-*Example:*
+_Example:_
 
     Available packages:
 
@@ -30,53 +28,47 @@ Just calling `downgrade` on a package will lead to the following output:
 
 The columns have the following meaning:
 
-*indicator*
-  Possible values: {-|+}
+_indicator_ Possible values: {-|+}
 
-  \- indicates that the version was previously installed.
+\- indicates that the version was previously installed.
 
-  \+ indicates the currently installed version.
+\+ indicates the currently installed version.
 
-*enumeration*
-  An enumeration of the entries for selection.
+_enumeration_ An enumeration of the entries for selection.
 
-*package-name*
-  The name of the package.
+_package-name_ The name of the package.
 
-*package-version*
-  The version of the package in cache or ALA.
+_package-version_ The version of the package in cache or ALA.
 
-*package-release*
-  The release of the package in cache or ALA.
+_package-release_ The release of the package in cache or ALA.
 
-*architecture*
-  The architecture of the package in cache or ALA.
+_architecture_ The architecture of the package in cache or ALA.
 
-*location*
-  Possible values: {(remote)|(local)}
+_location_ Possible values: {(remote)|(local)}
 
-  If you have already downloaded this version, it will show *local*.\
-  *remote* indicates that the version is available on the ALA.
+If you have already downloaded this version, it will show _local_.\
+ _remote_ indicates that the version is available on the ALA.
 
 # OPTIONS
 
 ## DOWNGRADE OPTIONS
 
-**\--pacman** *\<command\>*\
+**\--pacman** _\<command\>_\
 
-> Pacman command, default is *pacman*.
+> Pacman command, default is _pacman_.
 
-**\--pacman-conf** *\<file-path\>*\
-  
-> Pacman configuration file, default is */etc/pacman.conf*.
+**\--pacman-conf** _\<file-path\>_\
 
-**\--arch** *\<architecture\>*\
+> Pacman configuration file, default is _/etc/pacman.conf_.
+
+**\--arch** _\<architecture\>_\
 
 > Target architecture, default is determined by `uname -m`.
 
-**\--ala-url** *\<url\>*\
-	
-> Location of an ALA server, default is *https://archive.archlinux.org*.
+**\--ala-url** _\<url\>_\
+
+
+> Location of an ALA server, default is _https://archive.archlinux.org_.
 
 **\--ala-only**\
 
@@ -92,15 +84,18 @@ The columns have the following meaning:
 
 ## PACMAN OPTIONS
 
-As per the usage syntax, any options supplied after the **\--** character sequence will be treated as pacman options.
+As per the usage syntax, any options supplied after the **\--** character
+sequence will be treated as pacman options.
 
 ## DEFAULT BEHAVIORS
 
 By default, **downgrade** will search both local caches and the ALA.
 
-The package cache directory is read from the pacman configuration file by default, or set to */var/pacman/pkg/* when not found.
+The package cache directory is read from the pacman configuration file by
+default, or set to _/var/pacman/pkg/_ when not found.
 
-The pacman log file is read from the pacman configuration file by default, or set to */var/log/pacman.log* when not found.
+The pacman log file is read from the pacman configuration file by default, or
+set to _/var/log/pacman.log_ when not found.
 
 # EXIT CODES
 
@@ -119,9 +114,9 @@ the following scenarios for any of its arguments:
 
 # BUGS
 
-Open a GitHub issue on *https://github.com/pbrisbin/downgrade*.
+Open a GitHub issue on _https://github.com/pbrisbin/downgrade_.
 
 # AUTHORS
 
-* Patrick Brisbin <pbrisbin@gmail.com>\
-* Atreya Shankar <shankar.atreya@gmail.com>
+- Patrick Brisbin <pbrisbin@gmail.com>\
+- Atreya Shankar <shankar.atreya@gmail.com>
