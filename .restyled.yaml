@@ -3,3 +3,7 @@
     include:
       - downgrade
     image: restyled/restyler-shfmt:v3.0.1
+    
+- prettier-markdown:
+    include:
+      - README.md

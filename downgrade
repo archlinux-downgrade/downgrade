@@ -4,6 +4,30 @@
 export TEXTDOMAIN=downgrade
 export TEXTDOMAINDIR=/usr/share/locale
 
+usage() {
+  cat <<EOF
+$(gettext "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]")
+
+  $(gettext "Options"):
+    --pacman <$(gettext "command")>
+                    $(gettext "pacman command to use, defaults to") "pacman"
+    --pacman-conf <$(gettext "file-path")>
+                    $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
+    --arch <$(gettext "architecture")>
+                    $(gettext "target architecture, defaults to output of") "uname -m"
+    --ala-url <url>
+                    $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
+    --ala-only      $(gettext "only use ALA server")
+    --cached-only   $(gettext "only use cached packages")
+    --nosudo        $(gettext "do not use sudo even when available, use su")
+    -h, --help      $(gettext "show help script")
+
+  $(gettext "Note"):
+    $(gettext "Options after the -- characters will be treated as pacman options.")
+    $(gettext "See downgrade(8) for details.")
+EOF
+}
+
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
 previously_installed() {
@@ -188,6 +212,12 @@ process_term() {
   else
     if present_packages "$term" "${candidates[@]}"; then
       choice=$(read_selection "${candidates[@]}")
+      if [[ -z "$choice" ]]; then
+        {
+          gettext "Invalid choice"
+          echo
+        } >&2
+      fi
     fi
   fi
 
@@ -209,7 +239,13 @@ main() {
     # shellcheck disable=SC2207
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
-    process_term "$term" || exit_code=1
+    if ! process_term "$term"; then
+      {
+        eval_gettext "Unable to downgrade \$term"
+        echo
+      } >&2
+      exit_code=1
+    fi
   done
 
   return $exit_code
@@ -240,9 +276,76 @@ declare -a to_install
 declare -a pacman_args
 declare -a installed
 
-cli() {
+parse_options() {
   while [[ -n "$1" ]]; do
     case "$1" in
+      --pacman)
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN="$1"
+        else
+          {
+            gettext "Missing --pacman argument"
+            echo
+            usage
+          } >&2
+          exit 1
+        fi
+        ;;
+      --pacman-conf)
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN_CONF="$1"
+        else
+          {
+            gettext "Missing --pacman-conf argument"
+            echo
+            usage
+          } >&2
+          exit 1
+        fi
+        ;;
+      --arch)
+        if [[ -n "$2" ]]; then
+          shift
+          DOWNGRADE_ARCH="$1"
+        else
+          {
+            gettext "Missing --arch argument"
+            echo
+            usage
+          } >&2
+          exit 1
+        fi
+        ;;
+      --ala-url)
+        if [[ -n "$2" ]]; then
+          shift
+          DOWNGRADE_ALA_URL="$1"
+        else
+          {
+            gettext "Missing --ala-url argument"
+            echo
+            usage
+          } >&2
+          exit 1
+        fi
+        ;;
+      --ala-only)
+        DOWNGRADE_FROM_ALA=1
+        DOWNGRADE_FROM_CACHE=0
+        ;;
+      --cached-only)
+        DOWNGRADE_FROM_ALA=0
+        DOWNGRADE_FROM_CACHE=1
+        ;;
+      --nosudo)
+        DOWNGRADE_NOSUDO=1
+        ;;
+      -h | --help)
+        usage
+        exit 1
+        ;;
       --)
         shift
         pacman_args=("$@")
@@ -250,18 +353,17 @@ cli() {
         ;;
       *)
         terms+=("$1")
-        shift
         ;;
     esac
+    shift
   done
 
   if ((!"${#terms[@]}")); then
-    (
-      gettext 'usage: downgrade <pkg> [pkg...] [-- pacman_option...]'
+    {
+      gettext "No packages provided for downgrading"
       echo
-      gettext 'see downgrade(8) for details.'
-      echo
-    ) >&2
+      usage
+    } >&2
     exit 1
   fi
 
@@ -271,7 +373,10 @@ cli() {
       su root -c "$cmd"
     }
   fi
+}
 
+cli() {
+  parse_options "$@"
   main "${terms[@]}"
   sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
   prompt_to_ignore "${to_ignore[@]}"
