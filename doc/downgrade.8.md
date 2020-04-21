@@ -67,7 +67,6 @@ If you have already downloaded this version, it will show _local_.\
 
 **\--ala-url** _\<url\>_\
 
-
 > Location of an ALA server, default is _https://archive.archlinux.org_.
 
 **\--ala-only**\
