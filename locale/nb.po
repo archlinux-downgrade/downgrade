@@ -31,7 +31,7 @@ msgstr "kommando"
 
 #: downgrade:13
 msgid "pacman command to use, defaults to"
-msgstr "pacman-kommando for å bruke, er standard for"
+msgstr "pacman-kommando for a bruke, er standard for"
 
 #: downgrade:14
 msgid "file-path"
@@ -47,7 +47,7 @@ msgstr "arkitektur"
 
 #: downgrade:17
 msgid "target architecture, defaults to output of"
-msgstr "målarkitektur, standard for utdata fra"
+msgstr "malarkitektur, standard for utdata fra"
 
 #: downgrade:19
 msgid "location of ALA server, defaults to"
