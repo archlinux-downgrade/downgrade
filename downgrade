@@ -6,25 +6,25 @@ export TEXTDOMAINDIR=/usr/share/locale
 
 usage() {
   cat <<EOF
-Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
+$(gettext "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]")
 
-  Options:
-    --pacman <command>
-                    pacman command to use, defaults to "pacman"
-    --pacman-conf <file-path>
-                    pacman configuration file, defaults to "/etc/pacman.conf"
-    --arch <architecture>
-                    target architecture, defaults to output of "uname -m"
+  $(gettext "Options"):
+    --pacman <$(gettext "command")>
+                    $(gettext "pacman command to use, defaults to") "pacman"
+    --pacman-conf <$(gettext "file-path")>
+                    $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
+    --arch <$(gettext "architecture")>
+                    $(gettext "target architecture, defaults to output of") "uname -m"
     --ala-url <url>
-                    location of ALA server, defaults to "https://archive.archlinux.org"
-    --ala-only      only use ALA server
-    --cached-only   only use cached packages
-    --nosudo        do not use sudo even when available, use su
-    -h, --help      show help script
+                    $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
+    --ala-only      $(gettext "only use ALA server")
+    --cached-only   $(gettext "only use cached packages")
+    --nosudo        $(gettext "do not use sudo even when available, use su")
+    -h, --help      $(gettext "show help script")
 
-  Note:
-    Any options after the -- character sequence will be treated as pacman options.
-    See downgrade(8) for further details.
+  $(gettext "Note"):
+    $(gettext "Options after the -- characters will be treated as pacman options.")
+    $(gettext "See downgrade(8) for details.")
 EOF
 }
 

@@ -28,8 +28,8 @@ Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
     -h, --help      show help script
 
   Note:
-    Any options after the -- character sequence will be treated as pacman options.
-    See downgrade(8) for further details.
+    Options after the -- characters will be treated as pacman options.
+    See downgrade(8) for details.
 ```
 
 Downgrade packages checking both local cache and the

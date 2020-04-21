@@ -17,35 +17,120 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.5\n"
 
+#: downgrade:9
+msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
+msgstr "用法： downgrade [option...] <包> [包...] [-- pacman_option...]"
+
 #: downgrade:11
+msgid "Options"
+msgstr "选件"
+
+#: downgrade:12
+msgid "command"
+msgstr "命令"
+
+#: downgrade:13
+msgid "pacman command to use, defaults to"
+msgstr "使用的pacman命令，默认为"
+
+#: downgrade:14
+msgid "file-path"
+msgstr "文件路径"
+
+#: downgrade:15
+msgid "pacman configuration file, defaults to"
+msgstr "pacman配置文件，默认为"
+
+#: downgrade:16
+msgid "architecture"
+msgstr "建筑"
+
+#: downgrade:17
+msgid "target architecture, defaults to output of"
+msgstr "目标体系结构，默认为"
+
+#: downgrade:19
+msgid "location of ALA server, defaults to"
+msgstr "ALA服务器的位置，默认为"
+
+#: downgrade:20
+msgid "only use ALA server"
+msgstr "仅使用ALA服务器"
+
+#: downgrade:21
+msgid "only use cached packages"
+msgstr "只使用缓存的包"
+
+#: downgrade:22
+msgid "do not use sudo even when available, use su"
+msgstr "即使可用，也不要使用sudo，请使用su"
+
+#: downgrade:23
+msgid "show help script"
+msgstr "显示帮助脚本"
+
+#: downgrade:25
+msgid "Note"
+msgstr "注意"
+
+#: downgrade:26
+msgid "Options after the -- characters will be treated as pacman options."
+msgstr "--字符后的选项将被视为pacman选项。"
+
+#: downgrade:27
+msgid "See downgrade(8) for details."
+msgstr "详情请查看downgrade(8)."
+
+#: downgrade:60
 msgid "Available packages:"
 msgstr "可选的包："
 
-#: downgrade:19
+#: downgrade:70
 msgid "select a package by number: "
 msgstr "输入数字以选择包："
 
-#: downgrade:31
+#: downgrade:87
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "添加$pkg到IgnorePkg? [y/n]"
 
-#: downgrade:34
+#: downgrade:90
 msgid "y"
 msgstr "y"
 
-#: downgrade:57
-msgid "remote"
-msgstr "远端"
-
-#: downgrade:58
+#: downgrade:165
 msgid "local"
 msgstr "本地"
 
-#: downgrade:82
-msgid "usage: downgrade <pkg> [pkg...] [-- pacman_option...]"
-msgstr "用法： downgrade <包> [包...] [-- pacman_option...]"
+#: downgrade:167
+msgid "remote"
+msgstr "远端"
 
-#: downgrade:83
-msgid "see downgrade(8) for details."
-msgstr "详情请查看downgrade(8)."
+#: downgrade:217
+msgid "Invalid choice"
+msgstr "选择无效"
+
+#: downgrade:244
+#, sh-format
+msgid "Unable to downgrade $term"
+msgstr "无法降级$term"
+
+#: downgrade:288
+msgid "Missing --pacman argument"
+msgstr "缺少--pacman参数"
+
+#: downgrade:301
+msgid "Missing --pacman-conf argument"
+msgstr "缺少--pacman-conf参数"
+
+#: downgrade:314
+msgid "Missing --arch argument"
+msgstr "缺少--arch参数"
+
+#: downgrade:327
+msgid "Missing --ala-url argument"
+msgstr "缺少--ala-url参数"
+
+#: downgrade:363
+msgid "No packages provided for downgrading"
+msgstr "没有提供降级包"
