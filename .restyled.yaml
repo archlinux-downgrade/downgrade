@@ -7,4 +7,3 @@
 - prettier-markdown:
     include:
       - README.md
-      - doc/downgrade.8.md
