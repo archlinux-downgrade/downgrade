@@ -1,6 +1,7 @@
 # Downgrade
 
 [![CircleCI](https://circleci.com/gh/pbrisbin/downgrade.svg?style=shield)](https://circleci.com/gh/pbrisbin/downgrade)
+[![gitlocalized ](https://gitlocalize.com/repo/4232/whole_project/badge.svg)](https://gitlocalize.com/repo/4232/whole_project?utm_source=badge)
 
 Eases downgrading packages in Arch Linux.
 
