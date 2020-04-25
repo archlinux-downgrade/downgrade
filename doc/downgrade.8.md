@@ -98,7 +98,7 @@ As per the usage syntax, any options supplied after the **\--** character sequen
 
 By default, **downgrade** will search both local caches and the ALA.
 
-The package cache directory is read from the pacman configuration file by default, or set to */var/pacman/pkg/* when not found.
+The package cache directory is read from the pacman configuration file by default, or set to */var/cache/pacman/pkg/* when not found.
 
 The pacman log file is read from the pacman configuration file by default, or set to */var/log/pacman.log* when not found.
 
