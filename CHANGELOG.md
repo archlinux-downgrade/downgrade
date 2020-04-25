@@ -1,4 +1,89 @@
-## [*Unreleased*](https://github.com/pbrisbin/downgrade/compare/v6.0.0...master)
+## [*Ongoing*](https://github.com/pbrisbin/downgrade/compare/v6.3.0...master)
+
+- [NEW] Handling hard dependencies during downgrading
+
+## [v6.0.0](https://github.com/pbrisbin/downgrade/compare/v5.4.0...v6.0.0)
+
+- [NEW] Render results one page at a time
+- [NEW] Render an asterisk next to previously-installed versions
+- [NEW] Prefix most configuration variables with `DOWNGRADE_`
+- [FIX] Fix conversion of legacy `ARM_` variables
+- [NEW] Default missing `CacheDir` sensibly
+- [NEW] Download packages to system cache directory
+
+## [v5.4.0](https://github.com/pbrisbin/downgrade/compare/v5.3.0...v5.4.0)
+
+- [FIX] `ARM_URL` in documentation (@andrewcchen)
+- [NEW] Spanish translation (@miachm)
+- [NEW] Russian translation (@7up4)
+- [NEW] Accept version in search term and avoid prompting
+
+## [v5.3.0](https://github.com/pbrisbin/downgrade/compare/v5.2.3...v5.3.0)
+
+- [FIX] Sort using `pacsort`
+- [FIX] Correctly append to `pacman.conf` when `IgnorePkg` not present
+- [FIX] Correctly find packages in A.R.M HTML content
+
+## [v5.2.3](https://github.com/pbrisbin/downgrade/compare/v5.2.2...v5.2.3)
+
+- [FIX] Handling of `+` in URL-decoding
+
+## [v5.2.2](https://github.com/pbrisbin/downgrade/compare/v5.2.1...v5.2.2)
+
+- [NEW] URL-decode package names
+
+## [v5.2.1](https://github.com/pbrisbin/downgrade/compare/v5.2.0...v5.2.1)
+
+- [FIX] Also search for `-any` packages
+
+
+
+## [*v6.3.0*](https://github.com/pbrisbin/downgrade/compare/v6.0.0...v6.3.0)
+
+- [NEW] Replace environmental variables with command-line options/arguments to alter behaviour
+- [NEW] Locale updates for new behaviour keys
+
+## [v6.0.0](https://github.com/pbrisbin/downgrade/compare/v5.4.0...v6.0.0)
+
+- [NEW] Render results one page at a time
+- [NEW] Render an asterisk next to previously-installed versions
+- [NEW] Prefix most configuration variables with `DOWNGRADE_`
+- [FIX] Fix conversion of legacy `ARM_` variables
+- [NEW] Default missing `CacheDir` sensibly
+- [NEW] Download packages to system cache directory
+
+## [v5.4.0](https://github.com/pbrisbin/downgrade/compare/v5.3.0...v5.4.0)
+
+- [FIX] `ARM_URL` in documentation (@andrewcchen)
+- [NEW] Spanish translation (@miachm)
+- [NEW] Russian translation (@7up4)
+- [NEW] Accept version in search term and avoid prompting
+
+## [v5.3.0](https://github.com/pbrisbin/downgrade/compare/v5.2.3...v5.3.0)
+
+- [FIX] Sort using `pacsort`
+- [FIX] Correctly append to `pacman.conf` when `IgnorePkg` not present
+- [FIX] Correctly find packages in A.R.M HTML content
+
+## [v5.2.3](https://github.com/pbrisbin/downgrade/compare/v5.2.2...v5.2.3)
+
+- [FIX] Handling of `+` in URL-decoding
+
+## [v5.2.2](https://github.com/pbrisbin/downgrade/compare/v5.2.1...v5.2.2)
+
+- [NEW] URL-decode package names
+
+## [v5.2.1](https://github.com/pbrisbin/downgrade/compare/v5.2.0...v5.2.1)
+
+- [FIX] Also search for `-any` packages
+
+## [v5.2.0](https://github.com/pbrisbin/downgrade/compare/v5.1.5...v5.2.0)
+
+- [FIX] Stop outputting corrupt `curl` progress
+- [FIX] Don't rely on repo-arm.archlinuxcn.org
+
+
+## [*v6.1.0*](https://github.com/pbrisbin/downgrade/compare/v6.0.0...master)
 
 - [NEW] Render "+" for currently installed, "-" for previously installed
   (@Thomaash)
