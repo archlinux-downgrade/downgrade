@@ -1,50 +1,135 @@
-# Czech translations for downgrade package.
-# Copyright (C) 2018 pbrisbin
-# This file is distributed under the same license as the downgrade package.
-#  <tom.vycital@gmail.com>, 2018.
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 12:01-0400\n"
-"PO-Revision-Date: 2018-01-26 21:10+0100\n"
-"Last-Translator:  <tom.vycital@gmail.com>\n"
-"Language-Team: Czech\n"
-"Language: cs\n"
+"POT-Creation-Date: 2020-04-21 15:29+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: downgrade:9
+msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
+msgstr ""
+
 #: downgrade:11
+msgid "Options"
+msgstr ""
+
+#: downgrade:12
+msgid "command"
+msgstr ""
+
+#: downgrade:13
+msgid "pacman command to use, defaults to"
+msgstr ""
+
+#: downgrade:14
+msgid "file-path"
+msgstr ""
+
+#: downgrade:15
+msgid "pacman configuration file, defaults to"
+msgstr ""
+
+#: downgrade:16
+msgid "architecture"
+msgstr ""
+
+#: downgrade:17
+msgid "target architecture, defaults to output of"
+msgstr ""
+
+#: downgrade:19
+msgid "location of ALA server, defaults to"
+msgstr ""
+
+#: downgrade:20
+msgid "only use ALA server"
+msgstr ""
+
+#: downgrade:21
+msgid "only use cached packages"
+msgstr ""
+
+#: downgrade:22
+msgid "do not use sudo even when available, use su"
+msgstr ""
+
+#: downgrade:23
+msgid "show help script"
+msgstr ""
+
+#: downgrade:25
+msgid "Note"
+msgstr ""
+
+#: downgrade:26
+msgid "Options after the -- characters will be treated as pacman options."
+msgstr ""
+
+#: downgrade:27
+msgid "See downgrade(8) for details."
+msgstr ""
+
+#: downgrade:60
 msgid "Available packages:"
 msgstr "Dostupné balíčky:"
 
-#: downgrade:19
+#: downgrade:70
 msgid "select a package by number: "
 msgstr "vyberte balíček číslem: "
 
-#: downgrade:31
+#: downgrade:87
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "přidat $pkg mezi ignorované? [a/n]"
 
-#: downgrade:34
+#: downgrade:90
 msgid "y"
 msgstr "a"
 
-#: downgrade:57
-msgid "remote"
-msgstr "vzdálený"
-
-#: downgrade:58
+#: downgrade:165
 msgid "local"
 msgstr "místní"
 
-#: downgrade:82
-msgid "usage: downgrade <pkg>, ... [-- <pacman options>]"
-msgstr "použití: downgrade <balíček>, ... [-- <argumenty Pacmanu>]"
+#: downgrade:167
+msgid "remote"
+msgstr "vzdálený"
 
-#: downgrade:83
-msgid "see downgrade(8) for details."
-msgstr "pro více informací vizte downgrade(8)"
+#: downgrade:217
+msgid "Invalid choice"
+msgstr ""
+
+#: downgrade:244
+#, sh-format
+msgid "Unable to downgrade $term"
+msgstr ""
+
+#: downgrade:288
+msgid "Missing --pacman argument"
+msgstr ""
+
+#: downgrade:301
+msgid "Missing --pacman-conf argument"
+msgstr ""
+
+#: downgrade:314
+msgid "Missing --arch argument"
+msgstr ""
+
+#: downgrade:327
+msgid "Missing --ala-url argument"
+msgstr ""
+
+#: downgrade:363
+msgid "No packages provided for downgrading"
+msgstr ""
