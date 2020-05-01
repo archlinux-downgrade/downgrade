@@ -19,8 +19,6 @@ Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
                     pacman command to use, defaults to "pacman"
     --pacman-conf <file-path>
                     pacman configuration file, defaults to "/etc/pacman.conf"
-    --arch <architecture>
-                    target architecture, defaults to output of "uname -m"
     --ala-url <url>
                     location of ALA server, defaults to "https://archive.archlinux.org"
     --ala-only      only use ALA server

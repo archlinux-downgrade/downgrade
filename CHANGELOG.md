@@ -1,11 +1,17 @@
-## [*Ongoing*](https://github.com/pbrisbin/downgrade/compare/v6.3.0...master)
+## [*Ongoing](https://github.com/pbrisbin/downgrade/compare/v6.4.0...master)
 
-- [NEW] Handling hard dependencies during downgrading
+- [NEW] Handling basic version conflicts during downgrading
+
+## [*v6.4.0](https://github.com/pbrisbin/downgrade/compare/v6.3.0...v6.4.0)
+
+- [NEW] Version bound handling by parsing logical =,>,<,>= and <= operators
+- [FIX] Removal of --arch option due to redundancy
+- [FIX] Ignore package bugfix for version-defined package
 
 ## [*v6.3.0*](https://github.com/pbrisbin/downgrade/compare/v6.1.0...v6.3.0)
 
 - [NEW] Replace environmental variables with command line arguments/options
-- [NEW] Updating locales to reflect new keys
+- [FIX] Updating locales to reflect new keys
 
 ## [*v6.1.0*](https://github.com/pbrisbin/downgrade/compare/v6.0.0...v6.1.0)
 

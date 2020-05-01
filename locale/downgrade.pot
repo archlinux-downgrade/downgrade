@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 15:29+0200\n"
+"POT-Creation-Date: 2020-05-01 13:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,96 +40,84 @@ msgstr ""
 msgid "pacman configuration file, defaults to"
 msgstr ""
 
-#: downgrade:16
-msgid "architecture"
-msgstr ""
-
 #: downgrade:17
-msgid "target architecture, defaults to output of"
-msgstr ""
-
-#: downgrade:19
 msgid "location of ALA server, defaults to"
 msgstr ""
 
-#: downgrade:20
+#: downgrade:18
 msgid "only use ALA server"
 msgstr ""
 
-#: downgrade:21
+#: downgrade:19
 msgid "only use cached packages"
 msgstr ""
 
-#: downgrade:22
+#: downgrade:20
 msgid "do not use sudo even when available, use su"
 msgstr ""
 
-#: downgrade:23
+#: downgrade:21
 msgid "show help script"
 msgstr ""
 
-#: downgrade:25
+#: downgrade:23
 msgid "Note"
 msgstr ""
 
-#: downgrade:26
+#: downgrade:24
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 
-#: downgrade:27
+#: downgrade:25
 msgid "See downgrade(8) for details."
 msgstr ""
 
-#: downgrade:60
+#: downgrade:58
 msgid "Available packages:"
 msgstr ""
 
-#: downgrade:70
+#: downgrade:68
 msgid "select a package by number: "
 msgstr ""
 
-#: downgrade:87
+#: downgrade:85
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr ""
 
-#: downgrade:90
+#: downgrade:88
 msgid "y"
 msgstr ""
 
-#: downgrade:165
+#: downgrade:191
 msgid "local"
 msgstr ""
 
-#: downgrade:167
+#: downgrade:193
 msgid "remote"
 msgstr ""
 
-#: downgrade:217
+#: downgrade:245
 msgid "Invalid choice"
 msgstr ""
 
-#: downgrade:244
+#: downgrade:278
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr ""
 
-#: downgrade:288
+#: downgrade:322
 msgid "Missing --pacman argument"
 msgstr ""
 
-#: downgrade:301
+#: downgrade:335
 msgid "Missing --pacman-conf argument"
 msgstr ""
 
-#: downgrade:314
-msgid "Missing --arch argument"
-msgstr ""
-
-#: downgrade:327
+#: downgrade:348
 msgid "Missing --ala-url argument"
 msgstr ""
 
-#: downgrade:363
+#: downgrade:384
 msgid "No packages provided for downgrading"
 msgstr ""

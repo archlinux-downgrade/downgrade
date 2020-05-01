@@ -70,10 +70,6 @@ The columns have the following meaning:
   
 > Pacman configuration file, default is */etc/pacman.conf*.
 
-**\--arch** *\<architecture\>*\
-
-> Target architecture, default is determined by `uname -m`.
-
 **\--ala-url** *\<url\>*\
 	
 > Location of an ALA server, default is *https://archive.archlinux.org*.
@@ -115,7 +111,7 @@ the following scenarios for any of its arguments:
 
 # SEE ALSO
 
-**pacman**(8), **pacman.conf**(5), **find**(1), **sudo**(8), **su**(1).
+**pacman**(8), **vercmp(8)**, **pacman.conf**(5), **find**(1), **sudo**(8), **su**(1).
 
 # BUGS
 

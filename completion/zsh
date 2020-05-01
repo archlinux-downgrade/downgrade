@@ -4,7 +4,6 @@ _downgrade(){
   _arguments -S -C '*:packages:->pkg' \
              '--pacman[Specify pacman command]' \
              '--pacman-conf[Specify pacman configuration file]:config:_files' \
-             '--arch[Specify target architecture]' \
              '--ala-url[Specify location of ALA server]' \
              '--ala-only[Option enables only ALA server search]' \
              '--cached-only[Option enables only cached search]' \

@@ -13,8 +13,6 @@ $(gettext "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]")
                     $(gettext "pacman command to use, defaults to") "pacman"
     --pacman-conf <$(gettext "file-path")>
                     $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
-    --arch <$(gettext "architecture")>
-                    $(gettext "target architecture, defaults to output of") "uname -m"
     --ala-url <url>
                     $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
     --ala-only      $(gettext "only use ALA server")
@@ -105,33 +103,61 @@ prompt_to_ignore() {
   done
 }
 
-search_packages() {
-  local name version pkgfile_re index
+filter_packages() {
+  local -n p=$1
+  local name=$2 operator=$3 version=$4
+  # loop over all paths and check manually
+  for path in "${p[@]}"; do
+    path_version=$(sed -r "s/(.*)$name-(.*)-(any|$DOWNGRADE_ARCH).*/\2/g" <<< "$path")
+    result=$(vercmp "$path_version" "$version")
+    if [[ "$operator" = ">=" ]] && [[ "$result" -ge "0" ]]; then
+      echo "$path"
+    elif [[ "$operator" = ">" ]] && [[ "$result" -eq "1" ]]; then
+      echo "$path"
+    elif [[ "$operator" = "<=" ]] && [[ "$result" -le "0" ]]; then
+      echo "$path"
+    elif [[ "$operator" = "<" ]] && [[ "$result" -eq "-1" ]]; then
+      echo "$path"
+    fi
+  done
+}
 
-  if [[ "$1" =~ -([0-9R].*)$ ]]; then
-    version="${BASH_REMATCH[1]}"
-    name=${1%-$version}
+search_packages() {
+  local name=$1 operator=$2 version=$3 pkgfile_re index
+
+  if [[ "$operator" = "=" ]]; then
     version="$version.*"
   else
+    non_regex_version="$version"
     version="[^-]+-[0-9.]+"
-    name=$1
   fi
   pkgfile_re="$name-$version-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
   index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
   if ((DOWNGRADE_FROM_ALA)); then
-    curl --fail --silent "$index" | sed -E '
+    all_paths=$(curl --fail --silent "$index" | sed -E '
       /.* href="('"$pkgfile_re"')".*/!d;
-      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
+      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b")
+    if [[ -z "$operator" ]] || [[ "$operator" = "=" ]]; then
+      echo "$all_paths"
+    else
+      all_paths=($all_paths)
+      filter_packages all_paths "$name" "$operator" "$non_regex_version"
+    fi
   fi
 
   if ((DOWNGRADE_FROM_CACHE)); then
     # Delay this defaulting so #read_pacman_conf behavior is tested
     : "${PACMAN_CACHE:=$(read_pacman_conf CacheDir)}"
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
-
     # shellcheck disable=SC2086
-    find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended -regex ".*/$pkgfile_re"
+    all_paths=$(find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended -regex ".*/$pkgfile_re")
+    if [[ -z "$operator" ]] || [[ "$operator" = "=" ]]; then
+      echo "$all_paths"
+    else
+      all_paths=($all_paths)
+      filter_packages all_paths "$name" "$operator" "$non_regex_version"
+    fi
   fi
 }
 
@@ -203,9 +229,11 @@ extract_version_parts() {
 
 # shellcheck disable=SC2207
 process_term() {
-  local term=$1 candidates choice
+  local term=$1 operator=$2 version=$3 candidates choice
 
-  candidates=($(search_packages "$term" | sort_packages))
+  candidates=($(search_packages "$term" "$operator" "$version" | sort_packages))
+
+  # echo "${candidates[@]}"
 
   if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
@@ -237,9 +265,15 @@ main() {
 
   for term; do
     # shellcheck disable=SC2207
+    if [[ "$term" =~ (>=|<=|<|>|=) ]]; then
+      breakdown=($(sed -r 's/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g' <<< "$term"))
+      term="${breakdown[0]}"
+      operator="${breakdown[1]}"
+      version="${breakdown[2]}"
+    fi
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
-    if ! process_term "$term"; then
+    if ! process_term "$term" "$operator" "$version"; then
       {
         eval_gettext "Unable to downgrade \$term"
         echo
@@ -299,19 +333,6 @@ parse_options() {
         else
           {
             gettext "Missing --pacman-conf argument"
-            echo
-            usage
-          } >&2
-          exit 1
-        fi
-        ;;
-      --arch)
-        if [[ -n "$2" ]]; then
-          shift
-          DOWNGRADE_ARCH="$1"
-        else
-          {
-            gettext "Missing --arch argument"
             echo
             usage
           } >&2
