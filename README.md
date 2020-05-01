@@ -1,7 +1,8 @@
 # Downgrade
 
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/pbrisbin/downgrade?color=brightgreen&label=version)
-[![CircleCI](https://circleci.com/gh/pbrisbin/downgrade.svg?style=shield)](https://circleci.com/gh/pbrisbin/downgrade)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/pbrisbin/downgrade?label=release&logo=github&color=brightgreen)
+![AUR version](https://img.shields.io/aur/version/downgrade?logo=Arch%20Linux&color=brightgreen)
+![CircleCI](https://img.shields.io/circleci/build/github/pbrisbin/downgrade?logo=circleci)
 [![gitlocalized ](https://gitlocalize.com/repo/4232/whole_project/badge.svg)](https://gitlocalize.com/repo/4232/whole_project?utm_source=badge)
 
 Eases downgrading packages in Arch Linux.
