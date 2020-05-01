@@ -1,7 +1,7 @@
 # Downgrade
 
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/pbrisbin/downgrade?label=release&logo=github)
-![AUR version](https://img.shields.io/aur/version/downgrade?logo=Arch%20Linux)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/pbrisbin/downgrade?label=release&logo=github&color=brightgreen)
+![AUR version](https://img.shields.io/aur/version/downgrade?logo=Arch%20Linux&color=brightgreen)
 ![CircleCI](https://img.shields.io/circleci/build/github/pbrisbin/downgrade?logo=circleci)
 [![gitlocalized ](https://gitlocalize.com/repo/4232/whole_project/badge.svg)](https://gitlocalize.com/repo/4232/whole_project?utm_source=badge)
 
