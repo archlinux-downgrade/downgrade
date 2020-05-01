@@ -109,7 +109,7 @@ filter_packages() {
   version_regex="[^-]+-[0-9.]+"
   # loop over all paths and check manually
   for path in "${p[@]}"; do
-    path_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<< "$path")
+    path_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<<"$path")
     result=$(vercmp "$path_version" "$version")
     if [[ "$operator" = ">=" ]] && [[ "$result" -ge "0" ]]; then
       echo "$path"
