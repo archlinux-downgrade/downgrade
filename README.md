@@ -1,6 +1,6 @@
 # Downgrade
 
-[![GitHub version](https://badge.fury.io/gh/pbrisbin%2Fdowngrade.svg)](https://badge.fury.io/gh/pbrisbin%2Fdowngrade)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/pbrisbin/downgrade?color=brightgreen&label=version)
 [![CircleCI](https://circleci.com/gh/pbrisbin/downgrade.svg?style=shield)](https://circleci.com/gh/pbrisbin/downgrade)
 [![gitlocalized ](https://gitlocalize.com/repo/4232/whole_project/badge.svg)](https://gitlocalize.com/repo/4232/whole_project?utm_source=badge)
 
