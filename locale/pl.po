@@ -7,16 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 12:01-0400\n"
+"POT-Creation-Date: 2020-05-01 17:17+0200\n"
 "PO-Revision-Date: 2020-04-21 17:23+0200\n"
+"Last-Translator: Tomasz \"Ludvick\" Niedzielski <ludvick0@gmail.com>, "
+"<shankar.atreya@gmail.com>\n"
 "Language-Team: \n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
-"Last-Translator: Tomasz \"Ludvick\" Niedzielski <ludvick0@gmail.com>, <shankar.atreya@gmail.com>\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
+"|| n%100>14) ? 1 : 2);\n"
 
 #: downgrade:9
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
@@ -42,96 +44,93 @@ msgstr "ścieżka pliku"
 msgid "pacman configuration file, defaults to"
 msgstr "plik konfiguracyjny pacmana, domyślnie"
 
-#: downgrade:16
-msgid "architecture"
-msgstr "architektura"
-
 #: downgrade:17
-msgid "target architecture, defaults to output of"
-msgstr "architektura docelowa, domyślnie wyjście"
-
-#: downgrade:19
 msgid "location of ALA server, defaults to"
 msgstr "lokalizacja serwera ALA, domyślnie"
 
-#: downgrade:20
+#: downgrade:18
 msgid "only use ALA server"
 msgstr "używaj tylko serwera ALA"
 
-#: downgrade:21
+#: downgrade:19
 msgid "only use cached packages"
 msgstr "używaj tylko pakietów buforowanych"
 
-#: downgrade:22
+#: downgrade:20
 msgid "do not use sudo even when available, use su"
 msgstr "nie używaj sudo, nawet jeśli jest dostępne, używaj su"
 
-#: downgrade:23
+#: downgrade:21
 msgid "show help script"
 msgstr "pokaż skrypt pomocy"
 
-#: downgrade:25
+#: downgrade:23
 msgid "Note"
 msgstr "Uwaga"
 
-#: downgrade:26
+#: downgrade:24
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "Opcje po znakach -- będą traktowane jako opcje Pacman."
 
-#: downgrade:27
+#: downgrade:25
 msgid "See downgrade(8) for details."
 msgstr "Zobacz downgrade(8) po szczegóły."
 
-#: downgrade:60
+#: downgrade:58
 msgid "Available packages:"
 msgstr "Dostępne pakiety:"
 
-#: downgrade:70
+#: downgrade:68
 msgid "select a package by number: "
 msgstr "wybierz pakiet według numeru: "
 
-#: downgrade:87
+#: downgrade:85
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "dodać $pkg do IgnorePkg? [t/n] "
 
-#: downgrade:90
+#: downgrade:88
 msgid "y"
 msgstr "t"
 
-#: downgrade:165
+#: downgrade:191
 msgid "local"
 msgstr "lokalnie"
 
-#: downgrade:167
+#: downgrade:193
 msgid "remote"
 msgstr "do pobrania"
 
-#: downgrade:217
+#: downgrade:243
 msgid "Invalid choice"
 msgstr "Nieprawidłowy wybór"
 
-#: downgrade:244
+#: downgrade:276
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Nie można obniżyć poziomu $term"
 
-#: downgrade:288
+#: downgrade:320
 msgid "Missing --pacman argument"
 msgstr "Brak argumentu --pacman"
 
-#: downgrade:301
+#: downgrade:333
 msgid "Missing --pacman-conf argument"
 msgstr "Brak argumentu --pacman-conf"
 
-#: downgrade:314
-msgid "Missing --arch argument"
-msgstr "Brak argumentu --arch"
-
-#: downgrade:327
+#: downgrade:346
 msgid "Missing --ala-url argument"
 msgstr "Brak argumentu --ala-url"
 
-#: downgrade:363
+#: downgrade:382
 msgid "No packages provided for downgrading"
 msgstr "Brak pakietów do obniżenia"
+
+#~ msgid "architecture"
+#~ msgstr "architektura"
+
+#~ msgid "target architecture, defaults to output of"
+#~ msgstr "architektura docelowa, domyślnie wyjście"
+
+#~ msgid "Missing --arch argument"
+#~ msgstr "Brak argumentu --arch"

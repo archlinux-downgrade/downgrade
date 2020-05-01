@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 18:01-0400\n"
+"POT-Creation-Date: 2020-05-01 17:17+0200\n"
 "PO-Revision-Date: 2020-04-21 18:01-0400\n"
 "Last-Translator: <miachm3@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -41,96 +41,95 @@ msgstr "ruta de archivo"
 msgid "pacman configuration file, defaults to"
 msgstr "archivo de configuración de pacman, el valor predeterminado es"
 
-#: downgrade:16
-msgid "architecture"
-msgstr "arquitectura"
-
 #: downgrade:17
-msgid "target architecture, defaults to output of"
-msgstr "arquitectura de destino, por defecto a la salida de"
-
-#: downgrade:19
 msgid "location of ALA server, defaults to"
 msgstr "ubicación del servidor ALA, el valor predeterminado es"
 
-#: downgrade:20
+#: downgrade:18
 msgid "only use ALA server"
 msgstr "solo use el servidor ALA"
 
-#: downgrade:21
+#: downgrade:19
 msgid "only use cached packages"
 msgstr "solo use paquetes en caché"
 
-#: downgrade:22
+#: downgrade:20
 msgid "do not use sudo even when available, use su"
 msgstr "no use sudo incluso cuando esté disponible, use su"
 
-#: downgrade:23
+#: downgrade:21
 msgid "show help script"
 msgstr "mostrar guión de ayuda"
 
-#: downgrade:25
+#: downgrade:23
 msgid "Note"
 msgstr "Nota"
 
-#: downgrade:26
+#: downgrade:24
 msgid "Options after the -- characters will be treated as pacman options."
-msgstr "Las opciones después de los caracteres -- se tratarán como opciones de pacman."
+msgstr ""
+"Las opciones después de los caracteres -- se tratarán como opciones de "
+"pacman."
 
-#: downgrade:27
+#: downgrade:25
 msgid "See downgrade(8) for details."
 msgstr "Ver downgrade(8) para más detalles."
 
-#: downgrade:60
+#: downgrade:58
 msgid "Available packages:"
 msgstr "Paquetes disponibles:"
 
-#: downgrade:70
+#: downgrade:68
 msgid "select a package by number: "
 msgstr "Selecciona un paquete por su número: "
 
-#: downgrade:87
+#: downgrade:85
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "Añadir $pkg a paquetes ignorados [s/n] "
 
-#: downgrade:90
+#: downgrade:88
 msgid "y"
 msgstr "s"
 
-#: downgrade:165
+#: downgrade:191
 msgid "local"
 msgstr "local"
 
-#: downgrade:167
+#: downgrade:193
 msgid "remote"
 msgstr "remoto"
 
-#: downgrade:217
+#: downgrade:243
 msgid "Invalid choice"
 msgstr "Elección inválida"
 
-#: downgrade:244
+#: downgrade:276
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "No se puede degradar $term"
 
-#: downgrade:288
+#: downgrade:320
 msgid "Missing --pacman argument"
 msgstr "Falta el argumento --pacman"
 
-#: downgrade:301
+#: downgrade:333
 msgid "Missing --pacman-conf argument"
 msgstr "Falta el argumento --pacman-conf"
 
-#: downgrade:314
-msgid "Missing --arch argument"
-msgstr "Falta el argumento --arch"
-
-#: downgrade:327
+#: downgrade:346
 msgid "Missing --ala-url argument"
 msgstr "Falta el argumento --arch-url"
 
-#: downgrade:363
+#: downgrade:382
 msgid "No packages provided for downgrading"
 msgstr "No se proporcionan paquetes para degradar"
+
+#~ msgid "architecture"
+#~ msgstr "arquitectura"
+
+#~ msgid "target architecture, defaults to output of"
+#~ msgstr "arquitectura de destino, por defecto a la salida de"
+
+#~ msgid "Missing --arch argument"
+#~ msgstr "Falta el argumento --arch"

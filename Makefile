@@ -7,17 +7,16 @@ setup:
 	command -v vbump  || aurget vbump-git
 	command -v pandoc || stack install pandoc
 
-locale/downgrade.pot: downgrade
+locale:
 	xgettext \
 		--from-code=utf-8 -L shell \
 		--package-name=downgrade \
 		--copyright-holder=$(AUTHOR) \
-		-o $@ $<
+		-o locale/downgrade.pot downgrade
+	ls ./locale/*po | xargs -I {} msgmerge --update {} ./locale/downgrade.pot
 
-downgrade.8: doc/downgrade.8.md
+man:
 	$(PANDOC) --standalone --to man doc/downgrade.8.md -o doc/downgrade.8
-
-man: downgrade.8
 
 test:
 	cram test
@@ -34,7 +33,7 @@ uninstall:
 	  $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
-.PHONY: setup test install uninstall
+.PHONY: setup test install uninstall locale
 
 .PHONY: release.major
 release.major: VERSION=$(shell git tag | vbump major | sed 's/^v//')
