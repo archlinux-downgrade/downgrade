@@ -106,9 +106,10 @@ prompt_to_ignore() {
 filter_packages() {
   local -n p=$1
   local name=$2 operator=$3 version=$4
+  version_regex="[^-]+-[0-9.]+"
   # loop over all paths and check manually
   for path in "${p[@]}"; do
-    path_version=$(sed -r "s/(.*)$name-(.*)-(any|$DOWNGRADE_ARCH).*/\2/g" <<< "$path")
+    path_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<< "$path")
     result=$(vercmp "$path_version" "$version")
     if [[ "$operator" = ">=" ]] && [[ "$result" -ge "0" ]]; then
       echo "$path"

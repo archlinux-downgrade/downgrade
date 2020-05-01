@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 17:17+0200\n"
+"POT-Creation-Date: 2020-05-01 18:43+0200\n"
 "PO-Revision-Date: 2020-04-21 01:23-0300\n"
 "Last-Translator: Thiago Perrotta <thiagoperrotta95@gmail.com>, <shankar."
 "atreya@gmail.com>\n"
@@ -92,36 +92,36 @@ msgstr "adicionar $pkg em IgnorePkg? [s/n]"
 msgid "y"
 msgstr "s"
 
-#: downgrade:191
+#: downgrade:192
 msgid "local"
 msgstr "local"
 
-#: downgrade:193
+#: downgrade:194
 msgid "remote"
 msgstr "remoto"
 
-#: downgrade:243
+#: downgrade:244
 msgid "Invalid choice"
 msgstr "Escolha inválida"
 
-#: downgrade:276
+#: downgrade:277
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Não foi possível fazer o downgrade $term"
 
-#: downgrade:320
+#: downgrade:321
 msgid "Missing --pacman argument"
 msgstr "Argumento --pacman ausente"
 
-#: downgrade:333
+#: downgrade:334
 msgid "Missing --pacman-conf argument"
 msgstr "Argumento --pacman-conf ausente"
 
-#: downgrade:346
+#: downgrade:347
 msgid "Missing --ala-url argument"
 msgstr "Argumento --ala-url ausente"
 
-#: downgrade:382
+#: downgrade:383
 msgid "No packages provided for downgrading"
 msgstr "Nenhum pacote fornecido para desatualização"
 

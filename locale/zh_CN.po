@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 17:17+0200\n"
+"POT-Creation-Date: 2020-05-01 18:43+0200\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -90,36 +90,36 @@ msgstr "添加$pkg到IgnorePkg? [y/n]"
 msgid "y"
 msgstr "y"
 
-#: downgrade:191
+#: downgrade:192
 msgid "local"
 msgstr "本地"
 
-#: downgrade:193
+#: downgrade:194
 msgid "remote"
 msgstr "远端"
 
-#: downgrade:243
+#: downgrade:244
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: downgrade:276
+#: downgrade:277
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "无法降级$term"
 
-#: downgrade:320
+#: downgrade:321
 msgid "Missing --pacman argument"
 msgstr "缺少--pacman参数"
 
-#: downgrade:333
+#: downgrade:334
 msgid "Missing --pacman-conf argument"
 msgstr "缺少--pacman-conf参数"
 
-#: downgrade:346
+#: downgrade:347
 msgid "Missing --ala-url argument"
 msgstr "缺少--ala-url参数"
 
-#: downgrade:382
+#: downgrade:383
 msgid "No packages provided for downgrading"
 msgstr "没有提供降级包"
 

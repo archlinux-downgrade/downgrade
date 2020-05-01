@@ -7,6 +7,7 @@
 - [NEW] Version bound handling by parsing logical =,>,<,>= and <= operators
 - [FIX] Removal of --arch option due to redundancy
 - [FIX] Ignore package bugfix for version-defined package
+- [FIX] Modified Makefile to handle more thorough locale updates
 
 ## [*v6.3.0*](https://github.com/pbrisbin/downgrade/compare/v6.1.0...v6.3.0)
 
