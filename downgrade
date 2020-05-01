@@ -264,7 +264,7 @@ main() {
 
   for term; do
     # shellcheck disable=SC2207
-    if [[ "$term" =~ .*(>=|<=|<|>|=).* ]]; then
+    if [[ "$term" =~ (>=|<=|<|>|=) ]]; then
       breakdown=($(sed -r 's/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g' <<< "$term"))
       term="${breakdown[0]}"
       operator="${breakdown[1]}"
