@@ -136,14 +136,14 @@ search_packages() {
   index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
   if ((DOWNGRADE_FROM_ALA)); then
-    all_paths=$(curl --fail --silent "$index" | sed -E '
+    all_paths_ala=$(curl --fail --silent "$index" | sed -E '
       /.* href="('"$pkgfile_re"')".*/!d;
       s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b")
     if [[ -z "$operator" ]] || [[ "$operator" = "=" ]]; then
-      echo "$all_paths"
+      echo "$all_paths_ala"
     else
-      all_paths=($all_paths)
-      filter_packages all_paths "$name" "$operator" "$non_regex_version"
+      all_paths_ala=($all_paths_ala)
+      filter_packages all_paths_ala "$name" "$operator" "$non_regex_version"
     fi
   fi
 
@@ -152,12 +152,12 @@ search_packages() {
     : "${PACMAN_CACHE:=$(read_pacman_conf CacheDir)}"
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
     # shellcheck disable=SC2086
-    all_paths=$(find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended -regex ".*/$pkgfile_re")
+    all_paths_cached=$(find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended -regex ".*/$pkgfile_re")
     if [[ -z "$operator" ]] || [[ "$operator" = "=" ]]; then
-      echo "$all_paths"
+      echo "$all_paths_cached"
     else
-      all_paths=($all_paths)
-      filter_packages all_paths "$name" "$operator" "$non_regex_version"
+      all_paths_cached=($all_paths_cached)
+      filter_packages all_paths_cached "$name" "$operator" "$non_regex_version"
     fi
   fi
 }
@@ -264,7 +264,7 @@ main() {
 
   for term; do
     # shellcheck disable=SC2207
-    if [[ "$term" =~ "(>=|<=|<|>|=)" ]]; then
+    if [[ "$term" =~ (>=|<=|<|>|=) ]]; then
       breakdown=($(sed -r 's/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g' <<< "$term"))
       term="${breakdown[0]}"
       operator="${breakdown[1]}"
