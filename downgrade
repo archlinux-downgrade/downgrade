@@ -105,8 +105,8 @@ prompt_to_ignore() {
 
 filter_packages() {
   local -n p=$1
-  local name=$2 operator=$3 version=$4
-  version_regex="[^-]+-[0-9.]+"
+  local name="$2" operator="$3" version="$4"
+  local version_regex="[^-]+-[0-9.]+"
   # loop over all paths and check manually
   for path in "${p[@]}"; do
     path_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<<"$path")
@@ -124,7 +124,8 @@ filter_packages() {
 }
 
 search_packages() {
-  local name=$1 operator=$2 version=$3 pkgfile_re index
+  local name="$1" operator="$2" version="$3" non_regex_version pkgfile_re index
+  local all_paths_ala all_paths_cached
 
   if [[ "$operator" = "=" ]]; then
     version="$version.*"
@@ -211,7 +212,7 @@ output_package() {
 
 # <package name> <package path>
 extract_version_parts() {
-  local pkgname=$1 path=$2 location version epoch arch release
+  local pkgname="$1" path="$2" location version epoch arch release
 
   sed '
     # Strip first path component
@@ -230,7 +231,7 @@ extract_version_parts() {
 
 # shellcheck disable=SC2207
 process_term() {
-  local term=$1 operator=$2 version=$3 candidates choice
+  local term="$1" operator="$2" version="$3" candidates choice
 
   candidates=($(search_packages "$term" "$operator" "$version" | sort_packages))
 
@@ -258,18 +259,16 @@ process_term() {
 }
 
 main() {
-  local term candidates choice pkg exit_code=0
+  local term breakdown operator version candidates exit_code=0
 
   (($#)) || return 1
 
   for term; do
     # shellcheck disable=SC2207
-    if [[ "$term" =~ (>=|<=|<|>|=) ]]; then
-      breakdown=($(sed -r "s/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g" <<< "$term"))
-      term="${breakdown[0]}"
-      operator="${breakdown[1]}"
-      version="${breakdown[2]}"
-    fi
+    breakdown=($(sed -r "s/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g" <<< "$term"))
+    term="${breakdown[0]}"
+    operator="${breakdown[1]}"
+    version="${breakdown[2]}"
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
     if ! process_term "$term" "$operator" "$version"; then
@@ -308,6 +307,7 @@ declare -a to_ignore
 declare -a to_install
 declare -a pacman_args
 declare -a installed
+declare current
 
 parse_options() {
   while [[ -n "$1" ]]; do
