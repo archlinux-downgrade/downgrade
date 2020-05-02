@@ -16,8 +16,10 @@ locale/downgrade.pot: downgrade
 		-o locale/downgrade.pot downgrade
 	ls ./locale/*po | xargs -I {} msgmerge --update {} ./locale/downgrade.pot
 
-man:
+downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man doc/downgrade.8.md -o doc/downgrade.8
+
+man: downgrade.8
 
 test:
 	cram test
