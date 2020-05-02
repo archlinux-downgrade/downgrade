@@ -1,6 +1,6 @@
-LOCALE_PREFIX ?= /usr
 PREFIX    ?= /usr/local
 MANPREFIX ?= $(PREFIX)/share/man
+LOCALE_PREFIX ?= /usr/share/locale
 PANDOC    ?= $(shell which pandoc)
 
 setup:
@@ -8,7 +8,7 @@ setup:
 	command -v vbump  || aurget vbump-git
 	command -v pandoc || stack install pandoc
 
-locale:
+locale/downgrade.pot: downgrade
 	xgettext \
 		--from-code=utf-8 -L shell \
 		--package-name=downgrade \
@@ -34,21 +34,21 @@ uninstall:
 	  $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
-.PHONY: setup test install uninstall locale
+.PHONY: setup test install uninstall
 
 .PHONY: install.po
 install.po:
 	for po_file in $(shell ls ./locale/*po); do \
 		locale="$$(basename "$$po_file" .po)" && \
-		mkdir -p "$(DESTDIR)/$(LOCALE_PREFIX)/share/locale/$$locale/LC_MESSAGES/" && \
-		msgfmt "$$po_file" -o "$(DESTDIR)/$(LOCALE_PREFIX)/share/locale/$$locale/LC_MESSAGES/downgrade.mo"; \
+		mkdir -p "$(DESTDIR)/$(LOCALE_PREFIX)/$$locale/LC_MESSAGES/" && \
+		msgfmt "$$po_file" -o "$(DESTDIR)/$(LOCALE_PREFIX)/$$locale/LC_MESSAGES/downgrade.mo"; \
 	done
 
 .PHONY: uninstall.po
 uninstall.po:
 	for po_file in $(shell ls ./locale/*po); do \
 		locale="$$(basename "$$po_file" .po)" && \
-		$(RM) "$(DESTDIR)/$(LOCALE_PREFIX)/share/locale/$$locale/LC_MESSAGES/downgrade.mo"; \
+		$(RM) "$(DESTDIR)/$(LOCALE_PREFIX)/$$locale/LC_MESSAGES/downgrade.mo"; \
 	done
 
 .PHONY: release.major
