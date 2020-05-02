@@ -18,6 +18,7 @@ jobs:
             apt-get install -q -y gettext
 
             pip install cram
+            pip install rpm_vercmp
       - run:
           name: Test
           command: make test

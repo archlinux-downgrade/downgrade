@@ -23,5 +23,12 @@ write_pacman_conf() {
 
 ignore() { yes | prompt_to_ignore "$@" >/dev/null; }
 
+if [[ ! "$(uname -r)" =~ "arch" ]]; then
+  vercmp(){
+    local p1="$1" p2="$2"
+    python -c 'import sys; import rpm_vercmp.vercmp as vercmp; result=vercmp(sys.argv[1],sys.argv[2]); print(result);' "$p1" "$p2"
+  }
+fi
+
 # Load implementation
 source "$SRCDIR"/downgrade
