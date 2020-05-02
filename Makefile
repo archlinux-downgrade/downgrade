@@ -1,3 +1,4 @@
+LOCALE_PREFIX ?= /usr
 PREFIX    ?= /usr/local
 MANPREFIX ?= $(PREFIX)/share/man
 PANDOC    ?= $(shell which pandoc)
@@ -39,15 +40,15 @@ uninstall:
 install.po:
 	for po_file in $(shell ls ./locale/*po); do \
 		locale="$$(basename "$$po_file" .po)" && \
-		mkdir -p "/usr/share/locale/$$locale/LC_MESSAGES/" && \
-		msgfmt "$$po_file" -o "/usr/share/locale/$$locale/LC_MESSAGES/downgrade.mo"; \
+		mkdir -p "$(DESTDIR)/$(LOCALE_PREFIX)/share/locale/$$locale/LC_MESSAGES/" && \
+		msgfmt "$$po_file" -o "$(DESTDIR)/$(LOCALE_PREFIX)/share/locale/$$locale/LC_MESSAGES/downgrade.mo"; \
 	done
 
 .PHONY: uninstall.po
 uninstall.po:
 	for po_file in $(shell ls ./locale/*po); do \
 		locale="$$(basename "$$po_file" .po)" && \
-		$(RM) "/usr/share/locale/$$locale/LC_MESSAGES/downgrade.mo"; \
+		$(RM) "$(DESTDIR)/$(LOCALE_PREFIX)/share/locale/$$locale/LC_MESSAGES/downgrade.mo"; \
 	done
 
 .PHONY: release.major
