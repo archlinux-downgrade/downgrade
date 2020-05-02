@@ -1,7 +1,7 @@
   $ source "$TESTDIR/../helper.sh"
   > PACMAN_LOG=/dev/null
 
-It doesn't present packages when there's only one choice
+Check if package name, operator and version can be separated
 
   $ touch "$TMP/foo.pkg"
   > search_packages() { printf "%s\n" "$TMP/foo.pkg"; }
