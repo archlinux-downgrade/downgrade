@@ -5,6 +5,7 @@
 ## [v6.4.0](https://github.com/pbrisbin/downgrade/compare/v6.3.0...v6.4.0)
 
 - [NEW] Version bound handling by parsing logical =,>,<,>= and <= operators
+- [FIX] New tests and circle CI build modification
 - [FIX] Removal of --arch option due to redundancy
 - [FIX] Ignore package bugfix for version-defined package
 - [FIX] Modified Makefile to handle more thorough locale updates

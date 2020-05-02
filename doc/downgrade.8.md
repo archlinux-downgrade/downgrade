@@ -12,7 +12,7 @@ Downgrade Arch Linux packages.
 
 # OUTPUT
 
-Just calling `downgrade` on a package will lead to the following output:
+Just calling **downgrade** on a package will lead to the following output:
 
 *Example:*
 
@@ -98,9 +98,15 @@ The package cache directory is read from the pacman configuration file by defaul
 
 The pacman log file is read from the pacman configuration file by default, or set to */var/log/pacman.log* when not found.
 
+# VERSION FILTERING
+
+**downgrade** allows the use of the following version filtering operators: **=**, **<=**, **>=**, **<** and **>**. Note that the **=** operator provides a fuzzy match if the input version is incomplete.
+
+If only one package-path matches, the package will be installed without further prompt from the user.
+
 # EXIT CODES
 
-Downgrade will stop further processing and exit non-zero if it encounters any of
+**downgrade** will stop further processing and exit non-zero if it encounters any of
 the following scenarios for any of its arguments:
 
 - No argument value(s) supplied where necessary

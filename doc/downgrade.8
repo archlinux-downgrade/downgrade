@@ -11,7 +11,7 @@ pacman_option\&...]
 Downgrade Arch Linux packages.
 .SH OUTPUT
 .PP
-Just calling \f[C]downgrade\f[R] on a package will lead to the following
+Just calling \f[B]downgrade\f[R] on a package will lead to the following
 output:
 .PP
 \f[I]Example:\f[R]
@@ -130,9 +130,19 @@ by default, or set to \f[I]/var/cache/pacman/pkg/\f[R] when not found.
 .PP
 The pacman log file is read from the pacman configuration file by
 default, or set to \f[I]/var/log/pacman.log\f[R] when not found.
+.SH VERSION FILTERING
+.PP
+\f[B]downgrade\f[R] allows the use of the following version filtering
+operators: \f[B]=\f[R], \f[B]<=\f[R], \f[B]>=\f[R], \f[B]<\f[R] and
+\f[B]>\f[R].
+Note that the \f[B]=\f[R] operator provides a fuzzy match if the input
+version is incomplete.
+.PP
+If only one package-path matches, the package will be installed without
+further prompt from the user.
 .SH EXIT CODES
 .PP
-Downgrade will stop further processing and exit non-zero if it
+\f[B]downgrade\f[R] will stop further processing and exit non-zero if it
 encounters any of the following scenarios for any of its arguments:
 .IP \[bu] 2
 No argument value(s) supplied where necessary
