@@ -21,6 +21,8 @@ doc/downgrade.8: doc/downgrade.8.md
 
 man: doc/downgrade.8
 
+locale: locale/downgrade.pot
+
 test:
 	cram test
 
@@ -36,7 +38,7 @@ uninstall:
 	  $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
-.PHONY: setup test install uninstall
+.PHONY: setup test install uninstall locale man
 
 .PHONY: install.po
 install.po:
