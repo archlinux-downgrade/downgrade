@@ -269,6 +269,9 @@ main() {
     term="${breakdown[0]}"
     operator="${breakdown[1]}"
     version="${breakdown[2]}"
+    if ((LIB)); then
+      echo "$term $operator $version" >&2
+    fi
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
     if ! process_term "$term" "$operator" "$version"; then
