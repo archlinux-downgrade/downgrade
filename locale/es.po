@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 18:43+0200\n"
+"POT-Creation-Date: 2020-05-02 02:16+0200\n"
 "PO-Revision-Date: 2020-04-21 18:01-0400\n"
 "Last-Translator: <miachm3@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -92,19 +92,19 @@ msgstr "Añadir $pkg a paquetes ignorados [s/n] "
 msgid "y"
 msgstr "s"
 
-#: downgrade:192
+#: downgrade:193
 msgid "local"
 msgstr "local"
 
-#: downgrade:194
+#: downgrade:195
 msgid "remote"
 msgstr "remoto"
 
-#: downgrade:244
+#: downgrade:245
 msgid "Invalid choice"
 msgstr "Elección inválida"
 
-#: downgrade:277
+#: downgrade:276
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "No se puede degradar $term"

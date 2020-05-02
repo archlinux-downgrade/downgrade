@@ -259,7 +259,7 @@ process_term() {
 }
 
 main() {
-  local term breakdown operator version candidates exit_code=0
+  local term breakdown operator version exit_code=0
 
   (($#)) || return 1
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 18:43+0200\n"
+"POT-Creation-Date: 2020-05-02 02:16+0200\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -90,19 +90,19 @@ msgstr "添加$pkg到IgnorePkg? [y/n]"
 msgid "y"
 msgstr "y"
 
-#: downgrade:192
+#: downgrade:193
 msgid "local"
 msgstr "本地"
 
-#: downgrade:194
+#: downgrade:195
 msgid "remote"
 msgstr "远端"
 
-#: downgrade:244
+#: downgrade:245
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: downgrade:277
+#: downgrade:276
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "无法降级$term"

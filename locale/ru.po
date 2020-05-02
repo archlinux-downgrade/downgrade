@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 18:43+0200\n"
+"POT-Creation-Date: 2020-05-02 02:16+0200\n"
 "PO-Revision-Date: 2020-04-21 14:25-0300\n"
 "Last-Translator: Nurlan <nurlancik1@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -94,19 +94,19 @@ msgstr "добавить $pkg в список проигнорированных
 msgid "y"
 msgstr "д"
 
-#: downgrade:192
+#: downgrade:193
 msgid "local"
 msgstr "локально"
 
-#: downgrade:194
+#: downgrade:195
 msgid "remote"
 msgstr "дистанционно"
 
-#: downgrade:244
+#: downgrade:245
 msgid "Invalid choice"
 msgstr "Неверный выбор"
 
-#: downgrade:277
+#: downgrade:276
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Невозможно понизить $term"

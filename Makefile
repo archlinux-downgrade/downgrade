@@ -35,6 +35,21 @@ uninstall:
 
 .PHONY: setup test install uninstall locale
 
+.PHONY: install.po
+install.po:
+	for po_file in $(shell ls ./locale/*po); do \
+		locale="$$(basename "$$po_file" .po)" && \
+		mkdir -p "/usr/share/locale/$$locale/LC_MESSAGES/" && \
+		msgfmt "$$po_file" -o "/usr/share/locale/$$locale/LC_MESSAGES/downgrade.mo"; \
+	done
+
+.PHONY: uninstall.po
+uninstall.po:
+	for po_file in $(shell ls ./locale/*po); do \
+		locale="$$(basename "$$po_file" .po)" && \
+		$(RM) "/usr/share/locale/$$locale/LC_MESSAGES/downgrade.mo"; \
+	done
+
 .PHONY: release.major
 release.major: VERSION=$(shell git tag | vbump major | sed 's/^v//')
 release.major: release

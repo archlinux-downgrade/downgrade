@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 18:43+0200\n"
+"POT-Creation-Date: 2020-05-02 02:16+0200\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -94,19 +94,19 @@ msgstr ""
 msgid "y"
 msgstr "o"
 
-#: downgrade:192
+#: downgrade:193
 msgid "local"
 msgstr "local"
 
-#: downgrade:194
+#: downgrade:195
 msgid "remote"
 msgstr "distant"
 
-#: downgrade:244
+#: downgrade:245
 msgid "Invalid choice"
 msgstr "Choix invalide"
 
-#: downgrade:277
+#: downgrade:276
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Impossible de rétrograder $term"

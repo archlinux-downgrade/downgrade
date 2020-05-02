@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 18:43+0200\n"
+"POT-Creation-Date: 2020-05-02 02:16+0200\n"
 "PO-Revision-Date: 2020-04-21 21:10+0100\n"
 "Last-Translator: <tom.vycital@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -91,19 +91,19 @@ msgstr "přidat $pkg mezi ignorované? [a/n]"
 msgid "y"
 msgstr "a"
 
-#: downgrade:192
+#: downgrade:193
 msgid "local"
 msgstr "místní"
 
-#: downgrade:194
+#: downgrade:195
 msgid "remote"
 msgstr "vzdálený"
 
-#: downgrade:244
+#: downgrade:245
 msgid "Invalid choice"
 msgstr "Neplatná volba"
 
-#: downgrade:277
+#: downgrade:276
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Nelze downgradovat $term"

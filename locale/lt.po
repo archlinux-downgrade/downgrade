@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 18:43+0200\n"
+"POT-Creation-Date: 2020-05-02 02:16+0200\n"
 "PO-Revision-Date: 2020-04-21 13:53+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -94,19 +94,19 @@ msgstr "pridėti $pkg į IgnorePkg? [t/n]"
 msgid "y"
 msgstr "t"
 
-#: downgrade:192
+#: downgrade:193
 msgid "local"
 msgstr "vietinis"
 
-#: downgrade:194
+#: downgrade:195
 msgid "remote"
 msgstr "nutolęs"
 
-#: downgrade:244
+#: downgrade:245
 msgid "Invalid choice"
 msgstr "Netinkamas pasirinkimas"
 
-#: downgrade:277
+#: downgrade:276
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Neįmanoma paversti žemesnio lygio $term"
