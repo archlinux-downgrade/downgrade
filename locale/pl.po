@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-02 02:16+0200\n"
+"POT-Creation-Date: 2020-05-02 17:00+0200\n"
 "PO-Revision-Date: 2020-04-21 17:23+0200\n"
 "Last-Translator: Tomasz \"Ludvick\" Niedzielski <ludvick0@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -105,24 +105,24 @@ msgstr "do pobrania"
 msgid "Invalid choice"
 msgstr "Nieprawidłowy wybór"
 
-#: downgrade:276
+#: downgrade:279
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Nie można obniżyć poziomu $term"
 
-#: downgrade:321
+#: downgrade:324
 msgid "Missing --pacman argument"
 msgstr "Brak argumentu --pacman"
 
-#: downgrade:334
+#: downgrade:337
 msgid "Missing --pacman-conf argument"
 msgstr "Brak argumentu --pacman-conf"
 
-#: downgrade:347
+#: downgrade:350
 msgid "Missing --ala-url argument"
 msgstr "Brak argumentu --ala-url"
 
-#: downgrade:383
+#: downgrade:386
 msgid "No packages provided for downgrading"
 msgstr "Brak pakietów do obniżenia"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-02 02:16+0200\n"
+"POT-Creation-Date: 2020-05-02 17:00+0200\n"
 "PO-Revision-Date: 2020-04-21 18:01-0400\n"
 "Last-Translator: <miachm3@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -104,24 +104,24 @@ msgstr "remoto"
 msgid "Invalid choice"
 msgstr "Elección inválida"
 
-#: downgrade:276
+#: downgrade:279
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "No se puede degradar $term"
 
-#: downgrade:321
+#: downgrade:324
 msgid "Missing --pacman argument"
 msgstr "Falta el argumento --pacman"
 
-#: downgrade:334
+#: downgrade:337
 msgid "Missing --pacman-conf argument"
 msgstr "Falta el argumento --pacman-conf"
 
-#: downgrade:347
+#: downgrade:350
 msgid "Missing --ala-url argument"
 msgstr "Falta el argumento --arch-url"
 
-#: downgrade:383
+#: downgrade:386
 msgid "No packages provided for downgrading"
 msgstr "No se proporcionan paquetes para degradar"
 
