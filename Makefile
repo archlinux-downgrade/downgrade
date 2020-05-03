@@ -1,6 +1,6 @@
-PREFIX    ?= /usr/local
+PREFIX    ?= /usr
 MANPREFIX ?= $(PREFIX)/share/man
-LOCALE_PREFIX ?= /usr/share/locale
+LOCALE_PREFIX ?= $(PREFIX)/share/locale
 PANDOC    ?= $(shell which pandoc)
 
 .PHONY: setup
@@ -8,6 +8,10 @@ setup:
 	command -v cram   || aurget cram
 	command -v vbump  || aurget vbump-git
 	command -v pandoc || stack install pandoc
+
+.PHONY: config
+config:
+	sed 's|@LOCALE_PREFIX@|$(LOCALE_PREFIX)|g' downgrade.in > downgrade
 
 locale/downgrade.pot: downgrade
 	xgettext \
