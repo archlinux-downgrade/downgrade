@@ -155,8 +155,8 @@ search_packages() {
   if ((DOWNGRADE_FROM_ALA)); then
     curl --fail --silent "$index" | sed -E '
       /.* href="('"$pkgfile_re"')".*/!d;
-      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b" \
-        | filter_packages "${name_op_ver[@]}"
+      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b" |
+      filter_packages "${name_op_ver[@]}"
   fi
 
   if ((DOWNGRADE_FROM_CACHE)); then
@@ -165,7 +165,7 @@ search_packages() {
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
     # shellcheck disable=SC2086
     find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended \
-         -regex ".*/$pkgfile_re" | filter_packages "${name_op_ver[@]}"
+      -regex ".*/$pkgfile_re" | filter_packages "${name_op_ver[@]}"
   fi
 }
 
