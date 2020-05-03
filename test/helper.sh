@@ -24,4 +24,4 @@ write_pacman_conf() {
 ignore() { yes | prompt_to_ignore "$@" >/dev/null; }
 
 # Load implementation
-source "$SRCDIR"/downgrade
+source "$SRCDIR"/downgrade.in
