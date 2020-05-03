@@ -3,6 +3,7 @@ MANPREFIX ?= $(PREFIX)/share/man
 LOCALE_PREFIX ?= /usr/share/locale
 PANDOC    ?= $(shell which pandoc)
 
+.PHONY: setup
 setup:
 	command -v cram   || aurget cram
 	command -v vbump  || aurget vbump-git
@@ -13,36 +14,39 @@ locale/downgrade.pot: downgrade
 		--from-code=utf-8 -L shell \
 		--package-name=downgrade \
 		--copyright-holder=$(AUTHOR) \
-		-o locale/downgrade.pot downgrade
-	ls ./locale/*po | xargs -I {} msgmerge --update {} ./locale/downgrade.pot
+		-o $@ $<
+	find ./locale/*po -exec msgmerge --update {} $@ \;
 
 doc/downgrade.8: doc/downgrade.8.md
-	$(PANDOC) --standalone --to man doc/downgrade.8.md -o doc/downgrade.8
+	$(PANDOC) --standalone --to man $< -o $@
 
+.PHONY: man
 man: doc/downgrade.8
 
+.PHONY: locale
 locale: locale/downgrade.pot
 
+.PHONY: test
 test:
 	cram test
 
+.PHONY: install
 install:
 	install -Dm755 downgrade $(DESTDIR)/$(PREFIX)/bin/downgrade
 	install -Dm644 doc/downgrade.8 $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8
 	install -Dm644 completion/bash $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade
 	install -Dm644 completion/zsh $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
+.PHONY: uninstall
 uninstall:
 	$(RM) $(DESTDIR)/$(PREFIX)/bin/downgrade \
 	  $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8 \
 	  $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
 
-.PHONY: setup test install uninstall locale man
-
 .PHONY: install.po
 install.po:
-	for po_file in $(shell ls ./locale/*po); do \
+	for po_file in $(shell find ./locale/*po); do \
 		locale="$$(basename "$$po_file" .po)" && \
 		mkdir -p "$(DESTDIR)/$(LOCALE_PREFIX)/$$locale/LC_MESSAGES/" && \
 		msgfmt "$$po_file" -o "$(DESTDIR)/$(LOCALE_PREFIX)/$$locale/LC_MESSAGES/downgrade.mo"; \
@@ -50,7 +54,7 @@ install.po:
 
 .PHONY: uninstall.po
 uninstall.po:
-	for po_file in $(shell ls ./locale/*po); do \
+	for po_file in $(shell find ./locale/*po); do \
 		locale="$$(basename "$$po_file" .po)" && \
 		$(RM) "$(DESTDIR)/$(LOCALE_PREFIX)/$$locale/LC_MESSAGES/downgrade.mo"; \
 	done
