@@ -9,9 +9,6 @@ setup:
 	command -v vbump  || aurget vbump-git
 	command -v pandoc || stack install pandoc
 
-downgrade: downgrade.in
-	sed 's|@LOCALE_PREFIX@|$(LOCALE_PREFIX)|g' $< > $@
-
 locale/downgrade.pot: downgrade
 	xgettext \
 		--from-code=utf-8 -L shell \
@@ -24,7 +21,8 @@ doc/downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man $< -o $@
 
 .PHONY: config
-config: downgrade
+config:
+	sed 's|@LOCALE_PREFIX@|$(LOCALE_PREFIX)|g' downgrade.in > downgrade
 
 .PHONY: man
 man: doc/downgrade.8
@@ -37,7 +35,7 @@ test:
 	cram test
 
 .PHONY: install
-install: downgrade
+install: config
 	install -Dm755 downgrade $(DESTDIR)/$(PREFIX)/bin/downgrade
 	install -Dm644 doc/downgrade.8 $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8
 	install -Dm644 completion/bash $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade
