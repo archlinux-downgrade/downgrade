@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-02 17:00+0200\n"
+"POT-Creation-Date: 2020-05-03 17:21+0200\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -94,36 +94,36 @@ msgstr ""
 msgid "y"
 msgstr "o"
 
-#: downgrade:193
+#: downgrade:199
 msgid "local"
 msgstr "local"
 
-#: downgrade:195
+#: downgrade:201
 msgid "remote"
 msgstr "distant"
 
-#: downgrade:245
+#: downgrade:251
 msgid "Invalid choice"
 msgstr "Choix invalide"
 
-#: downgrade:279
+#: downgrade:283
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Impossible de rétrograder $term"
 
-#: downgrade:324
+#: downgrade:328
 msgid "Missing --pacman argument"
 msgstr "Argument --pacman manquant"
 
-#: downgrade:337
+#: downgrade:341
 msgid "Missing --pacman-conf argument"
 msgstr "Argument --pacman-conf manquant"
 
-#: downgrade:350
+#: downgrade:354
 msgid "Missing --ala-url argument"
 msgstr "Argument --ala-url manquant"
 
-#: downgrade:386
+#: downgrade:390
 msgid "No packages provided for downgrading"
 msgstr "Aucun package fourni pour la rétrogradation"
 
