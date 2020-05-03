@@ -37,7 +37,7 @@ test:
 	cram test
 
 .PHONY: install
-install:
+install: config
 	install -Dm755 downgrade $(DESTDIR)/$(PREFIX)/bin/downgrade
 	install -Dm644 doc/downgrade.8 $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8
 	install -Dm644 completion/bash $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade
