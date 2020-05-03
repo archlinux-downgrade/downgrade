@@ -9,9 +9,8 @@ setup:
 	command -v vbump  || aurget vbump-git
 	command -v pandoc || stack install pandoc
 
-.PHONY: config
-config:
-	sed 's|@LOCALE_PREFIX@|$(LOCALE_PREFIX)|g' downgrade.in > downgrade
+downgrade: downgrade.in
+	sed 's|@LOCALE_PREFIX@|$(LOCALE_PREFIX)|g' $< > $@
 
 locale/downgrade.pot: downgrade
 	xgettext \
@@ -23,6 +22,9 @@ locale/downgrade.pot: downgrade
 
 doc/downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man $< -o $@
+
+.PHONY: config
+config: downgrade
 
 .PHONY: man
 man: doc/downgrade.8
