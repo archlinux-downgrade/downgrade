@@ -20,19 +20,19 @@ locale/downgrade.pot: downgrade
 doc/downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man $< -o $@
 
-.PHONY: config
-config:
-	sed 's|@LOCALE_PREFIX@|$(LOCALE_PREFIX)|g' downgrade.in > downgrade
+.PHONY: locale
+locale: locale/downgrade.pot
 
 .PHONY: man
 man: doc/downgrade.8
 
-.PHONY: locale
-locale: locale/downgrade.pot
-
 .PHONY: test
 test:
 	cram test
+
+.PHONY: config
+config:
+	sed 's|@LOCALE_PREFIX@|$(LOCALE_PREFIX)|g' downgrade.in > downgrade
 
 .PHONY: install
 install: config
