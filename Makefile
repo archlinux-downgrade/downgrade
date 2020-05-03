@@ -20,6 +20,9 @@ locale/downgrade.pot: downgrade
 doc/downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man $< -o $@
 
+downgrade: downgrade.in
+	sed 's|@LOCALE_PREFIX@|$(LOCALE_PREFIX)|g' $< > $@
+
 .PHONY: locale
 locale: locale/downgrade.pot
 
