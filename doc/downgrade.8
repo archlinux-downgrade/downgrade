@@ -130,6 +130,16 @@ by default, or set to \f[I]/var/cache/pacman/pkg/\f[R] when not found.
 .PP
 The pacman log file is read from the pacman configuration file by
 default, or set to \f[I]/var/log/pacman.log\f[R] when not found.
+.SH VERSION FILTERING
+.PP
+\f[B]downgrade\f[R] allows the use of the following version filtering
+operators: \f[B]=\f[R], \f[B]<=\f[R], \f[B]>=\f[R], \f[B]<\f[R] and
+\f[B]>\f[R].
+Note that the \f[B]=\f[R] operator provides a fuzzy match if the input
+version is incomplete.
+.PP
+If only one package-path matches, the package will be installed without
+further prompt from the user.
 .SH EXIT CODES
 .PP
 \f[B]downgrade\f[R] will stop further processing and exit non-zero if it
@@ -146,8 +156,8 @@ Package(s) found, but an invalid selection was made
 Unexpected error when handling \f[C]IgnorePkg\f[R] additions
 .SH SEE ALSO
 .PP
-\f[B]pacman\f[R](8), \f[B]pacman.conf\f[R](5), \f[B]find\f[R](1),
-\f[B]sudo\f[R](8), \f[B]su\f[R](1).
+\f[B]pacman\f[R](8), \f[B]vercmp(8)\f[R], \f[B]pacman.conf\f[R](5),
+\f[B]find\f[R](1), \f[B]sudo\f[R](8), \f[B]su\f[R](1).
 .SH BUGS
 .PP
 Open a GitHub issue on \f[I]https://github.com/pbrisbin/downgrade\f[R].
