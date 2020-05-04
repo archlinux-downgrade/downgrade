@@ -1,13 +1,17 @@
-## [*Ongoing*](https://github.com/pbrisbin/downgrade/compare/v6.3.0...master)
 
-- [NEW] Handling hard dependencies during downgrading
 
-## [*v6.3.0*](https://github.com/pbrisbin/downgrade/compare/v6.1.0...v6.3.0)
+## [v6.3.1](https://github.com/pbrisbin/downgrade/compare/v6.3.0...v6.3.1)
+
+- [FIX] Updates to `README.md` with new badges
+- [FIX] Remove bolding in `CHANGELOG`
+- [FIX] `Makefile`: Move `.PHONY` annotations, fix `doc/downgrade.8` target, add `msgmerge` for `locale/downgrade.pot` target, add `install.po` and `uninstall.po`
+
+## [v6.3.0](https://github.com/pbrisbin/downgrade/compare/v6.1.0...v6.3.0)
 
 - [NEW] Replace environmental variables with command line arguments/options
-- [NEW] Updating locales to reflect new keys
+- [FIX] Updating locales to reflect new keys
 
-## [*v6.1.0*](https://github.com/pbrisbin/downgrade/compare/v6.0.0...v6.1.0)
+## [v6.1.0](https://github.com/pbrisbin/downgrade/compare/v6.0.0...v6.1.0)
 
 - [NEW] Render "+" for currently installed, "-" for previously installed
   (@Thomaash)
