@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-03 17:21+0200\n"
+"POT-Creation-Date: 2020-05-04 02:19+0200\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -17,109 +17,109 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: downgrade:9
+#: downgrade.in:9
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr "用法： downgrade [option...] <包> [包...] [-- pacman_option...]"
 
-#: downgrade:11
+#: downgrade.in:11
 msgid "Options"
 msgstr "选件"
 
-#: downgrade:12
+#: downgrade.in:12
 msgid "command"
 msgstr "命令"
 
-#: downgrade:13
+#: downgrade.in:13
 msgid "pacman command to use, defaults to"
 msgstr "使用的pacman命令，默认为"
 
-#: downgrade:14
+#: downgrade.in:14
 msgid "file-path"
 msgstr "文件路径"
 
-#: downgrade:15
+#: downgrade.in:15
 msgid "pacman configuration file, defaults to"
 msgstr "pacman配置文件，默认为"
 
-#: downgrade:17
+#: downgrade.in:17
 msgid "location of ALA server, defaults to"
 msgstr "ALA服务器的位置，默认为"
 
-#: downgrade:18
+#: downgrade.in:18
 msgid "only use ALA server"
 msgstr "仅使用ALA服务器"
 
-#: downgrade:19
+#: downgrade.in:19
 msgid "only use cached packages"
 msgstr "只使用缓存的包"
 
-#: downgrade:20
+#: downgrade.in:20
 msgid "do not use sudo even when available, use su"
 msgstr "即使可用，也不要使用sudo，请使用su"
 
-#: downgrade:21
+#: downgrade.in:21
 msgid "show help script"
 msgstr "显示帮助脚本"
 
-#: downgrade:23
+#: downgrade.in:23
 msgid "Note"
 msgstr "注意"
 
-#: downgrade:24
+#: downgrade.in:24
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "--字符后的选项将被视为pacman选项。"
 
-#: downgrade:25
+#: downgrade.in:25
 msgid "See downgrade(8) for details."
 msgstr "详情请查看downgrade(8)."
 
-#: downgrade:58
+#: downgrade.in:58
 msgid "Available packages:"
 msgstr "可选的包："
 
-#: downgrade:68
+#: downgrade.in:68
 msgid "select a package by number: "
 msgstr "输入数字以选择包："
 
-#: downgrade:85
+#: downgrade.in:85
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "添加$pkg到IgnorePkg? [y/n]"
 
-#: downgrade:88
+#: downgrade.in:88
 msgid "y"
 msgstr "y"
 
-#: downgrade:199
+#: downgrade.in:199
 msgid "local"
 msgstr "本地"
 
-#: downgrade:201
+#: downgrade.in:201
 msgid "remote"
 msgstr "远端"
 
-#: downgrade:251
+#: downgrade.in:251
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: downgrade:283
+#: downgrade.in:283
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "无法降级$term"
 
-#: downgrade:328
+#: downgrade.in:328
 msgid "Missing --pacman argument"
 msgstr "缺少--pacman参数"
 
-#: downgrade:341
+#: downgrade.in:341
 msgid "Missing --pacman-conf argument"
 msgstr "缺少--pacman-conf参数"
 
-#: downgrade:354
+#: downgrade.in:354
 msgid "Missing --ala-url argument"
 msgstr "缺少--ala-url参数"
 
-#: downgrade:390
+#: downgrade.in:390
 msgid "No packages provided for downgrading"
 msgstr "没有提供降级包"
 
