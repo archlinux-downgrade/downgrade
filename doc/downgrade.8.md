@@ -70,10 +70,6 @@ The columns have the following meaning:
   
 > Pacman configuration file, default is */etc/pacman.conf*.
 
-**\--arch** *\<architecture\>*\
-
-> Target architecture, default is determined by `uname -m`.
-
 **\--ala-url** *\<url\>*\
 	
 > Location of an ALA server, default is *https://archive.archlinux.org*.

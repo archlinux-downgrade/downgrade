@@ -1,5 +1,6 @@
 ## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v6.3.0...master)
 
+- [FIX] Remove --arch option and corresponding logic due to redundancy
 - [NEW] Handling hard dependencies during downgrading
 - [FIX] Respect PREFIX when installing locale files
 
