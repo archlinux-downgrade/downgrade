@@ -5,7 +5,7 @@ It adds the term and package to global arrays if successful
 
   $ touch "$TMP/foo.pkg" "$TMP/foo.pkg"
   > search_packages() { printf "%s\n" "$TMP/foo.pkg" "$TMP/foo.pkg"; }
-  > main foo < <(echo 1); exit_code=$?
+  > main foo < <(echo 1) 2>/dev/null; exit_code=$?
   > echo
   > printf "ignore: %s\n" "${to_ignore[@]}"
   > printf "install: %s\n" "${to_install[@]}"

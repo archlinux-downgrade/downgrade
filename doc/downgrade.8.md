@@ -98,6 +98,12 @@ The package cache directory is read from the pacman configuration file by defaul
 
 The pacman log file is read from the pacman configuration file by default, or set to */var/log/pacman.log* when not found.
 
+# VERSION FILTERING
+
+**downgrade** allows the use of the following version filtering operators: **=**, **<=**, **>=**, **<** and **>**. Note that the **=** operator provides a fuzzy match if the input version is incomplete.
+
+If only one package-path matches, the package will be installed without further prompt from the user.
+
 # EXIT CODES
 
 **downgrade** will stop further processing and exit non-zero if it encounters any of
@@ -111,7 +117,7 @@ the following scenarios for any of its arguments:
 
 # SEE ALSO
 
-**pacman**(8), **pacman.conf**(5), **find**(1), **sudo**(8), **su**(1).
+**pacman**(8), **vercmp(8)**, **pacman.conf**(5), **find**(1), **sudo**(8), **su**(1).
 
 # BUGS
 

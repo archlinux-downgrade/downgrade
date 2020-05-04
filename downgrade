@@ -101,18 +101,50 @@ prompt_to_ignore() {
   done
 }
 
-search_packages() {
-  local name version pkgfile_re index
+filter_packages() {
+  local name=$1 operator=$2 version=$3 pkg
 
-  if [[ "$1" =~ -([0-9R].*)$ ]]; then
-    version="${BASH_REMATCH[1]}"
-    name=${1%-$version}
-    version="$version.*"
-  else
-    version="[^-]+-[0-9.]+"
-    name=$1
+  while read -r pkg; do
+    if matches_name_version_filter "$pkg" "$name" "$operator" "$version"; then
+      echo "$pkg"
+    fi
+  done
+}
+
+matches_name_version_filter() {
+  local pkg=$1 name=$2 operator=$3 search_version=$4 pkg_version version_regex
+
+  if [[ -z "$operator" ]] || [[ -z "$version" ]]; then
+    return 0
   fi
-  pkgfile_re="$name-$version-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
+
+  version_regex="[^-]+-[0-9.]+"
+  pkg_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<<"$pkg")
+  cmp=$(vercmp "$pkg_version" "$search_version")
+
+  case "$operator" in
+    '>=')
+      ((cmp >= 0))
+      ;;
+    '<=')
+      ((cmp <= 0))
+      ;;
+    '>')
+      ((cmp == 1))
+      ;;
+    '<')
+      ((cmp == -1))
+      ;;
+    '=')
+      [[ $pkg_version =~ ^$search_version ]]
+      ;;
+  esac
+}
+
+search_packages() {
+  local name=$1 pkgfile_re index
+
+  pkgfile_re="$name-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
   index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
   if ((DOWNGRADE_FROM_ALA)); then
@@ -199,14 +231,19 @@ extract_version_parts() {
 
 # shellcheck disable=SC2207
 process_term() {
-  local term=$1 candidates choice
+  local term=$1 name operator version candidates choice
 
-  candidates=($(search_packages "$term" | sort_packages))
+  read -r name operator version < \
+    <(sed -r "s/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g" <<<"$term")
+
+  installed=($(previously_installed "$name"))
+  current=$(currently_installed "$name")
+  candidates=($(search_packages "$name" | filter_packages "$name" "$operator" "$version" | sort_packages))
 
   if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
   else
-    if present_packages "$term" "${candidates[@]}"; then
+    if present_packages "$name" "${candidates[@]}"; then
       choice=$(read_selection "${candidates[@]}")
       if [[ -z "$choice" ]]; then
         {
@@ -218,7 +255,7 @@ process_term() {
   fi
 
   if [[ -n "$choice" ]]; then
-    to_ignore+=("$term")
+    to_ignore+=("$name")
     to_install+=("$choice")
     return 0
   fi
@@ -232,9 +269,6 @@ main() {
   (($#)) || return 1
 
   for term; do
-    # shellcheck disable=SC2207
-    installed=($(previously_installed "$term"))
-    current=$(currently_installed "$term")
     if ! process_term "$term"; then
       {
         eval_gettext "Unable to downgrade \$term"
