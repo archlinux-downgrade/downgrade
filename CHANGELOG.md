@@ -1,14 +1,26 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v6.4.0...master)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v6.5.0...master)
 
 - [NEW] Handling basic version conflicts during downgrading
 
-## [v6.4.0](https://github.com/pbrisbin/downgrade/compare/v6.3.0...v6.4.0)
+## [v6.5.0](https://github.com/pbrisbin/downgrade/compare/v6.4.0...v6.5.0)
 
 - [NEW] Version bound handling by parsing logical =,>,<,>= and <= operators
 - [FIX] New tests and circle CI build modification
-- [FIX] Removal of --arch option due to redundancy
 - [FIX] Ignore package bugfix for version-defined package
-- [FIX] Modified Makefile to handle more thorough locale updates
+
+## [v6.4.0](https://github.com/pbrisbin/downgrade/compare/v6.3.2...v6.4.0)
+
+- [FIX] Remove --arch option and corresponding logic due to redundancy
+
+## [v6.3.2](https://github.com/pbrisbin/downgrade/compare/v6.3.1...v6.3.2)
+
+- [FIX] Bugfix for packaging prefix issue, change downgrade to downgrade.in
+
+## [v6.3.1](https://github.com/pbrisbin/downgrade/compare/v6.3.0...v6.3.1)
+
+- [FIX] Updates to `README.md` with new badges
+- [FIX] Remove bolding in `CHANGELOG`
+- [FIX] `Makefile`: Move `.PHONY` annotations, fix `doc/downgrade.8` target, add `msgmerge` for `locale/downgrade.pot` target, add `install.po` and `uninstall.po`
 
 ## [v6.3.0](https://github.com/pbrisbin/downgrade/compare/v6.1.0...v6.3.0)
 
