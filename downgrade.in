@@ -103,33 +103,69 @@ prompt_to_ignore() {
   done
 }
 
-search_packages() {
-  local name version pkgfile_re index
+filter_packages() {
+  local name_op_ver=("$@") pkg
 
-  if [[ "$1" =~ -([0-9R].*)$ ]]; then
-    version="${BASH_REMATCH[1]}"
-    name=${1%-$version}
-    version="$version.*"
-  else
-    version="[^-]+-[0-9.]+"
-    name=$1
-  fi
-  pkgfile_re="$name-$version-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
+  while read -r pkg; do
+    if matches_name_version_filter "$pkg" "${name_op_ver[@]}"; then
+      echo "$pkg"
+    fi
+  done
+}
+
+matches_name_version_filter() {
+  local pkg=$1 name operator search_version pkg_version version_regex
+  shift
+  local name_op_ver=("$@")
+
+  name="${name_op_ver[0]}"
+  operator="${name_op_ver[1]}"
+  search_version="${name_op_ver[2]}"
+  version_regex="[^-]+-[0-9.]+"
+  pkg_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<<"$pkg")
+
+  case "$operator" in
+    '>=')
+      [[ "$(vercmp "$pkg_version" "$search_version")" -ge "0" ]] || return 1
+      ;;
+    '<=')
+      [[ "$(vercmp "$pkg_version" "$search_version")" -le "0" ]] || return 1
+      ;;
+    '>')
+      [[ "$(vercmp "$pkg_version" "$search_version")" -eq "1" ]] || return 1
+      ;;
+    '<')
+      [[ "$(vercmp "$pkg_version" "$search_version")" -eq "-1" ]] || return 1
+      ;;
+    '=')
+      [[ $pkg_version =~ ^$search_version ]] || return 1
+      ;;
+  esac
+}
+
+search_packages() {
+  local name_op_ver=("$@") name version_regex pkgfile_re index
+
+  name="${name_op_ver[0]}"
+  version_regex="[^-]+-[0-9.]+"
+
+  pkgfile_re="$name-$version_regex-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
   index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
   if ((DOWNGRADE_FROM_ALA)); then
     curl --fail --silent "$index" | sed -E '
       /.* href="('"$pkgfile_re"')".*/!d;
-      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
+      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b" |
+      filter_packages "${name_op_ver[@]}"
   fi
 
   if ((DOWNGRADE_FROM_CACHE)); then
     # Delay this defaulting so #read_pacman_conf behavior is tested
     : "${PACMAN_CACHE:=$(read_pacman_conf CacheDir)}"
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
-
     # shellcheck disable=SC2086
-    find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended -regex ".*/$pkgfile_re"
+    find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended \
+      -regex ".*/$pkgfile_re" | filter_packages "${name_op_ver[@]}"
   fi
 }
 
@@ -182,7 +218,7 @@ output_package() {
 
 # <package name> <package path>
 extract_version_parts() {
-  local pkgname=$1 path=$2 location version epoch arch release
+  local pkgname="$1" path="$2" location version epoch arch release
 
   sed '
     # Strip first path component
@@ -201,9 +237,9 @@ extract_version_parts() {
 
 # shellcheck disable=SC2207
 process_term() {
-  local term=$1 candidates choice
+  local name_op_ver=("$@") candidates choice
 
-  candidates=($(search_packages "$term" | sort_packages))
+  candidates=($(search_packages "${name_op_ver[@]}" | sort_packages))
 
   if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
@@ -220,7 +256,7 @@ process_term() {
   fi
 
   if [[ -n "$choice" ]]; then
-    to_ignore+=("$term")
+    to_ignore+=("${name_op_ver[0]}")
     to_install+=("$choice")
     return 0
   fi
@@ -229,15 +265,20 @@ process_term() {
 }
 
 main() {
-  local term candidates choice pkg exit_code=0
+  local term name_op_ver exit_code=0
 
   (($#)) || return 1
 
   for term; do
     # shellcheck disable=SC2207
+    name_op_ver=($(sed -r "s/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g" <<<"$term"))
+    term="${name_op_ver[0]}"
+    if ((LIB)); then
+      echo "${name_op_ver[@]}" >&2
+    fi
     installed=($(previously_installed "$term"))
     current=$(currently_installed "$term")
-    if ! process_term "$term"; then
+    if ! process_term "${name_op_ver[@]}"; then
       {
         eval_gettext "Unable to downgrade \$term"
         echo

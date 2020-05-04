@@ -35,10 +35,17 @@ Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
 Downgrade packages checking both local cache and the
 [A.L.A.](https://wiki.archlinux.org/index.php/Arch_Linux_Archive), which is the
-default behavior.
+default behavior:
 
 ```
 $ downgrade foo bar
+```
+
+Downgrade a package with any of the following version-filtering operators `=`,
+`<=`, `>=`, `<` and `>`:
+
+```
+$ downgrade "foo=1.0.0-1" "bar>=1.2.1-1"
 ```
 
 Downgrade a package, looking in only local cache:
