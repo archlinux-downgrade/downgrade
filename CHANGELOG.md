@@ -1,3 +1,6 @@
+## [v6.4.0](https://github.com/pbrisbin/downgrade/compare/v6.3.2...v6.4.0)
+
+- [FIX] Remove --arch option and corresponding logic due to redundancy
 
 ## [v6.3.2](https://github.com/pbrisbin/downgrade/compare/v6.3.1...v6.3.2)
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 15:29+0200\n"
+"POT-Creation-Date: 2020-05-04 02:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,120 +16,108 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: downgrade:9
+#: downgrade.in:9
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr ""
 
-#: downgrade:11
+#: downgrade.in:11
 msgid "Options"
 msgstr ""
 
-#: downgrade:12
+#: downgrade.in:12
 msgid "command"
 msgstr ""
 
-#: downgrade:13
+#: downgrade.in:13
 msgid "pacman command to use, defaults to"
 msgstr ""
 
-#: downgrade:14
+#: downgrade.in:14
 msgid "file-path"
 msgstr ""
 
-#: downgrade:15
+#: downgrade.in:15
 msgid "pacman configuration file, defaults to"
 msgstr ""
 
-#: downgrade:16
-msgid "architecture"
-msgstr ""
-
-#: downgrade:17
-msgid "target architecture, defaults to output of"
-msgstr ""
-
-#: downgrade:19
+#: downgrade.in:17
 msgid "location of ALA server, defaults to"
 msgstr ""
 
-#: downgrade:20
+#: downgrade.in:18
 msgid "only use ALA server"
 msgstr ""
 
-#: downgrade:21
+#: downgrade.in:19
 msgid "only use cached packages"
 msgstr ""
 
-#: downgrade:22
+#: downgrade.in:20
 msgid "do not use sudo even when available, use su"
 msgstr ""
 
-#: downgrade:23
+#: downgrade.in:21
 msgid "show help script"
 msgstr ""
 
-#: downgrade:25
+#: downgrade.in:23
 msgid "Note"
 msgstr ""
 
-#: downgrade:26
+#: downgrade.in:24
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 
-#: downgrade:27
+#: downgrade.in:25
 msgid "See downgrade(8) for details."
 msgstr ""
 
-#: downgrade:60
+#: downgrade.in:58
 msgid "Available packages:"
 msgstr ""
 
-#: downgrade:70
+#: downgrade.in:68
 msgid "select a package by number: "
 msgstr ""
 
-#: downgrade:87
+#: downgrade.in:85
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr ""
 
-#: downgrade:90
+#: downgrade.in:88
 msgid "y"
 msgstr ""
 
-#: downgrade:165
+#: downgrade.in:199
 msgid "local"
 msgstr ""
 
-#: downgrade:167
+#: downgrade.in:201
 msgid "remote"
 msgstr ""
 
-#: downgrade:217
+#: downgrade.in:251
 msgid "Invalid choice"
 msgstr ""
 
-#: downgrade:244
+#: downgrade.in:283
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr ""
 
-#: downgrade:288
+#: downgrade.in:328
 msgid "Missing --pacman argument"
 msgstr ""
 
-#: downgrade:301
+#: downgrade.in:341
 msgid "Missing --pacman-conf argument"
 msgstr ""
 
-#: downgrade:314
-msgid "Missing --arch argument"
-msgstr ""
-
-#: downgrade:327
+#: downgrade.in:354
 msgid "Missing --ala-url argument"
 msgstr ""
 
-#: downgrade:363
+#: downgrade.in:390
 msgid "No packages provided for downgrading"
 msgstr ""

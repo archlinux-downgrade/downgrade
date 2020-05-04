@@ -13,8 +13,6 @@ $(gettext "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]")
                     $(gettext "pacman command to use, defaults to") "pacman"
     --pacman-conf <$(gettext "file-path")>
                     $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
-    --arch <$(gettext "architecture")>
-                    $(gettext "target architecture, defaults to output of") "uname -m"
     --ala-url <url>
                     $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
     --ala-only      $(gettext "only use ALA server")
@@ -275,6 +273,7 @@ declare -a to_ignore
 declare -a to_install
 declare -a pacman_args
 declare -a installed
+declare current
 
 parse_options() {
   while [[ -n "$1" ]]; do
@@ -299,19 +298,6 @@ parse_options() {
         else
           {
             gettext "Missing --pacman-conf argument"
-            echo
-            usage
-          } >&2
-          exit 1
-        fi
-        ;;
-      --arch)
-        if [[ -n "$2" ]]; then
-          shift
-          DOWNGRADE_ARCH="$1"
-        else
-          {
-            gettext "Missing --arch argument"
             echo
             usage
           } >&2
