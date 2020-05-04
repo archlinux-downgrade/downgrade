@@ -2,7 +2,7 @@
 # shellcheck disable=SC1091
 . gettext.sh
 export TEXTDOMAIN=downgrade
-export TEXTDOMAINDIR=/usr/share/locale
+export TEXTDOMAINDIR=@LOCALE_PREFIX@
 
 usage() {
   cat <<EOF

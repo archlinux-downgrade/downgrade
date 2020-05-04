@@ -1,4 +1,7 @@
 
+## [v6.3.2](https://github.com/pbrisbin/downgrade/compare/v6.3.1...v6.3.2)
+
+- [FIX] Bugfix for packaging prefix issue, change downgrade to downgrade.in
 
 ## [v6.3.1](https://github.com/pbrisbin/downgrade/compare/v6.3.0...v6.3.1)
 
