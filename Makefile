@@ -3,6 +3,7 @@ LOCALEPREFIX ?= $(PREFIX)/share/locale
 MANPREFIX    ?= $(PREFIX)/share/man
 PANDOC       ?= $(shell which pandoc)
 
+.PHONY: setup
 setup:
 	command -v cram   || aurget cram
 	command -v vbump  || aurget vbump-git
@@ -19,11 +20,14 @@ locale/downgrade.pot: downgrade
 doc/downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man $< -o $@
 
+.PHONY: man
 man: doc/downgrade.8
 
+.PHONY: test
 test:
 	cram test
 
+.PHONY: install
 install:
 	install -Dm755 downgrade $(DESTDIR)$(PREFIX)/bin/downgrade
 	install -Dm644 doc/downgrade.8 $(DESTDIR)$(MANPREFIX)/man8/downgrade.8
@@ -35,14 +39,13 @@ install:
 	  msgfmt "$$po_file" -o "$(DESTDIR)$(LOCALEPREFIX)/$$locale/LC_MESSAGES/downgrade.mo"; \
 	done
 
+.PHONY: uninstall
 uninstall:
 	$(RM) $(DESTDIR)$(PREFIX)/bin/downgrade \
 	  $(DESTDIR)$(MANPREFIX)/man8/downgrade.8 \
 	  $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)$(PREFIX)/share/zsh/site-functions/_downgrade \
 	  $(DESTDIR)$(LOCALEPREFIX)/*/LC_MESSAGES/downgrade.mo
-
-.PHONY: setup test install uninstall
 
 .PHONY: release.major
 release.major: VERSION=$(shell git tag | vbump major | sed 's/^v//')
