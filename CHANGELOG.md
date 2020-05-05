@@ -1,6 +1,7 @@
 ## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v6.3.0...master)
 
 - [NEW] Handling hard dependencies during downgrading
+- [FIX] Respect PREFIX when installing locale files
 
 ## [v6.3.0](https://github.com/pbrisbin/downgrade/compare/v6.1.0...v6.3.0)
 
