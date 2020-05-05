@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 12:01-0400\n"
+"POT-Creation-Date: 2020-05-05 08:58-0400\n"
 "PO-Revision-Date: 2020-04-21 12:48-0400\n"
-"Last-Translator: Håkon Vågsether <hauk142@gmail.com>, <shankar.atreya@gmail.com>\n"
+"Last-Translator: Håkon Vågsether <hauk142@gmail.com>, <shankar.atreya@gmail."
+"com>\n"
 "Language-Team: Norwegian Nynorsk\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
@@ -17,120 +18,121 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: downgrade:9
+#: downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr "Bruk: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 
-#: downgrade:11
+#: downgrade:9
 msgid "Options"
 msgstr "Alternativer"
 
-#: downgrade:12
+#: downgrade:10
 msgid "command"
 msgstr "kommando"
 
-#: downgrade:13
+#: downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr "pacman-kommando for å bruke, er standard for"
 
-#: downgrade:14
+#: downgrade:12
 msgid "file-path"
 msgstr "filsti"
 
-#: downgrade:15
+#: downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr "pacman konfigurasjonsfil, er standard til"
 
-#: downgrade:16
+#: downgrade:14
 msgid "architecture"
 msgstr "arkitektur"
 
-#: downgrade:17
+#: downgrade:15
 msgid "target architecture, defaults to output of"
 msgstr "målarkitektur, standard for utdata fra"
 
-#: downgrade:19
+#: downgrade:17
 msgid "location of ALA server, defaults to"
 msgstr "plassering av ALA-server, er standard til"
 
-#: downgrade:20
+#: downgrade:18
 msgid "only use ALA server"
 msgstr "bruk bare ALA-serveren"
 
-#: downgrade:21
+#: downgrade:19
 msgid "only use cached packages"
 msgstr "bruk bare hurtigbufrede pakker"
 
-#: downgrade:22
+#: downgrade:20
 msgid "do not use sudo even when available, use su"
 msgstr "ikke bruk sudo selv om det er tilgjengelig, bruk su"
 
-#: downgrade:23
+#: downgrade:21
 msgid "show help script"
 msgstr "vis hjelpeskript"
 
-#: downgrade:25
+#: downgrade:23
 msgid "Note"
 msgstr "Merk"
 
-#: downgrade:26
+#: downgrade:24
 msgid "Options after the -- characters will be treated as pacman options."
-msgstr "Alternativer etter -- tegnene vil bli behandlet som pacman-alternativer."
+msgstr ""
+"Alternativer etter -- tegnene vil bli behandlet som pacman-alternativer."
 
-#: downgrade:27
+#: downgrade:25
 msgid "See downgrade(8) for details."
 msgstr "Sjå downgrade(8) for detaljar."
 
-#: downgrade:60
+#: downgrade:58
 msgid "Available packages:"
 msgstr "Tilgjengelege pakkar:"
 
-#: downgrade:70
+#: downgrade:68
 msgid "select a package by number: "
 msgstr "vel ei pakke ved nummer: "
 
-#: downgrade:87
+#: downgrade:85
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "legg til $pkg i IgnorePkg? [j/n]"
 
-#: downgrade:90
+#: downgrade:88
 msgid "y"
 msgstr "j"
 
-#: downgrade:165
+#: downgrade:163
 msgid "local"
 msgstr "lokal"
 
-#: downgrade:167
+#: downgrade:165
 msgid "remote"
 msgstr "ekstern"
 
-#: downgrade:217
+#: downgrade:215
 msgid "Invalid choice"
 msgstr "Ugyldig valg"
 
-#: downgrade:244
+#: downgrade:242
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Kan ikke nedgradere $term"
 
-#: downgrade:288
+#: downgrade:286
 msgid "Missing --pacman argument"
 msgstr "Mangler --pacman -argumentet"
 
-#: downgrade:301
+#: downgrade:299
 msgid "Missing --pacman-conf argument"
 msgstr "Mangler --pacman-conf -argumentet"
 
-#: downgrade:314
+#: downgrade:312
 msgid "Missing --arch argument"
 msgstr "Mangler --arch -argumentet"
 
-#: downgrade:327
+#: downgrade:325
 msgid "Missing --ala-url argument"
 msgstr "Mangler --ala-url -argumentet"
 
-#: downgrade:363
+#: downgrade:361
 msgid "No packages provided for downgrading"
 msgstr "Ingen pakker gitt for nedgradering"

@@ -14,6 +14,7 @@ locale/downgrade.pot: downgrade
 		--package-name=downgrade \
 		--copyright-holder=$(AUTHOR) \
 		-o $@ $<
+	find ./locale/*po -exec msgmerge --update {} $@ \;
 
 downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man doc/downgrade.8.md -o doc/downgrade.8

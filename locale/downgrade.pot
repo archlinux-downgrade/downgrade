@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 15:29+0200\n"
+"POT-Creation-Date: 2020-05-05 08:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,120 +16,120 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: downgrade:9
+#: downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr ""
 
-#: downgrade:11
+#: downgrade:9
 msgid "Options"
 msgstr ""
 
-#: downgrade:12
+#: downgrade:10
 msgid "command"
 msgstr ""
 
-#: downgrade:13
+#: downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr ""
 
-#: downgrade:14
+#: downgrade:12
 msgid "file-path"
 msgstr ""
 
-#: downgrade:15
+#: downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr ""
 
-#: downgrade:16
+#: downgrade:14
 msgid "architecture"
 msgstr ""
 
-#: downgrade:17
+#: downgrade:15
 msgid "target architecture, defaults to output of"
 msgstr ""
 
-#: downgrade:19
+#: downgrade:17
 msgid "location of ALA server, defaults to"
 msgstr ""
 
-#: downgrade:20
+#: downgrade:18
 msgid "only use ALA server"
 msgstr ""
 
-#: downgrade:21
+#: downgrade:19
 msgid "only use cached packages"
 msgstr ""
 
-#: downgrade:22
+#: downgrade:20
 msgid "do not use sudo even when available, use su"
 msgstr ""
 
-#: downgrade:23
+#: downgrade:21
 msgid "show help script"
 msgstr ""
 
-#: downgrade:25
+#: downgrade:23
 msgid "Note"
 msgstr ""
 
-#: downgrade:26
+#: downgrade:24
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 
-#: downgrade:27
+#: downgrade:25
 msgid "See downgrade(8) for details."
 msgstr ""
 
-#: downgrade:60
+#: downgrade:58
 msgid "Available packages:"
 msgstr ""
 
-#: downgrade:70
+#: downgrade:68
 msgid "select a package by number: "
 msgstr ""
 
-#: downgrade:87
+#: downgrade:85
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr ""
 
-#: downgrade:90
+#: downgrade:88
 msgid "y"
 msgstr ""
 
-#: downgrade:165
+#: downgrade:163
 msgid "local"
 msgstr ""
 
-#: downgrade:167
+#: downgrade:165
 msgid "remote"
 msgstr ""
 
-#: downgrade:217
+#: downgrade:215
 msgid "Invalid choice"
 msgstr ""
 
-#: downgrade:244
+#: downgrade:242
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr ""
 
-#: downgrade:288
+#: downgrade:286
 msgid "Missing --pacman argument"
 msgstr ""
 
-#: downgrade:301
+#: downgrade:299
 msgid "Missing --pacman-conf argument"
 msgstr ""
 
-#: downgrade:314
+#: downgrade:312
 msgid "Missing --arch argument"
 msgstr ""
 
-#: downgrade:327
+#: downgrade:325
 msgid "Missing --ala-url argument"
 msgstr ""
 
-#: downgrade:363
+#: downgrade:361
 msgid "No packages provided for downgrading"
 msgstr ""
