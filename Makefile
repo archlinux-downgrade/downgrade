@@ -31,7 +31,8 @@ install:
 uninstall:
 	$(RM) $(DESTDIR)$(PREFIX)/bin/downgrade \
 	  $(DESTDIR)$(MANPREFIX)/man8/downgrade.8 \
-	  $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade
+	  $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade \
+	  $(DESTDIR)$(PREFIX)/share/zsh/site-functions/_downgrade
 
 .PHONY: setup test install uninstall
 
