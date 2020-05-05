@@ -23,16 +23,15 @@ test:
 	cram test
 
 install:
-	install -Dm755 downgrade $(DESTDIR)/$(PREFIX)/bin/downgrade
-	install -Dm644 doc/downgrade.8 $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8
-	install -Dm644 completion/bash $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade
-	install -Dm644 completion/zsh $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
+	install -Dm755 downgrade $(DESTDIR)$(PREFIX)/bin/downgrade
+	install -Dm644 doc/downgrade.8 $(DESTDIR)$(MANPREFIX)/man8/downgrade.8
+	install -Dm644 completion/bash $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade
+	install -Dm644 completion/zsh $(DESTDIR)$(PREFIX)/share/zsh/site-functions/_downgrade
 
 uninstall:
-	$(RM) $(DESTDIR)/$(PREFIX)/bin/downgrade \
-	  $(DESTDIR)/$(MANPREFIX)/man8/downgrade.8 \
-	  $(DESTDIR)/$(PREFIX)/share/bash-completion/completions/downgrade \
-	  $(DESTDIR)/$(PREFIX)/share/zsh/site-functions/_downgrade
+	$(RM) $(DESTDIR)$(PREFIX)/bin/downgrade \
+	  $(DESTDIR)$(MANPREFIX)/man8/downgrade.8 \
+	  $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade
 
 .PHONY: setup test install uninstall
 
