@@ -35,7 +35,7 @@ Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
 Downgrade packages checking both local cache and the
 [A.L.A.](https://wiki.archlinux.org/index.php/Arch_Linux_Archive), which is the
-default behavior.
+default behavior:
 
 ```
 $ downgrade foo bar
