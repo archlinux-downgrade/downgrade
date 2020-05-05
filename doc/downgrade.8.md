@@ -12,7 +12,7 @@ Downgrade Arch Linux packages.
 
 # OUTPUT
 
-Just calling `downgrade` on a package will lead to the following output:
+Just calling **downgrade** on a package will lead to the following output:
 
 *Example:*
 
@@ -104,7 +104,7 @@ The pacman log file is read from the pacman configuration file by default, or se
 
 # EXIT CODES
 
-Downgrade will stop further processing and exit non-zero if it encounters any of
+**downgrade** will stop further processing and exit non-zero if it encounters any of
 the following scenarios for any of its arguments:
 
 - No argument value(s) supplied where necessary
