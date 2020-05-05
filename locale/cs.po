@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 12:01-0400\n"
+"POT-Creation-Date: 2020-05-05 08:58-0400\n"
 "PO-Revision-Date: 2020-04-21 21:10+0100\n"
 "Last-Translator: <tom.vycital@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -16,120 +16,122 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: downgrade:9
+#: downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
-msgstr "Použití: downgrade [argumenty...] <balíček> [balíček...] [-- <argumenty Pacmanu>]"
+msgstr ""
+"Použití: downgrade [argumenty...] <balíček> [balíček...] [-- <argumenty "
+"Pacmanu>]"
 
-#: downgrade:11
+#: downgrade:9
 msgid "Options"
 msgstr "Argumenty"
 
-#: downgrade:12
+#: downgrade:10
 msgid "command"
 msgstr "příkaz"
 
-#: downgrade:13
+#: downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr "příkaz pacman, výchozí nastavení je"
 
-#: downgrade:14
+#: downgrade:12
 msgid "file-path"
 msgstr "soubor"
 
-#: downgrade:15
+#: downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr "konfigurační soubor pacman, výchozí nastavení"
 
-#: downgrade:16
+#: downgrade:14
 msgid "architecture"
 msgstr "architektura"
 
-#: downgrade:17
+#: downgrade:15
 msgid "target architecture, defaults to output of"
 msgstr "cílová architektura, výchozí nastavení"
 
-#: downgrade:19
+#: downgrade:17
 msgid "location of ALA server, defaults to"
 msgstr "umístění serveru ALA, výchozí nastavení je"
 
-#: downgrade:20
+#: downgrade:18
 msgid "only use ALA server"
 msgstr "používejte pouze server ALA"
 
-#: downgrade:21
+#: downgrade:19
 msgid "only use cached packages"
 msgstr "používejte pouze balíčky v mezipaměti"
 
-#: downgrade:22
+#: downgrade:20
 msgid "do not use sudo even when available, use su"
 msgstr "nepoužívejte sudo, i když jsou k dispozici, použijte su"
 
-#: downgrade:23
+#: downgrade:21
 msgid "show help script"
 msgstr "zobrazit skript nápovědy"
 
-#: downgrade:25
+#: downgrade:23
 msgid "Note"
 msgstr "Poznámka"
 
-#: downgrade:26
+#: downgrade:24
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "Možnosti za znaky -- budou považovány za možnosti pacmanu."
 
-#: downgrade:27
+#: downgrade:25
 msgid "See downgrade(8) for details."
 msgstr "Pro více informací vizte downgrade(8)"
 
-#: downgrade:60
+#: downgrade:58
 msgid "Available packages:"
 msgstr "Dostupné balíčky:"
 
-#: downgrade:70
+#: downgrade:68
 msgid "select a package by number: "
 msgstr "vyberte balíček číslem: "
 
-#: downgrade:87
+#: downgrade:85
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "přidat $pkg mezi ignorované? [a/n]"
 
-#: downgrade:90
+#: downgrade:88
 msgid "y"
 msgstr "a"
 
-#: downgrade:165
+#: downgrade:163
 msgid "local"
 msgstr "místní"
 
-#: downgrade:167
+#: downgrade:165
 msgid "remote"
 msgstr "vzdálený"
 
-#: downgrade:217
+#: downgrade:215
 msgid "Invalid choice"
 msgstr "Neplatná volba"
 
-#: downgrade:244
+#: downgrade:242
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Nelze downgradovat $term"
 
-#: downgrade:288
+#: downgrade:286
 msgid "Missing --pacman argument"
 msgstr "Chybí argument --pacman"
 
-#: downgrade:301
+#: downgrade:299
 msgid "Missing --pacman-conf argument"
 msgstr "Chybí argument --pacman-conf"
 
-#: downgrade:314
+#: downgrade:312
 msgid "Missing --arch argument"
 msgstr "Chybí argument --arch"
 
-#: downgrade:327
+#: downgrade:325
 msgid "Missing --ala-url argument"
 msgstr "Chybí argument --ala-url"
 
-#: downgrade:363
+#: downgrade:361
 msgid "No packages provided for downgrading"
 msgstr "Pro downgradování nebyly poskytnuty žádné balíčky"
