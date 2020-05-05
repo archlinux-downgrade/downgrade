@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091
 . gettext.sh
-export TEXTDOMAIN=downgrade
-export TEXTDOMAINDIR=/usr/share/locale
 
 usage() {
   cat <<EOF
@@ -384,5 +382,18 @@ cli() {
 
 if ((!LIB)); then
   set -e
+
+  locale="$(dirname "$0")"/../share/locale
+
+  if [[ -d "$locale" ]]; then
+    # Packaged installation
+    TEXTDOMAINDIR=$(cd "$locale" && pwd)
+  else
+    # Probably testing ./downgrade
+    TEXTDOMAINDIR=/usr/share/locale
+  fi
+
+  export TEXTDOMAIN=downgrade TEXTDOMAINDIR
+
   cli "$@"
 fi
