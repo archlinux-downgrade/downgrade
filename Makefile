@@ -17,6 +17,9 @@ locale/downgrade.pot: downgrade
 		-o $@ $<
 	find ./locale/*po -exec msgmerge --update {} $@ \;
 
+.PHONY: locale
+locale: locale/downgrade.pot
+
 doc/downgrade.8: doc/downgrade.8.md
 	$(PANDOC) --standalone --to man $< -o $@
 
