@@ -62,9 +62,11 @@ release.minor: release
 release.patch: VERSION=$(shell git tag | vbump patch | sed 's/^v//')
 release.patch: release
 
+AUR_RELEASE_OPTIONS ?=
+
 .PHONY: release
 release: test
 	[ -n "$(VERSION)" ]
 	git tag -s -m v$(VERSION) v$(VERSION)
 	git push --follow-tags
-	aur-release downgrade "$(VERSION)"
+	aur-release $(AUR_RELEASE_OPTIONS) downgrade "$(VERSION)"
