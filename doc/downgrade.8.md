@@ -117,7 +117,7 @@ the following scenarios for any of its arguments:
 
 # SEE ALSO
 
-**pacman**(8), **vercmp(8)**, **pacman.conf**(5), **find**(1), **sudo**(8), **su**(1).
+**pacman**(8), **vercmp(8)**, **sudo**(8), **pacman.conf**(5), **find**(1), **su**(1).
 
 # BUGS
 
