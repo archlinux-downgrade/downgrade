@@ -17,11 +17,21 @@ Install via the [AUR](https://aur.archlinux.org/packages/downgrade/).
 Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
   Options:
-    --pacman <command>
+    --pacman        <command>
                     pacman command to use, defaults to "pacman"
-    --pacman-conf <file-path>
+    --pacman-conf   <path>
                     pacman configuration file, defaults to "/etc/pacman.conf"
-    --ala-url <url>
+    --pacman-cache  <path>
+                    pacman cache directory or directories,
+                    default value taken from pacman configuration file,
+                    or otherwise defaults to "/var/cache/pacman/pkg"
+    --pacman-log    <path>
+                    pacman log file,
+                    default value taken from pacman configuration file,
+                    or otherwise defaults to "/var/log/pacman.log"
+    --maxdepth      <integer>
+                    maximum depth to search for cached packages, defaults to 1
+    --ala-url       <url>
                     location of ALA server, defaults to "https://archive.archlinux.org"
     --ala-only      only use ALA server
     --cached-only   only use cached packages
