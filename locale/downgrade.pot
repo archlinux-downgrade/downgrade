@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-09 14:45+0200\n"
+"POT-Creation-Date: 2020-05-09 15:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,35 +89,35 @@ msgstr ""
 msgid "y"
 msgstr ""
 
-#: downgrade:193
+#: downgrade:196
 msgid "local"
 msgstr ""
 
-#: downgrade:195
+#: downgrade:198
 msgid "remote"
 msgstr ""
 
-#: downgrade:250
+#: downgrade:253
 msgid "Invalid choice"
 msgstr ""
 
-#: downgrade:275
+#: downgrade:277
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr ""
 
-#: downgrade:320
+#: downgrade:322
 msgid "Missing --pacman argument"
 msgstr ""
 
-#: downgrade:333
+#: downgrade:335
 msgid "Missing --pacman-conf argument"
 msgstr ""
 
-#: downgrade:346
+#: downgrade:348
 msgid "Missing --ala-url argument"
 msgstr ""
 
-#: downgrade:382
+#: downgrade:384
 msgid "No packages provided for downgrading"
 msgstr ""
