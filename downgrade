@@ -237,7 +237,7 @@ process_term() {
   local term=$1 name operator version candidates choice
 
   read -r name operator version < \
-       <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~)([^<>=~].*)/\1 \2 \3/g" <<<"$term")
+    <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~)([^<>=~].*)/\1 \2 \3/g" <<<"$term")
 
   installed=($(previously_installed "$name"))
   current=$(currently_installed "$name")
