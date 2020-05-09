@@ -271,6 +271,7 @@ main() {
   for term; do
     if ! process_term "$term"; then
       {
+        term=$(sed -r "s/(.*)\b(>=|<=|<|>|=)\b(.*)/\1/g" <<<"$term")
         eval_gettext "Unable to downgrade \$term"
         echo
       } >&2
