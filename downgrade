@@ -7,11 +7,21 @@ usage() {
 $(gettext "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]")
 
   $(gettext "Options"):
-    --pacman <$(gettext "command")>
+    --pacman        <$(gettext "command")>
                     $(gettext "pacman command to use, defaults to") "pacman"
-    --pacman-conf <$(gettext "file-path")>
+    --pacman-conf   <$(gettext "path")>
                     $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
-    --ala-url <url>
+    --pacman-cache  <$(gettext "path")>
+                    $(gettext "pacman cache directory or directories,")
+                    $(gettext "default value taken from pacman configuration file,")
+                    $(gettext "or otherwise defaults to") "/var/cache/pacman/pkg"
+    --pacman-log    <$(gettext "path")>
+                    $(gettext "pacman log file,")
+                    $(gettext "default value taken from pacman configuration file,")
+                    $(gettext "or otherwise defaults to") "/var/log/pacman.log"
+    --maxdepth      <$(gettext "integer")>
+                    $(gettext "maximum depth to search for cached packages, defaults to") 1
+    --ala-url       <url>
                     $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
     --ala-only      $(gettext "only use ALA server")
     --cached-only   $(gettext "only use cached packages")
@@ -162,7 +172,7 @@ search_packages() {
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
 
     # shellcheck disable=SC2086
-    find $PACMAN_CACHE -maxdepth 1 -regextype posix-extended -regex ".*/$pkgfile_re"
+    find $PACMAN_CACHE -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
   fi
 }
 
@@ -302,6 +312,7 @@ main() {
 : "${DOWNGRADE_FROM_ALA:=1}"
 : "${DOWNGRADE_FROM_CACHE:=1}"
 : "${DOWNGRADE_NOSUDO:=0}"
+: "${DOWNGRADE_MAXDEPTH:=1}"
 
 declare -a terms
 declare -a to_ignore
@@ -346,6 +357,45 @@ parse_options() {
         else
           {
             gettext "Missing --ala-url argument"
+            echo
+            usage
+          } >&2
+          exit 1
+        fi
+        ;;
+      --pacman-cache)
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN_CACHE="$1"
+        else
+          {
+            gettext "Missing --pacman-cache argument"
+            echo
+            usage
+          } >&2
+          exit 1
+        fi
+        ;;
+      --pacman-log)
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN_LOG="$1"
+        else
+          {
+            gettext "Missing --pacman-log argument"
+            echo
+            usage
+          } >&2
+          exit 1
+        fi
+        ;;
+      --maxdepth)
+        if [[ -n "$2" ]]; then
+          shift
+          DOWNGRADE_MAXDEPTH="$1"
+        else
+          {
+            gettext "Missing --maxdepth argument"
             echo
             usage
           } >&2
