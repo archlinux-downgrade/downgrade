@@ -135,8 +135,11 @@ matches_name_version_filter() {
     '<')
       ((cmp == -1))
       ;;
+    '=~')
+      [[ $pkg_version =~ $search_version ]]
+      ;;
     '=')
-      [[ $pkg_version =~ ^$search_version ]]
+      ((cmp == 0))
       ;;
   esac
 }
@@ -234,7 +237,7 @@ process_term() {
   local term=$1 name operator version candidates choice
 
   read -r name operator version < \
-    <(sed -r "s/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g" <<<"$term")
+    <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~)([^<>=~].*)/\1 \2 \3/g" <<<"$term")
 
   installed=($(previously_installed "$name"))
   current=$(currently_installed "$name")
@@ -260,6 +263,10 @@ process_term() {
     return 0
   fi
 
+  {
+    eval_gettext "Unable to downgrade \$name"
+    echo
+  } >&2
   return 1
 }
 
@@ -270,10 +277,6 @@ main() {
 
   for term; do
     if ! process_term "$term"; then
-      {
-        eval_gettext "Unable to downgrade \$term"
-        echo
-      } >&2
       exit_code=1
     fi
   done
@@ -305,6 +308,7 @@ declare -a to_ignore
 declare -a to_install
 declare -a pacman_args
 declare -a installed
+declare current
 
 parse_options() {
   while [[ -n "$1" ]]; do
