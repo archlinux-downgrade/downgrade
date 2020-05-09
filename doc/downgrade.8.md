@@ -100,7 +100,7 @@ The pacman log file is read from the pacman configuration file by default, or se
 
 # VERSION FILTERING
 
-**downgrade** allows the use of the following version filtering operators: **=**, **<=**, **>=**, **<** and **>**. Note that the **=** operator provides a fuzzy match if the input version is incomplete.
+**downgrade** allows the use of the following version-filtering operators: **=**, **=~**, **<=**, **>=**, **<** and **>**. Note that **=~** represents a regex match operator.
 
 If only one package-path matches, the package will be installed without further prompt from the user.
 

@@ -132,11 +132,10 @@ The pacman log file is read from the pacman configuration file by
 default, or set to \f[I]/var/log/pacman.log\f[R] when not found.
 .SH VERSION FILTERING
 .PP
-\f[B]downgrade\f[R] allows the use of the following version filtering
-operators: \f[B]=\f[R], \f[B]<=\f[R], \f[B]>=\f[R], \f[B]<\f[R] and
-\f[B]>\f[R].
-Note that the \f[B]=\f[R] operator provides a fuzzy match if the input
-version is incomplete.
+\f[B]downgrade\f[R] allows the use of the following version-filtering
+operators: \f[B]=\f[R], \f[B]=\[ti]\f[R], \f[B]<=\f[R], \f[B]>=\f[R],
+\f[B]<\f[R] and \f[B]>\f[R].
+Note that \f[B]=\[ti]\f[R] represents a regex match operator.
 .PP
 If only one package-path matches, the package will be installed without
 further prompt from the user.

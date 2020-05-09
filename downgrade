@@ -135,8 +135,11 @@ matches_name_version_filter() {
     '<')
       ((cmp == -1))
       ;;
+    '=~')
+      [[ $pkg_version =~ $search_version ]]
+      ;;
     '=')
-      [[ $pkg_version =~ ^$search_version ]] || ((cmp == 0))
+      ((cmp == 0))
       ;;
   esac
 }
@@ -234,7 +237,7 @@ process_term() {
   local term=$1 name operator version candidates choice
 
   read -r name operator version < \
-    <(sed -r "s/(.*)\b(>=|<=|<|>|=)\b(.*)/\1 \2 \3/g" <<<"$term")
+       <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~)([^<>=~].*)/\1 \2 \3/g" <<<"$term")
 
   installed=($(previously_installed "$name"))
   current=$(currently_installed "$name")
@@ -271,7 +274,6 @@ main() {
   for term; do
     if ! process_term "$term"; then
       {
-        term=$(sed -r "s/(.*)\b(>=|<=|<|>|=)\b(.*)/\1/g" <<<"$term")
         eval_gettext "Unable to downgrade \$term"
         echo
       } >&2
