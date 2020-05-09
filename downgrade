@@ -136,7 +136,7 @@ matches_name_version_filter() {
       ((cmp == -1))
       ;;
     '=')
-      [[ $pkg_version =~ ^$search_version ]]
+      [[ $pkg_version =~ ^$search_version ]] || ((cmp == 0))
       ;;
   esac
 }
@@ -305,6 +305,7 @@ declare -a to_ignore
 declare -a to_install
 declare -a pacman_args
 declare -a installed
+declare current
 
 parse_options() {
   while [[ -n "$1" ]]; do
