@@ -60,15 +60,25 @@ The columns have the following meaning:
 
 # OPTIONS
 
-## DOWNGRADE OPTIONS
-
 **\--pacman** *\<command\>*\
 
 > Pacman command, default is *pacman*.
 
-**\--pacman-conf** *\<file-path\>*\
+**\--pacman-conf** *\<path\>*\
   
 > Pacman configuration file, default is */etc/pacman.conf*.
+
+**\--pacman-cache** *\<path\>*\
+
+> Pacman cache directory or directories, default value is extracted from pacman configuration file, or otherwise defaults to */var/cache/pacman/pkg*. Multiple cache directories can be supplied as space-separated paths.
+
+**\--pacman-log** *\<path\>*\
+
+> Pacman log file, default value is extracted from pacman configuration file, or otherwise defaults to */var/log/pacman.log*.
+
+**\--maxdepth** *\<int\>*\
+
+> Maximum depth to search for cached packages, defaults to *1*.
 
 **\--ala-url** *\<url\>*\
 	
@@ -94,15 +104,11 @@ As per the usage syntax, any options supplied after the **\--** character sequen
 
 By default, **downgrade** will search both local caches and the ALA.
 
-The package cache directory is read from the pacman configuration file by default, or set to */var/cache/pacman/pkg/* when not found.
-
-The pacman log file is read from the pacman configuration file by default, or set to */var/log/pacman.log* when not found.
+If only one package with its corresponding location matches, the package will be installed without further prompt from the user.
 
 # VERSION FILTERING
 
 **downgrade** allows the use of the following version-filtering operators: **=**, **=~**, **<=**, **>=**, **<** and **>**. Note that **=~** represents a regex match operator.
-
-If only one package-path matches, the package will be installed without further prompt from the user.
 
 # EXIT CODES
 
