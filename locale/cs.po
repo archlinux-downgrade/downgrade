@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-09 15:05+0200\n"
+"POT-Creation-Date: 2020-05-09 03:15+0200\n"
 "PO-Revision-Date: 2020-04-21 21:10+0100\n"
 "Last-Translator: <tom.vycital@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -103,24 +103,24 @@ msgstr "vzdálený"
 msgid "Invalid choice"
 msgstr "Neplatná volba"
 
-#: downgrade:277
+#: downgrade:278
 #, sh-format
 msgid "Unable to downgrade $term"
 msgstr "Nelze downgradovat $term"
 
-#: downgrade:322
+#: downgrade:323
 msgid "Missing --pacman argument"
 msgstr "Chybí argument --pacman"
 
-#: downgrade:335
+#: downgrade:336
 msgid "Missing --pacman-conf argument"
 msgstr "Chybí argument --pacman-conf"
 
-#: downgrade:348
+#: downgrade:349
 msgid "Missing --ala-url argument"
 msgstr "Chybí argument --ala-url"
 
-#: downgrade:384
+#: downgrade:385
 msgid "No packages provided for downgrading"
 msgstr "Pro downgradování nebyly poskytnuty žádné balíčky"
 
