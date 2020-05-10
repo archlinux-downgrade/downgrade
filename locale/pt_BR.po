@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 19:36+0200\n"
+"POT-Creation-Date: 2020-05-11 20:00+0200\n"
 "PO-Revision-Date: 2020-04-21 01:23-0300\n"
 "Last-Translator: Thiago Perrotta <thiagoperrotta95@gmail.com>, <shankar."
 "atreya@gmail.com>\n"
@@ -35,8 +35,8 @@ msgstr "comando"
 msgid "pacman command to use, defaults to"
 msgstr "comando pacman a usar, o padrão é"
 
-#: downgrade:12
-msgid "file-path"
+#: downgrade:12 downgrade:14 downgrade:18
+msgid "path"
 msgstr "caminho de arquivo"
 
 #: downgrade:13
@@ -44,84 +44,120 @@ msgid "pacman configuration file, defaults to"
 msgstr "arquivo de configuração pacman, o padrão é"
 
 #: downgrade:15
+msgid "pacman cache directory or directories,"
+msgstr "diretório ou diretórios de cache pacman,"
+
+#: downgrade:16 downgrade:20
+msgid "default value taken from pacman configuration file,"
+msgstr "valor padrão obtido do arquivo de configuração pacman,"
+
+#: downgrade:17 downgrade:21
+msgid "or otherwise defaults to"
+msgstr "ou o padrão é"
+
+#: downgrade:19
+msgid "pacman log file,"
+msgstr "arquivo de log pacman"
+
+#: downgrade:22
+msgid "integer"
+msgstr "inteiro"
+
+#: downgrade:23
+msgid "maximum depth to search for cached packages, defaults to"
+msgstr "profundidade máxima para procurar pacotes em cache, o padrão é"
+
+#: downgrade:25
 msgid "location of ALA server, defaults to"
 msgstr "localização do servidor ALA, o padrão é"
 
-#: downgrade:16
+#: downgrade:26
 msgid "only use ALA server"
 msgstr "use apenas o servidor ALA"
 
-#: downgrade:17
+#: downgrade:27
 msgid "only use cached packages"
 msgstr "use apenas pacotes em cache"
 
-#: downgrade:18
+#: downgrade:28
 msgid "do not use sudo even when available, use su"
 msgstr "não use sudo, mesmo quando disponível, use su"
 
-#: downgrade:19
+#: downgrade:29
 msgid "show help script"
 msgstr "mostrar script de ajuda"
 
-#: downgrade:21
+#: downgrade:31
 msgid "Note"
 msgstr "Nota"
 
-#: downgrade:22
+#: downgrade:32
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "As opções após os caracteres -- serão tratadas como opções do pacman."
 
-#: downgrade:23
+#: downgrade:33
 msgid "See downgrade(8) for details."
 msgstr "Veja downgrade(8) para mais detalhes."
 
-#: downgrade:56
+#: downgrade:66
 msgid "Available packages:"
 msgstr "Pacotes disponíveis:"
 
-#: downgrade:66
+#: downgrade:76
 msgid "select a package by number: "
 msgstr "selecione um pacote por número:"
 
-#: downgrade:83
+#: downgrade:93
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "adicionar $pkg em IgnorePkg? [s/n]"
 
-#: downgrade:86
+#: downgrade:96
 msgid "y"
 msgstr "s"
 
-#: downgrade:196
+#: downgrade:206
 msgid "local"
 msgstr "local"
 
-#: downgrade:198
+#: downgrade:208
 msgid "remote"
 msgstr "remoto"
 
-#: downgrade:253
+#: downgrade:263
 msgid "Invalid choice"
 msgstr "Escolha inválida"
 
-#: downgrade:267
+#: downgrade:277
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Não foi possível fazer o downgrade $name"
 
-#: downgrade:322
+#: downgrade:333
 msgid "Missing --pacman argument"
 msgstr "Argumento --pacman ausente"
 
-#: downgrade:335
+#: downgrade:346
 msgid "Missing --pacman-conf argument"
 msgstr "Argumento --pacman-conf ausente"
 
-#: downgrade:348
+#: downgrade:359
 msgid "Missing --ala-url argument"
 msgstr "Argumento --ala-url ausente"
 
-#: downgrade:384
+#: downgrade:372
+msgid "Missing --pacman-cache argument"
+msgstr "Argumento --pacman-cache ausente"
+
+#: downgrade:385
+msgid "Missing --pacman-log argument"
+msgstr "Argumento --pacman-log ausente"
+
+#: downgrade:398
+msgid "Missing --maxdepth argument"
+msgstr "Argumento --maxdepth ausente"
+
+#: downgrade:434
 msgid "No packages provided for downgrading"
 msgstr "Nenhum pacote fornecido para desatualização"
 
@@ -130,6 +166,3 @@ msgstr "Nenhum pacote fornecido para desatualização"
 
 #~ msgid "target architecture, defaults to output of"
 #~ msgstr "arquitetura de destino, o padrão é a saída de"
-
-#~ msgid "Missing --arch argument"
-#~ msgstr "Argumento --arch ausente"

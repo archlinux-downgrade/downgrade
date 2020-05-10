@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 19:36+0200\n"
+"POT-Creation-Date: 2020-05-11 20:00+0200\n"
 "PO-Revision-Date: 2020-04-21 13:53+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -37,8 +37,8 @@ msgstr "komanda"
 msgid "pacman command to use, defaults to"
 msgstr "Pacman komanda, kurią reikia naudoti, numatytoji reikšmė yra"
 
-#: downgrade:12
-msgid "file-path"
+#: downgrade:12 downgrade:14 downgrade:18
+msgid "path"
 msgstr "bylos kelias"
 
 #: downgrade:13
@@ -46,84 +46,121 @@ msgid "pacman configuration file, defaults to"
 msgstr "Pacman konfigūracijos failas, pagal nutylėjimą"
 
 #: downgrade:15
+msgid "pacman cache directory or directories,"
+msgstr "Pacman talpyklos katalogas arba katalogai,"
+
+#: downgrade:16 downgrade:20
+msgid "default value taken from pacman configuration file,"
+msgstr "numatytoji vertė, paimta iš pacman konfigūracijos failo,"
+
+#: downgrade:17 downgrade:21
+msgid "or otherwise defaults to"
+msgstr "arba kitaip pagal nutylėjimą yra"
+
+#: downgrade:19
+msgid "pacman log file,"
+msgstr "Pacman žurnalo failas"
+
+#: downgrade:22
+msgid "integer"
+msgstr "sveikasis skaičius"
+
+#: downgrade:23
+msgid "maximum depth to search for cached packages, defaults to"
+msgstr ""
+"maksimalus gylis ieškant talpykloje esančių paketų, numatytasis reikšmė yra"
+
+#: downgrade:25
 msgid "location of ALA server, defaults to"
 msgstr "ALA serverio vieta, numatytoji reikšmė"
 
-#: downgrade:16
+#: downgrade:26
 msgid "only use ALA server"
 msgstr "naudoti tik ALA serverį"
 
-#: downgrade:17
+#: downgrade:27
 msgid "only use cached packages"
 msgstr "naudokite tik talpykloje laikomus paketus"
 
-#: downgrade:18
+#: downgrade:28
 msgid "do not use sudo even when available, use su"
 msgstr "nenaudokite sudo, net jei įmanoma, naudokite su"
 
-#: downgrade:19
+#: downgrade:29
 msgid "show help script"
 msgstr "rodyti pagalbos scenarijų"
 
-#: downgrade:21
+#: downgrade:31
 msgid "Note"
 msgstr "Pastaba"
 
-#: downgrade:22
+#: downgrade:32
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "Parinktys po simbolių -- bus traktuojamos kaip pacman parinktys."
 
-#: downgrade:23
+#: downgrade:33
 msgid "See downgrade(8) for details."
 msgstr "Išsamiau galite paskaityti downgrade(8)."
 
-#: downgrade:56
+#: downgrade:66
 msgid "Available packages:"
 msgstr "Prieinami paketai:"
 
-#: downgrade:66
+#: downgrade:76
 msgid "select a package by number: "
 msgstr "įveskite paketo numerį:"
 
-#: downgrade:83
+#: downgrade:93
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/n] "
 msgstr "pridėti $pkg į IgnorePkg? [t/n]"
 
-#: downgrade:86
+#: downgrade:96
 msgid "y"
 msgstr "t"
 
-#: downgrade:196
+#: downgrade:206
 msgid "local"
 msgstr "vietinis"
 
-#: downgrade:198
+#: downgrade:208
 msgid "remote"
 msgstr "nutolęs"
 
-#: downgrade:253
+#: downgrade:263
 msgid "Invalid choice"
 msgstr "Netinkamas pasirinkimas"
 
-#: downgrade:267
+#: downgrade:277
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Neįmanoma paversti žemesnio lygio $name"
 
-#: downgrade:322
+#: downgrade:333
 msgid "Missing --pacman argument"
 msgstr "Trūksta argumento --pacman"
 
-#: downgrade:335
+#: downgrade:346
 msgid "Missing --pacman-conf argument"
 msgstr "Trūksta argumento --pacman-conf"
 
-#: downgrade:348
+#: downgrade:359
 msgid "Missing --ala-url argument"
 msgstr "Trūksta argumento --ala-url"
 
-#: downgrade:384
+#: downgrade:372
+msgid "Missing --pacman-cache argument"
+msgstr "Trūksta argumento --pacman-cache"
+
+#: downgrade:385
+msgid "Missing --pacman-log argument"
+msgstr "Trūksta argumento --pacman-log"
+
+#: downgrade:398
+msgid "Missing --maxdepth argument"
+msgstr "Trūksta argumento --maxdepth"
+
+#: downgrade:434
 msgid "No packages provided for downgrading"
 msgstr "Nepateikta jokių pakuočių, leidžiančių pažengti žemiau"
 
@@ -132,6 +169,3 @@ msgstr "Nepateikta jokių pakuočių, leidžiančių pažengti žemiau"
 
 #~ msgid "target architecture, defaults to output of"
 #~ msgstr "taikinio architektūra, numatytoji reikšmė yra"
-
-#~ msgid "Missing --arch argument"
-#~ msgstr "Trūksta argumento --arch"
