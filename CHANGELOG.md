@@ -1,4 +1,13 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v6.3.0...master)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v7.0.0...master)
+
+None
+
+## [v8.0.0](https://github.com/pbrisbin/downgrade/compare/v7.0.0...v8.0.0)
+
+- [NEW] Options for Pacman config, cache, and find -maxdepth
+- [FIX] Version bound filtering with = now means =, added =~ for regex
+
+## [v7.0.0](https://github.com/pbrisbin/downgrade/compare/v6.3.0...v7.0.0)
 
 - [NEW] Version bound handling by parsing logical =,>,<,>= and <= operators
 - [NEW] Handling basic version conflicts during downgrading
