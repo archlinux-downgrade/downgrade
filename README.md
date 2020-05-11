@@ -42,10 +42,10 @@ $ downgrade foo bar
 ```
 
 Downgrade a package with any of the following version-filtering operators `=`,
-`<=`, `>=`, `<` and `>`:
+`=~`, `<=`, `>=`, `<` and `>`:
 
 ```
-$ downgrade "foo=1.0.0-1" "bar>=1.2.1-1"
+$ downgrade "foo=1.0.0-1" "bar>=1.2.1-1" "baz=~^1.2"
 ```
 
 Downgrade a package, looking in only local cache:
