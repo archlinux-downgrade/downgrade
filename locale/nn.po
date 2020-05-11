@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-06 15:43-0400\n"
+"POT-Creation-Date: 2020-05-11 19:36+0200\n"
 "PO-Revision-Date: 2020-04-21 12:48-0400\n"
 "Last-Translator: Håkon Vågsether <hauk142@gmail.com>, <shankar.atreya@gmail."
 "com>\n"
@@ -92,36 +92,36 @@ msgstr "legg til $pkg i IgnorePkg? [j/n]"
 msgid "y"
 msgstr "j"
 
-#: downgrade:193
+#: downgrade:196
 msgid "local"
 msgstr "lokal"
 
-#: downgrade:195
+#: downgrade:198
 msgid "remote"
 msgstr "ekstern"
 
-#: downgrade:250
+#: downgrade:253
 msgid "Invalid choice"
 msgstr "Ugyldig valg"
 
-#: downgrade:274
+#: downgrade:267
 #, sh-format
-msgid "Unable to downgrade $term"
-msgstr "Kan ikke nedgradere $term"
+msgid "Unable to downgrade $name"
+msgstr "Kan ikke nedgradere $name"
 
-#: downgrade:318
+#: downgrade:322
 msgid "Missing --pacman argument"
 msgstr "Mangler --pacman -argumentet"
 
-#: downgrade:331
+#: downgrade:335
 msgid "Missing --pacman-conf argument"
 msgstr "Mangler --pacman-conf -argumentet"
 
-#: downgrade:344
+#: downgrade:348
 msgid "Missing --ala-url argument"
 msgstr "Mangler --ala-url -argumentet"
 
-#: downgrade:380
+#: downgrade:384
 msgid "No packages provided for downgrading"
 msgstr "Ingen pakker gitt for nedgradering"
 
