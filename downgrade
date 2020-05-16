@@ -422,6 +422,17 @@ parse_options() {
         pacman_args=("$@")
         break
         ;;
+      -*)
+        local current_option
+        # shellcheck disable=SC2034
+        current_option="$1"
+        {
+          eval_gettext "Unrecognized option \$current_option"
+          echo
+          usage
+        } >&2
+        exit 1
+        ;;
       *)
         terms+=("$1")
         ;;
