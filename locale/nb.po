@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 20:00+0200\n"
+"POT-Creation-Date: 2020-05-16 17:19+0200\n"
 "PO-Revision-Date: 2020-04-21 12:48-0400\n"
 "Last-Translator: Håkon Vågsether <hauk142@gmail.com>, <shankar.atreya@gmail."
 "com>\n"
@@ -157,7 +157,12 @@ msgstr "Mangler --pacman-log -argumentet"
 msgid "Missing --maxdepth argument"
 msgstr "Mangler --maxdepth -argumentet"
 
-#: downgrade:434
+#: downgrade:429
+#, sh-format
+msgid "Unrecognized option $current_option"
+msgstr "Ukjent alternativ $current_option"
+
+#: downgrade:444
 msgid "No packages provided for downgrading"
 msgstr "Ingen pakker gitt for nedgradering"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 20:00+0200\n"
+"POT-Creation-Date: 2020-05-16 17:19+0200\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -160,7 +160,12 @@ msgstr "Argument --pacman-log manquant"
 msgid "Missing --maxdepth argument"
 msgstr "Argument --maxdepth manquant"
 
-#: downgrade:434
+#: downgrade:429
+#, sh-format
+msgid "Unrecognized option $current_option"
+msgstr "Option non reconnue $current_option"
+
+#: downgrade:444
 msgid "No packages provided for downgrading"
 msgstr "Aucun package fourni pour la rétrogradation"
 

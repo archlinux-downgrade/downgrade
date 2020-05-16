@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 14:46-0400\n"
+"POT-Creation-Date: 2020-05-16 17:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,6 +154,11 @@ msgstr ""
 msgid "Missing --maxdepth argument"
 msgstr ""
 
-#: downgrade:434
+#: downgrade:429
+#, sh-format
+msgid "Unrecognized option $current_option"
+msgstr ""
+
+#: downgrade:444
 msgid "No packages provided for downgrading"
 msgstr ""
