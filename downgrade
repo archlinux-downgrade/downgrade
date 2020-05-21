@@ -172,7 +172,7 @@ search_packages() {
     : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
 
     # shellcheck disable=SC2086
-    find $PACMAN_CACHE -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
+    find -L $PACMAN_CACHE -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
   fi
 }
 
