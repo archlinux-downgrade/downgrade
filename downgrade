@@ -90,7 +90,7 @@ prompt_to_ignore() {
   for pkg; do
     grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
 
-    eval_gettext "add \$pkg to IgnorePkg? [y/n] "
+    eval_gettext "add \$pkg to IgnorePkg? [y/N] "
     read -r ans
 
     if [[ "${ans,,}" == $(gettext 'y')* ]]; then
