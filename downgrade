@@ -6,31 +6,31 @@ usage() {
   cat <<EOF
 $(gettext "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]")
 
-  $(gettext "Options"):
-    --pacman        <$(gettext "command")>
-                    $(gettext "pacman command to use, defaults to") "pacman"
-    --pacman-conf   <$(gettext "path")>
-                    $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
-    --pacman-cache  <$(gettext "path")>
-                    $(gettext "pacman cache directory or directories,")
-                    $(gettext "default value taken from pacman configuration file,")
-                    $(gettext "or otherwise defaults to") "/var/cache/pacman/pkg"
-    --pacman-log    <$(gettext "path")>
-                    $(gettext "pacman log file,")
-                    $(gettext "default value taken from pacman configuration file,")
-                    $(gettext "or otherwise defaults to") "/var/log/pacman.log"
-    --maxdepth      <$(gettext "integer")>
-                    $(gettext "maximum depth to search for cached packages, defaults to") 1
-    --ala-url       <url>
-                    $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
-    --ala-only      $(gettext "only use ALA server")
-    --cached-only   $(gettext "only use cached packages")
-    --nosudo        $(gettext "do not use sudo even when available, use su")
-    -h, --help      $(gettext "show help script")
+$(gettext "Options"):
+  --pacman        <$(gettext "command")>
+                  $(gettext "pacman command to use, defaults to") "pacman"
+  --pacman-conf   <$(gettext "path")>
+                  $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
+  --pacman-cache  <$(gettext "path")>
+                  $(gettext "pacman cache directory or directories,")
+                  $(gettext "default value taken from pacman configuration file,")
+                  $(gettext "or otherwise defaults to") "/var/cache/pacman/pkg"
+  --pacman-log    <$(gettext "path")>
+                  $(gettext "pacman log file,")
+                  $(gettext "default value taken from pacman configuration file,")
+                  $(gettext "or otherwise defaults to") "/var/log/pacman.log"
+  --maxdepth      <$(gettext "integer")>
+                  $(gettext "maximum depth to search for cached packages, defaults to") 1
+  --ala-url       <url>
+                  $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
+  --ala-only      $(gettext "only use ALA server")
+  --cached-only   $(gettext "only use cached packages")
+  --nosudo        $(gettext "do not use sudo even when available, use su")
+  -h, --help      $(gettext "show help script")
 
-  $(gettext "Note"):
-    $(gettext "Options after the -- characters will be treated as pacman options.")
-    $(gettext "See downgrade(8) for details.")
+$(gettext "Note"):
+  $(gettext "Options after the -- characters will be treated as pacman options.")
+  $(gettext "See downgrade(8) for details.")
 EOF
 }
 
