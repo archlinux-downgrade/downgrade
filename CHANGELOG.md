@@ -1,6 +1,8 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v7.0.0...master)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v8.0.0...master)
 
-None
+- [FIX] Clarify default option (No) in IgnorePkg prompt
+- [FIX] Use find -L to fix symlink-handling
+- [FIX] Improve error-handling of un-recognized options
 
 ## [v8.0.0](https://github.com/pbrisbin/downgrade/compare/v7.0.0...v8.0.0)
 
