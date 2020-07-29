@@ -16,31 +16,31 @@ Install via the [AUR](https://aur.archlinux.org/packages/downgrade/).
 ```
 Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]
 
-  Options:
-    --pacman        <command>
-                    pacman command to use, defaults to "pacman"
-    --pacman-conf   <path>
-                    pacman configuration file, defaults to "/etc/pacman.conf"
-    --pacman-cache  <path>
-                    pacman cache directory or directories,
-                    default value taken from pacman configuration file,
-                    or otherwise defaults to "/var/cache/pacman/pkg"
-    --pacman-log    <path>
-                    pacman log file,
-                    default value taken from pacman configuration file,
-                    or otherwise defaults to "/var/log/pacman.log"
-    --maxdepth      <integer>
-                    maximum depth to search for cached packages, defaults to 1
-    --ala-url       <url>
-                    location of ALA server, defaults to "https://archive.archlinux.org"
-    --ala-only      only use ALA server
-    --cached-only   only use cached packages
-    --nosudo        do not use sudo even when available, use su
-    -h, --help      show help script
+Options:
+  --pacman        <command>
+                  pacman command to use, defaults to "pacman"
+  --pacman-conf   <path>
+                  pacman configuration file, defaults to "/etc/pacman.conf"
+  --pacman-cache  <path>
+                  pacman cache directory or directories,
+                  default value taken from pacman configuration file,
+                  or otherwise defaults to "/var/cache/pacman/pkg"
+  --pacman-log    <path>
+                  pacman log file,
+                  default value taken from pacman configuration file,
+                  or otherwise defaults to "/var/log/pacman.log"
+  --maxdepth      <integer>
+                  maximum depth to search for cached packages, defaults to 1
+  --ala-url       <url>
+                  location of ALA server, defaults to "https://archive.archlinux.org"
+  --ala-only      only use ALA server
+  --cached-only   only use cached packages
+  --nosudo        do not use sudo even when available, use su
+  -h, --help      show help script
 
-  Note:
-    Options after the -- characters will be treated as pacman options.
-    See downgrade(8) for details.
+Note:
+  Options after the -- characters will be treated as pacman options.
+  See downgrade(8) for details.
 ```
 
 Downgrade packages checking both local cache and the
