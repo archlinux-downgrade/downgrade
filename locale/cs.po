@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-16 17:19+0200\n"
+"POT-Creation-Date: 2020-07-29 10:31+0200\n"
 "PO-Revision-Date: 2020-04-21 21:10+0100\n"
 "Last-Translator: <tom.vycital@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -109,8 +109,8 @@ msgstr "vyberte balíček číslem: "
 
 #: downgrade:93
 #, sh-format
-msgid "add $pkg to IgnorePkg? [y/n] "
-msgstr "přidat $pkg mezi ignorované? [a/n]"
+msgid "add $pkg to IgnorePkg? [y/N] "
+msgstr "přidat $pkg mezi ignorované? [a/N] "
 
 #: downgrade:96
 msgid "y"
@@ -157,12 +157,12 @@ msgstr "Chybí argument --pacman-log"
 msgid "Missing --maxdepth argument"
 msgstr "Chybí argument --maxdepth"
 
-#: downgrade:429
+#: downgrade:430
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Nerozpoznaná možnost $current_option"
 
-#: downgrade:444
+#: downgrade:445
 msgid "No packages provided for downgrading"
 msgstr "Pro downgradování nebyly poskytnuty žádné balíčky"
 
