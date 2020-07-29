@@ -1,7 +1,11 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v8.0.0...master)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v8.1.0...master)
 
-- [FIX] Clarify default option (No) in IgnorePkg prompt
-- [FIX] Use find -L to fix symlink-handling
+None
+
+## [v8.1.0](https://github.com/pbrisbin/downgrade/compare/v8.0.0...v8.1.0)
+
+- [FIX] Clarify default option (No) in IgnorePkg prompt (@132ikl)
+- [NEW] Use find -L to handle symlinks in Pacman cache
 - [FIX] Improve error-handling of un-recognized options
 
 ## [v8.0.0](https://github.com/pbrisbin/downgrade/compare/v7.0.0...v8.0.0)
