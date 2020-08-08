@@ -36,6 +36,7 @@ install:
 	install -Dm644 doc/downgrade.8 $(DESTDIR)$(MANPREFIX)/man8/downgrade.8
 	install -Dm644 completion/bash $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade
 	install -Dm644 completion/zsh $(DESTDIR)$(PREFIX)/share/zsh/site-functions/_downgrade
+	install -Dm644 completion/fish $(DESTDIR)$(PREFIX)/share/fish/vendor_completions.d/downgrade.fish
 	for po_file in locale/*.po; do \
 	  locale="$$(basename "$$po_file" .po)"; \
 	  mkdir -p "$(DESTDIR)$(LOCALEPREFIX)/$$locale/LC_MESSAGES/"; \
