@@ -1,6 +1,10 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v8.1.0...master)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v8.1.1...master)
 
 None
+
+## [v8.1.1](https://github.com/pbrisbin/downgrade/compare/v8.1.0...v8.1.1)
+
+- [NEW] Addition of autocompletion script for `fish` (@Jakeler)
 
 ## [v8.1.0](https://github.com/pbrisbin/downgrade/compare/v8.0.0...v8.1.0)
 
