@@ -76,7 +76,7 @@ The columns have the following meaning:
 
 > Pacman log file, default value is extracted from pacman configuration file, or otherwise defaults to */var/log/pacman.log*.
 
-**\--maxdepth** *\<int\>*\
+**\--maxdepth** *\<integer\>*\
 
 > Maximum depth to search for cached packages, defaults to *1*.
 
