@@ -59,7 +59,7 @@ release.major: release
 release.minor: VERSION=$(shell git tag | vbump minor | sed 's/^v//')
 release.minor: release
 
-.PHONY: release.match
+.PHONY: release.patch
 release.patch: VERSION=$(shell git tag | vbump patch | sed 's/^v//')
 release.patch: release
 
