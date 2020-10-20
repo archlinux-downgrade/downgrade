@@ -4,7 +4,7 @@ _downgrade(){
   _arguments -S -C '*:packages:->pkg' \
              '--pacman[Specify pacman command]:pacman command' \
              '--pacman-conf[Specify pacman configuration file]:pacman config file:_files' \
-             '--pacman-cache[Specify pacman cache directory or directories]:pacman cache directory:_path_files -/' \
+             '*--pacman-cache[Specify pacman cache directory or directories]:pacman cache directory:_path_files -/' \
              '--pacman-log[Specify pacman log-file]:pacman log file:_files' \
              '--maxdepth[Specify maximum depth for local cache find]:maximum search depth' \
              '--ala-url[Specify location of ALA server]:ala url' \
