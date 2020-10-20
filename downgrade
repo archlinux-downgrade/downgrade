@@ -168,11 +168,16 @@ search_packages() {
 
   if ((DOWNGRADE_FROM_CACHE)); then
     # Delay this defaulting so #read_pacman_conf behavior is tested
-    : "${PACMAN_CACHE:=$(read_pacman_conf CacheDir)}"
-    : "${PACMAN_CACHE:=/var/cache/pacman/pkg/}"
+    if ((!${#PACMAN_CACHE})); then
+      mapfile -t PACMAN_CACHE < <(read_pacman_conf CacheDir)
+    fi
+
+    if ((!${#PACMAN_CACHE})); then
+      PACMAN_CACHE=( /var/cache/pacman/pkg/ )
+    fi
 
     # shellcheck disable=SC2086
-    find -L $PACMAN_CACHE -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
+    find -L "${PACMAN_CACHE[@]}" -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
   fi
 }
 
@@ -366,7 +371,7 @@ parse_options() {
       --pacman-cache)
         if [[ -n "$2" ]]; then
           shift
-          PACMAN_CACHE="$1"
+          PACMAN_CACHE+=("$1")
         else
           {
             gettext "Missing --pacman-cache argument"
