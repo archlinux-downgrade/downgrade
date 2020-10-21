@@ -173,7 +173,7 @@ search_packages() {
     fi
 
     if ((!${#PACMAN_CACHE})); then
-      PACMAN_CACHE=( /var/cache/pacman/pkg/ )
+      PACMAN_CACHE=(/var/cache/pacman/pkg/)
     fi
 
     # shellcheck disable=SC2086
