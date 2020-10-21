@@ -8,8 +8,8 @@ labels: 'bug, needs triage'
 
 ### Checklist
 
-* [ ] Did you search the issues/pull-requests for possible duplicates?
-* [ ] Are you running the latest `downgrade` release from the [AUR](https://aur.archlinux.org/packages/downgrade/)?
+- [ ] Did you search the issues/pull-requests for possible duplicates?
+- [ ] Are you running the latest `downgrade` release from the [AUR](https://aur.archlinux.org/packages/downgrade/)?
 
 ### Environment
 
