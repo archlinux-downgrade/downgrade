@@ -65,12 +65,12 @@ The columns have the following meaning:
 > Pacman command, default is *pacman*.
 
 **\--pacman-conf** *\<path\>*\
-  
+
 > Pacman configuration file, default is */etc/pacman.conf*.
 
 **\--pacman-cache** *\<path\>*\
 
-> Pacman cache directory or directories, default value is extracted from pacman configuration file, or otherwise defaults to */var/cache/pacman/pkg*. Multiple cache directories can be supplied as space-separated paths.
+> Pacman cache directory, default value(s) taken from pacman configuration file, or otherwise defaults to */var/cache/pacman/pkg*. This option can be specified multiple times to indicate multiple cache directories.
 
 **\--pacman-log** *\<path\>*\
 

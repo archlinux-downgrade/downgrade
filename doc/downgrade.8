@@ -84,10 +84,10 @@ Pacman configuration file, default is \f[I]/etc/pacman.conf\f[R].
 .PD
 .RS
 .PP
-Pacman cache directory or directories, default value is extracted from
-pacman configuration file, or otherwise defaults to
-\f[I]/var/cache/pacman/pkg\f[R].
-Multiple cache directories can be supplied as space-separated paths.
+Pacman cache directory, default value(s) taken from pacman configuration
+file, or otherwise defaults to \f[I]/var/cache/pacman/pkg\f[R].
+This option can be specified multiple times to indicate multiple cache
+directories.
 .RE
 .PP
 \f[B]--pacman-log\f[R] \f[I]<path>\f[R]
