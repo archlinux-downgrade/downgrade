@@ -51,6 +51,12 @@ default behavior:
 $ downgrade foo bar
 ```
 
+Downgrade packages, specifying multiple cache directories:
+
+```
+$ downgrade --pacman-cache /path/to/cache --pacman-cache /path/to/other/cache foo bar
+```
+
 Downgrade a package with any of the following version-filtering operators `=`,
 `=~`, `<=`, `>=`, `<` and `>`:
 
