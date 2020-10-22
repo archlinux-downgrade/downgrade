@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-29 10:31+0200\n"
+"POT-Creation-Date: 2020-10-22 20:25+0200\n"
 "PO-Revision-Date: 2020-04-21 17:23+0200\n"
 "Last-Translator: Tomasz \"Ludvick\" Niedzielski <ludvick0@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -45,11 +45,11 @@ msgid "pacman configuration file, defaults to"
 msgstr "plik konfiguracyjny pacmana, domyślnie"
 
 #: downgrade:15
-msgid "pacman cache directory or directories,"
-msgstr "katalog lub katalogi pamięci podręcznej pacman,"
+msgid "pacman cache directory,"
+msgstr "katalog pamięci podręcznej pacman,"
 
-#: downgrade:16 downgrade:20
-msgid "default value taken from pacman configuration file,"
+#: downgrade:16
+msgid "default value(s) taken from pacman configuration file,"
 msgstr "wartość domyślna pobrana z pliku konfiguracyjnego pacman,"
 
 #: downgrade:17 downgrade:21
@@ -59,6 +59,10 @@ msgstr "lub w inny sposób domyślnie"
 #: downgrade:19
 msgid "pacman log file,"
 msgstr "plik dziennika pacman"
+
+#: downgrade:20
+msgid "default value taken from pacman configuration file,"
+msgstr "wartość domyślna pobrana z pliku konfiguracyjnego pacman,"
 
 #: downgrade:22
 msgid "integer"
@@ -118,53 +122,53 @@ msgstr "dodać $pkg do IgnorePkg? [t/N] "
 msgid "y"
 msgstr "t"
 
-#: downgrade:206
+#: downgrade:211
 msgid "local"
 msgstr "lokalnie"
 
-#: downgrade:208
+#: downgrade:213
 msgid "remote"
 msgstr "do pobrania"
 
-#: downgrade:263
+#: downgrade:268
 msgid "Invalid choice"
 msgstr "Nieprawidłowy wybór"
 
-#: downgrade:277
+#: downgrade:282
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Nie można obniżyć poziomu $name"
 
-#: downgrade:333
+#: downgrade:338
 msgid "Missing --pacman argument"
 msgstr "Brak argumentu --pacman"
 
-#: downgrade:346
+#: downgrade:351
 msgid "Missing --pacman-conf argument"
 msgstr "Brak argumentu --pacman-conf"
 
-#: downgrade:359
+#: downgrade:364
 msgid "Missing --ala-url argument"
 msgstr "Brak argumentu --ala-url"
 
-#: downgrade:372
+#: downgrade:377
 msgid "Missing --pacman-cache argument"
 msgstr "Brak argumentu --pacman-cache"
 
-#: downgrade:385
+#: downgrade:390
 msgid "Missing --pacman-log argument"
 msgstr "Brak argumentu --pacman-log"
 
-#: downgrade:398
+#: downgrade:403
 msgid "Missing --maxdepth argument"
 msgstr "Brak argumentu --maxdepth"
 
-#: downgrade:430
+#: downgrade:435
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Nierozpoznana opcja $current_option"
 
-#: downgrade:445
+#: downgrade:450
 msgid "No packages provided for downgrading"
 msgstr "Brak pakietów do obniżenia"
 

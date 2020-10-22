@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-29 10:31+0200\n"
+"POT-Creation-Date: 2020-10-22 20:25+0200\n"
 "PO-Revision-Date: 2020-04-21 14:25-0300\n"
 "Last-Translator: Nurlan <nurlancik1@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -45,11 +45,11 @@ msgid "pacman configuration file, defaults to"
 msgstr "Файл конфигурации pacman, по умолчанию"
 
 #: downgrade:15
-msgid "pacman cache directory or directories,"
-msgstr "каталог или каталоги кэша pacman,"
+msgid "pacman cache directory,"
+msgstr "каталог кеша pacman,"
 
-#: downgrade:16 downgrade:20
-msgid "default value taken from pacman configuration file,"
+#: downgrade:16
+msgid "default value(s) taken from pacman configuration file,"
 msgstr "значение по умолчанию берется из файла конфигурации pacman,"
 
 #: downgrade:17 downgrade:21
@@ -59,6 +59,10 @@ msgstr "или по умолчанию"
 #: downgrade:19
 msgid "pacman log file,"
 msgstr "файл журнала pacman"
+
+#: downgrade:20
+msgid "default value taken from pacman configuration file,"
+msgstr "значение по умолчанию берется из файла конфигурации pacman,"
 
 #: downgrade:22
 msgid "integer"
@@ -118,53 +122,53 @@ msgstr "добавить $pkg в список проигнорированных
 msgid "y"
 msgstr "д"
 
-#: downgrade:206
+#: downgrade:211
 msgid "local"
 msgstr "локально"
 
-#: downgrade:208
+#: downgrade:213
 msgid "remote"
 msgstr "дистанционно"
 
-#: downgrade:263
+#: downgrade:268
 msgid "Invalid choice"
 msgstr "Неверный выбор"
 
-#: downgrade:277
+#: downgrade:282
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Невозможно понизить $name"
 
-#: downgrade:333
+#: downgrade:338
 msgid "Missing --pacman argument"
 msgstr "Отсутствует аргумент --pacman"
 
-#: downgrade:346
+#: downgrade:351
 msgid "Missing --pacman-conf argument"
 msgstr "Отсутствует аргумент --pacman-conf"
 
-#: downgrade:359
+#: downgrade:364
 msgid "Missing --ala-url argument"
 msgstr "Отсутствует аргумент --ala-url"
 
-#: downgrade:372
+#: downgrade:377
 msgid "Missing --pacman-cache argument"
 msgstr "Отсутствует аргумент --pacman-cache"
 
-#: downgrade:385
+#: downgrade:390
 msgid "Missing --pacman-log argument"
 msgstr "Отсутствует аргумент --pacman-log"
 
-#: downgrade:398
+#: downgrade:403
 msgid "Missing --maxdepth argument"
 msgstr "Отсутствует аргумент --maxdepth"
 
-#: downgrade:430
+#: downgrade:435
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Нераспознанная опция $current_option"
 
-#: downgrade:445
+#: downgrade:450
 msgid "No packages provided for downgrading"
 msgstr "Нет пакетов для понижения"
 
