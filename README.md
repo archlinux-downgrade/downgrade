@@ -22,8 +22,8 @@ Options:
   --pacman-conf   <path>
                   pacman configuration file, defaults to "/etc/pacman.conf"
   --pacman-cache  <path>
-                  pacman cache directory or directories,
-                  default value taken from pacman configuration file,
+                  pacman cache directory,
+                  default value(s) taken from pacman configuration file,
                   or otherwise defaults to "/var/cache/pacman/pkg"
   --pacman-log    <path>
                   pacman log file,
