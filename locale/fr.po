@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-29 10:31+0200\n"
+"POT-Creation-Date: 2020-10-22 20:25+0200\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -43,11 +43,11 @@ msgid "pacman configuration file, defaults to"
 msgstr "fichier de configuration pacman, par défaut"
 
 #: downgrade:15
-msgid "pacman cache directory or directories,"
-msgstr "répertoire ou répertoires de cache pacman,"
+msgid "pacman cache directory,"
+msgstr "répertoire de cache pacman,"
 
-#: downgrade:16 downgrade:20
-msgid "default value taken from pacman configuration file,"
+#: downgrade:16
+msgid "default value(s) taken from pacman configuration file,"
 msgstr "valeur par défaut extraite du fichier de configuration de pacman,"
 
 #: downgrade:17 downgrade:21
@@ -57,6 +57,10 @@ msgstr "ou par défaut"
 #: downgrade:19
 msgid "pacman log file,"
 msgstr "fichier journal pacman"
+
+#: downgrade:20
+msgid "default value taken from pacman configuration file,"
+msgstr "valeur par défaut extraite du fichier de configuration de pacman,"
 
 #: downgrade:22
 msgid "integer"
@@ -119,53 +123,53 @@ msgstr ""
 msgid "y"
 msgstr "o"
 
-#: downgrade:206
+#: downgrade:211
 msgid "local"
 msgstr "local"
 
-#: downgrade:208
+#: downgrade:213
 msgid "remote"
 msgstr "distant"
 
-#: downgrade:263
+#: downgrade:268
 msgid "Invalid choice"
 msgstr "Choix invalide"
 
-#: downgrade:277
+#: downgrade:282
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Impossible de rétrograder $name"
 
-#: downgrade:333
+#: downgrade:338
 msgid "Missing --pacman argument"
 msgstr "Argument --pacman manquant"
 
-#: downgrade:346
+#: downgrade:351
 msgid "Missing --pacman-conf argument"
 msgstr "Argument --pacman-conf manquant"
 
-#: downgrade:359
+#: downgrade:364
 msgid "Missing --ala-url argument"
 msgstr "Argument --ala-url manquant"
 
-#: downgrade:372
+#: downgrade:377
 msgid "Missing --pacman-cache argument"
 msgstr "Argument --pacman-cache manquant"
 
-#: downgrade:385
+#: downgrade:390
 msgid "Missing --pacman-log argument"
 msgstr "Argument --pacman-log manquant"
 
-#: downgrade:398
+#: downgrade:403
 msgid "Missing --maxdepth argument"
 msgstr "Argument --maxdepth manquant"
 
-#: downgrade:430
+#: downgrade:435
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Option non reconnue $current_option"
 
-#: downgrade:445
+#: downgrade:450
 msgid "No packages provided for downgrading"
 msgstr "Aucun package fourni pour la rétrogradation"
 

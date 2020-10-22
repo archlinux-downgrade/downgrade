@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-29 10:31+0200\n"
+"POT-Creation-Date: 2020-10-22 20:25+0200\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -42,11 +42,11 @@ msgid "pacman configuration file, defaults to"
 msgstr "pacman配置文件，默认为"
 
 #: downgrade:15
-msgid "pacman cache directory or directories,"
+msgid "pacman cache directory,"
 msgstr "pacman缓存目录，"
 
-#: downgrade:16 downgrade:20
-msgid "default value taken from pacman configuration file,"
+#: downgrade:16
+msgid "default value(s) taken from pacman configuration file,"
 msgstr "取自pacman配置文件的默认值，"
 
 #: downgrade:17 downgrade:21
@@ -56,6 +56,10 @@ msgstr "否则默认为"
 #: downgrade:19
 msgid "pacman log file,"
 msgstr "pacman日志文件"
+
+#: downgrade:20
+msgid "default value taken from pacman configuration file,"
+msgstr "取自pacman配置文件的默认值，"
 
 #: downgrade:22
 msgid "integer"
@@ -114,53 +118,53 @@ msgstr "添加$pkg到IgnorePkg? [y/N] "
 msgid "y"
 msgstr "y"
 
-#: downgrade:206
+#: downgrade:211
 msgid "local"
 msgstr "本地"
 
-#: downgrade:208
+#: downgrade:213
 msgid "remote"
 msgstr "远端"
 
-#: downgrade:263
+#: downgrade:268
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: downgrade:277
+#: downgrade:282
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "无法降级$name"
 
-#: downgrade:333
+#: downgrade:338
 msgid "Missing --pacman argument"
 msgstr "缺少--pacman参数"
 
-#: downgrade:346
+#: downgrade:351
 msgid "Missing --pacman-conf argument"
 msgstr "缺少--pacman-conf参数"
 
-#: downgrade:359
+#: downgrade:364
 msgid "Missing --ala-url argument"
 msgstr "缺少--ala-url参数"
 
-#: downgrade:372
+#: downgrade:377
 msgid "Missing --pacman-cache argument"
 msgstr "缺少--pacman-cache参数"
 
-#: downgrade:385
+#: downgrade:390
 msgid "Missing --pacman-log argument"
 msgstr "缺少--pacman-log参数"
 
-#: downgrade:398
+#: downgrade:403
 msgid "Missing --maxdepth argument"
 msgstr "缺少--maxdepth参数"
 
-#: downgrade:430
+#: downgrade:435
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "无法识别的选项$current_option"
 
-#: downgrade:445
+#: downgrade:450
 msgid "No packages provided for downgrading"
 msgstr "没有提供降级包"
 

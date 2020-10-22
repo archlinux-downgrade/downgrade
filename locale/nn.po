@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-29 10:31+0200\n"
+"POT-Creation-Date: 2020-10-22 20:25+0200\n"
 "PO-Revision-Date: 2020-04-21 12:48-0400\n"
 "Last-Translator: Håkon Vågsether <hauk142@gmail.com>, <shankar.atreya@gmail."
 "com>\n"
@@ -43,11 +43,11 @@ msgid "pacman configuration file, defaults to"
 msgstr "pacman konfigurasjonsfil, er standard til"
 
 #: downgrade:15
-msgid "pacman cache directory or directories,"
-msgstr "pacman cache-katalog eller kataloger,"
+msgid "pacman cache directory,"
+msgstr "pacman cache-katalog,"
 
-#: downgrade:16 downgrade:20
-msgid "default value taken from pacman configuration file,"
+#: downgrade:16
+msgid "default value(s) taken from pacman configuration file,"
 msgstr "eller på annen måte standard til"
 
 #: downgrade:17 downgrade:21
@@ -57,6 +57,10 @@ msgstr "plassering av ALA-server, er standard til"
 #: downgrade:19
 msgid "pacman log file,"
 msgstr "pacman-loggfil"
+
+#: downgrade:20
+msgid "default value taken from pacman configuration file,"
+msgstr "eller på annen måte standard til"
 
 #: downgrade:22
 msgid "integer"
@@ -116,53 +120,53 @@ msgstr "legg til $pkg i IgnorePkg? [j/N] "
 msgid "y"
 msgstr "j"
 
-#: downgrade:206
+#: downgrade:211
 msgid "local"
 msgstr "lokal"
 
-#: downgrade:208
+#: downgrade:213
 msgid "remote"
 msgstr "ekstern"
 
-#: downgrade:263
+#: downgrade:268
 msgid "Invalid choice"
 msgstr "Ugyldig valg"
 
-#: downgrade:277
+#: downgrade:282
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Kan ikke nedgradere $name"
 
-#: downgrade:333
+#: downgrade:338
 msgid "Missing --pacman argument"
 msgstr "Mangler --pacman -argumentet"
 
-#: downgrade:346
+#: downgrade:351
 msgid "Missing --pacman-conf argument"
 msgstr "Mangler --pacman-conf -argumentet"
 
-#: downgrade:359
+#: downgrade:364
 msgid "Missing --ala-url argument"
 msgstr "Mangler --ala-url -argumentet"
 
-#: downgrade:372
+#: downgrade:377
 msgid "Missing --pacman-cache argument"
 msgstr "Mangler --pacman-cache -argumentet"
 
-#: downgrade:385
+#: downgrade:390
 msgid "Missing --pacman-log argument"
 msgstr "Mangler --pacman-log -argumentet"
 
-#: downgrade:398
+#: downgrade:403
 msgid "Missing --maxdepth argument"
 msgstr "Mangler --maxdepth -argumentet"
 
-#: downgrade:430
+#: downgrade:435
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Ukjent alternativ $current_option"
 
-#: downgrade:445
+#: downgrade:450
 msgid "No packages provided for downgrading"
 msgstr "Ingen pakker gitt for nedgradering"
 
