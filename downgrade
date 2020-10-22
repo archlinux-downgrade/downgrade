@@ -12,8 +12,8 @@ $(gettext "Options"):
   --pacman-conf   <$(gettext "path")>
                   $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
   --pacman-cache  <$(gettext "path")>
-                  $(gettext "pacman cache directory or directories,")
-                  $(gettext "default value taken from pacman configuration file,")
+                  $(gettext "pacman cache directory,")
+                  $(gettext "default value(s) taken from pacman configuration file,")
                   $(gettext "or otherwise defaults to") "/var/cache/pacman/pkg"
   --pacman-log    <$(gettext "path")>
                   $(gettext "pacman log file,")
