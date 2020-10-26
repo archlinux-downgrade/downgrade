@@ -96,17 +96,17 @@ prompt_to_ignore() {
     if [[ "${ans,,}" == $(gettext 'y')* ]]; then
       ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
       if [ -n "$ln" ]; then
-        sudo sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF"
+        sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF"
         continue
       fi
 
       ln="$(grep -n '^# *IgnorePkg' "$PACMAN_CONF" | tail -n 1 | cut -d : -f 1)"
       if [ -n "$ln" ]; then
-        sudo sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
+        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
         continue
       fi
 
-      printf "IgnorePkg = %s\\n" "$pkg" | sudo tee -a "$PACMAN_CONF"
+      printf "IgnorePkg = %s\\n" "$pkg" >> "$PACMAN_CONF"
     fi
   done
 }
@@ -303,7 +303,6 @@ main() {
 : "${DOWNGRADE_ARCH:=$ARCH}"
 : "${DOWNGRADE_ALA_URL:=$ALA_URL}"
 : "${DOWNGRADE_ALA_URL:=$ARM_URL}"
-: "${DOWNGRADE_NOSUDO:=$NOSUDO}"
 
 [ "$NOALA" = "1" ] && DOWNGRADE_FROM_ALA=0
 [ "$NOARM" = "1" ] && DOWNGRADE_FROM_ALA=0
@@ -316,7 +315,6 @@ main() {
 : "${DOWNGRADE_ALA_URL:=https://archive.archlinux.org}"
 : "${DOWNGRADE_FROM_ALA:=1}"
 : "${DOWNGRADE_FROM_CACHE:=1}"
-: "${DOWNGRADE_NOSUDO:=0}"
 : "${DOWNGRADE_MAXDEPTH:=1}"
 
 declare -a terms
@@ -415,9 +413,6 @@ parse_options() {
         DOWNGRADE_FROM_ALA=0
         DOWNGRADE_FROM_CACHE=1
         ;;
-      --nosudo)
-        DOWNGRADE_NOSUDO=1
-        ;;
       -h | --help)
         usage
         exit 1
@@ -453,19 +448,12 @@ parse_options() {
     } >&2
     exit 1
   fi
-
-  if ((DOWNGRADE_NOSUDO)) || ! type -p sudo &>/dev/null; then
-    sudo() {
-      printf -v cmd "%q " "$@"
-      su root -c "$cmd"
-    }
-  fi
 }
 
 cli() {
   parse_options "$@"
   main "${terms[@]}"
-  sudo pacman -U "${pacman_args[@]}" "${to_install[@]}"
+  pacman -U "${pacman_args[@]}" "${to_install[@]}"
   prompt_to_ignore "${to_ignore[@]}"
 }
 
@@ -483,6 +471,15 @@ if ((!LIB)); then
   fi
 
   export TEXTDOMAIN=downgrade TEXTDOMAINDIR
+
+  # check to ensure downgrade running as root
+  if ((UID)); then
+    {
+      gettext "downgrade must be run as root"
+      echo
+    } >&2
+    exit 1
+  fi
 
   cli "$@"
 fi
