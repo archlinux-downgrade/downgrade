@@ -92,10 +92,6 @@ The columns have the following meaning:
 
 > Search local cache only.
 
-**\--nosudo**\
-
-> Do not use `sudo(8)` even when available, use `su(1)` always.
-
 ## PACMAN OPTIONS
 
 As per the usage syntax, any options supplied after the **\--** character sequence will be treated as pacman options.
