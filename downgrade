@@ -106,7 +106,7 @@ prompt_to_ignore() {
         continue
       fi
 
-      printf "IgnorePkg = %s\\n" "$pkg" >> "$PACMAN_CONF"
+      printf "IgnorePkg = %s\\n" "$pkg" >>"$PACMAN_CONF"
     fi
   done
 }
