@@ -413,10 +413,6 @@ parse_options() {
         DOWNGRADE_FROM_ALA=0
         DOWNGRADE_FROM_CACHE=1
         ;;
-      -h | --help)
-        usage
-        exit 1
-        ;;
       --)
         shift
         pacman_args=("$@")
@@ -471,6 +467,14 @@ if ((!LIB)); then
   fi
 
   export TEXTDOMAIN=downgrade TEXTDOMAINDIR
+
+  # check for help CLI option
+  for arg; do
+    if [[ "$arg" =~ ^-h$|^--help$ ]]; then
+      usage
+      exit 0
+    fi
+  done
 
   # check to ensure downgrade running as root
   if ((UID)); then
