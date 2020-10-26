@@ -35,7 +35,6 @@ Options:
                   location of ALA server, defaults to "https://archive.archlinux.org"
   --ala-only      only use ALA server
   --cached-only   only use cached packages
-  --nosudo        do not use sudo even when available, use su
   -h, --help      show help script
 
 Note:
@@ -48,39 +47,32 @@ Downgrade packages checking both local cache and the
 default behavior:
 
 ```
-$ downgrade foo bar
+# downgrade foo bar
 ```
 
 Downgrade packages, specifying multiple cache directories:
 
 ```
-$ downgrade --pacman-cache /path/to/cache --pacman-cache /path/to/other/cache foo bar
+# downgrade --pacman-cache /path/to/cache --pacman-cache /path/to/other/cache foo bar
 ```
 
 Downgrade a package with any of the following version-filtering operators `=`,
 `=~`, `<=`, `>=`, `<` and `>`:
 
 ```
-$ downgrade "foo=1.0.0-1" "bar>=1.2.1-1" "baz=~^1.2"
+# downgrade "foo=1.0.0-1" "bar>=1.2.1-1" "baz=~^1.2"
 ```
 
 Downgrade a package, looking in only local cache:
 
 ```
-$ downgrade --cached-only foo
+# downgrade --cached-only foo
 ```
 
 Downgrade a package, looking in only the A.L.A.:
 
 ```
-$ downgrade --ala-only foo
-```
-
-Downgrade a package, looking only in local cache, and favoring `su` over `sudo`
-even when `sudo` is available:
-
-```
-$ downgrade --cached-only --nosudo foo
+# downgrade --ala-only foo
 ```
 
 ## Development & Testing

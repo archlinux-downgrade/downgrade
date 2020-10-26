@@ -25,7 +25,6 @@ $(gettext "Options"):
                   $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
   --ala-only      $(gettext "only use ALA server")
   --cached-only   $(gettext "only use cached packages")
-  --nosudo        $(gettext "do not use sudo even when available, use su")
   -h, --help      $(gettext "show help script")
 
 $(gettext "Note"):
