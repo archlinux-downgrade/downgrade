@@ -10,7 +10,6 @@ _downgrade(){
              '--ala-url[Specify location of ALA server]:ala url' \
              '--ala-only[Option enables only ALA server search]' \
              '--cached-only[Option enables only cached search]' \
-             '--nosudo[Option enables only su even when sudo is present]' \
              {-h,--help}'[Show help]'
 
   if [[ $state == "pkg" ]] && [[ ! $words =~ "\s\-\-\s" ]]; then
