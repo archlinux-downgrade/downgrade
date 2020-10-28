@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-22 20:25+0200\n"
+"POT-Creation-Date: 2020-10-28 16:18+0100\n"
 "PO-Revision-Date: 2020-04-21 13:53+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -87,91 +87,94 @@ msgid "only use cached packages"
 msgstr "naudokite tik talpykloje laikomus paketus"
 
 #: downgrade:28
-msgid "do not use sudo even when available, use su"
-msgstr "nenaudokite sudo, net jei įmanoma, naudokite su"
-
-#: downgrade:29
 msgid "show help script"
 msgstr "rodyti pagalbos scenarijų"
 
-#: downgrade:31
+#: downgrade:30
 msgid "Note"
 msgstr "Pastaba"
 
-#: downgrade:32
+#: downgrade:31
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "Parinktys po simbolių -- bus traktuojamos kaip pacman parinktys."
 
-#: downgrade:33
+#: downgrade:32
 msgid "See downgrade(8) for details."
 msgstr "Išsamiau galite paskaityti downgrade(8)."
 
-#: downgrade:66
+#: downgrade:65
 msgid "Available packages:"
 msgstr "Prieinami paketai:"
 
-#: downgrade:76
+#: downgrade:75
 msgid "select a package by number: "
 msgstr "įveskite paketo numerį:"
 
-#: downgrade:93
+#: downgrade:92
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "pridėti $pkg į IgnorePkg? [t/N] "
 
-#: downgrade:96
+#: downgrade:95
 msgid "y"
 msgstr "t"
 
-#: downgrade:211
+#: downgrade:210
 msgid "local"
 msgstr "vietinis"
 
-#: downgrade:213
+#: downgrade:212
 msgid "remote"
 msgstr "nutolęs"
 
-#: downgrade:268
+#: downgrade:267
 msgid "Invalid choice"
 msgstr "Netinkamas pasirinkimas"
 
-#: downgrade:282
+#: downgrade:281
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Neįmanoma paversti žemesnio lygio $name"
 
-#: downgrade:338
+#: downgrade:335
 msgid "Missing --pacman argument"
 msgstr "Trūksta argumento --pacman"
 
-#: downgrade:351
+#: downgrade:348
 msgid "Missing --pacman-conf argument"
 msgstr "Trūksta argumento --pacman-conf"
 
-#: downgrade:364
+#: downgrade:361
 msgid "Missing --ala-url argument"
 msgstr "Trūksta argumento --ala-url"
 
-#: downgrade:377
+#: downgrade:374
 msgid "Missing --pacman-cache argument"
 msgstr "Trūksta argumento --pacman-cache"
 
-#: downgrade:390
+#: downgrade:387
 msgid "Missing --pacman-log argument"
 msgstr "Trūksta argumento --pacman-log"
 
-#: downgrade:403
+#: downgrade:400
 msgid "Missing --maxdepth argument"
 msgstr "Trūksta argumento --maxdepth"
 
-#: downgrade:435
+#: downgrade:425
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Neatpažinta parinktis $current_option"
 
-#: downgrade:450
+#: downgrade:440
 msgid "No packages provided for downgrading"
 msgstr "Nepateikta jokių pakuočių, leidžiančių pažengti žemiau"
+
+#: downgrade:481
+msgid "downgrade must be run as root"
+msgstr "downgrade turi būti paleistas kaip root"
+
+#~ msgid "do not use sudo even when available, use su"
+#~ msgstr "nenaudokite sudo, net jei įmanoma, naudokite su"
 
 #~ msgid "architecture"
 #~ msgstr "architektūra"
