@@ -1,6 +1,11 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v8.1.1...master)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v9.0.0...master)
 
 None
+
+## [v9.0.0](https://github.com/pbrisbin/downgrade/compare/v8.1.1...v9.0.0)
+
+- [NEW] Now accepts multiple cache directory options
+- [NEW] Removal of --nosudo CLI option, downgrade now expects root privileges 
 
 ## [v8.1.1](https://github.com/pbrisbin/downgrade/compare/v8.1.0...v8.1.1)
 
