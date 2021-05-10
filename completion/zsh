@@ -14,7 +14,7 @@ _downgrade(){
 
   if [[ $state == "pkg" ]] && [[ ! $words =~ "\s\-\-\s" ]]; then
     local -a packages
-    packages=($(pacman -Qsq "^$words[current]" 2>/dev/null))
+    packages=($(pacman -Ssq "^$words[current]" 2>/dev/null))
     _describe 'packages' packages
   fi
 }
