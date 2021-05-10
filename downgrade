@@ -192,7 +192,7 @@ sort_packages() {
 # <number> <path> <package name>
 output_package() {
   local number="$1" path="$2" pkgname="$3"
-  local pkg indicator=" " location version epoch arch release
+  local pkg indicator=" " location version epoch release
 
   if [[ -n "$current" ]] && [[ "$path" == *"$current"* ]]; then
     # Currently installed
@@ -215,24 +215,23 @@ output_package() {
     location="$(gettext 'remote')"
   fi
 
-  IFS=, read -r epoch version release arch < <(
+  IFS=, read -r epoch version release _ < <(
     extract_version_parts "$pkgname" "$path"
   )
 
-  printf "%s\t%s)\t%s\t%s\t%s\t%s\t%s\t(%s)\n" \
+  printf "%s\t%s)\t%s\t%s\t%s\t%s\t(%s)\n" \
     "$indicator" \
     "$number" \
     "$pkgname" \
     "$epoch" \
     "$version" \
     "$release" \
-    "$arch" \
     "$location"
 }
 
 # <package name> <package path>
 extract_version_parts() {
-  local pkgname=$1 path=$2 location version epoch arch release
+  local pkgname=$1 path=$2
 
   sed '
     # Strip first path component
