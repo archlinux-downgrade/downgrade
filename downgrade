@@ -62,8 +62,11 @@ present_packages() {
 
   (($#)) || return 1
 
-  gettext 'Available packages:'
-  printf '\n\n'
+  repo="$(pacman -Ss "^${pkgname}$" | awk -F'/' 'NR==1 {print $1}')"
+  [ -z "$repo" ] && repo='foreign/aur'
+
+  gettext 'Available packages'
+  printf " (%s):\n\n" "$repo"
 
   for entry; do
     output_package "$((i++))" "$entry" "$pkgname"
