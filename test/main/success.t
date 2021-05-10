@@ -10,10 +10,10 @@ It adds the term and package to global arrays if successful
   > printf "ignore: %s\n" "${to_ignore[@]}"
   > printf "install: %s\n" "${to_install[@]}"
   > printf "exit code: %s\n" "$exit_code"
-  Available packages:
+  Available packages (foreign/aur):
   
-    | 1) | foo |  |  |  |  | (local)
-    | 2) | foo |  |  |  |  | (local)
+    | 1) | foo |  |  |  | (local)
+    | 2) | foo |  |  |  | (local)
   
   select a package by number: 
   ignore: foo

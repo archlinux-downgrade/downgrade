@@ -13,11 +13,11 @@ Outputs an indicator next to currently installed packages
   > installed=( $(previously_installed dia) )
   > current=( $(currently_installed dia) )
   > present_packages dia dia-0.1.0 dia-0.1.1 dia-0.2.2 dia-0.3.3
-  Available packages:
+  Available packages (community):
   
-    | 1) | dia |  | 0.1.0 |  |  | (remote)
-  - | 2) | dia |  | 0.1.1 |  |  | (remote)
-  + | 3) | dia |  | 0.2.2 |  |  | (remote)
-    | 4) | dia |  | 0.3.3 |  |  | (remote)
+    | 1) | dia |  | 0.1.0 |  | (remote)
+  - | 2) | dia |  | 0.1.1 |  | (remote)
+  + | 3) | dia |  | 0.2.2 |  | (remote)
+    | 4) | dia |  | 0.3.3 |  | (remote)
   
   select a package by number:  (no-eol)
