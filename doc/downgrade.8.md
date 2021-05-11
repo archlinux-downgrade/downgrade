@@ -16,15 +16,15 @@ Just calling **downgrade** on a package will lead to the following output:
 
 *Example:*
 
-    Available packages:
+    Available packages (community):
 
-    -   1)  terraform    0.11.11  2  x86_64  (remote)
-    -   2)  terraform    0.11.12  1  x86_64  (local)
-    +   3)  terraform    0.11.13  1  x86_64  (remote)
-    +   4)  terraform    0.11.13  1  x86_64  (local)
-    -   5)  terraform    0.12.0   1  x86_64  (remote)
-    -   6)  terraform    0.12.0   1  x86_64  (local)
-        7)  terraform    0.12.1   1  x86_64  (remote)
+    -  1)  terraform    0.11.11  2  (remote)
+    -  2)  terraform    0.11.12  1  (local)
+    +  3)  terraform    0.11.13  1  (remote)
+    +  4)  terraform    0.11.13  1  (local)
+    -  5)  terraform    0.12.0   1  (remote)
+    -  6)  terraform    0.12.0   1  (local)
+       7)  terraform    0.12.1   1  (remote)
 
     select a package by number:
 
@@ -43,14 +43,14 @@ The columns have the following meaning:
 *package-name*
   The name of the package.
 
+*package-epoch*
+  The epoch of the package in cache or ALA.
+
 *package-version*
   The version of the package in cache or ALA.
 
 *package-release*
   The release of the package in cache or ALA.
-
-*architecture*
-  The architecture of the package in cache or ALA.
 
 *location*
   Possible values: {(remote)|(local)}
