@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 16:18+0100\n"
+"POT-Creation-Date: 2021-05-11 13:24+0200\n"
 "PO-Revision-Date: 2020-04-21 18:01-0400\n"
 "Last-Translator: <miachm3@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -99,74 +99,74 @@ msgstr ""
 msgid "See downgrade(8) for details."
 msgstr "Ver downgrade(8) para más detalles."
 
-#: downgrade:65
-msgid "Available packages:"
-msgstr "Paquetes disponibles:"
+#: downgrade:68
+msgid "Available packages"
+msgstr "Paquetes disponibles"
 
-#: downgrade:75
+#: downgrade:78
 msgid "select a package by number: "
 msgstr "Selecciona un paquete por su número: "
 
-#: downgrade:92
+#: downgrade:95
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "Añadir $pkg a paquetes ignorados [s/N] "
 
-#: downgrade:95
+#: downgrade:98
 msgid "y"
 msgstr "s"
 
-#: downgrade:210
+#: downgrade:213
 msgid "local"
 msgstr "local"
 
-#: downgrade:212
+#: downgrade:215
 msgid "remote"
 msgstr "remoto"
 
-#: downgrade:267
+#: downgrade:269
 msgid "Invalid choice"
 msgstr "Elección inválida"
 
-#: downgrade:281
+#: downgrade:283
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "No se puede degradar $name"
 
-#: downgrade:335
+#: downgrade:337
 msgid "Missing --pacman argument"
 msgstr "Falta el argumento --pacman"
 
-#: downgrade:348
+#: downgrade:350
 msgid "Missing --pacman-conf argument"
 msgstr "Falta el argumento --pacman-conf"
 
-#: downgrade:361
+#: downgrade:363
 msgid "Missing --ala-url argument"
 msgstr "Falta el argumento --ala-url"
 
-#: downgrade:374
+#: downgrade:376
 msgid "Missing --pacman-cache argument"
 msgstr "Falta el argumento --pacman-cache"
 
-#: downgrade:387
+#: downgrade:389
 msgid "Missing --pacman-log argument"
 msgstr "Falta el argumento --pacman-log"
 
-#: downgrade:400
+#: downgrade:402
 msgid "Missing --maxdepth argument"
 msgstr "Falta el argumento --maxdepth"
 
-#: downgrade:425
+#: downgrade:427
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Opción no reconocida $current_option"
 
-#: downgrade:440
+#: downgrade:442
 msgid "No packages provided for downgrading"
 msgstr "No se proporcionan paquetes para degradar"
 
-#: downgrade:481
+#: downgrade:483
 msgid "downgrade must be run as root"
 msgstr "downgrade debe ejecutarse como root"
 
