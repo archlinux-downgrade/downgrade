@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 16:18+0100\n"
+"POT-Creation-Date: 2021-05-11 13:24+0200\n"
 "PO-Revision-Date: 2020-04-21 14:25-0300\n"
 "Last-Translator: Nurlan <nurlancik1@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -101,74 +101,74 @@ msgstr ""
 msgid "See downgrade(8) for details."
 msgstr "см. downgrade(8) для подробностей."
 
-#: downgrade:65
-msgid "Available packages:"
-msgstr "Доступные пакеты:"
+#: downgrade:68
+msgid "Available packages"
+msgstr "Доступные пакеты"
 
-#: downgrade:75
+#: downgrade:78
 msgid "select a package by number: "
 msgstr "выберите пакет по номеру: "
 
-#: downgrade:92
+#: downgrade:95
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "добавить $pkg в список проигнорированных пакетов? [д/Н] "
 
-#: downgrade:95
+#: downgrade:98
 msgid "y"
 msgstr "д"
 
-#: downgrade:210
+#: downgrade:213
 msgid "local"
 msgstr "локально"
 
-#: downgrade:212
+#: downgrade:215
 msgid "remote"
 msgstr "дистанционно"
 
-#: downgrade:267
+#: downgrade:269
 msgid "Invalid choice"
 msgstr "Неверный выбор"
 
-#: downgrade:281
+#: downgrade:283
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Невозможно понизить $name"
 
-#: downgrade:335
+#: downgrade:337
 msgid "Missing --pacman argument"
 msgstr "Отсутствует аргумент --pacman"
 
-#: downgrade:348
+#: downgrade:350
 msgid "Missing --pacman-conf argument"
 msgstr "Отсутствует аргумент --pacman-conf"
 
-#: downgrade:361
+#: downgrade:363
 msgid "Missing --ala-url argument"
 msgstr "Отсутствует аргумент --ala-url"
 
-#: downgrade:374
+#: downgrade:376
 msgid "Missing --pacman-cache argument"
 msgstr "Отсутствует аргумент --pacman-cache"
 
-#: downgrade:387
+#: downgrade:389
 msgid "Missing --pacman-log argument"
 msgstr "Отсутствует аргумент --pacman-log"
 
-#: downgrade:400
+#: downgrade:402
 msgid "Missing --maxdepth argument"
 msgstr "Отсутствует аргумент --maxdepth"
 
-#: downgrade:425
+#: downgrade:427
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Нераспознанная опция $current_option"
 
-#: downgrade:440
+#: downgrade:442
 msgid "No packages provided for downgrading"
 msgstr "Нет пакетов для понижения"
 
-#: downgrade:481
+#: downgrade:483
 msgid "downgrade must be run as root"
 msgstr "downgrade должен запускаться как root"
 
