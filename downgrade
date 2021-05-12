@@ -300,22 +300,6 @@ main() {
   return $exit_code
 }
 
-# Set script defaults
-: "${PACMAN:=pacman}"
-: "${PACMAN_CONF:=/etc/pacman.conf}"
-: "${DOWNGRADE_ARCH:=$(uname -m)}"
-: "${DOWNGRADE_ALA_URL:=https://archive.archlinux.org}"
-: "${DOWNGRADE_FROM_ALA:=1}"
-: "${DOWNGRADE_FROM_CACHE:=1}"
-: "${DOWNGRADE_MAXDEPTH:=1}"
-
-declare -a terms
-declare -a to_ignore
-declare -a to_install
-declare -a pacman_args
-declare -a installed
-declare current
-
 parse_options() {
   while [[ -n "$1" ]]; do
     case "$1" in
@@ -445,6 +429,25 @@ cli() {
   prompt_to_ignore "${to_ignore[@]}"
 }
 
+# Set script defaults
+PACMAN="pacman"
+PACMAN_CONF="/etc/pacman.conf"
+DOWNGRADE_ARCH="x86_64"
+DOWNGRADE_ALA_URL="https://archive.archlinux.org"
+DOWNGRADE_FROM_ALA=1
+DOWNGRADE_FROM_CACHE=1
+DOWNGRADE_MAXDEPTH=1
+DOWNGRADE_ROOT_CONF="/etc/xdg/downgrade/downgrade.conf"
+
+# Declare variables
+declare -a terms
+declare -a to_ignore
+declare -a to_install
+declare -a pacman_args
+declare -a installed
+declare current
+
+# Main code execution
 if ((!LIB)); then
   set -e
 
