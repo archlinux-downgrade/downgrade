@@ -300,15 +300,6 @@ main() {
   return $exit_code
 }
 
-# Up-convert older variables
-: "${DOWNGRADE_ARCH:=$ARCH}"
-: "${DOWNGRADE_ALA_URL:=$ALA_URL}"
-: "${DOWNGRADE_ALA_URL:=$ARM_URL}"
-
-[ "$NOALA" = "1" ] && DOWNGRADE_FROM_ALA=0
-[ "$NOARM" = "1" ] && DOWNGRADE_FROM_ALA=0
-[ "$NOCACHE" = "1" ] && DOWNGRADE_FROM_CACHE=0
-
 # Set script defaults
 : "${PACMAN:=pacman}"
 : "${PACMAN_CONF:=/etc/pacman.conf}"
