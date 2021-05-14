@@ -431,6 +431,10 @@ cli() {
   IFS=' ' read -r -a system_args <<< "$(read_downgrade_conf)"
   parse_options "${system_args[@]}" "$@"
 
+  # make arrays unique
+  IFS=' ' read -r -a terms <<< "$(printf "%s\n" "${terms[@]}" | uniq | tr '\n' ' ')"
+  IFS=' ' read -r -a PACMAN_CACHE <<< "$(printf "%s\n" "${PACMAN_CACHE[@]}" | uniq | tr '\n' ' ')"
+
   # proceed with rest of workflow
   main "${terms[@]}"
   pacman -U "${pacman_args[@]}" "${to_install[@]}"
