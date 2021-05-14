@@ -222,7 +222,7 @@ output_package() {
 
   # Remote or local file
   if [[ $path =~ ^/ ]]; then
-    location="$(gettext 'local')"
+    location="$(dirname "$path")"
   else
     location="$(gettext 'remote')"
   fi
@@ -231,7 +231,7 @@ output_package() {
     extract_version_parts "$pkgname" "$path"
   )
 
-  printf "%s\t%s)\t%s\t%s\t%s\t%s\t(%s)\n" \
+  printf "%s\t%s)\t%s\t%s\t%s\t%s\t%s\n" \
     "$indicator" \
     "$number" \
     "$pkgname" \
