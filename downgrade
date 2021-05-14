@@ -35,6 +35,8 @@ EOF
 
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
+read_downgrade_conf() { grep -v '^\s*$\|^\s*\#' "$DOWNGRADE_ROOT_CONF" 2>/dev/null | xargs; }
+
 previously_installed() {
   # Delay this defaulting so #read_pacman_conf behavior is tested
   : "${PACMAN_LOG:=$(read_pacman_conf LogFile)}"
@@ -423,7 +425,13 @@ parse_options() {
 }
 
 cli() {
-  parse_options "$@"
+  declare -a system_args
+
+  # get system and command-line arguments and parse everything
+  IFS=' ' read -r -a system_args <<< "$(read_downgrade_conf)"
+  parse_options "${system_args[@]}" "$@"
+
+  # proceed with rest of workflow
   main "${terms[@]}"
   pacman -U "${pacman_args[@]}" "${to_install[@]}"
   prompt_to_ignore "${to_ignore[@]}"
