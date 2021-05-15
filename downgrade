@@ -41,6 +41,16 @@ read_downgrade_conf() {
   eval "$var=($(grep -E -v '^ *(#.*)?$' "$DOWNGRADE_CONF" 2>/dev/null | xargs printf '%q '))"
 }
 
+read_unique() {
+  local var=$1
+  shift
+
+  if [[ -n "$*" ]]; then
+    # shellcheck disable=SC2229
+    mapfile -t "$var" < <(printf "%s\n" "$@" | sort -u)
+  fi
+}
+
 previously_installed() {
   # Delay this defaulting so #read_pacman_conf behavior is tested
   : "${PACMAN_LOG:=$(read_pacman_conf LogFile)}"
@@ -434,6 +444,10 @@ cli() {
   # Get configuration and command-line arguments and parse everything
   read_downgrade_conf conf_args
   parse_options "${conf_args[@]}" "$@"
+
+  # Make arrays unique
+  read_unique terms "${terms[@]}"
+  read_unique PACMAN_CACHE "${PACMAN_CACHE[@]}"
 
   # Proceed with rest of workflow
   main "${terms[@]}"
