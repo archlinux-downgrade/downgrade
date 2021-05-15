@@ -11,9 +11,9 @@ It does nothing on an invalid choice
   > printf "exit code: %s\n" "$exit_code"
   Available packages (foreign/aur):
   
-    | 1) | foo |  |  |  | (remote)
-    | 2) | foo |  |  |  | (remote)
-    | 3) | foo |  |  |  | (remote)
+    | 1) | foo |  |  |  | remote
+    | 2) | foo |  |  |  | remote
+    | 3) | foo |  |  |  | remote
   
   select a package by number: 
   ignore: 
