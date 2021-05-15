@@ -489,7 +489,7 @@ if ((!LIB)); then
 
   export TEXTDOMAIN=downgrade TEXTDOMAINDIR
 
-  # check for help CLI option
+  # Check for help CLI option
   for arg; do
     if [[ "$arg" =~ ^-h$|^--help$ ]]; then
       usage
@@ -497,7 +497,7 @@ if ((!LIB)); then
     fi
   done
 
-  # check to ensure downgrade running as root
+  # Check to ensure downgrade running as root
   if ((UID)); then
     {
       gettext "downgrade must be run as root"
