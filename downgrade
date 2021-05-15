@@ -461,14 +461,6 @@ DOWNGRADE_FROM_CACHE=1
 DOWNGRADE_MAXDEPTH=1
 DOWNGRADE_CONF="/etc/xdg/downgrade/downgrade.conf"
 
-# Declare variables
-declare -a terms
-declare -a to_ignore
-declare -a to_install
-declare -a pacman_args
-declare -a installed
-declare current
-
 # Main code execution
 if ((!LIB)); then
   set -e
