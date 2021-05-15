@@ -7,6 +7,9 @@ export SRCDIR=${TESTDIR/\/test*/}
 # Place mocks on $PATH (e.g. curl)
 export PATH="$SRCDIR/test/bin:$PATH"
 
+# Load implementation
+source "$SRCDIR"/downgrade
+
 # Set script defaults for test environment
 export PACMAN_CONF=$(mktemp)
 export DOWNGRADE_FROM_ALA=0
@@ -22,6 +25,3 @@ write_pacman_conf() {
 }
 
 ignore() { yes | prompt_to_ignore "$@" >/dev/null; }
-
-# Load implementation
-source "$SRCDIR"/downgrade
