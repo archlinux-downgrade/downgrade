@@ -192,7 +192,7 @@ search_packages() {
 
     # shellcheck disable=SC2086
     find -L "${PACMAN_CACHE[@]}" -maxdepth "$DOWNGRADE_MAXDEPTH" \
-         -regextype posix-extended -regex ".*/$pkgfile_re" 2>/dev/null
+      -regextype posix-extended -regex ".*/$pkgfile_re" 2>/dev/null
   fi
 }
 
