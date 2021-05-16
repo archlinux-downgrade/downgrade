@@ -14,6 +14,7 @@ source "$SRCDIR"/downgrade
 export PACMAN_CONF=$(mktemp)
 export DOWNGRADE_FROM_ALA=0
 export DOWNGRADE_FROM_CACHE=0
+export DOWNGRADE_CONF="$SRCDIR/test/conf/downgrade_test.conf"
 
 # Stub functions that won't work (on CI) or need different behavior.
 pacsort() { cat; }
