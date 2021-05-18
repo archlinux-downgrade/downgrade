@@ -2,6 +2,7 @@ PREFIX       ?= /usr/local
 LOCALEPREFIX ?= $(PREFIX)/share/locale
 MANPREFIX    ?= $(PREFIX)/share/man
 PANDOC       ?= $(shell which pandoc)
+XDGPREFIX    ?= /etc/xdg
 
 .PHONY: setup
 setup:
@@ -33,6 +34,7 @@ test:
 .PHONY: install
 install:
 	install -Dm755 downgrade $(DESTDIR)$(PREFIX)/bin/downgrade
+	install -Dm644 conf/downgrade.conf $(DESTDIR)$(XDGPREFIX)/downgrade/downgrade.conf
 	install -Dm644 doc/downgrade.8 $(DESTDIR)$(MANPREFIX)/man8/downgrade.8
 	install -Dm644 completion/bash $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade
 	install -Dm644 completion/zsh $(DESTDIR)$(PREFIX)/share/zsh/site-functions/_downgrade
@@ -46,6 +48,7 @@ install:
 .PHONY: uninstall
 uninstall:
 	$(RM) $(DESTDIR)$(PREFIX)/bin/downgrade \
+	  $(DESTDIR)$(XDGPREFIX)/downgrade/downgrade.conf \
 	  $(DESTDIR)$(MANPREFIX)/man8/downgrade.8 \
 	  $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)$(PREFIX)/share/zsh/site-functions/_downgrade \
