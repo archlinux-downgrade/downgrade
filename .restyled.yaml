@@ -6,4 +6,5 @@
     
 - prettier-markdown:
     include:
-      - README.md
+      - "*.md"
+      - "doc/*.md"
