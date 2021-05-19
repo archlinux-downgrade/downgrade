@@ -75,6 +75,10 @@ Downgrade a package, looking in only the A.L.A.:
 # downgrade --ala-only foo
 ```
 
+## Configuration
+
+Command-line options can be set persistently in `/etc/xdg/downgrade.conf`.
+
 ## Development & Testing
 
 Install cram: https://aur.archlinux.org/packages/cram/
