@@ -52,6 +52,7 @@ uninstall:
 	  $(DESTDIR)$(MANPREFIX)/man8/downgrade.8 \
 	  $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade \
 	  $(DESTDIR)$(PREFIX)/share/zsh/site-functions/_downgrade \
+	  $(DESTDIR)$(PREFIX)/share/fish/vendor_completions.d/downgrade.fish \
 	  $(DESTDIR)$(LOCALEPREFIX)/*/LC_MESSAGES/downgrade.mo
 
 .PHONY: release.major
