@@ -1,6 +1,6 @@
 % DOWNGRADE(8) User Manual
 %
-% April 2020
+% May 2021
 
 # USAGE
 
@@ -18,13 +18,13 @@ Just calling **downgrade** on a package will lead to the following output:
 
     Available packages (community):
 
-    -  1)  terraform    0.11.11  2  (remote)
-    -  2)  terraform    0.11.12  1  (local)
-    +  3)  terraform    0.11.13  1  (remote)
-    +  4)  terraform    0.11.13  1  (local)
-    -  5)  terraform    0.12.0   1  (remote)
-    -  6)  terraform    0.12.0   1  (local)
-       7)  terraform    0.12.1   1  (remote)
+    -  1)  terraform    0.11.11  2  remote
+    -  2)  terraform    0.11.12  1  /var/cache/pacman/pkg
+    +  3)  terraform    0.11.13  1  remote
+    +  4)  terraform    0.11.13  1  /var/cache/pacman/pkg
+    -  5)  terraform    0.12.0   1  remote
+    -  6)  terraform    0.12.0   1  /var/cache/pacman/pkg
+       7)  terraform    0.12.1   1  remote
 
     select a package by number:
 
@@ -53,10 +53,9 @@ The columns have the following meaning:
   The release of the package in cache or ALA.
 
 *location*
-  Possible values: {(remote)|(local)}
+  Possible values: {remote|/path/to/cache/dir}
 
-  If you have already downloaded this version, it will show *local*.\
-  *remote* indicates that the version is available on the ALA.
+  If you have already downloaded this version, it will show the cache directory where the package is located. *remote* indicates that the version is available on the ALA.
 
 # OPTIONS
 
@@ -91,6 +90,10 @@ The columns have the following meaning:
 **\--cached-only**\
 
 > Search local cache only.
+
+## CONFIGURATION FILE
+
+Command-line options can be set persistently in **/etc/xdg/downgrade.conf**. Note that these options are parsed first by **downgrade**, followed by any other command-line options provided by the user.
 
 ## PACMAN OPTIONS
 
