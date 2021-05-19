@@ -1,6 +1,4 @@
 % DOWNGRADE(8) User Manual
-%
-% May 2021
 
 # USAGE
 
@@ -14,7 +12,7 @@ Downgrade Arch Linux packages.
 
 Just calling **downgrade** on a package will lead to the following output:
 
-*Example:*
+_Example:_
 
     Available packages (community):
 
@@ -30,57 +28,55 @@ Just calling **downgrade** on a package will lead to the following output:
 
 The columns have the following meaning:
 
-*indicator*
-  Possible values: {-|+}
+_indicator_ Possible values: {-|+}
 
-  \- indicates that the version was previously installed.
+\- indicates that the version was previously installed.
 
-  \+ indicates the currently installed version.
+\+ indicates the currently installed version.
 
-*enumeration*
-  An enumeration of the entries for selection.
+_enumeration_ An enumeration of the entries for selection.
 
-*package-name*
-  The name of the package.
+_package-name_ The name of the package.
 
-*package-epoch*
-  The epoch of the package in cache or ALA.
+_package-epoch_ The epoch of the package in cache or ALA.
 
-*package-version*
-  The version of the package in cache or ALA.
+_package-version_ The version of the package in cache or ALA.
 
-*package-release*
-  The release of the package in cache or ALA.
+_package-release_ The release of the package in cache or ALA.
 
-*location*
-  Possible values: {remote|/path/to/cache/dir}
+_location_ Possible values: {remote|/path/to/cache/dir}
 
-  If you have already downloaded this version, it will show the cache directory where the package is located. *remote* indicates that the version is available on the ALA.
+If you have already downloaded this version, it will show the cache directory
+where the package is located. _remote_ indicates that the version is available
+on the ALA.
 
 # OPTIONS
 
-**\--pacman** *\<command\>*\
+**\--pacman** _\<command\>_\
 
-> Pacman command, default is *pacman*.
+> Pacman command, default is _pacman_.
 
-**\--pacman-conf** *\<path\>*\
+**\--pacman-conf** _\<path\>_\
 
-> Pacman configuration file, default is */etc/pacman.conf*.
+> Pacman configuration file, default is _/etc/pacman.conf_.
 
-**\--pacman-cache** *\<path\>*\
+**\--pacman-cache** _\<path\>_\
 
-> Pacman cache directory, default value(s) taken from pacman configuration file, or otherwise defaults to */var/cache/pacman/pkg*. This option can be specified multiple times to indicate multiple cache directories.
+> Pacman cache directory, default value(s) taken from pacman configuration file,
+> or otherwise defaults to _/var/cache/pacman/pkg_. This option can be specified
+> multiple times to indicate multiple cache directories.
 
-**\--pacman-log** *\<path\>*\
+**\--pacman-log** _\<path\>_\
 
-> Pacman log file, default value is extracted from pacman configuration file, or otherwise defaults to */var/log/pacman.log*.
+> Pacman log file, default value is extracted from pacman configuration file, or
+> otherwise defaults to _/var/log/pacman.log_.
 
-**\--maxdepth** *\<integer\>*\
+**\--maxdepth** _\<integer\>_\
 
-> Maximum depth to search for cached packages, defaults to *1*.
+> Maximum depth to search for cached packages, defaults to _1_.
 
-**\--ala-url** *\<url\>*\
-	
+**\--ala-url** _\<url\>_\
+
 > Location of an ALA server, default is *https://archive.archlinux.org*.
 
 **\--ala-only**\
@@ -93,26 +89,32 @@ The columns have the following meaning:
 
 ## CONFIGURATION FILE
 
-Command-line options can be set persistently in **/etc/xdg/downgrade.conf**. Note that these options are parsed first by **downgrade**, followed by any other command-line options provided by the user.
+Command-line options can be set persistently in **/etc/xdg/downgrade.conf**.
+Note that these options are parsed first by **downgrade**, followed by any other
+command-line options provided by the user.
 
 ## PACMAN OPTIONS
 
-As per the usage syntax, any options supplied after the **\--** character sequence will be treated as pacman options.
+As per the usage syntax, any options supplied after the **\--** character
+sequence will be treated as pacman options.
 
 ## DEFAULT BEHAVIORS
 
 By default, **downgrade** will search both local caches and the ALA.
 
-If only one package with its corresponding location matches, the package will be installed without further prompt from the user.
+If only one package with its corresponding location matches, the package will be
+installed without further prompt from the user.
 
 # VERSION FILTERING
 
-**downgrade** allows the use of the following version-filtering operators: **=**, **=~**, **<=**, **>=**, **<** and **>**. Note that **=~** represents a regex match operator.
+**downgrade** allows the use of the following version-filtering operators:
+**=**, **=~**, **<=**, **>=**, **<** and **>**. Note that **=~** represents a
+regex match operator.
 
 # EXIT CODES
 
-**downgrade** will stop further processing and exit non-zero if it encounters any of
-the following scenarios for any of its arguments:
+**downgrade** will stop further processing and exit non-zero if it encounters
+any of the following scenarios for any of its arguments:
 
 - No argument value(s) supplied where necessary
 - No package(s) found
@@ -122,7 +124,8 @@ the following scenarios for any of its arguments:
 
 # SEE ALSO
 
-**pacman**(8), **vercmp(8)**, **sudo**(8), **pacman.conf**(5), **find**(1), **su**(1).
+**pacman**(8), **vercmp(8)**, **sudo**(8), **pacman.conf**(5), **find**(1),
+**su**(1).
 
 # BUGS
 
@@ -130,5 +133,5 @@ Open a GitHub issue on *https://github.com/pbrisbin/downgrade*.
 
 # AUTHORS
 
-* Patrick Brisbin <pbrisbin@gmail.com>\
-* Atreya Shankar <shankar.atreya@gmail.com>
+- Patrick Brisbin <pbrisbin@gmail.com>\
+- Atreya Shankar <shankar.atreya@gmail.com>
