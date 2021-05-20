@@ -72,6 +72,9 @@ AUR_RELEASE_OPTIONS ?=
 .PHONY: release
 release: test
 	[ -n "$(VERSION)" ]
+	sed -E "s/^(DOWNGRADE_VERSION=)(.*)/\1\"v$(VERSION)\"/g" -i downgrade
+	git add downgrade
+	git commit -m "Release v$(VERSION)"
 	git tag -s -m v$(VERSION) v$(VERSION)
 	git push --follow-tags
 	aur-release $(AUR_RELEASE_OPTIONS) downgrade "$(VERSION)"
