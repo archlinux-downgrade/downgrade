@@ -15,7 +15,7 @@ None
 ## [v9.0.0](https://github.com/pbrisbin/downgrade/compare/v8.1.1...v9.0.0)
 
 - [NEW] Now accepts multiple cache directory options
-- [NEW] Removal of --nosudo CLI option, downgrade now expects root privileges 
+- [NEW] Removal of --nosudo CLI option, downgrade now expects root privileges
 
 ## [v8.1.1](https://github.com/pbrisbin/downgrade/compare/v8.1.0...v8.1.1)
 
@@ -118,7 +118,7 @@ None
 
 ## [v5.0.1](https://github.com/pbrisbin/downgrade/compare/v4.2.4...v5.0.1)
 
-*NOTE*: This version was a complete rewrite.
+_NOTE_: This version was a complete rewrite.
 
 - [CHANGED] Replace options with environment variables
 
@@ -130,7 +130,7 @@ None
 
 - [NEW] Add man-page
 - [NEW] Add Bash and Zsh completion
-- [FIX] Messaging on incorrect architecture 
+- [FIX] Messaging on incorrect architecture
 
 ## [v4.2](https://github.com/pbrisbin/downgrade/compare/v4.1...v4.2)
 
