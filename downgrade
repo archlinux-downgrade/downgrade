@@ -486,6 +486,9 @@ if ((!LIB)); then
     if [[ "$arg" =~ ^-h$|^--help$ ]]; then
       usage
       exit 0
+    elif [[ "$arg" == '--version' ]]; then
+      printf "%s\n" "$DOWNGRADE_VERSION"
+      exit 0
     fi
   done
 
