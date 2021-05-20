@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-11 13:24+0200\n"
+"POT-Creation-Date: 2021-05-19 13:43+0200\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -97,76 +97,75 @@ msgstr "--字符后的选项将被视为pacman选项。"
 msgid "See downgrade(8) for details."
 msgstr "详情请查看downgrade(8)."
 
-#: downgrade:68
+#: downgrade:84
 msgid "Available packages"
 msgstr "可选的包"
 
-#: downgrade:78
+#: downgrade:94
 msgid "select a package by number: "
 msgstr "输入数字以选择包："
 
-#: downgrade:95
+#: downgrade:111
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "添加$pkg到IgnorePkg? [y/N] "
 
-#: downgrade:98
+#: downgrade:114
 msgid "y"
 msgstr "y"
 
-#: downgrade:213
-msgid "local"
-msgstr "本地"
-
-#: downgrade:215
+#: downgrade:231
 msgid "remote"
 msgstr "远端"
 
-#: downgrade:269
+#: downgrade:285
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: downgrade:283
+#: downgrade:299
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "无法降级$name"
 
-#: downgrade:337
+#: downgrade:328
 msgid "Missing --pacman argument"
 msgstr "缺少--pacman参数"
 
-#: downgrade:350
+#: downgrade:341
 msgid "Missing --pacman-conf argument"
 msgstr "缺少--pacman-conf参数"
 
-#: downgrade:363
+#: downgrade:354
 msgid "Missing --ala-url argument"
 msgstr "缺少--ala-url参数"
 
-#: downgrade:376
+#: downgrade:367
 msgid "Missing --pacman-cache argument"
 msgstr "缺少--pacman-cache参数"
 
-#: downgrade:389
+#: downgrade:380
 msgid "Missing --pacman-log argument"
 msgstr "缺少--pacman-log参数"
 
-#: downgrade:402
+#: downgrade:393
 msgid "Missing --maxdepth argument"
 msgstr "缺少--maxdepth参数"
 
-#: downgrade:427
+#: downgrade:418
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "无法识别的选项$current_option"
 
-#: downgrade:442
+#: downgrade:433
 msgid "No packages provided for downgrading"
 msgstr "没有提供降级包"
 
-#: downgrade:483
+#: downgrade:495
 msgid "downgrade must be run as root"
 msgstr "downgrade必须以root身份运行"
+
+#~ msgid "local"
+#~ msgstr "本地"
 
 #~ msgid "do not use sudo even when available, use su"
 #~ msgstr "即使可用，也不要使用sudo，请使用su"
