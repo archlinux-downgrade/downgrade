@@ -1,6 +1,16 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v9.0.0...master)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v10.0.0...master)
 
 None
+
+## [v10.0.0](https://github.com/pbrisbin/downgrade/compare/v9.0.0...v10.0.0)
+
+- [NEW] Introduction of a system-wide downgrade configuration file
+- [NEW] Ensure that certain arrays inside `downgrade` are unique
+- [FIX] Modify downgrade menu with location of local cache directories
+- [FIX] Supplement downgrade menu with upstream package repository
+- [FIX] Remove architecture column from downgrade menu display
+- [FIX] Expand zsh autocompletions with `pacman -Ssq`
+- [FIX] Remove fish autocompletions on `make uninstall`
 
 ## [v9.0.0](https://github.com/pbrisbin/downgrade/compare/v8.1.1...v9.0.0)
 
