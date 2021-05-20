@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-11 13:24+0200\n"
+"POT-Creation-Date: 2021-05-19 13:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,73 +96,69 @@ msgstr ""
 msgid "See downgrade(8) for details."
 msgstr ""
 
-#: downgrade:68
+#: downgrade:84
 msgid "Available packages"
 msgstr ""
 
-#: downgrade:78
+#: downgrade:94
 msgid "select a package by number: "
 msgstr ""
 
-#: downgrade:95
+#: downgrade:111
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr ""
 
-#: downgrade:98
+#: downgrade:114
 msgid "y"
 msgstr ""
 
-#: downgrade:213
-msgid "local"
-msgstr ""
-
-#: downgrade:215
+#: downgrade:231
 msgid "remote"
 msgstr ""
 
-#: downgrade:269
+#: downgrade:285
 msgid "Invalid choice"
 msgstr ""
 
-#: downgrade:283
+#: downgrade:299
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr ""
 
-#: downgrade:337
+#: downgrade:328
 msgid "Missing --pacman argument"
 msgstr ""
 
-#: downgrade:350
+#: downgrade:341
 msgid "Missing --pacman-conf argument"
 msgstr ""
 
-#: downgrade:363
+#: downgrade:354
 msgid "Missing --ala-url argument"
 msgstr ""
 
-#: downgrade:376
+#: downgrade:367
 msgid "Missing --pacman-cache argument"
 msgstr ""
 
-#: downgrade:389
+#: downgrade:380
 msgid "Missing --pacman-log argument"
 msgstr ""
 
-#: downgrade:402
+#: downgrade:393
 msgid "Missing --maxdepth argument"
 msgstr ""
 
-#: downgrade:427
+#: downgrade:418
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr ""
 
-#: downgrade:442
+#: downgrade:433
 msgid "No packages provided for downgrading"
 msgstr ""
 
-#: downgrade:483
+#: downgrade:495
 msgid "downgrade must be run as root"
 msgstr ""
