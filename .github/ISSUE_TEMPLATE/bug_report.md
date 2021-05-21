@@ -1,23 +1,23 @@
 ---
 name: Bug Report
 about: Submit a bug report to help us improve
-labels: 'bug, needs triage'
+labels: 'bug, triage'
 ---
 
 ## :bug: Bug Report
 
 ### Checklist
 
-- [ ] Did you search the issues/pull-requests for possible duplicates?
+- [ ] No duplicate issues/PRs
 - [ ] Are you running the latest `downgrade` release from the [AUR](https://aur.archlinux.org/packages/downgrade/)?
 
 ### Environment
 
-* OS and kernel:
+* System information:
 <!-- Paste the output of `uname -a` -->
 
 * Downgrade version:
-<!-- Paste the output of `pacman -Q downgrade` -->
+<!-- Paste the output of `downgrade --version` -->
 
 ### Description
 
@@ -40,4 +40,3 @@ labels: 'bug, needs triage'
 ### Command trace
 
 <!-- If relevant, prepend `bash -x` before the erroneous downgrade command (eg. `bash -x downgrade problematic-package` and paste the produced command trace here -->
-<!-- If irrelevant, simply delete this section -->

@@ -1,14 +1,14 @@
 ---
 name: Feature Request
 about: Submit a request for a new or modified feature
-labels: 'enhancement, needs triage'
+labels: 'enhancement, triage'
 ---
 
 ## :rocket: Feature Request
 
 ### Checklist
 
-- [ ] Did you search the issues/pull-requests for possible duplicates?
+- [ ] No duplicate issues/PRs
 - [ ] Are you running the latest `downgrade` release from the [AUR](https://aur.archlinux.org/packages/downgrade/)?
 
 ### Background

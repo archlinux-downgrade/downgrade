@@ -8,16 +8,16 @@ labels: 'question, needs triage'
 
 ### Checklist
 
-- [ ] Did you search the issues/pull-requests for possible duplicates?
+- [ ] No duplicate issues/PRs
 - [ ] Are you running the latest `downgrade` release from the [AUR](https://aur.archlinux.org/packages/downgrade/)?
 
 ### Environment
 
-* OS and kernel:
+* System information: 
 <!-- Paste the output of `uname -a` -->
 
 * Downgrade version:
-<!-- Paste the output of `pacman -Q downgrade` -->
+<!-- Paste the output of `downgrade --version` -->
 
 ### Questions/Help
 
