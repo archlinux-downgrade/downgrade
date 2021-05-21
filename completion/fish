@@ -1,15 +1,12 @@
 set -l cmd downgrade
-
 complete -c $cmd -xa "(__fish_print_packages)"
-
-complete -c $cmd -l pacman -xa "(complete -C(commandline -ct))" -d 'pacman command to use, defaults to "pacman"'
-complete -c $cmd -l pacman-conf -r -d 'pacman configuration file, defaults to "/etc/pacman.conf"'
-complete -c $cmd -l pacman-cache -r -d 'pacman cache directory or directories'
+complete -c $cmd -l pacman -xa "(complete -C(commandline -ct))" -d 'pacman command to use'
+complete -c $cmd -l pacman-conf -r -d 'pacman configuration file'
+complete -c $cmd -l pacman-cache -r -d 'pacman cache directory'
 complete -c $cmd -l pacman-log -r -d 'pacman log file'
 complete -c $cmd -l maxdepth -x -d 'maximum depth to search for cached packages'
 complete -c $cmd -l ala-url -x -d 'location of ALA server'
-
 complete -c $cmd -l ala-only -d 'only use ALA server'
 complete -c $cmd -l cached-only -d 'only use cached packages'
-
+complete -c $cmd -l version -d 'show downgrade version'
 complete -c $cmd -s h -l help -d 'show help script'
