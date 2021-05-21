@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-19 13:43+0200\n"
+"POT-Creation-Date: 2021-05-21 11:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,84 +81,88 @@ msgid "only use cached packages"
 msgstr ""
 
 #: downgrade:28
+msgid "show downgrade version"
+msgstr ""
+
+#: downgrade:29
 msgid "show help script"
 msgstr ""
 
-#: downgrade:30
+#: downgrade:31
 msgid "Note"
 msgstr ""
 
-#: downgrade:31
+#: downgrade:32
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 
-#: downgrade:32
+#: downgrade:33
 msgid "See downgrade(8) for details."
 msgstr ""
 
-#: downgrade:84
+#: downgrade:85
 msgid "Available packages"
 msgstr ""
 
-#: downgrade:94
+#: downgrade:95
 msgid "select a package by number: "
 msgstr ""
 
-#: downgrade:111
+#: downgrade:112
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr ""
 
-#: downgrade:114
+#: downgrade:115
 msgid "y"
 msgstr ""
 
-#: downgrade:231
+#: downgrade:232
 msgid "remote"
 msgstr ""
 
-#: downgrade:285
+#: downgrade:286
 msgid "Invalid choice"
 msgstr ""
 
-#: downgrade:299
+#: downgrade:300
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr ""
 
-#: downgrade:328
+#: downgrade:329
 msgid "Missing --pacman argument"
 msgstr ""
 
-#: downgrade:341
+#: downgrade:342
 msgid "Missing --pacman-conf argument"
 msgstr ""
 
-#: downgrade:354
+#: downgrade:355
 msgid "Missing --ala-url argument"
 msgstr ""
 
-#: downgrade:367
+#: downgrade:368
 msgid "Missing --pacman-cache argument"
 msgstr ""
 
-#: downgrade:380
+#: downgrade:381
 msgid "Missing --pacman-log argument"
 msgstr ""
 
-#: downgrade:393
+#: downgrade:394
 msgid "Missing --maxdepth argument"
 msgstr ""
 
-#: downgrade:418
+#: downgrade:419
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr ""
 
-#: downgrade:433
+#: downgrade:434
 msgid "No packages provided for downgrading"
 msgstr ""
 
-#: downgrade:495
+#: downgrade:500
 msgid "downgrade must be run as root"
 msgstr ""
