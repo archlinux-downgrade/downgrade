@@ -87,6 +87,14 @@ on the ALA.
 
 > Search local cache only.
 
+**\--version**\
+
+> Show downgrade version.
+
+**\-h, \--help**\
+
+> Show help script.
+
 ## CONFIGURATION FILE
 
 Command-line options can be set persistently in **/etc/xdg/downgrade.conf**.
