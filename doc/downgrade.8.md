@@ -116,8 +116,8 @@ installed without further prompt from the user.
 # VERSION FILTERING
 
 **downgrade** allows the use of the following version-filtering operators:
-**=**, **=~**, **<=**, **>=**, **<** and **>**. Note that **=~** represents a
-regex match operator.
+**=**, **==**, **=~**, **<=**, **>=**, **<** and **>**. Note that **=~**
+represents a regex match operator and **=**/**==** are aliases.
 
 # EXIT CODES
 
