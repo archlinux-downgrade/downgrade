@@ -97,9 +97,10 @@ on the ALA.
 
 ## CONFIGURATION FILE
 
-Command-line options can be set persistently in **/etc/xdg/downgrade.conf**.
-Note that these options are parsed first by **downgrade**, followed by any other
-command-line options provided by the user.
+Command-line options can be set persistently in
+**/etc/xdg/downgrade/downgrade.conf**. Note that these options are parsed first
+by **downgrade**, followed by any other command-line options provided by the
+user.
 
 ## PACMAN OPTIONS
 
