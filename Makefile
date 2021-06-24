@@ -55,18 +55,7 @@ uninstall:
 	  $(DESTDIR)$(PREFIX)/share/fish/vendor_completions.d/downgrade.fish \
 	  $(DESTDIR)$(LOCALEPREFIX)/*/LC_MESSAGES/downgrade.mo
 
-.PHONY: release.major
-release.major: VERSION=$(shell git tag | vbump major | sed 's/^v//')
-release.major: release
-
-.PHONY: release.minor
-release.minor: VERSION=$(shell git tag | vbump minor | sed 's/^v//')
-release.minor: release
-
-.PHONY: release.patch
-release.patch: VERSION=$(shell git tag | vbump patch | sed 's/^v//')
-release.patch: release
-
+VERSION ?= $(shell sed '/^DOWNGRADE_VERSION="\([^"]*\)".*$$/!d; s//\1/' downgrade)
 AUR_RELEASE_OPTIONS ?=
 
 .PHONY: release
