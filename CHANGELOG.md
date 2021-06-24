@@ -1,4 +1,4 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v10.0.0...master)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v10.0.0...main)
 
 None
 
