@@ -1,6 +1,13 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v10.0.0...main)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v10.1.0...main)
 
 None
+
+## [v10.1.0](https://github.com/pbrisbin/downgrade/compare/v10.0.0...v10.1.0)
+
+- [NEW] Add `--version` flag and hold version information inside `downgrade`
+- [NEW] Add `==` version comparison operator as alias of existing `=` operator
+- [FIX] Correct configuration file paths in readme and mandoc
+- [FIX] Update GitHub issue/PR templates with version checking
 
 ## [v10.0.0](https://github.com/pbrisbin/downgrade/compare/v9.0.0...v10.0.0)
 
