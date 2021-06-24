@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 11:58+0200\n"
+"POT-Creation-Date: 2021-06-24 13:15+0200\n"
 "PO-Revision-Date: 2020-04-21 18:01-0400\n"
 "Last-Translator: <miachm3@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -120,53 +120,53 @@ msgstr "Añadir $pkg a paquetes ignorados [s/N] "
 msgid "y"
 msgstr "s"
 
-#: downgrade:232
+#: downgrade:235
 msgid "remote"
 msgstr "remoto"
 
-#: downgrade:286
+#: downgrade:289
 msgid "Invalid choice"
 msgstr "Elección inválida"
 
-#: downgrade:300
+#: downgrade:303
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "No se puede degradar $name"
 
-#: downgrade:329
+#: downgrade:332
 msgid "Missing --pacman argument"
 msgstr "Falta el argumento --pacman"
 
-#: downgrade:342
+#: downgrade:345
 msgid "Missing --pacman-conf argument"
 msgstr "Falta el argumento --pacman-conf"
 
-#: downgrade:355
+#: downgrade:358
 msgid "Missing --ala-url argument"
 msgstr "Falta el argumento --ala-url"
 
-#: downgrade:368
+#: downgrade:371
 msgid "Missing --pacman-cache argument"
 msgstr "Falta el argumento --pacman-cache"
 
-#: downgrade:381
+#: downgrade:384
 msgid "Missing --pacman-log argument"
 msgstr "Falta el argumento --pacman-log"
 
-#: downgrade:394
+#: downgrade:397
 msgid "Missing --maxdepth argument"
 msgstr "Falta el argumento --maxdepth"
 
-#: downgrade:419
+#: downgrade:422
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Opción no reconocida $current_option"
 
-#: downgrade:434
+#: downgrade:437
 msgid "No packages provided for downgrading"
 msgstr "No se proporcionan paquetes para degradar"
 
-#: downgrade:500
+#: downgrade:503
 msgid "downgrade must be run as root"
 msgstr "downgrade debe ejecutarse como root"
 

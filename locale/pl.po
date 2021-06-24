@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 11:58+0200\n"
+"POT-Creation-Date: 2021-06-24 13:15+0200\n"
 "PO-Revision-Date: 2020-04-21 17:23+0200\n"
 "Last-Translator: Tomasz \"Ludvick\" Niedzielski <ludvick0@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -122,53 +122,53 @@ msgstr "dodać $pkg do IgnorePkg? [t/N] "
 msgid "y"
 msgstr "t"
 
-#: downgrade:232
+#: downgrade:235
 msgid "remote"
 msgstr "do pobrania"
 
-#: downgrade:286
+#: downgrade:289
 msgid "Invalid choice"
 msgstr "Nieprawidłowy wybór"
 
-#: downgrade:300
+#: downgrade:303
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Nie można obniżyć poziomu $name"
 
-#: downgrade:329
+#: downgrade:332
 msgid "Missing --pacman argument"
 msgstr "Brak argumentu --pacman"
 
-#: downgrade:342
+#: downgrade:345
 msgid "Missing --pacman-conf argument"
 msgstr "Brak argumentu --pacman-conf"
 
-#: downgrade:355
+#: downgrade:358
 msgid "Missing --ala-url argument"
 msgstr "Brak argumentu --ala-url"
 
-#: downgrade:368
+#: downgrade:371
 msgid "Missing --pacman-cache argument"
 msgstr "Brak argumentu --pacman-cache"
 
-#: downgrade:381
+#: downgrade:384
 msgid "Missing --pacman-log argument"
 msgstr "Brak argumentu --pacman-log"
 
-#: downgrade:394
+#: downgrade:397
 msgid "Missing --maxdepth argument"
 msgstr "Brak argumentu --maxdepth"
 
-#: downgrade:419
+#: downgrade:422
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Nierozpoznana opcja $current_option"
 
-#: downgrade:434
+#: downgrade:437
 msgid "No packages provided for downgrading"
 msgstr "Brak pakietów do obniżenia"
 
-#: downgrade:500
+#: downgrade:503
 msgid "downgrade must be run as root"
 msgstr "downgrade musi być uruchamiany jako root"
 

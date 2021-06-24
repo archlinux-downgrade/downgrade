@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 11:58+0200\n"
+"POT-Creation-Date: 2021-06-24 13:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,52 +117,52 @@ msgstr ""
 msgid "y"
 msgstr ""
 
-#: downgrade:232
+#: downgrade:235
 msgid "remote"
 msgstr ""
 
-#: downgrade:286
+#: downgrade:289
 msgid "Invalid choice"
 msgstr ""
 
-#: downgrade:300
+#: downgrade:303
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr ""
 
-#: downgrade:329
+#: downgrade:332
 msgid "Missing --pacman argument"
 msgstr ""
 
-#: downgrade:342
+#: downgrade:345
 msgid "Missing --pacman-conf argument"
 msgstr ""
 
-#: downgrade:355
+#: downgrade:358
 msgid "Missing --ala-url argument"
 msgstr ""
 
-#: downgrade:368
+#: downgrade:371
 msgid "Missing --pacman-cache argument"
 msgstr ""
 
-#: downgrade:381
+#: downgrade:384
 msgid "Missing --pacman-log argument"
 msgstr ""
 
-#: downgrade:394
+#: downgrade:397
 msgid "Missing --maxdepth argument"
 msgstr ""
 
-#: downgrade:419
+#: downgrade:422
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr ""
 
-#: downgrade:434
+#: downgrade:437
 msgid "No packages provided for downgrading"
 msgstr ""
 
-#: downgrade:500
+#: downgrade:503
 msgid "downgrade must be run as root"
 msgstr ""

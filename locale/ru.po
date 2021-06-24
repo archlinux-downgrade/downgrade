@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 11:58+0200\n"
+"POT-Creation-Date: 2021-06-24 13:15+0200\n"
 "PO-Revision-Date: 2020-04-21 14:25-0300\n"
 "Last-Translator: Nurlan <nurlancik1@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -122,53 +122,53 @@ msgstr "добавить $pkg в список проигнорированных
 msgid "y"
 msgstr "д"
 
-#: downgrade:232
+#: downgrade:235
 msgid "remote"
 msgstr "дистанционно"
 
-#: downgrade:286
+#: downgrade:289
 msgid "Invalid choice"
 msgstr "Неверный выбор"
 
-#: downgrade:300
+#: downgrade:303
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Невозможно понизить $name"
 
-#: downgrade:329
+#: downgrade:332
 msgid "Missing --pacman argument"
 msgstr "Отсутствует аргумент --pacman"
 
-#: downgrade:342
+#: downgrade:345
 msgid "Missing --pacman-conf argument"
 msgstr "Отсутствует аргумент --pacman-conf"
 
-#: downgrade:355
+#: downgrade:358
 msgid "Missing --ala-url argument"
 msgstr "Отсутствует аргумент --ala-url"
 
-#: downgrade:368
+#: downgrade:371
 msgid "Missing --pacman-cache argument"
 msgstr "Отсутствует аргумент --pacman-cache"
 
-#: downgrade:381
+#: downgrade:384
 msgid "Missing --pacman-log argument"
 msgstr "Отсутствует аргумент --pacman-log"
 
-#: downgrade:394
+#: downgrade:397
 msgid "Missing --maxdepth argument"
 msgstr "Отсутствует аргумент --maxdepth"
 
-#: downgrade:419
+#: downgrade:422
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Нераспознанная опция $current_option"
 
-#: downgrade:434
+#: downgrade:437
 msgid "No packages provided for downgrading"
 msgstr "Нет пакетов для понижения"
 
-#: downgrade:500
+#: downgrade:503
 msgid "downgrade must be run as root"
 msgstr "downgrade должен запускаться как root"
 

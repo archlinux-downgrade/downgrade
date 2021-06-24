@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 11:58+0200\n"
+"POT-Creation-Date: 2021-06-24 13:15+0200\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -123,53 +123,53 @@ msgstr ""
 msgid "y"
 msgstr "o"
 
-#: downgrade:232
+#: downgrade:235
 msgid "remote"
 msgstr "distant"
 
-#: downgrade:286
+#: downgrade:289
 msgid "Invalid choice"
 msgstr "Choix invalide"
 
-#: downgrade:300
+#: downgrade:303
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Impossible de rétrograder $name"
 
-#: downgrade:329
+#: downgrade:332
 msgid "Missing --pacman argument"
 msgstr "Argument --pacman manquant"
 
-#: downgrade:342
+#: downgrade:345
 msgid "Missing --pacman-conf argument"
 msgstr "Argument --pacman-conf manquant"
 
-#: downgrade:355
+#: downgrade:358
 msgid "Missing --ala-url argument"
 msgstr "Argument --ala-url manquant"
 
-#: downgrade:368
+#: downgrade:371
 msgid "Missing --pacman-cache argument"
 msgstr "Argument --pacman-cache manquant"
 
-#: downgrade:381
+#: downgrade:384
 msgid "Missing --pacman-log argument"
 msgstr "Argument --pacman-log manquant"
 
-#: downgrade:394
+#: downgrade:397
 msgid "Missing --maxdepth argument"
 msgstr "Argument --maxdepth manquant"
 
-#: downgrade:419
+#: downgrade:422
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Option non reconnue $current_option"
 
-#: downgrade:434
+#: downgrade:437
 msgid "No packages provided for downgrading"
 msgstr "Aucun package fourni pour la rétrogradation"
 
-#: downgrade:500
+#: downgrade:503
 msgid "downgrade must be run as root"
 msgstr "le downgrade doit être exécuté en tant que root"
 
