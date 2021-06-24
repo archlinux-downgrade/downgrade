@@ -77,7 +77,7 @@ Downgrade a package, looking in only the A.L.A.:
 
 ## Configuration
 
-Command-line options can be set persistently in `/etc/xdg/downgrade.conf`.
+Command-line options can be set persistently in `/etc/xdg/downgrade/downgrade.conf`.
 
 ## Development & Testing
 
