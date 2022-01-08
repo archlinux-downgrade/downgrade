@@ -1,0 +1,2 @@
+#!/bin/sh
+exec act-like /usr/bin/pacman-conf "$@"
