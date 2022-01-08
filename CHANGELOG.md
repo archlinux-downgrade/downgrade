@@ -6,7 +6,7 @@ See [issues](https://github.com/pbrisbin/downgrade/issues)
 
 - [FIX] Resolve `DOWNGRADE_ARCH` option automatically using `pacman-conf` command
 - [NEW] Update test cases to reflect 32-bit architectures
-- [NEW] Translate Circle setup to GitHub Actions 
+- [NEW] Translate Circle setup to GitHub Actions
 
 ## [v10.1.0](https://github.com/pbrisbin/downgrade/compare/v10.0.0...v10.1.0)
 
