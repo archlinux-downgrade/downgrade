@@ -462,7 +462,7 @@ cli() {
 # Set script defaults
 PACMAN="pacman"
 PACMAN_CONF="/etc/pacman.conf"
-DOWNGRADE_ARCH="x86_64"
+DOWNGRADE_ARCH="$(pacman-conf Architecture)"
 DOWNGRADE_ALA_URL="https://archive.archlinux.org"
 DOWNGRADE_FROM_ALA=1
 DOWNGRADE_FROM_CACHE=1
