@@ -276,7 +276,12 @@ process_term() {
   current=$(currently_installed "$name")
   candidates=($(search_packages "$name" | filter_packages "$name" "$operator" "$version" | sort_packages))
 
-  if (("${#candidates[@]}" == 1)); then
+  if (("${#candidates[@]}" == 0)); then
+    {
+      gettext "No results found"
+      echo
+    } >&2
+  elif (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
   else
     choice=$(present_packages "$name" "${candidates[@]}" | \
