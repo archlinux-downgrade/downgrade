@@ -83,16 +83,13 @@ present_packages() {
   repo=${repo:-foreign/aur}
 
   gettext 'Available packages'
-  printf " (%s):\n\n" "$repo"
+  printf " (%s):\n" "$repo"
 
   for entry; do
     output_package "$((i++))" "$entry" "$pkgname"
   done | column -s '	' -t -R 2,4,6
   # Expand tabs in the output of output_package to spaces as needed to create a
   # table. Right align numerical columns 2 (index), 4 (epoch) and 6 (release).
-
-  printf '\n'
-  gettext 'select a package by number: '
 }
 
 read_selection() {
@@ -282,14 +279,14 @@ process_term() {
   if (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
   else
-    if present_packages "$name" "${candidates[@]}"; then
-      choice=$(read_selection "${candidates[@]}")
-      if [[ -z "$choice" ]]; then
-        {
-          gettext "Invalid choice"
-          echo
-        } >&2
-      fi
+    choice=$(present_packages "$name" "${candidates[@]}" | \
+      fzf --tac --border --header-lines 1 --tiebreak=begin | \
+      sed 's|[^0-9]\+\([0-9]\+\)).*|\1|' | read_selection "${candidates[@]}")
+    if [[ -z "$choice" ]]; then
+      {
+        gettext "Invalid choice"
+        echo
+      } >&2
     fi
   fi
 
