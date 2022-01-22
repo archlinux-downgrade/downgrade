@@ -19,6 +19,7 @@ export DOWNGRADE_CONF="$SRCDIR/test/conf/downgrade_test.conf"
 # Stub functions that won't work (on CI) or need different behavior.
 pacsort() { cat; }
 sudo() { "$@"; }
+fzf() { grep "${FZF_CHOICE})"; }
 
 # Utilities
 write_pacman_conf() {
