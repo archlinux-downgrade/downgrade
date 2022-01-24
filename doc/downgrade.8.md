@@ -10,11 +10,9 @@ Downgrade Arch Linux packages.
 
 # OUTPUT
 
-Just calling **downgrade** on a package will lead to the following output:
+Calling **downgrade** on a package will lead to the following output:
 
 _Example:_
-
-    Available packages (community):
 
     -  1)  terraform    0.11.11  2  remote
     -  2)  terraform    0.11.12  1  /var/cache/pacman/pkg
@@ -24,7 +22,9 @@ _Example:_
     -  6)  terraform    0.12.0   1  /var/cache/pacman/pkg
        7)  terraform    0.12.1   1  remote
 
-    select a package by number:
+    Available packages (community):
+    7/7
+    >
 
 The columns have the following meaning:
 
@@ -125,6 +125,7 @@ represents a regex match operator and **=**/**==** are aliases.
 **downgrade** will stop further processing and exit non-zero if it encounters
 any of the following scenarios for any of its arguments:
 
+- Execution from non-root user
 - No argument value(s) supplied where necessary
 - No package(s) found
 - Package(s) found, but an invalid selection was made
@@ -134,7 +135,7 @@ any of the following scenarios for any of its arguments:
 # SEE ALSO
 
 **pacman**(8), **vercmp(8)**, **sudo**(8), **pacman.conf**(5), **find**(1),
-**su**(1).
+**su**(1), **fzf**(1).
 
 # BUGS
 
