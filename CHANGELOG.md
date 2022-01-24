@@ -1,6 +1,12 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v10.1.1...main)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v11.0.0...main)
 
 See [issues](https://github.com/pbrisbin/downgrade/issues)
+
+## [v11.0.0](https://github.com/pbrisbin/downgrade/compare/v10.1.1...v11.0.0)
+
+- [NEW] Use `fzf` as a TUI for interactive `downgrade`
+- [FIX] More descriptive error message when no results found
+- [FIX] Add more information on non-zero exit codes in `mandoc`
 
 ## [v10.1.1](https://github.com/pbrisbin/downgrade/compare/v10.1.0...v10.1.1)
 
