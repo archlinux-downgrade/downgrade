@@ -21,7 +21,7 @@ _Example:_
     -  5)  terraform    0.12.0   1  remote
     -  6)  terraform    0.12.0   1  /var/cache/pacman/pkg
        7)  terraform    0.12.1   1  remote
-    
+
     Available packages (community):
     7/7
     >
