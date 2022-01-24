@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 13:15+0200\n"
+"POT-Creation-Date: 2022-01-24 11:48+0100\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -105,68 +105,71 @@ msgstr "详情请查看downgrade(8)."
 msgid "Available packages"
 msgstr "可选的包"
 
-#: downgrade:95
-msgid "select a package by number: "
-msgstr "输入数字以选择包："
-
-#: downgrade:112
+#: downgrade:109
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "添加$pkg到IgnorePkg? [y/N] "
 
-#: downgrade:115
+#: downgrade:112
 msgid "y"
 msgstr "y"
 
-#: downgrade:235
+#: downgrade:232
 msgid "remote"
 msgstr "远端"
 
-#: downgrade:289
+#: downgrade:281
+msgid "No results found"
+msgstr "未找到结果"
+
+#: downgrade:292
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: downgrade:303
+#: downgrade:305
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "无法降级$name"
 
-#: downgrade:332
+#: downgrade:334
 msgid "Missing --pacman argument"
 msgstr "缺少--pacman参数"
 
-#: downgrade:345
+#: downgrade:347
 msgid "Missing --pacman-conf argument"
 msgstr "缺少--pacman-conf参数"
 
-#: downgrade:358
+#: downgrade:360
 msgid "Missing --ala-url argument"
 msgstr "缺少--ala-url参数"
 
-#: downgrade:371
+#: downgrade:373
 msgid "Missing --pacman-cache argument"
 msgstr "缺少--pacman-cache参数"
 
-#: downgrade:384
+#: downgrade:386
 msgid "Missing --pacman-log argument"
 msgstr "缺少--pacman-log参数"
 
-#: downgrade:397
+#: downgrade:399
 msgid "Missing --maxdepth argument"
 msgstr "缺少--maxdepth参数"
 
-#: downgrade:422
+#: downgrade:424
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "无法识别的选项$current_option"
 
-#: downgrade:437
+#: downgrade:439
 msgid "No packages provided for downgrading"
 msgstr "没有提供降级包"
 
-#: downgrade:503
+#: downgrade:505
 msgid "downgrade must be run as root"
 msgstr "downgrade必须以root身份运行"
+
+#~ msgid "select a package by number: "
+#~ msgstr "输入数字以选择包："
 
 #~ msgid "local"
 #~ msgstr "本地"

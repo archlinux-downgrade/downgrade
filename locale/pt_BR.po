@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 13:15+0200\n"
+"POT-Creation-Date: 2022-01-24 11:48+0100\n"
 "PO-Revision-Date: 2020-04-21 01:23-0300\n"
 "Last-Translator: Thiago Perrotta <thiagoperrotta95@gmail.com>, <shankar."
 "atreya@gmail.com>\n"
@@ -107,68 +107,71 @@ msgstr "Veja downgrade(8) para mais detalhes."
 msgid "Available packages"
 msgstr "Pacotes disponíveis"
 
-#: downgrade:95
-msgid "select a package by number: "
-msgstr "selecione um pacote por número:"
-
-#: downgrade:112
+#: downgrade:109
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "adicionar $pkg em IgnorePkg? [s/N] "
 
-#: downgrade:115
+#: downgrade:112
 msgid "y"
 msgstr "s"
 
-#: downgrade:235
+#: downgrade:232
 msgid "remote"
 msgstr "remoto"
 
-#: downgrade:289
+#: downgrade:281
+msgid "No results found"
+msgstr "Nenhum resultado encontrado"
+
+#: downgrade:292
 msgid "Invalid choice"
 msgstr "Escolha inválida"
 
-#: downgrade:303
+#: downgrade:305
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Não foi possível fazer o downgrade $name"
 
-#: downgrade:332
+#: downgrade:334
 msgid "Missing --pacman argument"
 msgstr "Argumento --pacman ausente"
 
-#: downgrade:345
+#: downgrade:347
 msgid "Missing --pacman-conf argument"
 msgstr "Argumento --pacman-conf ausente"
 
-#: downgrade:358
+#: downgrade:360
 msgid "Missing --ala-url argument"
 msgstr "Argumento --ala-url ausente"
 
-#: downgrade:371
+#: downgrade:373
 msgid "Missing --pacman-cache argument"
 msgstr "Argumento --pacman-cache ausente"
 
-#: downgrade:384
+#: downgrade:386
 msgid "Missing --pacman-log argument"
 msgstr "Argumento --pacman-log ausente"
 
-#: downgrade:397
+#: downgrade:399
 msgid "Missing --maxdepth argument"
 msgstr "Argumento --maxdepth ausente"
 
-#: downgrade:422
+#: downgrade:424
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Opção não reconhecida $current_option"
 
-#: downgrade:437
+#: downgrade:439
 msgid "No packages provided for downgrading"
 msgstr "Nenhum pacote fornecido para desatualização"
 
-#: downgrade:503
+#: downgrade:505
 msgid "downgrade must be run as root"
 msgstr "downgrade deve ser executado como root"
+
+#~ msgid "select a package by number: "
+#~ msgstr "selecione um pacote por número:"
 
 #~ msgid "local"
 #~ msgstr "local"
