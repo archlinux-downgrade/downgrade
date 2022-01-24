@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 13:15+0200\n"
+"POT-Creation-Date: 2022-01-24 11:48+0100\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -108,70 +108,73 @@ msgstr "Voir downgrade(8) pour plus de détails."
 msgid "Available packages"
 msgstr "Paquets disponibles"
 
-#: downgrade:95
-msgid "select a package by number: "
-msgstr "Sélectionner le paquet numéro : "
-
-#: downgrade:112
+#: downgrade:109
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr ""
 "Ajouter $pkg dans la liste des paquets à ne pas mettre à jour "
 "automatiquement ? [o/N] "
 
-#: downgrade:115
+#: downgrade:112
 msgid "y"
 msgstr "o"
 
-#: downgrade:235
+#: downgrade:232
 msgid "remote"
 msgstr "distant"
 
-#: downgrade:289
+#: downgrade:281
+msgid "No results found"
+msgstr "Aucun résultat trouvé"
+
+#: downgrade:292
 msgid "Invalid choice"
 msgstr "Choix invalide"
 
-#: downgrade:303
+#: downgrade:305
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Impossible de rétrograder $name"
 
-#: downgrade:332
+#: downgrade:334
 msgid "Missing --pacman argument"
 msgstr "Argument --pacman manquant"
 
-#: downgrade:345
+#: downgrade:347
 msgid "Missing --pacman-conf argument"
 msgstr "Argument --pacman-conf manquant"
 
-#: downgrade:358
+#: downgrade:360
 msgid "Missing --ala-url argument"
 msgstr "Argument --ala-url manquant"
 
-#: downgrade:371
+#: downgrade:373
 msgid "Missing --pacman-cache argument"
 msgstr "Argument --pacman-cache manquant"
 
-#: downgrade:384
+#: downgrade:386
 msgid "Missing --pacman-log argument"
 msgstr "Argument --pacman-log manquant"
 
-#: downgrade:397
+#: downgrade:399
 msgid "Missing --maxdepth argument"
 msgstr "Argument --maxdepth manquant"
 
-#: downgrade:422
+#: downgrade:424
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Option non reconnue $current_option"
 
-#: downgrade:437
+#: downgrade:439
 msgid "No packages provided for downgrading"
 msgstr "Aucun package fourni pour la rétrogradation"
 
-#: downgrade:503
+#: downgrade:505
 msgid "downgrade must be run as root"
 msgstr "le downgrade doit être exécuté en tant que root"
+
+#~ msgid "select a package by number: "
+#~ msgstr "Sélectionner le paquet numéro : "
 
 #~ msgid "local"
 #~ msgstr "local"
