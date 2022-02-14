@@ -34,12 +34,10 @@ $(gettext "Note"):
 EOF
 }
 
-read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
-
 read_downgrade_conf() {
   local var=$1
 
-  eval "$var=($(grep -E -v '^ *(#.*)?$' "$DOWNGRADE_CONF" 2>/dev/null | xargs printf '%q '))"
+  eval "$var=($(grep -E -v '^ *(#.*)?$' "$downgrade_conf" 2>/dev/null | xargs printf '%q '))"
 }
 
 read_unique() {
@@ -52,368 +50,32 @@ read_unique() {
   fi
 }
 
-previously_installed() {
-  # Delay this defaulting so #read_pacman_conf behavior is tested
-  : "${PACMAN_LOG:=$(read_pacman_conf LogFile)}"
-  : "${PACMAN_LOG:=/var/log/pacman.log}"
-
-  sed '
-    /.*\(installed\|upgraded\) \('"$1"'\) (\(.* -> \)\?\([^)]*\))/!d
-    s//\2-\4/
-  ' "$PACMAN_LOG"
-}
-
-currently_installed() {
-  LC_ALL=C.UTF8 "$PACMAN" -Qi "$1" 2>/dev/null | awk -F " : " '
-    /^Name / { name=$2 };
-    /^Version / { version=$2 };
-    END { if (name != "") printf("%s-%s\n", name, version) }
-  '
-}
-
-# <package name> [package path] …
-present_packages() {
-  local i=1
-  local pkgname="$1"
-  shift
-
-  (($#)) || return 1
-
-  repo="$(pacman -Ss "^${pkgname}$" | awk -F'/' 'NR==1 {print $1}')"
-  repo=${repo:-foreign/aur}
-
-  gettext 'Available packages'
-  printf " (%s):\n" "$repo"
-
-  for entry; do
-    output_package "$((i++))" "$entry" "$pkgname"
-  done | column -s '	' -t -R 2,4,6
-  # Expand tabs in the output of output_package to spaces as needed to create a
-  # table. Right align numerical columns 2 (index), 4 (epoch) and 6 (release).
-}
-
-read_selection() {
-  local ans
-
-  read -r ans
-
-  ((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
-}
-
-prompt_to_ignore() {
-  local pkg ans ln
-
-  for pkg; do
-    grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
-
-    eval_gettext "add \$pkg to IgnorePkg? [y/N] "
-    read -r ans
-
-    if [[ "${ans,,}" == $(gettext 'y')* ]]; then
-      ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
-      if [ -n "$ln" ]; then
-        sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF"
-        continue
-      fi
-
-      ln="$(grep -n '^# *IgnorePkg' "$PACMAN_CONF" | tail -n 1 | cut -d : -f 1)"
-      if [ -n "$ln" ]; then
-        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
-        continue
-      fi
-
-      printf "IgnorePkg = %s\\n" "$pkg" >>"$PACMAN_CONF"
-    fi
-  done
-}
-
-filter_packages() {
-  local name=$1 operator=$2 version=$3 pkg
-
-  while read -r pkg; do
-    if matches_name_version_filter "$pkg" "$name" "$operator" "$version"; then
-      echo "$pkg"
-    fi
-  done
-}
-
-matches_name_version_filter() {
-  local pkg=$1 name=$2 operator=$3 search_version=$4 pkg_version version_regex
-
-  if [[ -z "$operator" ]] || [[ -z "$version" ]]; then
-    return 0
-  fi
-
-  version_regex="[^-]+-[0-9.]+"
-  pkg_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<<"$pkg")
-  cmp=$(vercmp "$pkg_version" "$search_version")
-
-  case "$operator" in
-    '>=')
-      ((cmp >= 0))
-      ;;
-    '<=')
-      ((cmp <= 0))
-      ;;
-    '>')
-      ((cmp == 1))
-      ;;
-    '<')
-      ((cmp == -1))
-      ;;
-    '=~')
-      [[ $pkg_version =~ $search_version ]]
-      ;;
-    '=')
-      ((cmp == 0))
-      ;;
-    '==')
-      ((cmp == 0))
-      ;;
-  esac
-}
-
-search_packages() {
-  local name=$1 pkgfile_re index
-
-  pkgfile_re="$name-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
-  index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
-
-  if ((DOWNGRADE_FROM_ALA)); then
-    curl --fail --silent "$index" | sed -E '
-      /.* href="('"$pkgfile_re"')".*/!d;
-      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
-  fi
-
-  if ((DOWNGRADE_FROM_CACHE)); then
-    # Delay this defaulting so #read_pacman_conf behavior is tested
-    if ((!${#PACMAN_CACHE[@]})); then
-      mapfile -t PACMAN_CACHE < <(read_pacman_conf CacheDir)
-    fi
-
-    if ((!${#PACMAN_CACHE[@]})); then
-      PACMAN_CACHE=(/var/cache/pacman/pkg/)
-    fi
-
-    # shellcheck disable=SC2086
-    find -L "${PACMAN_CACHE[@]}" -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
-  fi
-}
-
-sort_packages() {
-  grep -Fv 'testing/' |
-    awk 'BEGIN { FS="/"; OFS="|" } { print $NF, $0 }' |
-    pacsort -f -t '|' -k 1 | cut -d '|' -f 2-
-}
-
-# <number> <path> <package name>
-output_package() {
-  local number="$1" path="$2" pkgname="$3"
-  local pkg indicator=" " location version epoch release
-
-  if [[ -n "$current" ]] && [[ "$path" == *"$current"* ]]; then
-    # Currently installed
-    indicator="+"
-  else
-    for pkg in "${installed[@]}"; do
-      case "$path" in
-        *$pkg*)
-          indicator="-"
-          break
-          ;;
-      esac
-    done
-  fi
-
-  # Remote or local file
-  if [[ $path =~ ^/ ]]; then
-    location="$(dirname "$path")"
-  else
-    location="$(gettext 'remote')"
-  fi
-
-  IFS=, read -r epoch version release _ < <(
-    extract_version_parts "$pkgname" "$path"
-  )
-
-  printf "%s\t%s)\t%s\t%s\t%s\t%s\t%s\n" \
-    "$indicator" \
-    "$number" \
-    "$pkgname" \
-    "$epoch" \
-    "$version" \
-    "$release" \
-    "$location"
-}
-
-# <package name> <package path>
-extract_version_parts() {
-  local pkgname=$1 path=$2
-
-  sed '
-    # Strip first path component
-    s|^.*/||;
-
-    # Strip package name
-    s|^.\{'${#pkgname}'\}-\?||;
-
-    # Strip package extension
-    s|\.pkg\(\.tar\)\?\(\.[a-z0-9A-Z]\+\)\?$||;
-
-    # (epoch:)?version(-release)?(-arch)? -> epoch,version,release,arch
-    s|\(\([^:]*\):\)\?\([^-]*\)\(-\([^-]*\)\)\?\(-\(.*\)\)\?|\2,\3,\5,\7|;
-  ' <<<"$path"
-}
-
-# shellcheck disable=SC2207
-process_term() {
-  local term=$1 name operator version candidates choice
-
-  read -r name operator version < \
-    <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~|==)([^<>=~].*)/\1 \2 \3/g" <<<"$term")
-
-  installed=($(previously_installed "$name"))
-  current=$(currently_installed "$name")
-  candidates=($(search_packages "$name" | filter_packages "$name" "$operator" "$version" | sort_packages))
-
-  if (("${#candidates[@]}" == 0)); then
-    {
-      gettext "No results found"
-      echo
-    } >&2
-  elif (("${#candidates[@]}" == 1)); then
-    choice=${candidates[0]}
-  else
-    choice=$(present_packages "$name" "${candidates[@]}" |
-      fzf --tac --border --header-lines 1 --tiebreak=begin |
-      sed 's|[^0-9]\+\([0-9]\+\)).*|\1|' | read_selection "${candidates[@]}")
-    if [[ -z "$choice" ]]; then
-      {
-        gettext "Invalid choice"
-        echo
-      } >&2
-    fi
-  fi
-
-  if [[ -n "$choice" ]]; then
-    to_ignore+=("$name")
-    to_install+=("$choice")
-    return 0
-  fi
-
-  {
-    eval_gettext "Unable to downgrade \$name"
-    echo
-  } >&2
-  return 1
-}
-
-main() {
-  local term candidates choice pkg exit_code=0
-
-  (($#)) || return 1
-
-  for term; do
-    if ! process_term "$term"; then
-      exit_code=1
-    fi
-  done
-
-  return $exit_code
-}
-
 parse_options() {
   while [[ -n "$1" ]]; do
     case "$1" in
-      --pacman)
-        if [[ -n "$2" ]]; then
-          shift
-          PACMAN="$1"
-        else
-          {
-            gettext "Missing --pacman argument"
-            echo
-            usage
-          } >&2
-          exit 1
-        fi
+      -h | --help)
+        usage
+        exit 0
         ;;
-      --pacman-conf)
-        if [[ -n "$2" ]]; then
-          shift
-          PACMAN_CONF="$1"
-        else
-          {
-            gettext "Missing --pacman-conf argument"
-            echo
-            usage
-          } >&2
-          exit 1
-        fi
+      --version)
+        printf "%s\n" "$downgrade_version"
+        exit 0
         ;;
-      --ala-url)
-        if [[ -n "$2" ]]; then
-          shift
-          DOWNGRADE_ALA_URL="$1"
-        else
-          {
-            gettext "Missing --ala-url argument"
-            echo
-            usage
-          } >&2
-          exit 1
-        fi
+      --pacman | --pacman-conf)
+        search_options+=("$1" "$2")
+        install_options+=("$1" "$2")
+        shift
         ;;
-      --pacman-cache)
-        if [[ -n "$2" ]]; then
-          shift
-          PACMAN_CACHE+=("$1")
-        else
-          {
-            gettext "Missing --pacman-cache argument"
-            echo
-            usage
-          } >&2
-          exit 1
-        fi
+      --ala-only | --ala-url | --cached-only)
+        search_options+=("$1")
         ;;
-      --pacman-log)
-        if [[ -n "$2" ]]; then
-          shift
-          PACMAN_LOG="$1"
-        else
-          {
-            gettext "Missing --pacman-log argument"
-            echo
-            usage
-          } >&2
-          exit 1
-        fi
-        ;;
-      --maxdepth)
-        if [[ -n "$2" ]]; then
-          shift
-          DOWNGRADE_MAXDEPTH="$1"
-        else
-          {
-            gettext "Missing --maxdepth argument"
-            echo
-            usage
-          } >&2
-          exit 1
-        fi
-        ;;
-      --ala-only)
-        DOWNGRADE_FROM_ALA=1
-        DOWNGRADE_FROM_CACHE=0
-        ;;
-      --cached-only)
-        DOWNGRADE_FROM_ALA=0
-        DOWNGRADE_FROM_CACHE=1
+      --maxdepth | --pacman-cache | --pacman-log)
+        search_options+=("$1" "$2")
+        shift
         ;;
       --)
+        install_options+=("$@")
         shift
-        pacman_args=("$@")
         break
         ;;
       -*)
@@ -445,61 +107,15 @@ parse_options() {
 }
 
 cli() {
-  local conf_args=()
+  set -e
 
-  # Get configuration and command-line arguments and parse everything
+  conf_args=()
   read_downgrade_conf conf_args
   parse_options "${conf_args[@]}" "$@"
 
-  # Make arrays unique
+  # TODO: do we really need this?
   read_unique terms "${terms[@]}"
-  read_unique PACMAN_CACHE "${PACMAN_CACHE[@]}"
 
-  # Proceed with rest of workflow
-  main "${terms[@]}"
-  pacman -U "${pacman_args[@]}" "${to_install[@]}"
-  prompt_to_ignore "${to_ignore[@]}"
-}
-
-# Set script defaults
-PACMAN="pacman"
-PACMAN_CONF="/etc/pacman.conf"
-DOWNGRADE_ARCH="$(pacman-conf Architecture)"
-DOWNGRADE_ALA_URL="https://archive.archlinux.org"
-DOWNGRADE_FROM_ALA=1
-DOWNGRADE_FROM_CACHE=1
-DOWNGRADE_MAXDEPTH=1
-DOWNGRADE_CONF="/etc/xdg/downgrade/downgrade.conf"
-DOWNGRADE_VERSION="11.0.0"
-
-# Main code execution
-if ((!LIB)); then
-  set -e
-
-  locale="$(dirname "$0")"/../share/locale
-
-  if [[ -d "$locale" ]]; then
-    # Packaged installation
-    TEXTDOMAINDIR=$(cd "$locale" && pwd)
-  else
-    # Probably testing ./downgrade
-    TEXTDOMAINDIR=/usr/share/locale
-  fi
-
-  export TEXTDOMAIN=downgrade TEXTDOMAINDIR
-
-  # Check for help CLI option
-  for arg; do
-    if [[ "$arg" =~ ^-h$|^--help$ ]]; then
-      usage
-      exit 0
-    elif [[ "$arg" == '--version' ]]; then
-      printf "%s\n" "$DOWNGRADE_VERSION"
-      exit 0
-    fi
-  done
-
-  # Check to ensure downgrade running as root
   if ((UID)); then
     {
       gettext "downgrade must be run as root"
@@ -508,5 +124,31 @@ if ((!LIB)); then
     exit 1
   fi
 
+  {
+    for term in "${terms[@]}"; do
+      "$bin"/downgrade-search "${search_options[@]}" "$term" |
+        "$bin"/downgrade-select
+    done
+  } | "$bin"/downgrade-install "${install_options[@]}"
+}
+
+downgrade_conf="/etc/xdg/downgrade/downgrade.conf"
+downgrade_version="11.0.0"
+
+install_root=$(cd "$(dirname "$0")/.." && pwd)
+bin=$install_root/bin
+share=$install_root/share
+
+if [[ -d "$share"/locale ]]; then
+  # Packaged installation
+  export TEXTDOMAINDIR=$share/locale
+else
+  # Probably testing ./downgrade
+  export TEXTDOMAINDIR=/usr/share/locale
+fi
+
+export TEXTDOMAIN=downgrade
+
+if ((!LIB)); then
   cli "$@"
 fi

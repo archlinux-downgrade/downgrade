@@ -1,0 +1,12 @@
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: == Starting. Command-line: firefox ===
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: PACMAN:               pacman
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: PACMAN_CONF:          /etc/pacman.conf
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: pacman_cache:         /var/cache/pacman/pkg/
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: DOWNGRADE_ARCH:       x86_64
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: DOWNGRADE_ALA_URL:    https://archive.archlinux.org
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: DOWNGRADE_FROM_ALA:   1
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: DOWNGRADE_FROM_CACHE: 1
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: DOWNGRADE_MAXDEPTH:   1
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: firefox  
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: Currently installed:  firefox-97.0-1
+[DEBUG] Sun Feb 13 01:58:14 PM EST 2022: Previously installed: firefox-93.0-1 firefox-94.0-1 firefox-94.0.1-1 firefox-95.0-1 firefox-95.0.2-1 firefox-96.0-1 firefox-96.0.1-1 firefox-96.0.2-1 firefox-97.0-1

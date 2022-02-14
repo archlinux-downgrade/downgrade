@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+exec fzf \
+  --tac \
+  --border \
+  --header-lines 1 \
+  --tiebreak=begin \
+  --select-1 \
+  --exit-0

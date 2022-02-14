@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Read the output of downgrade-search:
+#
+#   {indicator} {number}) {name} {version} {release} {pkg}
+#
+while read -r _ _ name _ _ pkg; do
+  pkgs+=("$pkg")
+  names+=("$name")
+done
+
+# Parse --pacman --pacman-config -- [pacman args]
+pacman=pacman
+pacman_args=()
+pacman_conf=/etc/pacman.conf
+
+"$pacman" -U "${pacman_args[@]}" "${pkgs[@]}"
+
+for pkg in "${names[@]}"; do
+  grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$pacman_conf" && return 0
+
+  eval_gettext "add \$pkg to IgnorePkg? [y/N] "
+  read -r ans
+
+  if [[ "${ans,,}" == $(gettext 'y')* ]]; then
+    ln="$(grep -n -m 1 '^ *IgnorePkg' "$pacman_conf" | cut -d : -f 1)"
+    if [ -n "$ln" ]; then
+      sed -i "$ln s/.*/& $pkg/" "$pacman_conf"
+      continue
+    fi
+
+    ln="$(grep -n '^# *IgnorePkg' "$pacman_conf" | tail -n 1 | cut -d : -f 1)"
+    if [ -n "$ln" ]; then
+      sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$pacman_conf"
+      continue
+    fi
+
+    printf "IgnorePkg = %s\\n" "$pkg" >>"$pacman_conf"
+  fi
+done

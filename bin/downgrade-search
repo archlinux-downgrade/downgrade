@@ -1,0 +1,184 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+previously_installed() {
+  sed '
+    /.*\(installed\|upgraded\) \('"$1"'\) (\(.* -> \)\?\([^)]*\))/!d
+    s//\2-\4/
+  ' "$pacman_log"
+}
+
+currently_installed() {
+  LC_ALL=C.UTF8 "$pacman" -Qi "$1" 2>/dev/null | awk -F " : " '
+    /^Name / { name=$2 };
+    /^Version / { version=$2 };
+    END { if (name != "") printf("%s-%s\n", name, version) }
+  '
+}
+
+search_packages() {
+  local name=$1 pkgfile_re index
+
+  pkgfile_re="$name-[^-]+-[0-9.]+-(any|$downgrade_arch)\\.pkg\\.tar\\.(gz|xz|zst)"
+  index="$downgrade_ala_url/packages/${name:0:1}/$name/"
+
+  if ((downgrade_from_ala)); then
+    curl --fail --silent "$index" | sed -E '
+      /.* href="('"$pkgfile_re"')".*/!d;
+      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
+  fi
+
+  if ((downgrade_from_cache)); then
+    # shellcheck disable=SC2086
+    find \
+      -L "${pacman_cache[@]}" \
+      -maxdepth "$downgrade_maxdepth" \
+      -regextype posix-extended \
+      -regex ".*/$pkgfile_re"
+  fi
+}
+
+filter_packages() {
+  local name=$1 operator=$2 version=$3 pkg
+
+  while read -r pkg; do
+    if matches_name_version_filter "$pkg" "$name" "$operator" "$version"; then
+      echo "$pkg"
+    fi
+  done
+}
+
+matches_name_version_filter() {
+  local pkg=$1 name=$2 operator=$3 search_version=$4 pkg_version version_regex
+
+  if [[ -z "$operator" ]] || [[ -z "$version" ]]; then
+    return 0
+  fi
+
+  version_regex="[^-]+-[0-9.]+"
+  pkg_version=$(sed -r "s/.*$name-($version_regex)-(any|$downgrade_arch)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<<"$pkg")
+  cmp=$(vercmp "$pkg_version" "$search_version")
+
+  case "$operator" in
+    '>=')
+      ((cmp >= 0))
+      ;;
+    '<=')
+      ((cmp <= 0))
+      ;;
+    '>')
+      ((cmp == 1))
+      ;;
+    '<')
+      ((cmp == -1))
+      ;;
+    '=~')
+      [[ $pkg_version =~ $search_version ]]
+      ;;
+    '=')
+      ((cmp == 0))
+      ;;
+    '==')
+      ((cmp == 0))
+      ;;
+  esac
+}
+
+sort_packages() {
+  grep -Fv 'testing/' |
+    awk 'BEGIN { FS="/"; OFS="|" } { print $NF, $0 }' |
+    pacsort -f -t '|' -k 1 | cut -d '|' -f 2-
+}
+
+# <package name> [package path] …
+present_packages() {
+  local i=1
+  local pkgname="$1"
+  local entry
+  shift
+
+  repo="$(pacman -Ss "^${pkgname}$" | awk -F'/' 'NR==1 {print $1}')"
+  repo=${repo:-foreign/aur}
+
+  gettext 'Available packages'
+  printf " (%s):\n" "$repo"
+
+  while read -r entry; do
+    output_package "$((i++))" "$entry" "$pkgname"
+  done
+}
+
+# <number> <path> <package name>
+output_package() {
+  local number="$1" path="$2" pkgname="$3"
+  local pkg indicator=" " version epoch release
+
+  if [[ -n "$current" ]] && [[ "$path" == *"$current"* ]]; then
+    # Currently installed
+    indicator="+"
+  else
+    for pkg in "${installed[@]}"; do
+      case "$path" in
+        *$pkg*)
+          indicator="-"
+          break
+          ;;
+      esac
+    done
+  fi
+
+  IFS=, read -r epoch version release _ < <(
+    extract_version_parts "$pkgname" "$path"
+  )
+
+  printf "%s\t%s)\t%s\t%s\t%s\t%s\t%s\n" \
+    "$indicator" \
+    "$number" \
+    "$pkgname" \
+    "$epoch" \
+    "$version" \
+    "$release" \
+    "$path"
+}
+
+# <package name> <package path>
+extract_version_parts() {
+  local pkgname=$1 path=$2
+
+  sed '
+    # Strip first path component
+    s|^.*/||;
+
+    # Strip package name
+    s|^.\{'${#pkgname}'\}-\?||;
+
+    # Strip package extension
+    s|\.pkg\(\.tar\)\?\(\.[a-z0-9A-Z]\+\)\?$||;
+
+    # (epoch:)?version(-release)?(-arch)? -> epoch,version,release,arch
+    s|\(\([^:]*\):\)\?\([^-]*\)\(-\([^-]*\)\)\?\(-\(.*\)\)\?|\2,\3,\5,\7|;
+  ' <<<"$path"
+}
+
+# Parse --pacman --pacman-conf --pacman-log  --pacman-cache --ala-only --ala-url
+# --cached-only --maxdepth
+pacman=pacman
+pacman_conf=/etc/pacman.conf
+pacman_log=$(pacman-conf --config "$pacman_conf" LogFile)
+mapfile -t pacman_cache < <(pacman-conf --config "$pacman_conf" CacheDir)
+downgrade_arch=$(pacman-conf --config "$pacman_conf" Architecture)
+downgrade_ala_url=https://archive.archlinux.org
+downgrade_from_ala=1
+downgrade_from_cache=1
+downgrade_maxdepth=1
+
+read -r name operator version < \
+  <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~|==)([^<>=~].*)/\1 \2 \3/g" <<<"$1")
+
+current=$(currently_installed "$name")
+mapfile -t installed < <(previously_installed "$name")
+
+search_packages "$name" |
+  filter_packages "$name" "$operator" "$version" |
+  sort_packages |
+  present_packages "$name"
