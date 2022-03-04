@@ -122,6 +122,12 @@ prompt_to_ignore() {
         continue
       fi
 
+      ln="$(grep -n '^ *\[options\]' "$PACMAN_CONF" | cut -d : -f 1)"
+      if [ -n "$ln" ]; then
+        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
+        continue
+      fi
+
       printf "IgnorePkg = %s\\n" "$pkg" >>"$PACMAN_CONF"
     fi
   done
