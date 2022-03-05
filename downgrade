@@ -152,7 +152,7 @@ matches_name_version_filter() {
 
   version_regex="[^-]+-[0-9.]+"
   pkg_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" \
-                    <<<"$pkg" 2>/dev/null)
+    <<<"$pkg" 2>/dev/null)
   cmp=$(vercmp "$pkg_version" "$search_version")
 
   case "$operator" in
@@ -277,7 +277,7 @@ process_term() {
   local term=$1 name operator version candidates choice
 
   read -r name operator version < \
-       <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~|==)([^<>=~].*)/\1 \2 \3/g" <<<"$term" 2>/dev/null)
+    <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~|==)([^<>=~].*)/\1 \2 \3/g" <<<"$term" 2>/dev/null)
 
   installed=($(previously_installed "$name"))
   current=$(currently_installed "$name")
