@@ -34,7 +34,7 @@ $(gettext "Note"):
 EOF
 }
 
-read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
+read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF" 2>/dev/null; }
 
 read_downgrade_conf() {
   local var=$1
@@ -60,7 +60,7 @@ previously_installed() {
   sed '
     /.*\(installed\|upgraded\) \('"$1"'\) (\(.* -> \)\?\([^)]*\))/!d
     s//\2-\4/
-  ' "$PACMAN_LOG"
+  ' "$PACMAN_LOG" 2>/dev/null
 }
 
 currently_installed() {
@@ -112,19 +112,19 @@ prompt_to_ignore() {
     if [[ "${ans,,}" == $(gettext 'y')* ]]; then
       ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
       if [ -n "$ln" ]; then
-        sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF"
+        sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF" 2>/dev/null
         continue
       fi
 
       ln="$(grep -n '^# *IgnorePkg' "$PACMAN_CONF" | tail -n 1 | cut -d : -f 1)"
       if [ -n "$ln" ]; then
-        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
+        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF" 2>/dev/null
         continue
       fi
 
       ln="$(grep -n '^ *\[options\]' "$PACMAN_CONF" | cut -d : -f 1)"
       if [ -n "$ln" ]; then
-        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
+        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF" 2>/dev/null
         continue
       fi
 
@@ -151,7 +151,8 @@ matches_name_version_filter() {
   fi
 
   version_regex="[^-]+-[0-9.]+"
-  pkg_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<<"$pkg")
+  pkg_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" \
+                    <<<"$pkg" 2>/dev/null)
   cmp=$(vercmp "$pkg_version" "$search_version")
 
   case "$operator" in
@@ -188,7 +189,7 @@ search_packages() {
   if ((DOWNGRADE_FROM_ALA)); then
     curl --fail --silent "$index" | sed -E '
       /.* href="('"$pkgfile_re"')".*/!d;
-      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
+      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' 2>/dev/null | xargs -0 printf "%b"
   fi
 
   if ((DOWNGRADE_FROM_CACHE)); then
@@ -268,7 +269,7 @@ extract_version_parts() {
 
     # (epoch:)?version(-release)?(-arch)? -> epoch,version,release,arch
     s|\(\([^:]*\):\)\?\([^-]*\)\(-\([^-]*\)\)\?\(-\(.*\)\)\?|\2,\3,\5,\7|;
-  ' <<<"$path"
+  ' <<<"$path" 2>/dev/null
 }
 
 # shellcheck disable=SC2207
@@ -276,7 +277,7 @@ process_term() {
   local term=$1 name operator version candidates choice
 
   read -r name operator version < \
-    <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~|==)([^<>=~].*)/\1 \2 \3/g" <<<"$term")
+       <(sed -r "s/(.*[^<>=~])(<=|>=|<|>|=|=~|==)([^<>=~].*)/\1 \2 \3/g" <<<"$term" 2>/dev/null)
 
   installed=($(previously_installed "$name"))
   current=$(currently_installed "$name")
@@ -292,7 +293,7 @@ process_term() {
   else
     choice=$(present_packages "$name" "${candidates[@]}" |
       fzf --tac --border --header-lines 1 --tiebreak=begin |
-      sed 's|[^0-9]\+\([0-9]\+\)).*|\1|' | read_selection "${candidates[@]}")
+      sed 's|[^0-9]\+\([0-9]\+\)).*|\1|' 2>/dev/null | read_selection "${candidates[@]}")
     if [[ -z "$choice" ]]; then
       {
         gettext "Invalid choice"
