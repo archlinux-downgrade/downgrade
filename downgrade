@@ -34,6 +34,16 @@ $(gettext "Note"):
 EOF
 }
 
+sed_msg() {
+  local msg="$1"
+  shift
+
+  if ! sed "$@" 2>/dev/null; then
+    printf "%s\n" "Failed $msg" >&2
+    exit 1
+  fi
+}
+
 read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
 read_downgrade_conf() {
@@ -57,7 +67,7 @@ previously_installed() {
   : "${PACMAN_LOG:=$(read_pacman_conf LogFile)}"
   : "${PACMAN_LOG:=/var/log/pacman.log}"
 
-  sed '
+  sed_msg "to parse previously installed packages" '
     /.*\(installed\|upgraded\) \('"$1"'\) (\(.* -> \)\?\([^)]*\))/!d
     s//\2-\4/
   ' "$PACMAN_LOG"
@@ -186,7 +196,7 @@ search_packages() {
   index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
   if ((DOWNGRADE_FROM_ALA)); then
-    curl --fail --silent "$index" | sed -E '
+    curl --fail --silent "$index" | sed_msg "to parse A.L.A." -E '
       /.* href="('"$pkgfile_re"')".*/!d;
       s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
   fi
