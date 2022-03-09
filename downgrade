@@ -39,7 +39,7 @@ sed_msg() {
   shift
 
   if ! sed "$@" 2>/dev/null; then
-    printf  "%s\n" "Failed $msg" >&2
+    printf "%s\n" "Failed $msg" >&2
     exit 1
   fi
 }
