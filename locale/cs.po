@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 11:48+0100\n"
+"POT-Creation-Date: 2022-03-10 11:46+0100\n"
 "PO-Revision-Date: 2020-04-21 21:10+0100\n"
 "Last-Translator: <tom.vycital@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -103,70 +103,70 @@ msgstr "Možnosti za znaky -- budou považovány za možnosti pacmanu."
 msgid "See downgrade(8) for details."
 msgstr "Pro více informací vizte downgrade(8)"
 
-#: downgrade:85
+#: downgrade:95
 msgid "Available packages"
 msgstr "Dostupné balíčky"
 
-#: downgrade:109
+#: downgrade:119
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "přidat $pkg mezi ignorované? [a/N] "
 
-#: downgrade:112
+#: downgrade:122
 msgid "y"
 msgstr "a"
 
-#: downgrade:232
+#: downgrade:248
 msgid "remote"
 msgstr "vzdálený"
 
-#: downgrade:281
+#: downgrade:297
 msgid "No results found"
 msgstr "Nebyly nalezeny žádné výsledky"
 
-#: downgrade:292
+#: downgrade:308
 msgid "Invalid choice"
 msgstr "Neplatná volba"
 
-#: downgrade:305
+#: downgrade:321
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Nelze downgradovat $name"
 
-#: downgrade:334
+#: downgrade:350
 msgid "Missing --pacman argument"
 msgstr "Chybí argument --pacman"
 
-#: downgrade:347
+#: downgrade:363
 msgid "Missing --pacman-conf argument"
 msgstr "Chybí argument --pacman-conf"
 
-#: downgrade:360
+#: downgrade:376
 msgid "Missing --ala-url argument"
 msgstr "Chybí argument --ala-url"
 
-#: downgrade:373
+#: downgrade:389
 msgid "Missing --pacman-cache argument"
 msgstr "Chybí argument --pacman-cache"
 
-#: downgrade:386
+#: downgrade:402
 msgid "Missing --pacman-log argument"
 msgstr "Chybí argument --pacman-log"
 
-#: downgrade:399
+#: downgrade:415
 msgid "Missing --maxdepth argument"
 msgstr "Chybí argument --maxdepth"
 
-#: downgrade:424
+#: downgrade:440
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Nerozpoznaná možnost $current_option"
 
-#: downgrade:439
+#: downgrade:455
 msgid "No packages provided for downgrading"
 msgstr "Pro downgradování nebyly poskytnuty žádné balíčky"
 
-#: downgrade:505
+#: downgrade:521
 msgid "downgrade must be run as root"
 msgstr "downgrade musí být spuštěn jako root"
 

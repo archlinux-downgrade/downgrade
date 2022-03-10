@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 11:48+0100\n"
+"POT-Creation-Date: 2022-03-10 11:46+0100\n"
 "PO-Revision-Date: 2020-04-21 13:53+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -106,70 +106,70 @@ msgstr "Parinktys po simbolių -- bus traktuojamos kaip pacman parinktys."
 msgid "See downgrade(8) for details."
 msgstr "Išsamiau galite paskaityti downgrade(8)."
 
-#: downgrade:85
+#: downgrade:95
 msgid "Available packages"
 msgstr "Prieinami paketai"
 
-#: downgrade:109
+#: downgrade:119
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "pridėti $pkg į IgnorePkg? [t/N] "
 
-#: downgrade:112
+#: downgrade:122
 msgid "y"
 msgstr "t"
 
-#: downgrade:232
+#: downgrade:248
 msgid "remote"
 msgstr "nutolęs"
 
-#: downgrade:281
+#: downgrade:297
 msgid "No results found"
 msgstr "Nieko nerasta"
 
-#: downgrade:292
+#: downgrade:308
 msgid "Invalid choice"
 msgstr "Netinkamas pasirinkimas"
 
-#: downgrade:305
+#: downgrade:321
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Neįmanoma paversti žemesnio lygio $name"
 
-#: downgrade:334
+#: downgrade:350
 msgid "Missing --pacman argument"
 msgstr "Trūksta argumento --pacman"
 
-#: downgrade:347
+#: downgrade:363
 msgid "Missing --pacman-conf argument"
 msgstr "Trūksta argumento --pacman-conf"
 
-#: downgrade:360
+#: downgrade:376
 msgid "Missing --ala-url argument"
 msgstr "Trūksta argumento --ala-url"
 
-#: downgrade:373
+#: downgrade:389
 msgid "Missing --pacman-cache argument"
 msgstr "Trūksta argumento --pacman-cache"
 
-#: downgrade:386
+#: downgrade:402
 msgid "Missing --pacman-log argument"
 msgstr "Trūksta argumento --pacman-log"
 
-#: downgrade:399
+#: downgrade:415
 msgid "Missing --maxdepth argument"
 msgstr "Trūksta argumento --maxdepth"
 
-#: downgrade:424
+#: downgrade:440
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Neatpažinta parinktis $current_option"
 
-#: downgrade:439
+#: downgrade:455
 msgid "No packages provided for downgrading"
 msgstr "Nepateikta jokių pakuočių, leidžiančių pažengti žemiau"
 
-#: downgrade:505
+#: downgrade:521
 msgid "downgrade must be run as root"
 msgstr "downgrade turi būti paleistas kaip root"
 
