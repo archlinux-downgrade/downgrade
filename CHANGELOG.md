@@ -1,6 +1,12 @@
-## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v11.0.0...main)
+## [Ongoing](https://github.com/pbrisbin/downgrade/compare/v11.1.0...main)
 
 See [issues](https://github.com/pbrisbin/downgrade/issues)
+
+## [v11.1.0](https://github.com/pbrisbin/downgrade/compare/v11.0.0...v11.1.0)
+
+- [FIX] Use first architecture in case multiple are found
+- [FIX] Add additional measure for updating `IgnorePkg` directive
+- [FIX] Catch and convert `sed` error messages on invalid input
 
 ## [v11.0.0](https://github.com/pbrisbin/downgrade/compare/v10.1.1...v11.0.0)
 
