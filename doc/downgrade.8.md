@@ -139,7 +139,7 @@ any of the following scenarios for any of its arguments:
 
 # BUGS
 
-Open a GitHub issue on *https://github.com/pbrisbin/downgrade*.
+Open a GitHub issue on *https://github.com/archlinux-downgrade/downgrade*.
 
 # AUTHORS
 
