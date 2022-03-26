@@ -1,7 +1,7 @@
 ---
 name: Questions/Help
-about: Submit questions or requests for help regarding downgrade
-labels: 'question, needs triage'
+about: Submit questions or requests for help
+labels: 'question, triage'
 ---
 
 ## :question: Questions/Help
