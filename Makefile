@@ -34,6 +34,7 @@ test:
 .PHONY: install
 install:
 	install -Dm755 bin/downgrade $(DESTDIR)$(PREFIX)/bin/downgrade
+	install -Dm755 bin/pacignore $(DESTDIR)$(PREFIX)/bin/pacignore
 	install -Dm644 conf/downgrade.conf $(DESTDIR)$(XDGPREFIX)/downgrade/downgrade.conf
 	install -Dm644 doc/downgrade.8 $(DESTDIR)$(MANPREFIX)/man8/downgrade.8
 	install -Dm644 completion/bash $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade
@@ -48,6 +49,7 @@ install:
 .PHONY: uninstall
 uninstall:
 	$(RM) $(DESTDIR)$(PREFIX)/bin/downgrade \
+	  $(DESTDIR)$(PREFIX)/bin/pacignore \
 	  $(DESTDIR)$(XDGPREFIX)/downgrade/downgrade.conf \
 	  $(DESTDIR)$(MANPREFIX)/man8/downgrade.8 \
 	  $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade \

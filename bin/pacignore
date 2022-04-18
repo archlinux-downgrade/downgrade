@@ -1,0 +1,227 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1091
+. gettext.sh
+set -e
+
+usage() {
+  cat <<EOF
+$(gettext "Usage: pacignore ls [option...]")
+$(gettext "Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]")
+
+$(gettext "Subcommands"):
+  ls     $(gettext "list existing packages in the IgnorePkg directive")
+  check  $(gettext "check if a specified package is being ignored")
+  add    $(gettext "add package(s) to the IgnorePkg directive")
+  rm     $(gettext "remove package(s) from the IgnorePkg directive")
+
+$(gettext "Options"):
+  --pacman-conf  <$(gettext "path")>
+                 $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
+  --version      <$(gettext "flag")>
+                 $(gettext "show pacignore version")
+  -h, --help     <$(gettext "flag")>
+                 $(gettext "show help script")
+EOF
+}
+
+write_ignorepkg() {
+  ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
+  if [ -n "$ln" ]; then
+    # Comment all IgnorePkg directives and then
+    # add IgnorePkg with single string at first position
+    sed -i "s/^ *IgnorePkg/#IgnorePkg/g" "$PACMAN_CONF"
+    if ((${#PACIGNORE_IGNOREPKG[@]})); then
+      sed -i "${ln}i IgnorePkg = ${PACIGNORE_IGNOREPKG[*]}" "$PACMAN_CONF"
+    fi
+  else
+    # Add single IgnorePkg directive directly under [options] header
+    sed -i "/^ *\[options\]/a IgnorePkg = ${PACIGNORE_IGNOREPKG[*]}" "$PACMAN_CONF"
+  fi
+}
+
+check_ignorepkg() {
+  # Declare local variable
+  local pkg="$1"
+
+  # Check if package is included in IgnorePkg directive
+  # shellcheck disable=SC2076
+  if [[ " ${PACIGNORE_IGNOREPKG[*]} " =~ " ${pkg} " ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+add_ignorepkg() {
+  # Declare local variable
+  local pkg="$1"
+
+  # Append package to array if it does not exist already
+  if ! check_ignorepkg "$pkg"; then
+    PACIGNORE_IGNOREPKG+=("$pkg")
+  else
+    {
+      eval_gettext "Skipping \$pkg as it is already ignored"
+      printf "\n"
+    } >&2
+    return 1
+  fi
+}
+
+rm_ignorepkg() {
+  # Declare local variables
+  local pkg="$1"
+  local new_array=()
+  local ignorepkg
+
+  # Remove package from array if it exists
+  if check_ignorepkg "$pkg"; then
+    for ignorepkg in "${PACIGNORE_IGNOREPKG[@]}"; do
+      if [ ! "$ignorepkg" == "$pkg" ]; then
+        new_array+=("$ignorepkg")
+      fi
+    done
+
+    # Replace global array with local one
+    PACIGNORE_IGNOREPKG=("${new_array[@]}")
+  else
+    {
+      eval_gettext "Skipping \$pkg as it is was never ignored"
+      printf "\n"
+    } >&2
+    return 1
+  fi
+}
+
+main() {
+  # Declare local variable
+  local pkg exit_code=0 success=0
+  local pacignore_ignorepkg
+
+  # Proceed conditionally given previous exit code
+  if ! pacignore_ignorepkg="$(pacman-conf --config="$PACMAN_CONF" "IgnorePkg" 2>/dev/null)"; then
+    exit_code=1
+    {
+      gettext "Error in reading pacman configuration file"
+      printf "\n"
+    } >&2
+  else
+    # Convert string to array
+    mapfile -t "PACIGNORE_IGNOREPKG" < <(printf "%s" "$pacignore_ignorepkg")
+
+    # Proceed by pacignore subcommands
+    if [ "$PACIGNORE_SUBCOMMAND" == "ls" ]; then
+      printf "%s\n" "${PACIGNORE_IGNOREPKG[@]}"
+    else
+      for pkg; do
+        if ! "${PACIGNORE_SUBCOMMAND}_ignorepkg" "$pkg"; then
+          exit_code=1
+        else
+          success=1
+        fi
+      done
+
+      # Write to pacman configuration file if there is success
+      if ((success)) && [ "$PACIGNORE_SUBCOMMAND" != "check" ]; then
+        write_ignorepkg
+      fi
+    fi
+  fi
+
+  # Return consolidated exit code
+  return "$exit_code"
+}
+
+parse_options() {
+  # Check for help option before doing anything else
+  for arg; do
+    if [[ "$arg" =~ ^(-h|--help)$ ]]; then
+      usage
+      return 0
+    fi
+  done
+
+  # Parse the subcommand correctly
+  if [[ "$1" =~ ^(ls|check|add|rm)$ ]]; then
+    PACIGNORE_SUBCOMMAND="$1"
+    shift
+  fi
+
+  # Check if run as root for `add` or `rm` subcommands
+  if ((UID)) && [[ "$PACIGNORE_SUBCOMMAND" =~ ^(add|rm)$ ]]; then
+    {
+      gettext "pacignore must be run as root for this subcommand"
+      printf "\n"
+    } >&2
+    return 1
+  fi
+
+  # Loop across all CLI arguments and categorize
+  while [[ -n "$1" ]]; do
+    case "$1" in
+      --pacman-conf)
+        if [[ -n "$2" ]]; then
+          shift
+          PACMAN_CONF="$1"
+        else
+          {
+            gettext "Missing --pacman-conf argument"
+            printf "\n"
+            usage
+          } >&2
+          return 1
+        fi
+        ;;
+      -*)
+        local current_option
+        # shellcheck disable=SC2034
+        current_option="$1"
+        {
+          eval_gettext "Unrecognized option \$current_option"
+          printf "\n"
+          usage
+        } >&2
+        return 1
+        ;;
+      *)
+        pkgs=("$@")
+        break
+        ;;
+    esac
+    shift
+  done
+
+  # Check if any packages provided
+  if ((!"${#pkgs[@]}")) && [ "$PACIGNORE_SUBCOMMAND" != "ls" ]; then
+    {
+      gettext "No packages provided"
+      printf "\n"
+      usage
+    } >&2
+    return 1
+  fi
+}
+
+cli() {
+  # Parse all CLI options
+  parse_options "$@"
+
+  # Proceed with main workflow
+  main "${pkgs[@]}"
+}
+
+# Set script defaults
+PACMAN_CONF="/etc/pacman.conf"
+PACIGNORE_SUBCOMMAND="ls"
+
+# Set up locale-related variables
+locale="$(dirname "$0")"/../share/locale
+if [[ -d "$locale" ]]; then
+  TEXTDOMAINDIR=$(cd "$locale" && pwd)
+else
+  TEXTDOMAINDIR=/usr/share/locale
+fi
+export TEXTDOMAIN=pacignore TEXTDOMAINDIR
+
+# Execute CLI workflow
+cli "$@"
