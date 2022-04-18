@@ -10,7 +10,7 @@ setup:
 	command -v vbump  || aurget vbump-git
 	command -v pandoc || stack install pandoc
 
-locale/downgrade.pot: downgrade
+locale/downgrade.pot: bin/downgrade
 	xgettext \
 		--from-code=utf-8 -L shell \
 		--package-name=downgrade \
@@ -33,7 +33,7 @@ test:
 
 .PHONY: install
 install:
-	install -Dm755 downgrade $(DESTDIR)$(PREFIX)/bin/downgrade
+	install -Dm755 bin/downgrade $(DESTDIR)$(PREFIX)/bin/downgrade
 	install -Dm644 conf/downgrade.conf $(DESTDIR)$(XDGPREFIX)/downgrade/downgrade.conf
 	install -Dm644 doc/downgrade.8 $(DESTDIR)$(MANPREFIX)/man8/downgrade.8
 	install -Dm644 completion/bash $(DESTDIR)$(PREFIX)/share/bash-completion/completions/downgrade
