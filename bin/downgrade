@@ -111,34 +111,14 @@ read_selection() {
 }
 
 prompt_to_ignore() {
-  local pkg ans ln
+  local pkg ans
 
   for pkg; do
-    grep -Eq '^IgnorePkg.*( |=)'"$pkg"'( |$)' "$PACMAN_CONF" && return 0
-
+    pacignore check --pacman-conf "$PACMAN_CONF" "$pkg" && return 0
     eval_gettext "add \$pkg to IgnorePkg? [y/N] "
     read -r ans
-
     if [[ "${ans,,}" == $(gettext 'y')* ]]; then
-      ln="$(grep -n -m 1 '^ *IgnorePkg' "$PACMAN_CONF" | cut -d : -f 1)"
-      if [ -n "$ln" ]; then
-        sed -i "$ln s/.*/& $pkg/" "$PACMAN_CONF"
-        continue
-      fi
-
-      ln="$(grep -n '^# *IgnorePkg' "$PACMAN_CONF" | tail -n 1 | cut -d : -f 1)"
-      if [ -n "$ln" ]; then
-        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
-        continue
-      fi
-
-      ln="$(grep -n '^ *\[options\]' "$PACMAN_CONF" | cut -d : -f 1)"
-      if [ -n "$ln" ]; then
-        sed -i "$ln s/.*/&\\nIgnorePkg = $pkg/" "$PACMAN_CONF"
-        continue
-      fi
-
-      printf "IgnorePkg = %s\\n" "$pkg" >>"$PACMAN_CONF"
+      pacignore add --pacman-conf "$PACMAN_CONF" "$pkg"
     fi
   done
 }
