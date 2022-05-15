@@ -3,7 +3,7 @@
 Check successful add in simplest configuration
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > fakeroot pacignore "add" "--pacman-conf" "$PACMAN_CONF_TEST" "baz"
+  > fakeroot pacignore "add" "-c" "$PACMAN_CONF_TEST" "baz"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0
@@ -14,7 +14,7 @@ Check successful add in simplest configuration
 Check successful add in simplest configuration with whitespace
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "  IgnorePkg = foo bar")"
-  > fakeroot pacignore "add" "--pacman-conf" "$PACMAN_CONF_TEST" "baz"
+  > fakeroot pacignore "add" "-c" "$PACMAN_CONF_TEST" "baz"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0
@@ -25,7 +25,7 @@ Check successful add in simplest configuration with whitespace
 Check successful add with option in between
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo bar")"
-  > fakeroot pacignore "add" "--pacman-conf" "$PACMAN_CONF_TEST" "baz"
+  > fakeroot pacignore "add" "-c" "$PACMAN_CONF_TEST" "baz"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0
@@ -37,7 +37,7 @@ Check successful add with option in between
 Check successful add with option in between and additional IgnorePkg
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo" "IgnorePkg = bar")"
-  > fakeroot pacignore "add" "--pacman-conf" "$PACMAN_CONF_TEST" "baz"
+  > fakeroot pacignore "add" "-c" "$PACMAN_CONF_TEST" "baz"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0
@@ -50,7 +50,7 @@ Check successful add with option in between and additional IgnorePkg
 Check successful add with options in between and additional IgnorePkg
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo" "# AnotherOption" "IgnorePkg = bar")"
-  > fakeroot pacignore "add" "--pacman-conf" "$PACMAN_CONF_TEST" "baz"
+  > fakeroot pacignore "add" "-c" "$PACMAN_CONF_TEST" "baz"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0
@@ -64,7 +64,7 @@ Check successful add with options in between and additional IgnorePkg
 Check successful add with no prior IgnorePkg
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "# SomeOption" "# AnotherOption")"
-  > fakeroot pacignore "add" "--pacman-conf" "$PACMAN_CONF_TEST" "foo" "bar" "baz"
+  > fakeroot pacignore "add" "-c" "$PACMAN_CONF_TEST" "foo" "bar" "baz"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0

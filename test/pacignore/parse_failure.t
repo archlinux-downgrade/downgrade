@@ -1,29 +1,71 @@
   $ source "$TESTDIR/../helper_pacignore.sh"
 
+Check that pacignore fails if unknown option provided
+
+  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  > pacignore "-q" 2>&1
+  > printf "exit_code=%s\n" "$?"
+  > cat "$PACMAN_CONF_TEST"
+  *illegal option -- q (glob)
+  Usage: pacignore ls [option...]
+  Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]
+  
+  Subcommands:
+    ls     list existing packages in the IgnorePkg directive
+    check  check if a specified package is being ignored
+    add    add package(s) to the IgnorePkg directive
+    rm     remove package(s) from the IgnorePkg directive
+  
+  Options:
+    -c  <path>
+        pacman configuration file, defaults to "/etc/pacman.conf"
+    -h  <flag>
+        show help message
+  exit_code=64
+  [options]
+  IgnorePkg = foo bar
+
 Check that pacignore fails if no argument provided
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "--pacman-conf" 2>/dev/null
+  > pacignore "-c" 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
-  exit_code=1
+  *option requires an argument -- c (glob)
+  Usage: pacignore ls [option...]
+  Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]
+  
+  Subcommands:
+    ls     list existing packages in the IgnorePkg directive
+    check  check if a specified package is being ignored
+    add    add package(s) to the IgnorePkg directive
+    rm     remove package(s) from the IgnorePkg directive
+  
+  Options:
+    -c  <path>
+        pacman configuration file, defaults to "/etc/pacman.conf"
+    -h  <flag>
+        show help message
+  exit_code=64
   [options]
   IgnorePkg = foo bar
 
 Check that pacignore fails if no root access provided for add or rm
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "add" 2>/dev/null
+  > pacignore "add" 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
+  pacignore must be run as root for this subcommand
   exit_code=1
   [options]
   IgnorePkg = foo bar
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "rm" 2>/dev/null
+  > pacignore "rm" 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
+  pacignore must be run as root for this subcommand
   exit_code=1
   [options]
   IgnorePkg = foo bar
@@ -31,17 +73,47 @@ Check that pacignore fails if no root access provided for add or rm
 Check that parsing fails if no package is package is specified for add or rm
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > fakeroot pacignore "add" 2>/dev/null
+  > fakeroot pacignore "add" 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
+  No packages provided
+  Usage: pacignore ls [option...]
+  Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]
+  
+  Subcommands:
+    ls     list existing packages in the IgnorePkg directive
+    check  check if a specified package is being ignored
+    add    add package(s) to the IgnorePkg directive
+    rm     remove package(s) from the IgnorePkg directive
+  
+  Options:
+    -c  <path>
+        pacman configuration file, defaults to "/etc/pacman.conf"
+    -h  <flag>
+        show help message
   exit_code=1
   [options]
   IgnorePkg = foo bar
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > fakeroot pacignore "rm" 2>/dev/null
+  > fakeroot pacignore "rm" 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
+  No packages provided
+  Usage: pacignore ls [option...]
+  Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]
+  
+  Subcommands:
+    ls     list existing packages in the IgnorePkg directive
+    check  check if a specified package is being ignored
+    add    add package(s) to the IgnorePkg directive
+    rm     remove package(s) from the IgnorePkg directive
+  
+  Options:
+    -c  <path>
+        pacman configuration file, defaults to "/etc/pacman.conf"
+    -h  <flag>
+        show help message
   exit_code=1
   [options]
   IgnorePkg = foo bar
