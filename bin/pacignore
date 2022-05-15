@@ -15,12 +15,10 @@ $(gettext "Subcommands"):
   rm     $(gettext "remove package(s) from the IgnorePkg directive")
 
 $(gettext "Options"):
-  --pacman-conf  <$(gettext "path")>
-                 $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
-  --version      <$(gettext "flag")>
-                 $(gettext "show pacignore version")
-  -h, --help     <$(gettext "flag")>
-                 $(gettext "show help script")
+  -c  <$(gettext "path")>
+      $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
+  -h  <$(gettext "flag")>
+      $(gettext "show help message")
 EOF
 }
 
@@ -133,19 +131,32 @@ main() {
 }
 
 parse_options() {
-  # Check for help option before doing anything else
-  for arg; do
-    if [[ "$arg" =~ ^(-h|--help)$ ]]; then
-      usage
-      return 0
-    fi
-  done
-
   # Parse the subcommand correctly
   if [[ "$1" =~ ^(ls|check|add|rm)$ ]]; then
     PACIGNORE_SUBCOMMAND="$1"
     shift
   fi
+
+  # Loop across all CLI arguments and categorize
+  while getopts hc: opt; do
+    case "$opt" in
+      h)
+        usage
+        exit 0
+        ;;
+      c)
+        PACMAN_CONF="$OPTARG"
+        ;;
+      \?)
+        usage >&2
+        return 64
+        ;;
+    esac
+    shift $((OPTIND - 1))
+  done
+
+  # parse packages from remaining afrom ments
+  pkgs=("$@")
 
   # Check if run as root for `add` or `rm` subcommands
   if ((UID)) && [[ "$PACIGNORE_SUBCOMMAND" =~ ^(add|rm)$ ]]; then
@@ -155,41 +166,6 @@ parse_options() {
     } >&2
     return 1
   fi
-
-  # Loop across all CLI arguments and categorize
-  while [[ -n "$1" ]]; do
-    case "$1" in
-      --pacman-conf)
-        if [[ -n "$2" ]]; then
-          shift
-          PACMAN_CONF="$1"
-        else
-          {
-            gettext "Missing --pacman-conf argument"
-            printf "\n"
-            usage
-          } >&2
-          return 1
-        fi
-        ;;
-      -*)
-        local current_option
-        # shellcheck disable=SC2034
-        current_option="$1"
-        {
-          eval_gettext "Unrecognized option \$current_option"
-          printf "\n"
-          usage
-        } >&2
-        return 1
-        ;;
-      *)
-        pkgs=("$@")
-        break
-        ;;
-    esac
-    shift
-  done
 
   # Check if any packages provided
   if ((!"${#pkgs[@]}")) && [ "$PACIGNORE_SUBCOMMAND" != "ls" ]; then
