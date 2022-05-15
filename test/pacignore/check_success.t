@@ -3,7 +3,7 @@
 Test successful check
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "check" "--pacman-conf" "$PACMAN_CONF_TEST" "foo"
+  > pacignore "check" "-c" "$PACMAN_CONF_TEST" "foo"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0
@@ -11,7 +11,7 @@ Test successful check
   IgnorePkg = foo bar
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "check" "--pacman-conf" "$PACMAN_CONF_TEST" "bar"
+  > pacignore "check" "-c" "$PACMAN_CONF_TEST" "bar"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0
@@ -19,7 +19,7 @@ Test successful check
   IgnorePkg = foo bar
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "check" "--pacman-conf" "$PACMAN_CONF_TEST" "foo" "bar"
+  > pacignore "check" "-c" "$PACMAN_CONF_TEST" "foo" "bar"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   exit_code=0

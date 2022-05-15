@@ -3,7 +3,7 @@
 Check successful list
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "ls" "--pacman-conf" "$PACMAN_CONF_TEST"
+  > pacignore "ls" "-c" "$PACMAN_CONF_TEST"
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   foo
