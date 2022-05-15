@@ -27,3 +27,5 @@ write_pacman_conf() {
 }
 
 ignore() { yes | prompt_to_ignore "$@" >/dev/null; }
+
+pacignore() { return 1; }
