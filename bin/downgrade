@@ -110,15 +110,23 @@ read_selection() {
   ((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
 }
 
+prompt_gettext() {
+  local key="$1" ans
+
+  eval_gettext "$key"
+  read -r ans
+
+  [[ "${ans,,}" == $(gettext 'y')* ]]
+}
+
 prompt_to_ignore() {
-  local pkg ans
+  local pkg
 
   for pkg; do
-    pacignore check --pacman-conf "$PACMAN_CONF" "$pkg" && return 0
-    eval_gettext "add \$pkg to IgnorePkg? [y/N] "
-    read -r ans
-    if [[ "${ans,,}" == $(gettext 'y')* ]]; then
-      pacignore add --pacman-conf "$PACMAN_CONF" "$pkg"
+    if ! pacignore check -c "$PACMAN_CONF" "$pkg"; then
+      if prompt_gettext "add \$pkg to IgnorePkg? [y/N] "; then
+        pacignore add -c "$PACMAN_CONF" "$pkg"
+      fi
     fi
   done
 }
