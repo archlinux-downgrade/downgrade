@@ -3,7 +3,7 @@
 Check that pacignore fails if unknown option provided
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "-q" 2>&1
+  > pacignore -q 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   *illegal option -- q (glob)
@@ -28,7 +28,7 @@ Check that pacignore fails if unknown option provided
 Check that pacignore fails if no argument provided
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "-c" 2>&1
+  > pacignore -c 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   *option requires an argument -- c (glob)
@@ -53,7 +53,7 @@ Check that pacignore fails if no argument provided
 Check that pacignore fails if no root access provided for add or rm
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "add" 2>&1
+  > pacignore add 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   pacignore must be run as root for this subcommand
@@ -62,7 +62,7 @@ Check that pacignore fails if no root access provided for add or rm
   IgnorePkg = foo bar
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "rm" 2>&1
+  > pacignore rm 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   pacignore must be run as root for this subcommand
@@ -73,7 +73,7 @@ Check that pacignore fails if no root access provided for add or rm
 Check that parsing fails if no package is package is specified for add or rm
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > fakeroot pacignore "add" 2>&1
+  > fakeroot pacignore add 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   No packages provided
@@ -96,7 +96,7 @@ Check that parsing fails if no package is package is specified for add or rm
   IgnorePkg = foo bar
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > fakeroot pacignore "rm" 2>&1
+  > fakeroot pacignore rm 2>&1
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   No packages provided

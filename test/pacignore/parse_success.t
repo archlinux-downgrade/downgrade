@@ -3,7 +3,7 @@
 Check that pacignore parses the help option correctly
 
   $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore "-h"
+  > pacignore -h
   > printf "exit_code=%s\n" "$?"
   > cat "$PACMAN_CONF_TEST"
   Usage: pacignore ls [option...]
