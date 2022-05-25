@@ -64,7 +64,7 @@ uninstall:
 	    $(DESTDIR)$(LOCALEPREFIX)/*/LC_MESSAGES/$${script}.mo; \
 	done
 
-VERSION ?= $(shell sed '/^DOWNGRADE_VERSION="\([^"]*\)".*$$/!d; s//\1/' downgrade)
+VERSION ?= $(shell sed '/^DOWNGRADE_VERSION="\([^"]*\)".*$$/!d; s//\1/' bin/downgrade)
 AUR_RELEASE_OPTIONS ?=
 
 .PHONY: release
