@@ -1,2 +1,2 @@
-test/*.t.err
-locale/*~
+test/**/*.t.err
+locale/*/*~
