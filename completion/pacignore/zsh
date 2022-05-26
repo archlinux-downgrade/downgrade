@@ -1,0 +1,23 @@
+#compdef pacignore
+
+_pacignore(){
+  _arguments -S -C '1: :->subcmds' \
+             '*:packages:->pkg' \
+             '-c[pacman configuration file]:pacman config file:_files' \
+             '-h[show help script]'
+
+  if [[ $state == "pkg" ]]; then
+    local -a packages
+    packages=($(pacman -Ssq "^$words[current]" 2>/dev/null))
+    _describe 'packages' packages
+  elif [[ $state == "subcmds" ]]; then
+    _values "pacignore subcommands" \
+      'ls[list ignored packge(s) in IgnorePkg]' \
+      'check[check inclusion of package(s) in IgnorePkg]' \
+      'add[add package(s) to IgnorePkg]' \
+      'rm[remove package(s) from IgnorePkg]'
+  fi
+}
+
+_pacignore "$@"
+# vim: syntax=Shell

@@ -1,0 +1,13 @@
+#!/bin/bash
+_pacignore() {
+  local cur=${COMP_WORDS[COMP_CWORD]} ng_set
+
+  ng_set=$(shopt -p nullglob)
+  shopt -s nullglob
+
+  COMPREPLY=($(compgen -W "$(pacman -Ssq "^$cur")" -- $cur))
+
+  $ng_set
+}
+
+complete -F _pacignore pacignore
