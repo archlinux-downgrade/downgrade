@@ -1,0 +1,22 @@
+# source: https://stackoverflow.com/a/16673041 
+function __fish_prog_needs_subcommand
+  set cmdline (commandline -opc)
+  if [ (count $cmdline) -eq 1 ]
+    return 0
+  end
+  return 1
+end
+
+set -l cmd pacignore
+complete -c $cmd -f -k -n '__fish_prog_needs_subcommand' \
+  -a rm -d 'remove package(s) from IgnorePkg'
+complete -c $cmd -f -k -n '__fish_prog_needs_subcommand' \
+  -a add -d 'add package(s) to IgnorePkg'
+complete -c $cmd -f -k -n '__fish_prog_needs_subcommand' \
+  -a check -d 'check inclusion of package(s) in IgnorePkg'
+complete -c $cmd -f -k -n '__fish_prog_needs_subcommand' \
+  -a ls -d 'list ignored packge(s) in IgnorePkg'
+complete -c $cmd -n 'not __fish_prog_needs_subcommand' \
+  -xa "(__fish_print_packages)"
+complete -c $cmd -s c -r -d 'pacman configuration file'
+complete -c $cmd -s h -d 'show help script'
