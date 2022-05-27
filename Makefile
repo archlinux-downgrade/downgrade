@@ -61,7 +61,7 @@ uninstall:
 	    "$(DESTDIR)$(PREFIX)/share/bash-completion/completions/$$script" \
 	    "$(DESTDIR)$(PREFIX)/share/zsh/site-functions/_$${script}" \
 	    "$(DESTDIR)$(PREFIX)/share/fish/vendor_completions.d/$${script}.fish" \
-	    "$(DESTDIR)$(LOCALEPREFIX)/*/LC_MESSAGES/$${script}.mo"; \
+	    "$(DESTDIR)$(LOCALEPREFIX)"/*/"LC_MESSAGES/$${script}.mo"; \
 	done
 
 VERSION ?= $(shell sed '/^DOWNGRADE_VERSION="\([^"]*\)".*$$/!d; s//\1/' bin/downgrade)
