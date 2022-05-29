@@ -17,7 +17,7 @@ $(gettext "Subcommands"):
 $(gettext "Options"):
   -c  <$(gettext "path")>
       $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
-  -h  $(gettext "show help message")
+  -h  $(gettext "show help script")
 EOF
 }
 
