@@ -1,13 +1,13 @@
 # Russian translations for downgrade package.
-# Copyright (C) 2016 pbrisbin
+# Copyright (C) 2022 pbrisbin
 # This file is distributed under the same license as the downgrade package.
-# <pbrisbin@gmail.com>, 2020.
+# <pbrisbin@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-10 11:46+0100\n"
+"POT-Creation-Date: 2022-05-27 09:59+0200\n"
 "PO-Revision-Date: 2020-04-21 14:25-0300\n"
 "Last-Translator: Nurlan <nurlancik1@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -15,160 +15,160 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: downgrade:7
+#: bin/downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr ""
 "использование: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 
-#: downgrade:9
+#: bin/downgrade:9
 msgid "Options"
 msgstr "Опции"
 
-#: downgrade:10
+#: bin/downgrade:10
 msgid "command"
 msgstr "команда"
 
-#: downgrade:11
+#: bin/downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr "команда pacman для использования, по умолчанию"
 
-#: downgrade:12 downgrade:14 downgrade:18
+#: bin/downgrade:12 bin/downgrade:14 bin/downgrade:18
 msgid "path"
 msgstr "Путь файла"
 
-#: downgrade:13
+#: bin/downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr "Файл конфигурации pacman, по умолчанию"
 
-#: downgrade:15
+#: bin/downgrade:15
 msgid "pacman cache directory,"
 msgstr "каталог кеша pacman,"
 
-#: downgrade:16
+#: bin/downgrade:16
 msgid "default value(s) taken from pacman configuration file,"
 msgstr "значение по умолчанию берется из файла конфигурации pacman,"
 
-#: downgrade:17 downgrade:21
+#: bin/downgrade:17 bin/downgrade:21
 msgid "or otherwise defaults to"
 msgstr "или по умолчанию"
 
-#: downgrade:19
+#: bin/downgrade:19
 msgid "pacman log file,"
 msgstr "файл журнала pacman"
 
-#: downgrade:20
+#: bin/downgrade:20
 msgid "default value taken from pacman configuration file,"
 msgstr "значение по умолчанию берется из файла конфигурации pacman,"
 
-#: downgrade:22
+#: bin/downgrade:22
 msgid "integer"
 msgstr "целое число"
 
-#: downgrade:23
+#: bin/downgrade:23
 msgid "maximum depth to search for cached packages, defaults to"
 msgstr "максимальная глубина для поиска в кэшированных пакетах, по умолчанию"
 
-#: downgrade:25
+#: bin/downgrade:25
 msgid "location of ALA server, defaults to"
 msgstr "расположение сервера ALA, по умолчанию"
 
-#: downgrade:26
+#: bin/downgrade:26
 msgid "only use ALA server"
 msgstr "использовать только сервер ALA"
 
-#: downgrade:27
+#: bin/downgrade:27
 msgid "only use cached packages"
 msgstr "использовать только кэшированные пакеты"
 
-#: downgrade:28
+#: bin/downgrade:28
 msgid "show downgrade version"
 msgstr "показать версию downgrade"
 
-#: downgrade:29
+#: bin/downgrade:29
 msgid "show help script"
 msgstr "показать скрипт помощи"
 
-#: downgrade:31
+#: bin/downgrade:31
 msgid "Note"
 msgstr "Заметка"
 
-#: downgrade:32
+#: bin/downgrade:32
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 "Параметры после символов -- будут рассматриваться как параметры pacman."
 
-#: downgrade:33
+#: bin/downgrade:33
 msgid "See downgrade(8) for details."
 msgstr "см. downgrade(8) для подробностей."
 
-#: downgrade:95
+#: bin/downgrade:95
 msgid "Available packages"
 msgstr "Доступные пакеты"
 
-#: downgrade:119
+#: bin/downgrade:118
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "добавить $pkg в список проигнорированных пакетов? [д/Н] "
 
-#: downgrade:122
+#: bin/downgrade:120
 msgid "y"
 msgstr "д"
 
-#: downgrade:248
+#: bin/downgrade:229
 msgid "remote"
 msgstr "дистанционно"
 
-#: downgrade:297
+#: bin/downgrade:278
 msgid "No results found"
 msgstr "результаты не найдены"
 
-#: downgrade:308
+#: bin/downgrade:289
 msgid "Invalid choice"
 msgstr "Неверный выбор"
 
-#: downgrade:321
+#: bin/downgrade:302
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Невозможно понизить $name"
 
-#: downgrade:350
+#: bin/downgrade:331
 msgid "Missing --pacman argument"
 msgstr "Отсутствует аргумент --pacman"
 
-#: downgrade:363
+#: bin/downgrade:344
 msgid "Missing --pacman-conf argument"
 msgstr "Отсутствует аргумент --pacman-conf"
 
-#: downgrade:376
+#: bin/downgrade:357
 msgid "Missing --ala-url argument"
 msgstr "Отсутствует аргумент --ala-url"
 
-#: downgrade:389
+#: bin/downgrade:370
 msgid "Missing --pacman-cache argument"
 msgstr "Отсутствует аргумент --pacman-cache"
 
-#: downgrade:402
+#: bin/downgrade:383
 msgid "Missing --pacman-log argument"
 msgstr "Отсутствует аргумент --pacman-log"
 
-#: downgrade:415
+#: bin/downgrade:396
 msgid "Missing --maxdepth argument"
 msgstr "Отсутствует аргумент --maxdepth"
 
-#: downgrade:440
+#: bin/downgrade:421
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Нераспознанная опция $current_option"
 
-#: downgrade:455
+#: bin/downgrade:436
 msgid "No packages provided for downgrading"
 msgstr "Нет пакетов для понижения"
 
-#: downgrade:521
+#: bin/downgrade:502
 msgid "downgrade must be run as root"
 msgstr "downgrade должен запускаться как root"
 

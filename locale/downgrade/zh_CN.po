@@ -1,13 +1,13 @@
 # Chinese translations for downgrade package.
-# Copyright (C) 2014 pbrisbin
+# Copyright (C) 2022 pbrisbin
 # This file is distributed under the same license as the downgrade package.
-# <weih@opera.com>, 2020.
+# <weih@opera.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-10 11:46+0100\n"
+"POT-Creation-Date: 2022-05-27 09:59+0200\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -17,154 +17,154 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.5\n"
 
-#: downgrade:7
+#: bin/downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
-msgstr "用法： downgrade [option...] <包> [包...] [-- pacman_option...]"
+msgstr "用法：downgrade [option...] <包> [包...] [-- pacman_option...]"
 
-#: downgrade:9
+#: bin/downgrade:9
 msgid "Options"
 msgstr "选件"
 
-#: downgrade:10
+#: bin/downgrade:10
 msgid "command"
 msgstr "命令"
 
-#: downgrade:11
+#: bin/downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr "使用的pacman命令，默认为"
 
-#: downgrade:12 downgrade:14 downgrade:18
+#: bin/downgrade:12 bin/downgrade:14 bin/downgrade:18
 msgid "path"
 msgstr "文件路径"
 
-#: downgrade:13
+#: bin/downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr "pacman配置文件，默认为"
 
-#: downgrade:15
+#: bin/downgrade:15
 msgid "pacman cache directory,"
 msgstr "pacman缓存目录，"
 
-#: downgrade:16
+#: bin/downgrade:16
 msgid "default value(s) taken from pacman configuration file,"
 msgstr "取自pacman配置文件的默认值，"
 
-#: downgrade:17 downgrade:21
+#: bin/downgrade:17 bin/downgrade:21
 msgid "or otherwise defaults to"
 msgstr "否则默认为"
 
-#: downgrade:19
+#: bin/downgrade:19
 msgid "pacman log file,"
 msgstr "pacman日志文件"
 
-#: downgrade:20
+#: bin/downgrade:20
 msgid "default value taken from pacman configuration file,"
 msgstr "取自pacman配置文件的默认值，"
 
-#: downgrade:22
+#: bin/downgrade:22
 msgid "integer"
 msgstr "整数"
 
-#: downgrade:23
+#: bin/downgrade:23
 msgid "maximum depth to search for cached packages, defaults to"
 msgstr "搜索缓存包的最大深度，默认为"
 
-#: downgrade:25
+#: bin/downgrade:25
 msgid "location of ALA server, defaults to"
 msgstr "ALA服务器的位置，默认为"
 
-#: downgrade:26
+#: bin/downgrade:26
 msgid "only use ALA server"
 msgstr "仅使用ALA服务器"
 
-#: downgrade:27
+#: bin/downgrade:27
 msgid "only use cached packages"
 msgstr "只使用缓存的包"
 
-#: downgrade:28
+#: bin/downgrade:28
 msgid "show downgrade version"
 msgstr "显示downgrade版本"
 
-#: downgrade:29
+#: bin/downgrade:29
 msgid "show help script"
 msgstr "显示帮助脚本"
 
-#: downgrade:31
+#: bin/downgrade:31
 msgid "Note"
 msgstr "注意"
 
-#: downgrade:32
+#: bin/downgrade:32
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "--字符后的选项将被视为pacman选项。"
 
-#: downgrade:33
+#: bin/downgrade:33
 msgid "See downgrade(8) for details."
 msgstr "详情请查看downgrade(8)."
 
-#: downgrade:95
+#: bin/downgrade:95
 msgid "Available packages"
 msgstr "可选的包"
 
-#: downgrade:119
+#: bin/downgrade:118
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "添加$pkg到IgnorePkg? [y/N] "
 
-#: downgrade:122
+#: bin/downgrade:120
 msgid "y"
 msgstr "y"
 
-#: downgrade:248
+#: bin/downgrade:229
 msgid "remote"
 msgstr "远端"
 
-#: downgrade:297
+#: bin/downgrade:278
 msgid "No results found"
 msgstr "未找到结果"
 
-#: downgrade:308
+#: bin/downgrade:289
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: downgrade:321
+#: bin/downgrade:302
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "无法降级$name"
 
-#: downgrade:350
+#: bin/downgrade:331
 msgid "Missing --pacman argument"
 msgstr "缺少--pacman参数"
 
-#: downgrade:363
+#: bin/downgrade:344
 msgid "Missing --pacman-conf argument"
 msgstr "缺少--pacman-conf参数"
 
-#: downgrade:376
+#: bin/downgrade:357
 msgid "Missing --ala-url argument"
 msgstr "缺少--ala-url参数"
 
-#: downgrade:389
+#: bin/downgrade:370
 msgid "Missing --pacman-cache argument"
 msgstr "缺少--pacman-cache参数"
 
-#: downgrade:402
+#: bin/downgrade:383
 msgid "Missing --pacman-log argument"
 msgstr "缺少--pacman-log参数"
 
-#: downgrade:415
+#: bin/downgrade:396
 msgid "Missing --maxdepth argument"
 msgstr "缺少--maxdepth参数"
 
-#: downgrade:440
+#: bin/downgrade:421
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "无法识别的选项$current_option"
 
-#: downgrade:455
+#: bin/downgrade:436
 msgid "No packages provided for downgrading"
 msgstr "没有提供降级包"
 
-#: downgrade:521
+#: bin/downgrade:502
 msgid "downgrade must be run as root"
 msgstr "downgrade必须以root身份运行"
 
