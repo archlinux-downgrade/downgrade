@@ -18,7 +18,7 @@ Check that pacignore parses the help option correctly
   Options:
     -c  <path>
         pacman configuration file, defaults to "/etc/pacman.conf"
-    -h  show help message
+    -h  show help script
   exit_code=0
   [options]
   IgnorePkg = foo bar
