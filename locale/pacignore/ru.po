@@ -1,0 +1,86 @@
+# Russian translations for downgrade package.
+# Copyright (C) 2022 pbrisbin
+# This file is distributed under the same license as the downgrade package.
+# <shankar.atreya@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pacignore\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-29 10:51+0200\n"
+"PO-Revision-Date: 2022-05-29 10:51+0200\n"
+"Last-Translator: <shankar.atreya@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: bin/pacignore:8
+msgid "Usage: pacignore ls [option...]"
+msgstr "использование: pacignore ls [option...]"
+
+#: bin/pacignore:9
+msgid "Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
+msgstr "использование: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
+
+#: bin/pacignore:11
+msgid "Subcommands"
+msgstr "Подкоманды"
+
+#: bin/pacignore:12
+msgid "list existing packages in the IgnorePkg directive"
+msgstr "Перечислите существующие пакеты в директиве IgnorePkg"
+
+#: bin/pacignore:13
+msgid "check if a specified package is being ignored"
+msgstr "Проверьте, игнорируется ли указанный пакет"
+
+#: bin/pacignore:14
+msgid "add package(s) to the IgnorePkg directive"
+msgstr "Добавить пакет в директиву IgnorePkg"
+
+#: bin/pacignore:15
+msgid "remove package(s) from the IgnorePkg directive"
+msgstr "Удалить пакет из директивы IgnorePkg"
+
+#: bin/pacignore:17
+msgid "Options"
+msgstr "Опции"
+
+#: bin/pacignore:18
+msgid "path"
+msgstr "Путь файла"
+
+#: bin/pacignore:19
+msgid "pacman configuration file, defaults to"
+msgstr "Файл конфигурации pacman, по умолчанию"
+
+#: bin/pacignore:20
+msgid "show help script"
+msgstr "показать скрипт помощи"
+
+#: bin/pacignore:61
+#, sh-format
+msgid "Skipping $pkg as it is already ignored"
+msgstr "Пропустить $pkg, как это уже игнорируется"
+
+#: bin/pacignore:86
+#, sh-format
+msgid "Skipping $pkg as it is was never ignored"
+msgstr "Пропустить $pkg, как это было никогда не игнорировалось"
+
+#: bin/pacignore:102
+msgid "Error in reading pacman configuration file"
+msgstr "Ошибка в чтении файла конфигурации pacman"
+
+#: bin/pacignore:163
+msgid "pacignore must be run as root for this subcommand"
+msgstr "pacignore должен работать как root для этого подкоманда"
+
+#: bin/pacignore:172
+msgid "No packages provided"
+msgstr "Не предоставлены пакеты"
