@@ -1,0 +1,84 @@
+# Czech translations for downgrade package.
+# Copyright (C) 2022 pbrisbin
+# This file is distributed under the same license as the downgrade package.
+# <shankar.atreya@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pacignore\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-29 10:51+0200\n"
+"PO-Revision-Date: 2022-05-29 10:51+0200\n"
+"Last-Translator: <shankar.atreya@gmail.com>\n"
+"Language-Team: Czech\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: bin/pacignore:8
+msgid "Usage: pacignore ls [option...]"
+msgstr "Použití: pacignore ls [argumenty...]"
+
+#: bin/pacignore:9
+msgid "Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
+msgstr ""
+"Použití: pacignore {check|add|rm} [argumenty...] <balíček> [balíček...]"
+
+#: bin/pacignore:11
+msgid "Subcommands"
+msgstr "Dílčí příkazy"
+
+#: bin/pacignore:12
+msgid "list existing packages in the IgnorePkg directive"
+msgstr "seznam existujících balíčků ve směrnici IgnorePkg"
+
+#: bin/pacignore:13
+msgid "check if a specified package is being ignored"
+msgstr "zkontrolujte, zda je zadaný balíček ignorován"
+
+#: bin/pacignore:14
+msgid "add package(s) to the IgnorePkg directive"
+msgstr "přidejte balení do směrnice IgnorePkg"
+
+#: bin/pacignore:15
+msgid "remove package(s) from the IgnorePkg directive"
+msgstr "odstraňte balíčky (balíčky) ze směrnice IgnorePkg"
+
+#: bin/pacignore:17
+msgid "Options"
+msgstr "Argumenty"
+
+#: bin/pacignore:18
+msgid "path"
+msgstr "soubor"
+
+#: bin/pacignore:19
+msgid "pacman configuration file, defaults to"
+msgstr "konfigurační soubor pacman, výchozí nastavení"
+
+#: bin/pacignore:20
+msgid "show help script"
+msgstr "zobrazit skript nápovědy"
+
+#: bin/pacignore:61
+#, sh-format
+msgid "Skipping $pkg as it is already ignored"
+msgstr "Přeskočení $pkg, jak je již ignorováno"
+
+#: bin/pacignore:86
+#, sh-format
+msgid "Skipping $pkg as it is was never ignored"
+msgstr "Přeskočení $pkg, protože to nebylo nikdy ignorováno"
+
+#: bin/pacignore:102
+msgid "Error in reading pacman configuration file"
+msgstr "Chyba při čtení konfiguračního souboru pacman"
+
+#: bin/pacignore:163
+msgid "pacignore must be run as root for this subcommand"
+msgstr "pacignore musí být spuštěn jako root pro tuto podskupinu"
+
+#: bin/pacignore:172
+msgid "No packages provided"
+msgstr "Žádné balíčky"

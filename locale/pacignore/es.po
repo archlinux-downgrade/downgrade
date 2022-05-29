@@ -1,0 +1,83 @@
+# Spanish translations for downgrade package.
+# Copyright (C) 2022 pbrisbin
+# This file is distributed under the same license as the downgrade package.
+# <shankar.atreya@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pacignore\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-29 10:51+0200\n"
+"PO-Revision-Date: 2022-05-29 10:51+0200\n"
+"Last-Translator: <shankar.atreya@gmail.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: bin/pacignore:8
+msgid "Usage: pacignore ls [option...]"
+msgstr "Uso: pacignore ls [option...]"
+
+#: bin/pacignore:9
+msgid "Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
+msgstr "Uso: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
+
+#: bin/pacignore:11
+msgid "Subcommands"
+msgstr "Subcomandos"
+
+#: bin/pacignore:12
+msgid "list existing packages in the IgnorePkg directive"
+msgstr "enumere los paquetes existentes en la directiva IgnorePkg"
+
+#: bin/pacignore:13
+msgid "check if a specified package is being ignored"
+msgstr "verifique si se ignora un paquete específico"
+
+#: bin/pacignore:14
+msgid "add package(s) to the IgnorePkg directive"
+msgstr "agregar paquete (s) a la directiva IgnorePkg"
+
+#: bin/pacignore:15
+msgid "remove package(s) from the IgnorePkg directive"
+msgstr "eliminar el paquete (s) de la directiva IgnorePkg"
+
+#: bin/pacignore:17
+msgid "Options"
+msgstr "Opciones"
+
+#: bin/pacignore:18
+msgid "path"
+msgstr "ruta de archivo"
+
+#: bin/pacignore:19
+msgid "pacman configuration file, defaults to"
+msgstr "archivo de configuración de pacman, el valor predeterminado es"
+
+#: bin/pacignore:20
+msgid "show help script"
+msgstr "mostrar guión de ayuda"
+
+#: bin/pacignore:61
+#, sh-format
+msgid "Skipping $pkg as it is already ignored"
+msgstr "Omitir $pkg como ya está ignorado"
+
+#: bin/pacignore:86
+#, sh-format
+msgid "Skipping $pkg as it is was never ignored"
+msgstr "Omitir $pkg como lo es nunca fue ignorado"
+
+#: bin/pacignore:102
+msgid "Error in reading pacman configuration file"
+msgstr "Error en la lectura del archivo de configuración de pacman"
+
+#: bin/pacignore:163
+msgid "pacignore must be run as root for this subcommand"
+msgstr "pacignore debe ejecutarse como root para este subcomando"
+
+#: bin/pacignore:172
+msgid "No packages provided"
+msgstr "No se proporcionan paquetes"
