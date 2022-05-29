@@ -16,7 +16,7 @@
   - [ ] Update `DOWNGRADE_VERSION`
 
 <!-- These are likely side tasks that would need to be completed before merging the pull request -->
-<!-- If a task is not relevant to your pull request, tick it nonetheless and skip to the next task(s) -->
+<!-- If a task is not relevant to your pull request, simply remove its corresponding line -->
 
 ### Description
 
