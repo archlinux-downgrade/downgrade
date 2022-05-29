@@ -19,8 +19,7 @@ Check that pacignore fails if unknown option provided
   Options:
     -c  <path>
         pacman configuration file, defaults to "/etc/pacman.conf"
-    -h  <flag>
-        show help message
+    -h  show help message
   exit_code=64
   [options]
   IgnorePkg = foo bar
@@ -44,8 +43,7 @@ Check that pacignore fails if no argument provided
   Options:
     -c  <path>
         pacman configuration file, defaults to "/etc/pacman.conf"
-    -h  <flag>
-        show help message
+    -h  show help message
   exit_code=64
   [options]
   IgnorePkg = foo bar
@@ -89,8 +87,7 @@ Check that parsing fails if no package is package is specified for add or rm
   Options:
     -c  <path>
         pacman configuration file, defaults to "/etc/pacman.conf"
-    -h  <flag>
-        show help message
+    -h  show help message
   exit_code=1
   [options]
   IgnorePkg = foo bar
@@ -112,8 +109,7 @@ Check that parsing fails if no package is package is specified for add or rm
   Options:
     -c  <path>
         pacman configuration file, defaults to "/etc/pacman.conf"
-    -h  <flag>
-        show help message
+    -h  show help message
   exit_code=1
   [options]
   IgnorePkg = foo bar
