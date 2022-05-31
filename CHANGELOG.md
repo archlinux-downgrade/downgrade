@@ -1,6 +1,10 @@
-## [Ongoing](https://github.com/archlinux-downgrade/downgrade/compare/v11.1.0...main)
+## [Ongoing](https://github.com/archlinux-downgrade/downgrade/compare/v11.2.0...main)
 
 See [issues](https://github.com/archlinux-downgrade/downgrade/issues)
+
+## [v11.2.0](https://github.com/archlinux-downgrade/downgrade/compare/v11.1.0...v11.2.0)
+
+- [NEW] Extract handling of `IgnorePkg` to separate `pacignore` script
 
 ## [v11.1.0](https://github.com/archlinux-downgrade/downgrade/compare/v11.0.0...v11.1.0)
 
