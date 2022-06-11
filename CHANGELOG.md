@@ -1,6 +1,10 @@
-## [Ongoing](https://github.com/archlinux-downgrade/downgrade/compare/v11.2.0...main)
+## [Ongoing](https://github.com/archlinux-downgrade/downgrade/compare/v11.2.1...main)
 
 See [issues](https://github.com/archlinux-downgrade/downgrade/issues)
+
+## [v11.2.1](https://github.com/archlinux-downgrade/downgrade/compare/v11.2.0...v11.2.1)
+
+- [FIX] Patch internal variables in `Makefile` to avoid variable-name conflicts
 
 ## [v11.2.0](https://github.com/archlinux-downgrade/downgrade/compare/v11.1.0...v11.2.0)
 
