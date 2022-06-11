@@ -467,7 +467,7 @@ DOWNGRADE_FROM_ALA=1
 DOWNGRADE_FROM_CACHE=1
 DOWNGRADE_MAXDEPTH=1
 DOWNGRADE_CONF="/etc/xdg/downgrade/downgrade.conf"
-DOWNGRADE_VERSION="11.2.0"
+DOWNGRADE_VERSION="11.2.1"
 
 # Main code execution
 if ((!LIB)); then
