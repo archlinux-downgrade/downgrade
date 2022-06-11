@@ -4,7 +4,7 @@ See [issues](https://github.com/archlinux-downgrade/downgrade/issues)
 
 ## [v11.2.1](https://github.com/archlinux-downgrade/downgrade/compare/v11.2.0...v11.2.1)
 
-- [FIX] Patch internal variables in `Makefile` to reduce chances of naming collisions 
+- [FIX] Patch internal variables in `Makefile` to reduce chances of naming collisions
 
 ## [v11.2.0](https://github.com/archlinux-downgrade/downgrade/compare/v11.1.0...v11.2.0)
 
