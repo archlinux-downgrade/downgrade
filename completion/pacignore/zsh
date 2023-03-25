@@ -12,7 +12,7 @@ _pacignore(){
     _describe 'packages' packages
   elif [[ $state == "subcmds" ]]; then
     _values "pacignore subcommands" \
-      'ls[list ignored packge(s) in IgnorePkg]' \
+      'ls[list ignored package(s) in IgnorePkg]' \
       'check[check inclusion of package(s) in IgnorePkg]' \
       'add[add package(s) to IgnorePkg]' \
       'rm[remove package(s) from IgnorePkg]'
