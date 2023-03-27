@@ -26,7 +26,7 @@ $(gettext "Options"):
   --ala-only      $(gettext "only use ALA server")
   --cached-only   $(gettext "only use cached packages")
   --ignore        <prompt|always|never>
-                  $(gettext "whether to add to IgnorePkg")
+                  $(gettext "whether to add packages to IgnorePkg")
   --version       $(gettext "show downgrade version")
   -h, --help      $(gettext "show help script")
 
