@@ -1,24 +1,30 @@
 #compdef downgrade
 
-_downgrade(){
-  _arguments -S -C '*:packages:->pkg' \
-             '--pacman[pacman command to use]:pacman command' \
-             '--pacman-conf[pacman configuration file]:pacman config file:_files' \
-             '*--pacman-cache[pacman cache directory]:pacman cache directory:_path_files -/' \
-             '--pacman-log[pacman log file]:pacman log file:_files' \
-             '--maxdepth[maximum depth to search for cached packages]:maximum search depth' \
-             '--ala-url[location of ALA server]:ala url' \
-             '--ala-only[only use ALA server]' \
-             '--cached-only[only use cached packages]' \
-             '--version[show downgrade version]' \
-             {-h,--help}'[show help script]'
-
-  if [[ $state == "pkg" ]] && [[ ! $words =~ "\s\-\-\s" ]]; then
-    local -a packages
-    packages=($(pacman -Ssq "^$words[current]" 2>/dev/null))
-    _describe 'packages' packages
-  fi
+_downgrade_caching_policy () {
+  [[ "$1" -nt /var/log/pacman.log ]]
 }
 
-_downgrade "$@"
-# vim: syntax=Shell
+_arguments -S -C \
+  '--pacman[pacman command to use]:pacman command' \
+  '--pacman-conf[pacman configuration file]:pacman config file:_files' \
+  '*--pacman-cache[pacman cache directory]:pacman cache directory:_path_files -/' \
+  '--pacman-log[pacman log file]:pacman log file:_files' \
+  '--maxdepth[maximum depth to search for cached packages]:maximum search depth' \
+  '--ala-url[location of ALA server]:ala url' \
+  '--ala-only[only use ALA server]' \
+  '--cached-only[only use cached packages]' \
+  '--ignore[whether to add packages to IgnorePkg]:action:(prompt always never)' \
+  '--version[show downgrade version]' \
+  {-h,--help}'[show help script]' \
+    '*:packages:->pkg'
+
+if [[ $state == "pkg" ]] && [[ ! $words =~ "\s\-\-\s" ]]; then
+  local -a packages
+  if ! _retrieve_cache downgrade_packages; then
+    packages=($(pacman -Ssq 2>/dev/null))
+    _store_cache downgrade_packages packages
+  fi
+  _describe 'packages' packages
+fi
+
+# vim: ft=zsh
