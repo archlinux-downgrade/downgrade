@@ -7,27 +7,28 @@ usage() {
 $(gettext "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]")
 
 $(gettext "Options"):
-  --pacman            <$(gettext "command")>
-                      $(gettext "pacman command to use, defaults to") "pacman"
-  --pacman-conf       <$(gettext "path")>
-                      $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
-  --pacman-cache      <$(gettext "path")>
-                      $(gettext "pacman cache directory,")
-                      $(gettext "default value(s) taken from pacman configuration file,")
-                      $(gettext "or otherwise defaults to") "/var/cache/pacman/pkg"
-  --pacman-log        <$(gettext "path")>
-                      $(gettext "pacman log file,")
-                      $(gettext "default value taken from pacman configuration file,")
-                      $(gettext "or otherwise defaults to") "/var/log/pacman.log"
-  --maxdepth          <$(gettext "integer")>
-                      $(gettext "maximum depth to search for cached packages, defaults to") 1
-  --ala-url           <url>
-                      $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
-  --ala-only          $(gettext "only use ALA server")
-  --cached-only       $(gettext "only use cached packages")
-  --no-prompt-ignore  $(gettext "do not prompt to add to IgnorePkg")
-  --version           $(gettext "show downgrade version")
-  -h, --help          $(gettext "show help script")
+  --pacman        <$(gettext "command")>
+                  $(gettext "pacman command to use, defaults to") "pacman"
+  --pacman-conf   <$(gettext "path")>
+                  $(gettext "pacman configuration file, defaults to") "/etc/pacman.conf"
+  --pacman-cache  <$(gettext "path")>
+                  $(gettext "pacman cache directory,")
+                  $(gettext "default value(s) taken from pacman configuration file,")
+                  $(gettext "or otherwise defaults to") "/var/cache/pacman/pkg"
+  --pacman-log    <$(gettext "path")>
+                  $(gettext "pacman log file,")
+                  $(gettext "default value taken from pacman configuration file,")
+                  $(gettext "or otherwise defaults to") "/var/log/pacman.log"
+  --maxdepth      <$(gettext "integer")>
+                  $(gettext "maximum depth to search for cached packages, defaults to") 1
+  --ala-url       <url>
+                  $(gettext "location of ALA server, defaults to") "https://archive.archlinux.org"
+  --ala-only      $(gettext "only use ALA server")
+  --cached-only   $(gettext "only use cached packages")
+  --ignore        <prompt|always|never>
+                  $(gettext "whether to add to IgnorePkg")
+  --version       $(gettext "show downgrade version")
+  -h, --help      $(gettext "show help script")
 
 $(gettext "Note"):
   $(gettext "Options after the -- characters will be treated as pacman options.")
@@ -114,12 +115,20 @@ read_selection() {
 prompt_to_ignore() {
   local pkg ans
 
+  if [[ $DOWNGRADE_PROMPT_IGNORE == never ]]; then
+    return
+  fi
+
   for pkg; do
     if ! pacignore check -c "$PACMAN_CONF" "$pkg"; then
-      eval_gettext "add \$pkg to IgnorePkg? [y/N] "
-      read -r ans
-      if [[ "${ans,,}" == $(gettext 'y')* ]]; then
+      if [[ $DOWNGRADE_PROMPT_IGNORE == always ]]; then
         pacignore add -c "$PACMAN_CONF" "$pkg"
+      else
+        eval_gettext "add \$pkg to IgnorePkg? [y/N] "
+        read -r ans
+        if [[ "${ans,,}" == $(gettext 'y')* ]]; then
+          pacignore add -c "$PACMAN_CONF" "$pkg"
+        fi
       fi
     fi
   done
@@ -409,8 +418,18 @@ parse_options() {
         DOWNGRADE_FROM_ALA=0
         DOWNGRADE_FROM_CACHE=1
         ;;
-      --no-prompt-ignore)
-        DOWNGRADE_PROMPT_IGNORE=0
+      --ignore)
+        if [[ -n "$2" && "$2" =~ ^(prompt|always|never)$ ]]; then
+          shift
+          DOWNGRADE_PROMPT_IGNORE="$1"
+        else
+          {
+            gettext "Missing or wrong --ignore argument"
+            echo
+            usage
+          } >&2
+          exit 1
+        fi
         ;;
       --)
         shift
@@ -459,9 +478,7 @@ cli() {
   # Proceed with rest of workflow
   main "${terms[@]}"
   pacman -U "${pacman_args[@]}" "${to_install[@]}"
-  if ((DOWNGRADE_PROMPT_IGNORE)); then
-    prompt_to_ignore "${to_ignore[@]}"
-  fi
+  prompt_to_ignore "${to_ignore[@]}"
 }
 
 # Set script defaults
@@ -474,7 +491,7 @@ DOWNGRADE_FROM_CACHE=1
 DOWNGRADE_MAXDEPTH=1
 DOWNGRADE_CONF="/etc/xdg/downgrade/downgrade.conf"
 DOWNGRADE_VERSION="11.2.1"
-DOWNGRADE_PROMPT_IGNORE=1
+DOWNGRADE_PROMPT_IGNORE="prompt"
 
 # Main code execution
 if ((!LIB)); then
