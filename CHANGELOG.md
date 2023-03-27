@@ -2,6 +2,10 @@
 
 See [issues](https://github.com/archlinux-downgrade/downgrade/issues)
 
+- [NEW] Add `--ignore` option to control ignore behavior
+- [NEW] Zsh completion now uses cache
+- [CHANGED] zh_CN translations now have spaces between Chinese and English
+
 ## [v11.2.1](https://github.com/archlinux-downgrade/downgrade/compare/v11.2.0...v11.2.1)
 
 - [FIX] Patch internal variables in `Makefile` to avoid variable-name conflicts
