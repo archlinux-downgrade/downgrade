@@ -35,6 +35,8 @@ Options:
                   location of ALA server, defaults to "https://archive.archlinux.org"
   --ala-only      only use ALA server
   --cached-only   only use cached packages
+  --ignore        <prompt|always|never>
+                  whether to add packages to IgnorePkg
   --version       show downgrade version
   -h, --help      show help script
 
