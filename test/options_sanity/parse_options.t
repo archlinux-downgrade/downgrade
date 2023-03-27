@@ -41,7 +41,7 @@ Checking that CLI options match up with environmental variables, packages and pa
   $ parse_options --ignore prompt foo; echo "$DOWNGRADE_PROMPT_IGNORE"
   prompt
 
-  $ parse_options --ignore always foo; echo '$DOWNGRADE_PROMPT_IGNORE'
+  $ parse_options --ignore always foo; echo "$DOWNGRADE_PROMPT_IGNORE"
   always
 
   $ parse_options --ignore never foo; echo "$DOWNGRADE_PROMPT_IGNORE"
