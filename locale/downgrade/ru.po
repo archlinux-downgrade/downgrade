@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-27 09:59+0200\n"
+"POT-Creation-Date: 2023-03-27 20:57+0800\n"
 "PO-Revision-Date: 2020-04-21 14:25-0300\n"
 "Last-Translator: Nurlan <nurlancik1@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -84,91 +84,101 @@ msgstr "использовать только сервер ALA"
 msgid "only use cached packages"
 msgstr "использовать только кэшированные пакеты"
 
-#: bin/downgrade:28
+#: bin/downgrade:29
+#, fuzzy
+msgid "whether to add packages to IgnorePkg"
+msgstr "добавить $pkg в список проигнорированных пакетов? [д/Н] "
+
+#: bin/downgrade:30
 msgid "show downgrade version"
 msgstr "показать версию downgrade"
 
-#: bin/downgrade:29
+#: bin/downgrade:31
 msgid "show help script"
 msgstr "показать скрипт помощи"
 
-#: bin/downgrade:31
+#: bin/downgrade:33
 msgid "Note"
 msgstr "Заметка"
 
-#: bin/downgrade:32
+#: bin/downgrade:34
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 "Параметры после символов -- будут рассматриваться как параметры pacman."
 
-#: bin/downgrade:33
+#: bin/downgrade:35
 msgid "See downgrade(8) for details."
 msgstr "см. downgrade(8) для подробностей."
 
-#: bin/downgrade:95
+#: bin/downgrade:97
 msgid "Available packages"
 msgstr "Доступные пакеты"
 
-#: bin/downgrade:118
+#: bin/downgrade:127
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "добавить $pkg в список проигнорированных пакетов? [д/Н] "
 
-#: bin/downgrade:120
+#: bin/downgrade:129
 msgid "y"
 msgstr "д"
 
-#: bin/downgrade:229
+#: bin/downgrade:239
 msgid "remote"
 msgstr "дистанционно"
 
-#: bin/downgrade:278
+#: bin/downgrade:288
 msgid "No results found"
 msgstr "результаты не найдены"
 
-#: bin/downgrade:289
+#: bin/downgrade:299
 msgid "Invalid choice"
 msgstr "Неверный выбор"
 
-#: bin/downgrade:302
+#: bin/downgrade:312
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Невозможно понизить $name"
 
-#: bin/downgrade:331
+#: bin/downgrade:341
 msgid "Missing --pacman argument"
 msgstr "Отсутствует аргумент --pacman"
 
-#: bin/downgrade:344
+#: bin/downgrade:354
 msgid "Missing --pacman-conf argument"
 msgstr "Отсутствует аргумент --pacman-conf"
 
-#: bin/downgrade:357
+#: bin/downgrade:367
 msgid "Missing --ala-url argument"
 msgstr "Отсутствует аргумент --ala-url"
 
-#: bin/downgrade:370
+#: bin/downgrade:380
 msgid "Missing --pacman-cache argument"
 msgstr "Отсутствует аргумент --pacman-cache"
 
-#: bin/downgrade:383
+#: bin/downgrade:393
 msgid "Missing --pacman-log argument"
 msgstr "Отсутствует аргумент --pacman-log"
 
-#: bin/downgrade:396
+#: bin/downgrade:406
 msgid "Missing --maxdepth argument"
 msgstr "Отсутствует аргумент --maxdepth"
 
-#: bin/downgrade:421
+#: bin/downgrade:427
+#, fuzzy
+msgid "Missing or wrong --ignore argument"
+msgstr "Отсутствует аргумент --pacman"
+
+#: bin/downgrade:444
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Нераспознанная опция $current_option"
 
-#: bin/downgrade:436
+#: bin/downgrade:459
 msgid "No packages provided for downgrading"
 msgstr "Нет пакетов для понижения"
 
-#: bin/downgrade:502
+#: bin/downgrade:526
 msgid "downgrade must be run as root"
 msgstr "downgrade должен запускаться как root"
 
