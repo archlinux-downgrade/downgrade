@@ -175,3 +175,18 @@ msgstr "没有提供降级包"
 #: bin/downgrade:526
 msgid "downgrade must be run as root"
 msgstr "downgrade 必须以 root 身份运行"
+
+#~ msgid "select a package by number: "
+#~ msgstr "输入数字以选择包："
+
+#~ msgid "local"
+#~ msgstr "本地"
+
+#~ msgid "do not use sudo even when available, use su"
+#~ msgstr "即使可用也不要使用 sudo，而是使用 su"
+
+#~ msgid "architecture"
+#~ msgstr "架构"
+
+#~ msgid "target architecture, defaults to output of"
+#~ msgstr "目标体系架构，默认为"
