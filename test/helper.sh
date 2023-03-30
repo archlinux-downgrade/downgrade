@@ -15,6 +15,7 @@ export PACMAN_CONF=$(mktemp)
 export DOWNGRADE_FROM_ALA=0
 export DOWNGRADE_FROM_CACHE=0
 export DOWNGRADE_CONF="$SRCDIR/test/conf/downgrade_test.conf"
+export PACIGNORE_DEFAULT_CHECK=1
 
 # Stub functions that won't work (on CI) or need different behavior.
 pacsort() { cat; }
@@ -28,4 +29,13 @@ write_pacman_conf() {
 
 ignore() { yes | prompt_to_ignore "$@" >/dev/null; }
 
-pacignore() { fakeroot $SRCDIR/bin/pacignore "$@"; }
+pacignore() {
+  case "$1" in
+    check)
+      return "$PACIGNORE_DEFAULT_CHECK"
+      ;;
+    add)
+      printf "${FUNCNAME[0]} %s\n" "$*" >&2
+      ;;
+  esac
+}
