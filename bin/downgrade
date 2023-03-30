@@ -115,13 +115,13 @@ read_selection() {
 prompt_to_ignore() {
   local pkg ans
 
-  if [[ $DOWNGRADE_PROMPT_IGNORE == never ]]; then
+  if [[ $DOWNGRADE_IGNORE == never ]]; then
     return
   fi
 
   for pkg; do
     if ! pacignore check -c "$PACMAN_CONF" "$pkg"; then
-      if [[ $DOWNGRADE_PROMPT_IGNORE == always ]]; then
+      if [[ $DOWNGRADE_IGNORE == always ]]; then
         pacignore add -c "$PACMAN_CONF" "$pkg"
       else
         eval_gettext "add \$pkg to IgnorePkg? [y/N] "
@@ -421,7 +421,7 @@ parse_options() {
       --ignore)
         if [[ -n "$2" && "$2" =~ ^(prompt|always|never)$ ]]; then
           shift
-          DOWNGRADE_PROMPT_IGNORE="$1"
+          DOWNGRADE_IGNORE="$1"
         else
           {
             gettext "Missing or wrong --ignore argument"
@@ -491,7 +491,7 @@ DOWNGRADE_FROM_CACHE=1
 DOWNGRADE_MAXDEPTH=1
 DOWNGRADE_CONF="/etc/xdg/downgrade/downgrade.conf"
 DOWNGRADE_VERSION="11.2.1"
-DOWNGRADE_PROMPT_IGNORE="prompt"
+DOWNGRADE_IGNORE="prompt"
 
 # Main code execution
 if ((!LIB)); then
