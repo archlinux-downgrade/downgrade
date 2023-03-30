@@ -3,7 +3,7 @@
 Does nothing when "--ignore never"
 
   $ write_pacman_conf "IgnorePkg = foo bar"
-  > DOWNGRADE_PROMPT_IGNORE=never
+  > DOWNGRADE_IGNORE=never
   > prompt_to_ignore baz >/dev/null
   > printf "%s\n" "exit_code=$?"
   exit_code=0
