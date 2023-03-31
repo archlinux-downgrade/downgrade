@@ -1,5 +1,9 @@
 #compdef pacignore
 
+_pacignore_caching_policy () {
+  [[ "$1" -nt /var/log/pacman.log ]]
+}
+
 _pacignore(){
   _arguments -S -C '1: :->subcmds' \
              '*:packages:->pkg' \
@@ -8,7 +12,10 @@ _pacignore(){
 
   if [[ $state == "pkg" ]]; then
     local -a packages
-    packages=($(pacman -Ssq "^$words[current]" 2>/dev/null))
+    if ! _retrieve_cache pacignore_packages; then
+      packages=($(pacman -Ssq 2>/dev/null))
+      _store_cache pacignore_packages packages
+    fi
     _describe 'packages' packages
   elif [[ $state == "subcmds" ]]; then
     _values "pacignore subcommands" \
@@ -20,4 +27,5 @@ _pacignore(){
 }
 
 _pacignore "$@"
-# vim: syntax=Shell
+
+# vim: ft=zsh
