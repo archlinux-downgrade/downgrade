@@ -4,9 +4,13 @@ export SRCDIR=${TESTDIR/\/test*/}
 # Place mocks on $PATH (e.g. curl)
 export PATH="$SRCDIR/bin:$SRCDIR/test/bin:$PATH"
 
+# Create pacignore test directory
+export TMP_PACIGNORE="/tmp/pacignore/test"
+mkdir -p "$TMP_PACIGNORE"
+
 # Utilities
 write_pacman_conf() {
-  PACMAN_CONF_TEST="/tmp/tmp.$(echo "$@" | md5sum | cut -d ' ' -f 1)"
+  PACMAN_CONF_TEST="$TMP_PACIGNORE/tmp.$(echo "$@" | md5sum | cut -d ' ' -f 1)"
   printf "%s\n" "$@" > "$PACMAN_CONF_TEST"
   printf "%s\n" "$PACMAN_CONF_TEST"
 }
