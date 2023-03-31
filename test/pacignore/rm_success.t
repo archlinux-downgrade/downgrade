@@ -2,10 +2,10 @@
  
 Check successful rm in simplest configuration
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > fakeroot pacignore rm -c "$PACMAN_CONF_TEST" bar
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  > fakeroot pacignore rm -c "$PACMAN_CONF" bar
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   exit_code=0
   [options]
   IgnorePkg = foo
@@ -13,10 +13,10 @@ Check successful rm in simplest configuration
 
 Check successful rm in simplest configuration with whitespace
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "  IgnorePkg = foo bar")"
-  > fakeroot pacignore rm -c "$PACMAN_CONF_TEST" bar
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "  IgnorePkg = foo bar")"
+  > fakeroot pacignore rm -c "$PACMAN_CONF" bar
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   exit_code=0
   [options]
   IgnorePkg = foo
@@ -24,10 +24,10 @@ Check successful rm in simplest configuration with whitespace
 
 Check successful rm with option in between
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo bar")"
-  > fakeroot pacignore rm -c "$PACMAN_CONF_TEST" bar
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo bar")"
+  > fakeroot pacignore rm -c "$PACMAN_CONF" bar
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   exit_code=0
   [options]
   # SomeOption
@@ -36,10 +36,10 @@ Check successful rm with option in between
 
 Check successful rm with option in between and additional IgnorePkg
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo" "IgnorePkg = bar")"
-  > fakeroot pacignore rm -c "$PACMAN_CONF_TEST" bar
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo" "IgnorePkg = bar")"
+  > fakeroot pacignore rm -c "$PACMAN_CONF" bar
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   exit_code=0
   [options]
   # SomeOption
@@ -49,10 +49,10 @@ Check successful rm with option in between and additional IgnorePkg
 
 Check successful rm with options in between and additional IgnorePkg
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo" "# AnotherOption" "IgnorePkg = bar")"
-  > fakeroot pacignore rm -c "$PACMAN_CONF_TEST" bar
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo" "# AnotherOption" "IgnorePkg = bar")"
+  > fakeroot pacignore rm -c "$PACMAN_CONF" bar
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   exit_code=0
   [options]
   # SomeOption
@@ -63,10 +63,10 @@ Check successful rm with options in between and additional IgnorePkg
 
 Check successful rm with options in between and additional IgnorePkg
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo" "# AnotherOption" "IgnorePkg = bar")"
-  > fakeroot pacignore rm -c "$PACMAN_CONF_TEST" foo bar
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "# SomeOption" "IgnorePkg = foo" "# AnotherOption" "IgnorePkg = bar")"
+  > fakeroot pacignore rm -c "$PACMAN_CONF" foo bar
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   exit_code=0
   [options]
   # SomeOption

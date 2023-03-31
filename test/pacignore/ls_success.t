@@ -2,10 +2,10 @@
 
 Check successful list
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore ls -c "$PACMAN_CONF_TEST"
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  > pacignore ls -c "$PACMAN_CONF"
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   foo
   bar
   exit_code=0
