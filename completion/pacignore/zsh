@@ -1,7 +1,7 @@
 #compdef pacignore
 
 _pacignore_caching_policy () {
-  [[ "$1" -nt /var/log/pacman.log ]]
+  [[ "/var/log/pacman.log" -nt "$1" ]]
 }
 
 _pacignore(){
