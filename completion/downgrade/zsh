@@ -1,7 +1,7 @@
 #compdef downgrade
 
 _downgrade_caching_policy () {
-  [[ "$1" -nt /var/log/pacman.log ]]
+  [[ "/var/log/pacman.log" -nt "$1" ]]
 }
 
 _downgrade () {
