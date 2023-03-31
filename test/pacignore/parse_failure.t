@@ -2,10 +2,10 @@
 
 Check that pacignore fails if unknown option provided
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
   > pacignore -q 2>&1
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   *illegal option -- q (glob)
   Usage: pacignore ls [option...]
   Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]
@@ -26,10 +26,10 @@ Check that pacignore fails if unknown option provided
 
 Check that pacignore fails if no argument provided
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
   > pacignore -c 2>&1
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   *option requires an argument -- c (glob)
   Usage: pacignore ls [option...]
   Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]
@@ -50,19 +50,19 @@ Check that pacignore fails if no argument provided
 
 Check that pacignore fails if no root access provided for add or rm
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
   > pacignore add 2>&1
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   pacignore must be run as root for this subcommand
   exit_code=1
   [options]
   IgnorePkg = foo bar
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
   > pacignore rm 2>&1
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   pacignore must be run as root for this subcommand
   exit_code=1
   [options]
@@ -70,10 +70,10 @@ Check that pacignore fails if no root access provided for add or rm
 
 Check that parsing fails if no package is package is specified for add or rm
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
   > fakeroot pacignore add 2>&1
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   No packages provided
   Usage: pacignore ls [option...]
   Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]
@@ -92,10 +92,10 @@ Check that parsing fails if no package is package is specified for add or rm
   [options]
   IgnorePkg = foo bar
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
   > fakeroot pacignore rm 2>&1
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   No packages provided
   Usage: pacignore ls [option...]
   Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]

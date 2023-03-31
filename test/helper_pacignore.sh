@@ -10,7 +10,7 @@ mkdir -p "$TMP_PACIGNORE"
 
 # Utilities
 write_pacman_conf() {
-  PACMAN_CONF_TEST="$TMP_PACIGNORE/tmp.$(echo "$@" | md5sum | cut -d ' ' -f 1)"
-  printf "%s\n" "$@" > "$PACMAN_CONF_TEST"
-  printf "%s\n" "$PACMAN_CONF_TEST"
+  PACMAN_CONF="$TMP_PACIGNORE/tmp.$(echo "$@" | md5sum | cut -d ' ' -f 1)"
+  printf "%s\n" "$@" > "$PACMAN_CONF"
+  printf "%s\n" "$PACMAN_CONF"
 }

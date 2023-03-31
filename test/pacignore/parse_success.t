@@ -2,10 +2,10 @@
 
 Check that pacignore parses the help option correctly
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
   > pacignore -h
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   Usage: pacignore ls [option...]
   Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]
   

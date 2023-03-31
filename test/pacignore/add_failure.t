@@ -2,10 +2,10 @@
 
 Check add failure with existing IgnorePkg entry
 
-  $ PACMAN_CONF_TEST="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > fakeroot pacignore add -c "$PACMAN_CONF_TEST" bar
+  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+  > fakeroot pacignore add -c "$PACMAN_CONF" bar
   > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF_TEST"
+  > cat "$PACMAN_CONF"
   Skipping bar as it is already ignored
   exit_code=1
   [options]
