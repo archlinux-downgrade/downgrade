@@ -46,8 +46,6 @@ sed_msg() {
   fi
 }
 
-read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
-
 read_downgrade_conf() {
   local var=$1
 
@@ -65,8 +63,8 @@ read_unique() {
 }
 
 previously_installed() {
-  # Delay this defaulting so #read_pacman_conf behavior is tested
-  : "${PACMAN_LOG:=$(read_pacman_conf LogFile)}"
+  # Delay this defaulting so pacman-conf behavior is tested
+  : "${PACMAN_LOG:=$(pacman-conf --config "$PACMAN_CONF" LogFile | head -n 1)}"
   : "${PACMAN_LOG:=/var/log/pacman.log}"
 
   sed_msg "to parse previously installed packages" '
@@ -193,9 +191,9 @@ search_packages() {
   fi
 
   if ((DOWNGRADE_FROM_CACHE)); then
-    # Delay this defaulting so #read_pacman_conf behavior is tested
+    # Delay this defaulting so pacman-conf behavior is tested
     if ((!${#PACMAN_CACHE[@]})); then
-      mapfile -t PACMAN_CACHE < <(read_pacman_conf CacheDir)
+      mapfile -t PACMAN_CACHE < <(pacman-conf --config "$PACMAN_CONF" CacheDir)
     fi
 
     if ((!${#PACMAN_CACHE[@]})); then
@@ -484,7 +482,7 @@ cli() {
 # Set script defaults
 PACMAN="pacman"
 PACMAN_CONF="/etc/pacman.conf"
-DOWNGRADE_ARCH="$(pacman-conf Architecture | head -n 1)"
+DOWNGRADE_ARCH="$(pacman-conf --config "$PACMAN_CONF" Architecture | head -n 1)"
 DOWNGRADE_ALA_URL="https://archive.archlinux.org"
 DOWNGRADE_FROM_ALA=1
 DOWNGRADE_FROM_CACHE=1
