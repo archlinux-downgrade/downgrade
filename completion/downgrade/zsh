@@ -4,7 +4,17 @@ _downgrade_caching_policy () {
   [[ "/var/log/pacman.log" -nt "$1" ]]
 }
 
+_set_downgrade_cache_policy () {
+  local update_policy
+  zstyle -s ":completion:*:*:downgrade:*" cache-policy update_policy
+
+  if [[ -z "$update_policy" ]]; then
+    zstyle ":completion:*:*:downgrade:*" cache-policy _downgrade_caching_policy
+  fi
+}
+
 _downgrade () {
+  _set_downgrade_cache_policy
   _arguments -S -C \
     '--pacman[pacman command to use]:pacman command' \
     '--pacman-conf[pacman configuration file]:pacman config file:_files' \

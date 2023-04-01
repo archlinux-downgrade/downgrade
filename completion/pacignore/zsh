@@ -4,7 +4,17 @@ _pacignore_caching_policy () {
   [[ "/var/log/pacman.log" -nt "$1" ]]
 }
 
-_pacignore(){
+_set_pacignore_cache_policy () {
+  local update_policy
+  zstyle -s ":completion:*:*:pacignore:*" cache-policy update_policy
+
+  if [[ -z "$update_policy" ]]; then
+    zstyle ":completion:*:*:pacignore:*" cache-policy _pacignore_caching_policy
+  fi
+}
+
+_pacignore () {
+  _set_pacignore_cache_policy
   _arguments -S -C '1: :->subcmds' \
              '*:packages:->pkg' \
              '-c[pacman configuration file]:pacman config file:_files' \
