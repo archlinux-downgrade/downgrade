@@ -1,15 +1,15 @@
 #compdef downgrade
 
 _downgrade_caching_policy () {
-  [[ "/var/log/pacman.log" -nt "$1" ]]
+  [[ '/var/log/pacman.log' -nt "$1" ]]
 }
 
 _set_downgrade_cache_policy () {
   local update_policy
-  zstyle -s ":completion:*:*:downgrade:*" cache-policy update_policy
+  zstyle -s ':completion:*:*:downgrade:*' cache-policy update_policy
 
   if [[ -z "$update_policy" ]]; then
-    zstyle ":completion:*:*:downgrade:*" cache-policy _downgrade_caching_policy
+    zstyle ':completion:*:*:downgrade:*' cache-policy _downgrade_caching_policy
   fi
 }
 
@@ -29,7 +29,7 @@ _downgrade () {
     {-h,--help}'[show help script]' \
       '*:packages:->pkg'
 
-  if [[ $state == "pkg" ]] && [[ ! $words =~ "\s\-\-\s" ]]; then
+  if [[ "$state" == 'pkg' ]] && [[ ! "$words" =~ '\s\-\-\s' ]]; then
     local -a packages
     if ! _retrieve_cache downgrade_packages; then
       packages=($(pacman -Ssq 2>/dev/null))

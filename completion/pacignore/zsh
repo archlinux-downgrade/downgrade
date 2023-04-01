@@ -1,15 +1,15 @@
 #compdef pacignore
 
 _pacignore_caching_policy () {
-  [[ "/var/log/pacman.log" -nt "$1" ]]
+  [[ '/var/log/pacman.log' -nt "$1" ]]
 }
 
 _set_pacignore_cache_policy () {
   local update_policy
-  zstyle -s ":completion:*:*:pacignore:*" cache-policy update_policy
+  zstyle -s ':completion:*:*:pacignore:*' cache-policy update_policy
 
   if [[ -z "$update_policy" ]]; then
-    zstyle ":completion:*:*:pacignore:*" cache-policy _pacignore_caching_policy
+    zstyle ':completion:*:*:pacignore:*' cache-policy _pacignore_caching_policy
   fi
 }
 
@@ -20,15 +20,15 @@ _pacignore () {
              '-c[pacman configuration file]:pacman config file:_files' \
              '-h[show help script]'
 
-  if [[ $state == "pkg" ]]; then
+  if [[ "$state" == 'pkg' ]]; then
     local -a packages
     if ! _retrieve_cache pacignore_packages; then
       packages=($(pacman -Ssq 2>/dev/null))
       _store_cache pacignore_packages packages
     fi
     _describe 'packages' packages
-  elif [[ $state == "subcmds" ]]; then
-    _values "pacignore subcommands" \
+  elif [[ "$state" == 'subcmds' ]]; then
+    _values 'pacignore subcommands' \
       'ls[list ignored package(s) in IgnorePkg]' \
       'check[check inclusion of package(s) in IgnorePkg]' \
       'add[add package(s) to IgnorePkg]' \
