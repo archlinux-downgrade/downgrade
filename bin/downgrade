@@ -291,7 +291,7 @@ process_term() {
     } >&2
   elif (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
-  elif ((DOWNGRADE_FROM_ALA)); then
+  elif ((DOWNGRADE_TO_ANY)); then
     choice=${candidates[0]}
   else
     choice=$(present_packages "$name" "${candidates[@]}" |
