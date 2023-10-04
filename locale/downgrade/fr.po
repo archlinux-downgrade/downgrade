@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-04 13:40+0200\n"
+"POT-Creation-Date: 2023-10-04 15:15+0200\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -91,7 +91,7 @@ msgstr ""
 "automatiquement ? [o/N] "
 
 #: bin/downgrade:30
-msgid "never prompt for version or location, just pick any candidate"
+msgid "never prompt for version or location, pick automatically instead"
 msgstr ""
 
 #: bin/downgrade:31
@@ -130,62 +130,62 @@ msgstr ""
 msgid "y"
 msgstr "o"
 
-#: bin/downgrade:240
+#: bin/downgrade:242
 msgid "remote"
 msgstr "distant"
 
-#: bin/downgrade:289
+#: bin/downgrade:302
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
 
-#: bin/downgrade:302
+#: bin/downgrade:316
 msgid "Invalid choice"
 msgstr "Choix invalide"
 
-#: bin/downgrade:315
+#: bin/downgrade:329
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Impossible de rétrograder $name"
 
-#: bin/downgrade:344
+#: bin/downgrade:358
 msgid "Missing --pacman argument"
 msgstr "Argument --pacman manquant"
 
-#: bin/downgrade:357
+#: bin/downgrade:371
 msgid "Missing --pacman-conf argument"
 msgstr "Argument --pacman-conf manquant"
 
-#: bin/downgrade:370
+#: bin/downgrade:384
 msgid "Missing --ala-url argument"
 msgstr "Argument --ala-url manquant"
 
-#: bin/downgrade:383
+#: bin/downgrade:397
 msgid "Missing --pacman-cache argument"
 msgstr "Argument --pacman-cache manquant"
 
-#: bin/downgrade:396
+#: bin/downgrade:410
 msgid "Missing --pacman-log argument"
 msgstr "Argument --pacman-log manquant"
 
-#: bin/downgrade:409
+#: bin/downgrade:423
 msgid "Missing --maxdepth argument"
 msgstr "Argument --maxdepth manquant"
 
-#: bin/downgrade:430
+#: bin/downgrade:444
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Argument --pacman manquant"
 
-#: bin/downgrade:450
+#: bin/downgrade:464
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Option non reconnue $current_option"
 
-#: bin/downgrade:465
+#: bin/downgrade:479
 msgid "No packages provided for downgrading"
 msgstr "Aucun package fourni pour la rétrogradation"
 
-#: bin/downgrade:533
+#: bin/downgrade:547
 msgid "downgrade must be run as root"
 msgstr "le downgrade doit être exécuté en tant que root"
 

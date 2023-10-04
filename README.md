@@ -37,7 +37,7 @@ Options:
   --cached-only   only use cached packages
   --ignore        <prompt|always|never>
                   whether to add packages to IgnorePkg
-  --any-candidate never prompt for version or location, just pick any candidate
+  --any-candidate never prompt for version or location, pick automatically instead
   --version       show downgrade version
   -h, --help      show help script
 
