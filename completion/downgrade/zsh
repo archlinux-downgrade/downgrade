@@ -25,7 +25,7 @@ _downgrade () {
     '--ala-only[only use ALA server]' \
     '--cached-only[only use cached packages]' \
     '--ignore[whether to add packages to IgnorePkg]:action:(prompt always never)' \
-    '--any-candidate[choose the first match]' \
+    '--any-candidate[automatic package selection]' \
     '--version[show downgrade version]' \
     {-h,--help}'[show help script]' \
       '*:packages:->pkg'

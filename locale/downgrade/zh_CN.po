@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-04 13:40+0200\n"
+"POT-Creation-Date: 2023-10-04 15:15+0200\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -86,7 +86,7 @@ msgid "whether to add packages to IgnorePkg"
 msgstr "是否添加软件包到 IgnorePkg"
 
 #: bin/downgrade:30
-msgid "never prompt for version or location, just pick any candidate"
+msgid "never prompt for version or location, pick automatically instead"
 msgstr ""
 
 #: bin/downgrade:31
@@ -122,61 +122,61 @@ msgstr "添加 $pkg 到 IgnorePkg? [y/N] "
 msgid "y"
 msgstr "y"
 
-#: bin/downgrade:240
+#: bin/downgrade:242
 msgid "remote"
 msgstr "远端"
 
-#: bin/downgrade:289
+#: bin/downgrade:302
 msgid "No results found"
 msgstr "未找到结果"
 
-#: bin/downgrade:302
+#: bin/downgrade:316
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: bin/downgrade:315
+#: bin/downgrade:329
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "无法降级 $name"
 
-#: bin/downgrade:344
+#: bin/downgrade:358
 msgid "Missing --pacman argument"
 msgstr "缺少 --pacman 参数"
 
-#: bin/downgrade:357
+#: bin/downgrade:371
 msgid "Missing --pacman-conf argument"
 msgstr "缺少 --pacman-conf 参数"
 
-#: bin/downgrade:370
+#: bin/downgrade:384
 msgid "Missing --ala-url argument"
 msgstr "缺少 --ala-url 参数"
 
-#: bin/downgrade:383
+#: bin/downgrade:397
 msgid "Missing --pacman-cache argument"
 msgstr "缺少 --pacman-cache 参数"
 
-#: bin/downgrade:396
+#: bin/downgrade:410
 msgid "Missing --pacman-log argument"
 msgstr "缺少 --pacman-log 参数"
 
-#: bin/downgrade:409
+#: bin/downgrade:423
 msgid "Missing --maxdepth argument"
 msgstr "缺少 --maxdepth 参数"
 
-#: bin/downgrade:430
+#: bin/downgrade:444
 msgid "Missing or wrong --ignore argument"
 msgstr "--pacman 参数缺失或有误"
 
-#: bin/downgrade:450
+#: bin/downgrade:464
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "无法识别的选项 $current_option"
 
-#: bin/downgrade:465
+#: bin/downgrade:479
 msgid "No packages provided for downgrading"
 msgstr "没有提供降级包"
 
-#: bin/downgrade:533
+#: bin/downgrade:547
 msgid "downgrade must be run as root"
 msgstr "downgrade 必须以 root 身份运行"
 

@@ -93,8 +93,11 @@ on the ALA.
 
 **\--any-candidate**\
 
-> Never prompt for version or location, just pick any candidate. Allows for
+> Never prompt for version or location, pick automatically instead. Allows for
 > noninteractive downgrades when used in conjunction with --ignore
+> If a package matching the version filter is found in the cache, pick the
+> latest matching version from cache. Íf no matches are found in cache or
+> --ala-only was specified, then pick the latest matching version from ala.
 
 **\--version**\
 

@@ -27,7 +27,7 @@ $(gettext "Options"):
   --cached-only   $(gettext "only use cached packages")
   --ignore        <prompt|always|never>
                   $(gettext "whether to add packages to IgnorePkg")
-  --any-candidate $(gettext "never prompt for version or location, just pick any candidate")
+  --any-candidate $(gettext "never prompt for version or location, pick automatically instead")
   --version       $(gettext "show downgrade version")
   -h, --help      $(gettext "show help script")
 
