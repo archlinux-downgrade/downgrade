@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-27 20:57+0800\n"
+"POT-Creation-Date: 2023-10-04 13:40+0200\n"
 "PO-Revision-Date: 2020-04-21 21:10+0100\n"
 "Last-Translator: <tom.vycital@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -89,94 +89,98 @@ msgid "whether to add packages to IgnorePkg"
 msgstr "přidat $pkg mezi ignorované? [a/N] "
 
 #: bin/downgrade:30
+msgid "never prompt for version or location, just pick any candidate"
+msgstr ""
+
+#: bin/downgrade:31
 msgid "show downgrade version"
 msgstr "zobrazit downgrade verzi"
 
-#: bin/downgrade:31
+#: bin/downgrade:32
 msgid "show help script"
 msgstr "zobrazit skript nápovědy"
 
-#: bin/downgrade:33
+#: bin/downgrade:34
 msgid "Note"
 msgstr "Poznámka"
 
-#: bin/downgrade:34
+#: bin/downgrade:35
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "Možnosti za znaky -- budou považovány za možnosti pacmanu."
 
-#: bin/downgrade:35
+#: bin/downgrade:36
 msgid "See downgrade(8) for details."
 msgstr "Pro více informací vizte downgrade(8)"
 
-#: bin/downgrade:97
+#: bin/downgrade:98
 msgid "Available packages"
 msgstr "Dostupné balíčky"
 
-#: bin/downgrade:127
+#: bin/downgrade:128
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "přidat $pkg mezi ignorované? [a/N] "
 
-#: bin/downgrade:129
+#: bin/downgrade:130
 msgid "y"
 msgstr "a"
 
-#: bin/downgrade:239
+#: bin/downgrade:240
 msgid "remote"
 msgstr "vzdálený"
 
-#: bin/downgrade:288
+#: bin/downgrade:289
 msgid "No results found"
 msgstr "Nebyly nalezeny žádné výsledky"
 
-#: bin/downgrade:299
+#: bin/downgrade:302
 msgid "Invalid choice"
 msgstr "Neplatná volba"
 
-#: bin/downgrade:312
+#: bin/downgrade:315
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Nelze downgradovat $name"
 
-#: bin/downgrade:341
+#: bin/downgrade:344
 msgid "Missing --pacman argument"
 msgstr "Chybí argument --pacman"
 
-#: bin/downgrade:354
+#: bin/downgrade:357
 msgid "Missing --pacman-conf argument"
 msgstr "Chybí argument --pacman-conf"
 
-#: bin/downgrade:367
+#: bin/downgrade:370
 msgid "Missing --ala-url argument"
 msgstr "Chybí argument --ala-url"
 
-#: bin/downgrade:380
+#: bin/downgrade:383
 msgid "Missing --pacman-cache argument"
 msgstr "Chybí argument --pacman-cache"
 
-#: bin/downgrade:393
+#: bin/downgrade:396
 msgid "Missing --pacman-log argument"
 msgstr "Chybí argument --pacman-log"
 
-#: bin/downgrade:406
+#: bin/downgrade:409
 msgid "Missing --maxdepth argument"
 msgstr "Chybí argument --maxdepth"
 
-#: bin/downgrade:427
+#: bin/downgrade:430
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Chybí argument --pacman"
 
-#: bin/downgrade:444
+#: bin/downgrade:450
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Nerozpoznaná možnost $current_option"
 
-#: bin/downgrade:459
+#: bin/downgrade:465
 msgid "No packages provided for downgrading"
 msgstr "Pro downgradování nebyly poskytnuty žádné balíčky"
 
-#: bin/downgrade:526
+#: bin/downgrade:533
 msgid "downgrade must be run as root"
 msgstr "downgrade musí být spuštěn jako root"
 

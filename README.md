@@ -37,6 +37,7 @@ Options:
   --cached-only   only use cached packages
   --ignore        <prompt|always|never>
                   whether to add packages to IgnorePkg
+  --any-candidate never prompt for version or location, just pick any candidate
   --version       show downgrade version
   -h, --help      show help script
 
@@ -76,6 +77,12 @@ Downgrade a package, looking in only the A.L.A.:
 
 ```
 # downgrade --ala-only foo
+```
+
+Noninteractively downgrade foo to 1.0.0-1
+
+```
+# downgrade --any-candidate --ignore never 'foo=1.0.0-1'
 ```
 
 ## Configuration

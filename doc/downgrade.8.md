@@ -91,6 +91,11 @@ on the ALA.
 
 > Whether to add packages to IgnorePkg, default is _prompt_.
 
+**\--any-candidate**\
+
+> Never prompt for version or location, just pick any candidate. Allows for
+> noninteractive downgrades when used in conjunction with --ignore
+
 **\--version**\
 
 > Show downgrade version.

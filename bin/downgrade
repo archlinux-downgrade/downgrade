@@ -27,6 +27,7 @@ $(gettext "Options"):
   --cached-only   $(gettext "only use cached packages")
   --ignore        <prompt|always|never>
                   $(gettext "whether to add packages to IgnorePkg")
+  --any-candidate $(gettext "never prompt for version or location, just pick any candidate")
   --version       $(gettext "show downgrade version")
   -h, --help      $(gettext "show help script")
 
@@ -290,6 +291,8 @@ process_term() {
     } >&2
   elif (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
+  elif ((DOWNGRADE_TO_ANY)); then
+    choice=${candidates[0]}
   else
     choice=$(present_packages "$name" "${candidates[@]}" |
       fzf --tac --border --header-lines 1 --tiebreak=begin |
@@ -431,6 +434,9 @@ parse_options() {
           exit 1
         fi
         ;;
+      --any-candidate)
+        DOWNGRADE_TO_ANY=1
+        ;;
       --)
         shift
         pacman_args=("$@")
@@ -492,6 +498,7 @@ DOWNGRADE_MAXDEPTH=1
 DOWNGRADE_CONF="/etc/xdg/downgrade/downgrade.conf"
 DOWNGRADE_VERSION="11.3.0"
 DOWNGRADE_IGNORE="prompt"
+DOWNGRADE_TO_ANY=0
 
 # Main code execution
 if ((!LIB)); then
