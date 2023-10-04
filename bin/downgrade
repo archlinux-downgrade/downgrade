@@ -181,31 +181,33 @@ matches_name_version_filter() {
   esac
 }
 
-search_packages() {
+search_ala() {
   local name=$1 pkgfile_re index
 
   pkgfile_re="$name-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
   index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
-  if ((DOWNGRADE_FROM_ALA)); then
-    curl --fail --silent "$index" | sed_msg "to parse A.L.A." -E '
-      /.* href="('"$pkgfile_re"')".*/!d;
-      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
+  curl --fail --silent "$index" | sed_msg "to parse A.L.A." -E '
+    /.* href="('"$pkgfile_re"')".*/!d;
+    s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
+}
+
+search_cache() {
+  local name=$1 pkgfile_re index
+
+  pkgfile_re="$name-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
+
+  # Delay this defaulting so #read_pacman_conf behavior is tested
+  if ((!${#PACMAN_CACHE[@]})); then
+    mapfile -t PACMAN_CACHE < <(read_pacman_conf CacheDir)
   fi
 
-  if ((DOWNGRADE_FROM_CACHE)); then
-    # Delay this defaulting so #read_pacman_conf behavior is tested
-    if ((!${#PACMAN_CACHE[@]})); then
-      mapfile -t PACMAN_CACHE < <(read_pacman_conf CacheDir)
-    fi
-
-    if ((!${#PACMAN_CACHE[@]})); then
-      PACMAN_CACHE=(/var/cache/pacman/pkg/)
-    fi
-
-    # shellcheck disable=SC2086
-    find -L "${PACMAN_CACHE[@]}" -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
+  if ((!${#PACMAN_CACHE[@]})); then
+    PACMAN_CACHE=(/var/cache/pacman/pkg/)
   fi
+
+  # shellcheck disable=SC2086
+  find -L "${PACMAN_CACHE[@]}" -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
 }
 
 sort_packages() {
@@ -282,7 +284,16 @@ process_term() {
 
   installed=($(previously_installed "$name"))
   current=$(currently_installed "$name")
-  candidates=($(search_packages "$name" | filter_packages "$name" "$operator" "$version" | sort_packages))
+
+  candidates=()
+  if ((DOWNGRADE_FROM_CACHE)); then
+    candidates+=($(search_cache "$name" | filter_packages "$name" "$operator" "$version" | sort_packages))
+  fi
+  if ((DOWNGRADE_FROM_ALA)); then
+    if ((DOWNGRADE_TO_ANY == 0)) || (("${#candidates[@]}" == 0)); then
+      candidates+=($(search_ala "$name" | filter_packages "$name" "$operator" "$version" | sort_packages))
+    fi
+  fi
 
   if (("${#candidates[@]}" == 0)); then
     {

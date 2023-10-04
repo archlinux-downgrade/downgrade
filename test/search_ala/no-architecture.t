@@ -2,7 +2,7 @@
 
 Searching the A.L.A. for -any packages
 
-  $ DOWNGRADE_FROM_ALA=1 search_packages 'ansible'
+  $ DOWNGRADE_FROM_ALA=1 search_ala 'ansible'
   https://archive.archlinux.org/packages/a/ansible/ansible-1.4.4-4-any.pkg.tar.xz
   https://archive.archlinux.org/packages/a/ansible/ansible-1.4.5-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/a/ansible/ansible-1.5-1-any.pkg.tar.xz

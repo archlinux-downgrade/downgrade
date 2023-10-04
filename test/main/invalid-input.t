@@ -15,7 +15,8 @@ It returns error messages given invalid input
   install: 
   exit code: 1
 
-  $ search_packages() { :; }
+  $ search_ala() { :; }
+  > search_cache() { :; }
   > main 'foo/bar'; exit_code=$?
   > printf "ignore: %s\n" "${to_ignore[@]}"
   > printf "install: %s\n" "${to_install[@]}"

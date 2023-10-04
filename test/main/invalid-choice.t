@@ -3,7 +3,8 @@
 
 It does nothing on an invalid choice
 
-  $ search_packages() { printf "%s\n" foo foo foo; }
+  $ search_ala() { printf "%s\n" foo foo foo; }
+  > search_cache() { :; }
   > main foo < <(echo -1) 2>/dev/null; exit_code=$?
   > echo
   > printf "ignore: %s\n" "${to_ignore[@]}"

@@ -2,7 +2,7 @@
 
 URL decoding packages
 
-  $ DOWNGRADE_FROM_ALA=1 search_packages 'python-setuptools' | sort -rV
+  $ DOWNGRADE_FROM_ALA=1 search_ala 'python-setuptools' | sort -rV
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-4.0.1-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-4.0-1-any.pkg.tar.xz
   https://archive.archlinux.org/packages/p/python-setuptools/python-setuptools-3.6-1-any.pkg.tar.xz
@@ -114,7 +114,7 @@ URL decoding packages
 Regression 1
 
 
-  $ DOWNGRADE_FROM_ALA=1 search_packages 'cairo'
+  $ DOWNGRADE_FROM_ALA=1 search_ala 'cairo'
   https://archive.archlinux.org/packages/c/cairo/cairo-1.16.0-2-x86_64.pkg.tar.xz
   https://archive.archlinux.org/packages/c/cairo/cairo-1.17.2+17+g52a7c79fd-1-x86_64.pkg.tar.xz
   https://archive.archlinux.org/packages/c/cairo/cairo-1.17.2+17+g52a7c79fd-2-x86_64.pkg.tar.xz

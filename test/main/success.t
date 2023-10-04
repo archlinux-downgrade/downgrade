@@ -4,7 +4,8 @@
 It adds the term and package to global arrays if successful
 
   $ touch "$TMP/foo.pkg" "$TMP/foo.pkg"
-  > search_packages() { printf "%s\n" "$TMP/foo.pkg" "$TMP/foo.pkg"; }
+  > DOWNGRADE_FROM_CACHE=1
+  > search_cache() { printf "%s\n" "$TMP/foo.pkg" "$TMP/foo.pkg"; }
   > FZF_CHOICE=1
   > main foo 2>/dev/null; exit_code=$?
   > echo
