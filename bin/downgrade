@@ -27,7 +27,9 @@ $(gettext "Options"):
   --cached-only   $(gettext "only use cached packages")
   --ignore        <prompt|always|never>
                   $(gettext "whether to add packages to IgnorePkg")
-  --any-candidate $(gettext "never prompt for version or location, pick automatically instead")
+  --latest        $(gettext "pick latest matching version")
+  --oldest        $(gettext "pick oldest matching version")
+  --cache-preferred $(gettext "do not query ala if a matching package was found in cache")
   --version       $(gettext "show downgrade version")
   -h, --help      $(gettext "show help script")
 
@@ -289,10 +291,8 @@ process_term() {
   if ((DOWNGRADE_FROM_CACHE)); then
     candidates+=($(search_cache "$name" | filter_packages "$name" "$operator" "$version"))
   fi
-  if ((DOWNGRADE_FROM_ALA)); then
-    if ((DOWNGRADE_TO_ANY == 0)) || (("${#candidates[@]}" == 0)); then
-      candidates=($(search_ala "$name" | filter_packages "$name" "$operator" "$version") "${candidates[@]}")
-    fi
+  if ((DOWNGRADE_FROM_ALA)) && { ((! DOWNGRADE_PREFER_CACHE)) || ((${#candidates[@]} == 0)); }; then
+    candidates=($(search_ala "$name" | filter_packages "$name" "$operator" "$version") "${candidates[@]}")
   fi
 
   candidates=($(printf '%s\n' "${candidates[@]}" | sort_packages))
@@ -304,9 +304,12 @@ process_term() {
     } >&2
   elif (("${#candidates[@]}" == 1)); then
     choice=${candidates[0]}
-  elif ((DOWNGRADE_TO_ANY)); then
+  elif ((DOWNGRADE_TO_LATEST)); then
     # Select the most up to date package
     choice=${candidates[-1]}
+  elif ((DOWNGRADE_TO_OLDEST)); then
+    # Select the most out of date
+    choice=${candidates[0]}
   else
     choice=$(present_packages "$name" "${candidates[@]}" |
       fzf --tac --border --header-lines 1 --tiebreak=begin |
@@ -448,8 +451,16 @@ parse_options() {
           exit 1
         fi
         ;;
-      --any-candidate)
-        DOWNGRADE_TO_ANY=1
+      --latest)
+        DOWNGRADE_TO_LATEST=1
+        DOWNGRADE_TO_OLDEST=0
+        ;;
+      --oldest)
+        DOWNGRADE_TO_LATEST=0
+        DOWNGRADE_TO_OLDEST=1
+        ;;
+      --cache-preferred)
+        DOWNGRADE_PREFER_CACHE=1
         ;;
       --)
         shift
@@ -512,7 +523,9 @@ DOWNGRADE_MAXDEPTH=1
 DOWNGRADE_CONF="/etc/xdg/downgrade/downgrade.conf"
 DOWNGRADE_VERSION="11.3.0"
 DOWNGRADE_IGNORE="prompt"
-DOWNGRADE_TO_ANY=0
+DOWNGRADE_TO_LATEST=0
+DOWNGRADE_TO_OLDEST=0
+DOWNGRADE_PREFER_CACHE=0
 
 # Main code execution
 if ((!LIB)); then
