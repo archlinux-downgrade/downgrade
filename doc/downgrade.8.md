@@ -95,7 +95,7 @@ on the ALA.
 
 > Never prompt for version or location, automatically pick the most up to
 > date/most out of date version. Allows for noninteractive downgrades when
-> used in conjunction with --ignore
+> used in conjunction with `--ignore`.
 
 **\--cache-preferred**\
 
