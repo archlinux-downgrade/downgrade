@@ -39,7 +39,7 @@ Options:
                   whether to add packages to IgnorePkg
   --latest        pick latest matching version
   --oldest        pick oldest matching version
-  --cache-preferred do not query ala if a matching package was found in cache
+  --prefer-cache  do not query ala if a matching package was found in cache
   --version       show downgrade version
   -h, --help      show help script
 

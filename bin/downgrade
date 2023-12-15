@@ -29,7 +29,7 @@ $(gettext "Options"):
                   $(gettext "whether to add packages to IgnorePkg")
   --latest        $(gettext "pick latest matching version")
   --oldest        $(gettext "pick oldest matching version")
-  --cache-preferred $(gettext "do not query ala if a matching package was found in cache")
+  --prefer-cache  $(gettext "do not query ala if a matching package was found in cache")
   --version       $(gettext "show downgrade version")
   -h, --help      $(gettext "show help script")
 
@@ -459,7 +459,7 @@ parse_options() {
         DOWNGRADE_TO_LATEST=0
         DOWNGRADE_TO_OLDEST=1
         ;;
-      --cache-preferred)
+      --prefer-cache)
         DOWNGRADE_PREFER_CACHE=1
         ;;
       --)

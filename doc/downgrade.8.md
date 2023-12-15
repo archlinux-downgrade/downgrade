@@ -97,7 +97,7 @@ on the ALA.
 > date/most out of date version. Allows for noninteractive downgrades when
 > used in conjunction with `--ignore`.
 
-**\--cache-preferred**\
+**\--prefer-cache**\
 
 > If a package matching the version filter is found in the cache, skip querying
 > ala.
