@@ -455,8 +455,10 @@ parse_options() {
         ;;
       --latest)
         DOWNGRADE_TO_LATEST=1
+        DOWNGRADE_TO_OLDEST=0
         ;;
       --oldest)
+        DOWNGRADE_TO_LATEST=0
         DOWNGRADE_TO_OLDEST=1
         ;;
       --prefer-cache)
