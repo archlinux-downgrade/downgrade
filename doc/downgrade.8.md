@@ -100,7 +100,8 @@ on the ALA.
 **\--prefer-cache**\
 
 > If a package matching the version filter is found in the cache, skip querying
-> ala.
+> ala. Unlike --cached-only, --prefer-cache does query ala if no package could
+> be matched in cache.
 
 **\--version**\
 
