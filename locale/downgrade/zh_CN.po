@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-05 22:03+0200\n"
+"POT-Creation-Date: 2024-10-21 22:52+0200\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -134,44 +134,44 @@ msgstr "y"
 msgid "remote"
 msgstr "远端"
 
-#: bin/downgrade:304
+#: bin/downgrade:302
 msgid "No results found"
 msgstr "未找到结果"
 
-#: bin/downgrade:321
+#: bin/downgrade:319
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: bin/downgrade:334
+#: bin/downgrade:332
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "无法降级 $name"
 
-#: bin/downgrade:363
+#: bin/downgrade:361
 msgid "Missing --pacman argument"
 msgstr "缺少 --pacman 参数"
 
-#: bin/downgrade:376
+#: bin/downgrade:374
 msgid "Missing --pacman-conf argument"
 msgstr "缺少 --pacman-conf 参数"
 
-#: bin/downgrade:389
+#: bin/downgrade:387
 msgid "Missing --ala-url argument"
 msgstr "缺少 --ala-url 参数"
 
-#: bin/downgrade:402
+#: bin/downgrade:400
 msgid "Missing --pacman-cache argument"
 msgstr "缺少 --pacman-cache 参数"
 
-#: bin/downgrade:415
+#: bin/downgrade:413
 msgid "Missing --pacman-log argument"
 msgstr "缺少 --pacman-log 参数"
 
-#: bin/downgrade:428
+#: bin/downgrade:426
 msgid "Missing --maxdepth argument"
 msgstr "缺少 --maxdepth 参数"
 
-#: bin/downgrade:449
+#: bin/downgrade:447
 msgid "Missing or wrong --ignore argument"
 msgstr "--pacman 参数缺失或有误"
 

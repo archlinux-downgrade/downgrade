@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-05 22:03+0200\n"
+"POT-Creation-Date: 2024-10-21 22:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,44 +133,44 @@ msgstr ""
 msgid "remote"
 msgstr ""
 
-#: bin/downgrade:304
+#: bin/downgrade:302
 msgid "No results found"
 msgstr ""
 
-#: bin/downgrade:321
+#: bin/downgrade:319
 msgid "Invalid choice"
 msgstr ""
 
-#: bin/downgrade:334
+#: bin/downgrade:332
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr ""
 
-#: bin/downgrade:363
+#: bin/downgrade:361
 msgid "Missing --pacman argument"
 msgstr ""
 
-#: bin/downgrade:376
+#: bin/downgrade:374
 msgid "Missing --pacman-conf argument"
 msgstr ""
 
-#: bin/downgrade:389
+#: bin/downgrade:387
 msgid "Missing --ala-url argument"
 msgstr ""
 
-#: bin/downgrade:402
+#: bin/downgrade:400
 msgid "Missing --pacman-cache argument"
 msgstr ""
 
-#: bin/downgrade:415
+#: bin/downgrade:413
 msgid "Missing --pacman-log argument"
 msgstr ""
 
-#: bin/downgrade:428
+#: bin/downgrade:426
 msgid "Missing --maxdepth argument"
 msgstr ""
 
-#: bin/downgrade:449
+#: bin/downgrade:447
 msgid "Missing or wrong --ignore argument"
 msgstr ""
 

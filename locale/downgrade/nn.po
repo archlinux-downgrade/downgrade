@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-05 22:03+0200\n"
+"POT-Creation-Date: 2024-10-21 22:52+0200\n"
 "PO-Revision-Date: 2020-04-21 12:48-0400\n"
 "Last-Translator: Håkon Vågsether <hauk142@gmail.com>, <shankar.atreya@gmail."
 "com>\n"
@@ -137,44 +137,44 @@ msgstr "j"
 msgid "remote"
 msgstr "ekstern"
 
-#: bin/downgrade:304
+#: bin/downgrade:302
 msgid "No results found"
 msgstr "Ingen resultater"
 
-#: bin/downgrade:321
+#: bin/downgrade:319
 msgid "Invalid choice"
 msgstr "Ugyldig valg"
 
-#: bin/downgrade:334
+#: bin/downgrade:332
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Kan ikke nedgradere $name"
 
-#: bin/downgrade:363
+#: bin/downgrade:361
 msgid "Missing --pacman argument"
 msgstr "Mangler --pacman -argumentet"
 
-#: bin/downgrade:376
+#: bin/downgrade:374
 msgid "Missing --pacman-conf argument"
 msgstr "Mangler --pacman-conf -argumentet"
 
-#: bin/downgrade:389
+#: bin/downgrade:387
 msgid "Missing --ala-url argument"
 msgstr "Mangler --ala-url -argumentet"
 
-#: bin/downgrade:402
+#: bin/downgrade:400
 msgid "Missing --pacman-cache argument"
 msgstr "Mangler --pacman-cache -argumentet"
 
-#: bin/downgrade:415
+#: bin/downgrade:413
 msgid "Missing --pacman-log argument"
 msgstr "Mangler --pacman-log -argumentet"
 
-#: bin/downgrade:428
+#: bin/downgrade:426
 msgid "Missing --maxdepth argument"
 msgstr "Mangler --maxdepth -argumentet"
 
-#: bin/downgrade:449
+#: bin/downgrade:447
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Mangler --pacman -argumentet"

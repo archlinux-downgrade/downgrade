@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-05 22:03+0200\n"
+"POT-Creation-Date: 2024-10-21 22:52+0200\n"
 "PO-Revision-Date: 2020-04-21 21:10+0100\n"
 "Last-Translator: <tom.vycital@gmail.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -137,44 +137,44 @@ msgstr "a"
 msgid "remote"
 msgstr "vzdálený"
 
-#: bin/downgrade:304
+#: bin/downgrade:302
 msgid "No results found"
 msgstr "Nebyly nalezeny žádné výsledky"
 
-#: bin/downgrade:321
+#: bin/downgrade:319
 msgid "Invalid choice"
 msgstr "Neplatná volba"
 
-#: bin/downgrade:334
+#: bin/downgrade:332
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Nelze downgradovat $name"
 
-#: bin/downgrade:363
+#: bin/downgrade:361
 msgid "Missing --pacman argument"
 msgstr "Chybí argument --pacman"
 
-#: bin/downgrade:376
+#: bin/downgrade:374
 msgid "Missing --pacman-conf argument"
 msgstr "Chybí argument --pacman-conf"
 
-#: bin/downgrade:389
+#: bin/downgrade:387
 msgid "Missing --ala-url argument"
 msgstr "Chybí argument --ala-url"
 
-#: bin/downgrade:402
+#: bin/downgrade:400
 msgid "Missing --pacman-cache argument"
 msgstr "Chybí argument --pacman-cache"
 
-#: bin/downgrade:415
+#: bin/downgrade:413
 msgid "Missing --pacman-log argument"
 msgstr "Chybí argument --pacman-log"
 
-#: bin/downgrade:428
+#: bin/downgrade:426
 msgid "Missing --maxdepth argument"
 msgstr "Chybí argument --maxdepth"
 
-#: bin/downgrade:449
+#: bin/downgrade:447
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Chybí argument --pacman"
