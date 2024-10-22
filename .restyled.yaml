@@ -1,10 +1,9 @@
----
-- shfmt:
-    include:
-      - downgrade
-    image: restyled/restyler-shfmt:v3.0.1
-    
-- prettier-markdown:
-    include:
-      - "*.md"
-      - "doc/*.md"
+restylers:
+  - shfmt:
+      include:
+        - bin/**/*
+
+  - prettier-markdown:
+      include:
+        - "*.md"
+        - "doc/*.md"
