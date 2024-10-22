@@ -47,12 +47,7 @@ _manpage md:
     --output "doc/$(echo '{{md}}' | sed 's/.md$//')" \
     'doc/{{md}}'
 
-# TODO
-# AUR_RELEASE_OPTIONS ?=
-
-# .PHONY: release
-# release: test
-# 	[ -n "$(VERSION)" ]
-# 	git tag -s -m "v$(VERSION)" "v$(VERSION)"
-# 	git push --follow-tags
-# 	aur-release $(AUR_RELEASE_OPTIONS) downgrade "$(VERSION)"
+release:
+  git tag --sign --message '{{version}}' '{{version}}'
+  git push --follow-tags
+  aur-release downgrade '{{version}}'
