@@ -2,6 +2,7 @@ PREFIX       ?= /usr/local
 LOCALEPREFIX ?= $(PREFIX)/share/locale
 MANPREFIX    ?= $(PREFIX)/share/man
 SCRIPTS      ?= $(shell find bin -type f -executable -printf "%f\n")
+XDGPREFIX    ?= /etc/xdg
 
 .PHONY: install
 install:
