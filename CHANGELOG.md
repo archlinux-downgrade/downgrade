@@ -1,6 +1,10 @@
-## [Ongoing](https://github.com/archlinux-downgrade/downgrade/compare/v11.4.0...main)
+## [Ongoing](https://github.com/archlinux-downgrade/downgrade/compare/v11.4.2...main)
 
 See [issues](https://github.com/archlinux-downgrade/downgrade/issues)
+
+## [v11.4.2](https://github.com/archlinux-downgrade/downgrade/compare/v11.4.1...v11.4.2)
+
+- [FIX] Accept localized or `en` "yes" in prompts
 
 ## [v11.4.1](https://github.com/archlinux-downgrade/downgrade/compare/v11.4.0...v11.4.1)
 
