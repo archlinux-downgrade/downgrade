@@ -2,6 +2,12 @@
 
 See [issues](https://github.com/archlinux-downgrade/downgrade/issues)
 
+## [v11.4.1](https://github.com/archlinux-downgrade/downgrade/compare/v11.4.0...v11.4.1)
+
+- [FIX] v11.4.0 installed the default configuration to `/downgrade` instead of
+  `/etc/xdg/downgrade` by mistake. If you installed that version, remove that
+  file after upgrading to v11.4.1+.
+
 ## [v11.4.0](https://github.com/archlinux-downgrade/downgrade/compare/v11.3.0...v11.4.0)
 
 - [NEW] Add `--unignore` to reverse `IgnorePkg` additions
