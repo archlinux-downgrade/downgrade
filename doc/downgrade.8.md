@@ -91,6 +91,10 @@ on the ALA.
 
 > Whether to add packages to IgnorePkg, default is _prompt_.
 
+**\--unignore** _\<pkg...>_\
+
+> Remove packages from IgnorePkg. This is a pass-through to **pacignore(8)**.
+
 **\--latest | \--oldest**\
 
 > Never prompt for version or location, automatically pick the most up to
