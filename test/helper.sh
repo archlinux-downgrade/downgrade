@@ -21,10 +21,11 @@ export PACIGNORE_DEFAULT_CHECK=1
 pacsort() { cat; }
 sudo() { "$@"; }
 fzf() { grep "${FZF_CHOICE})"; }
+read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
 
 # Utilities
 write_pacman_conf() {
-  printf "%s\n" "$@" > "$PACMAN_CONF"
+  printf "%s\n" "$@" >"$PACMAN_CONF"
 }
 
 ignore() { yes | prompt_to_ignore "$@" >/dev/null; }
