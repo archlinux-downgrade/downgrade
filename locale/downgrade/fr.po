@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-21 22:52+0200\n"
+"POT-Creation-Date: 2024-10-22 09:37-0400\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -91,109 +91,116 @@ msgstr ""
 "automatiquement ? [o/N] "
 
 #: bin/downgrade:30
+#, fuzzy
+msgid "remove packages from IgnorePkg"
+msgstr ""
+"Ajouter $pkg dans la liste des paquets à ne pas mettre à jour "
+"automatiquement ? [o/N] "
+
+#: bin/downgrade:31
 msgid "pick latest matching version"
 msgstr ""
 
-#: bin/downgrade:31
+#: bin/downgrade:32
 msgid "pick oldest matching version"
 msgstr ""
 
-#: bin/downgrade:32
+#: bin/downgrade:33
 msgid "do not query ala if a matching package was found in cache"
 msgstr ""
 
-#: bin/downgrade:33
+#: bin/downgrade:34
 msgid "show downgrade version"
 msgstr "afficher la version downgrade"
 
-#: bin/downgrade:34
+#: bin/downgrade:35
 msgid "show help script"
 msgstr "afficher le script d'aide"
 
-#: bin/downgrade:36
+#: bin/downgrade:37
 msgid "Note"
 msgstr "Remarque"
 
-#: bin/downgrade:37
+#: bin/downgrade:38
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 "Les options après les caractères -- seront traitées comme des options pacman."
 
-#: bin/downgrade:38
+#: bin/downgrade:39
 msgid "See downgrade(8) for details."
 msgstr "Voir downgrade(8) pour plus de détails."
 
-#: bin/downgrade:100
+#: bin/downgrade:101
 msgid "Available packages"
 msgstr "Paquets disponibles"
 
-#: bin/downgrade:130
+#: bin/downgrade:131
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr ""
 "Ajouter $pkg dans la liste des paquets à ne pas mettre à jour "
 "automatiquement ? [o/N] "
 
-#: bin/downgrade:132
+#: bin/downgrade:133
 msgid "y"
 msgstr "o"
 
-#: bin/downgrade:244
+#: bin/downgrade:245
 msgid "remote"
 msgstr "distant"
 
-#: bin/downgrade:302
+#: bin/downgrade:303
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
 
-#: bin/downgrade:319
+#: bin/downgrade:320
 msgid "Invalid choice"
 msgstr "Choix invalide"
 
-#: bin/downgrade:332
+#: bin/downgrade:333
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Impossible de rétrograder $name"
 
-#: bin/downgrade:361
+#: bin/downgrade:362
 msgid "Missing --pacman argument"
 msgstr "Argument --pacman manquant"
 
-#: bin/downgrade:374
+#: bin/downgrade:375
 msgid "Missing --pacman-conf argument"
 msgstr "Argument --pacman-conf manquant"
 
-#: bin/downgrade:387
+#: bin/downgrade:388
 msgid "Missing --ala-url argument"
 msgstr "Argument --ala-url manquant"
 
-#: bin/downgrade:400
+#: bin/downgrade:401
 msgid "Missing --pacman-cache argument"
 msgstr "Argument --pacman-cache manquant"
 
-#: bin/downgrade:413
+#: bin/downgrade:414
 msgid "Missing --pacman-log argument"
 msgstr "Argument --pacman-log manquant"
 
-#: bin/downgrade:426
+#: bin/downgrade:427
 msgid "Missing --maxdepth argument"
 msgstr "Argument --maxdepth manquant"
 
-#: bin/downgrade:447
+#: bin/downgrade:448
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Argument --pacman manquant"
 
-#: bin/downgrade:475
+#: bin/downgrade:481
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Option non reconnue $current_option"
 
-#: bin/downgrade:490
+#: bin/downgrade:496
 msgid "No packages provided for downgrading"
 msgstr "Aucun package fourni pour la rétrogradation"
 
-#: bin/downgrade:560
+#: bin/downgrade:566
 msgid "downgrade must be run as root"
 msgstr "le downgrade doit être exécuté en tant que root"
 
