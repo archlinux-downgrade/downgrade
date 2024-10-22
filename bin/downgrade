@@ -50,7 +50,9 @@ sed_msg() {
   fi
 }
 
-read_pacman_conf() { sed '/^#\?'"$1"' *= *\(.*\)$/!d; s//\1/' "$PACMAN_CONF"; }
+read_pacman_conf() {
+  pacman-conf --config "$PACMAN_CONF" "$1"
+}
 
 read_downgrade_conf() {
   local var=$1
