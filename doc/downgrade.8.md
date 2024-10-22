@@ -91,6 +91,18 @@ on the ALA.
 
 > Whether to add packages to IgnorePkg, default is _prompt_.
 
+**\--latest | \--oldest**\
+
+> Never prompt for version or location, automatically pick the most up to
+> date/most out of date version. Allows for noninteractive downgrades when
+> used in conjunction with `--ignore`.
+
+**\--prefer-cache**\
+
+> If a package matching the version filter is found in the cache, skip querying
+> ala. Unlike `--cached-only`, `--prefer-cache` does query ala if no package could
+> be matched in cache.
+
 **\--version**\
 
 > Show downgrade version.

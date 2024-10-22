@@ -3,7 +3,8 @@
 
 It does nothing if there are no candidates
 
-  $ search_packages() { :; }
+  $ search_ala() { :; }
+  > search_cache() { :; }
   > main foo 2>/dev/null; exit_code=$?
   > printf "ignore: %s\n" "${to_ignore[@]}"
   > printf "install: %s\n" "${to_install[@]}"

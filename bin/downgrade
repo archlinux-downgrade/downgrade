@@ -27,6 +27,9 @@ $(gettext "Options"):
   --cached-only   $(gettext "only use cached packages")
   --ignore        <prompt|always|never>
                   $(gettext "whether to add packages to IgnorePkg")
+  --latest        $(gettext "pick latest matching version")
+  --oldest        $(gettext "pick oldest matching version")
+  --prefer-cache  $(gettext "do not query ala if a matching package was found in cache")
   --version       $(gettext "show downgrade version")
   -h, --help      $(gettext "show help script")
 
@@ -180,31 +183,33 @@ matches_name_version_filter() {
   esac
 }
 
-search_packages() {
+search_ala() {
   local name=$1 pkgfile_re index
 
   pkgfile_re="$name-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
   index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
 
-  if ((DOWNGRADE_FROM_ALA)); then
-    curl --fail --silent "$index" | sed_msg "to parse A.L.A." -E '
-      /.* href="('"$pkgfile_re"')".*/!d;
-      s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
+  curl --fail --silent "$index" | sed_msg "to parse A.L.A." -E '
+    /.* href="('"$pkgfile_re"')".*/!d;
+    s||'"$index"'\1|g; s|\+| |g; s|%|\\x|g' | xargs -0 printf "%b"
+}
+
+search_cache() {
+  local name=$1 pkgfile_re index
+
+  pkgfile_re="$name-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
+
+  # Delay this defaulting so #read_pacman_conf behavior is tested
+  if ((!${#PACMAN_CACHE[@]})); then
+    mapfile -t PACMAN_CACHE < <(read_pacman_conf CacheDir)
   fi
 
-  if ((DOWNGRADE_FROM_CACHE)); then
-    # Delay this defaulting so #read_pacman_conf behavior is tested
-    if ((!${#PACMAN_CACHE[@]})); then
-      mapfile -t PACMAN_CACHE < <(read_pacman_conf CacheDir)
-    fi
-
-    if ((!${#PACMAN_CACHE[@]})); then
-      PACMAN_CACHE=(/var/cache/pacman/pkg/)
-    fi
-
-    # shellcheck disable=SC2086
-    find -L "${PACMAN_CACHE[@]}" -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
+  if ((!${#PACMAN_CACHE[@]})); then
+    PACMAN_CACHE=(/var/cache/pacman/pkg/)
   fi
+
+  # shellcheck disable=SC2086
+  find -L "${PACMAN_CACHE[@]}" -maxdepth "$DOWNGRADE_MAXDEPTH" -regextype posix-extended -regex ".*/$pkgfile_re"
 }
 
 sort_packages() {
@@ -281,7 +286,16 @@ process_term() {
 
   installed=($(previously_installed "$name"))
   current=$(currently_installed "$name")
-  candidates=($(search_packages "$name" | filter_packages "$name" "$operator" "$version" | sort_packages))
+
+  candidates=()
+  if ((DOWNGRADE_FROM_CACHE)); then
+    candidates+=($(search_cache "$name" | filter_packages "$name" "$operator" "$version"))
+  fi
+  if ((DOWNGRADE_FROM_ALA)) && { ((! DOWNGRADE_PREFER_CACHE)) || ((${#candidates[@]} == 0)); }; then
+    candidates=($(search_ala "$name" | filter_packages "$name" "$operator" "$version") "${candidates[@]}")
+  fi
+
+  candidates=($(printf '%s\n' "${candidates[@]}" | sort_packages))
 
   if (("${#candidates[@]}" == 0)); then
     {
@@ -289,6 +303,12 @@ process_term() {
       echo
     } >&2
   elif (("${#candidates[@]}" == 1)); then
+    choice=${candidates[0]}
+  elif ((DOWNGRADE_TO_LATEST)); then
+    # Select the most up to date package
+    choice=${candidates[-1]}
+  elif ((DOWNGRADE_TO_OLDEST)); then
+    # Select the most out of date
     choice=${candidates[0]}
   else
     choice=$(present_packages "$name" "${candidates[@]}" |
@@ -431,6 +451,17 @@ parse_options() {
           exit 1
         fi
         ;;
+      --latest)
+        DOWNGRADE_TO_LATEST=1
+        DOWNGRADE_TO_OLDEST=0
+        ;;
+      --oldest)
+        DOWNGRADE_TO_LATEST=0
+        DOWNGRADE_TO_OLDEST=1
+        ;;
+      --prefer-cache)
+        DOWNGRADE_PREFER_CACHE=1
+        ;;
       --)
         shift
         pacman_args=("$@")
@@ -492,6 +523,9 @@ DOWNGRADE_MAXDEPTH=1
 DOWNGRADE_CONF="/etc/xdg/downgrade/downgrade.conf"
 DOWNGRADE_VERSION="11.3.0"
 DOWNGRADE_IGNORE="prompt"
+DOWNGRADE_TO_LATEST=0
+DOWNGRADE_TO_OLDEST=0
+DOWNGRADE_PREFER_CACHE=0
 
 # Main code execution
 if ((!LIB)); then
