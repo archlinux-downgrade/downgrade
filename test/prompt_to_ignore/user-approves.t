@@ -2,7 +2,7 @@
 
 Adds to IgnorePkg when told yes
 
-  $ write_pacman_conf "IgnorePkg = foo bar"
+  $ write_pacman_conf "[options]" "IgnorePkg = foo bar"
   > ignore baz >/dev/null
   > printf "%s\n" "exit_code=$?"
   pacignore add -c * baz (glob)

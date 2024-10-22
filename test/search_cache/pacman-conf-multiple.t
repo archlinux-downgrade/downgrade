@@ -10,6 +10,7 @@ From multiple directories
   >   "$cache_1/foo-3.5-1-any.pkg.tar.xz" \
   >   "$cache_2/foo-1.1-1-any.pkg.tar.gz"
   > write_pacman_conf \
+  >   "[options]" \
   >   "CacheDir = $cache_1/" \
   >   "CacheDir = $cache_2/"
   > DOWNGRADE_FROM_CACHE=1 search_cache 'foo' | cut -d . -f 3- | sort

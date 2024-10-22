@@ -9,7 +9,7 @@ Outputs an indicator next to previously installed packages
   > "[2017-07-31 10:42] [ALPM] running 'gtk-update-icon-cache.hook'..." \
   > "[2017-07-31 10:42] [ALPM] upgraded dia (0.1.1 -> 0.2.2)" \
   > "[2017-07-31 10:42] [ALPM] running 'systemd-update.hook'..." > "$pacman_log"
-  > write_pacman_conf "LogFile = $pacman_log"
+  > write_pacman_conf "[options]" "LogFile = $pacman_log"
   > installed=( $(previously_installed dia) )
   > present_packages dia dia-0.1.0 dia-0.1.1 dia-0.2.2 dia-0.3.3
   Available packages (community):
