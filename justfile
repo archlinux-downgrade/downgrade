@@ -2,9 +2,6 @@
 scripts := `find bin -type f -executable -printf "%f "`
 manpages := `find doc -type f -name '*.md' -printf "%f "`
 
-# Executables
-pandoc := `which pandoc`
-
 # Metadata
 version := 'v' + `./bin/downgrade --version`
 
@@ -41,7 +38,7 @@ manpages:
   done
 
 _manpage md:
-  {{pandoc}} \
+  pandoc \
     --standalone \
     --to man \
     --output "doc/$(echo '{{md}}' | sed 's/.md$//')" \
