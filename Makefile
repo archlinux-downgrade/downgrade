@@ -1,37 +1,7 @@
 PREFIX       ?= /usr/local
 LOCALEPREFIX ?= $(PREFIX)/share/locale
 MANPREFIX    ?= $(PREFIX)/share/man
-PANDOC       ?= $(shell which pandoc)
-XDGPREFIX    ?= /etc/xdg
 SCRIPTS      ?= $(shell find bin -type f -executable -printf "%f\n")
-MANPAGES     ?= $(shell find doc -type f -name "*.md")
-
-.PHONY: setup
-setup:
-	command -v cram   || aurget cram
-	command -v vbump  || aurget vbump-git
-	command -v pandoc || stack install pandoc
-
-locale/%.pot: bin/%
-	xgettext \
-		--from-code=utf-8 -L shell \
-		--package-name="$*" \
-		--copyright-holder=$(AUTHOR) \
-		-o "$@" "$<"
-	find "locale/$*" -name "*.po" -exec msgmerge --update {} "$@" \;
-
-.PHONY: locale
-locale: $(SCRIPTS:%=locale/%.pot)
-
-doc/%: doc/%.md
-	$(PANDOC) --standalone --to man "$<" -o "$@"
-
-.PHONY: man
-man: $(MANPAGES:%.md=%)
-
-.PHONY: test
-test:
-	cram test
 
 .PHONY: install
 install:
@@ -63,13 +33,3 @@ uninstall:
 	    "$(DESTDIR)$(PREFIX)/share/fish/vendor_completions.d/$${script_}.fish" \
 	    "$(DESTDIR)$(LOCALEPREFIX)"/*/"LC_MESSAGES/$${script_}.mo"; \
 	done
-
-VERSION ?= $(shell sed '/^DOWNGRADE_VERSION="\([^"]*\)".*$$/!d; s//\1/' bin/downgrade)
-AUR_RELEASE_OPTIONS ?=
-
-.PHONY: release
-release: test
-	[ -n "$(VERSION)" ]
-	git tag -s -m "v$(VERSION)" "v$(VERSION)"
-	git push --follow-tags
-	aur-release $(AUR_RELEASE_OPTIONS) downgrade "$(VERSION)"
