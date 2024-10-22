@@ -234,7 +234,7 @@ sort_packages() {
 # <number> <path> <package name>
 output_package() {
   local number="$1" path="$2" pkgname="$3"
-  local pkg indicator=" " location version epoch release
+  local pkg indicator=" " location timestamp version epoch release
 
   if [[ -n "$current" ]] && [[ "$path" == *"$current"* ]]; then
     # Currently installed
@@ -253,22 +253,25 @@ output_package() {
   # Remote or local file
   if [[ $path =~ ^/ ]]; then
     location="$(dirname "$path")"
+    timestamp=$(stat -c '%y' "$path" | cut -d' ' -f1)
   else
     location="$(gettext 'remote')"
+    timestamp=
   fi
 
   IFS=, read -r epoch version release _ < <(
     extract_version_parts "$pkgname" "$path"
   )
 
-  printf "%s\t%s)\t%s\t%s\t%s\t%s\t%s\n" \
+  printf "%s\t%s)\t%s\t%s\t%s\t%s\t%s\t%s\n" \
     "$indicator" \
     "$number" \
     "$pkgname" \
     "$epoch" \
     "$version" \
     "$release" \
-    "$location"
+    "$location" \
+    "$timestamp"
 }
 
 # <package name> <package path>
