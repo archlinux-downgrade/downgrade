@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-22 09:37-0400\n"
+"POT-Creation-Date: 2024-10-22 12:44-0400\n"
 "PO-Revision-Date: 2020-04-21 12:56-0400\n"
 "Last-Translator: <jagw40k@free.fr>, <shankar.atreya@gmail.com>\n"
 "Language-Team: French\n"
@@ -130,77 +130,77 @@ msgstr ""
 msgid "See downgrade(8) for details."
 msgstr "Voir downgrade(8) pour plus de détails."
 
-#: bin/downgrade:101
+#: bin/downgrade:103
 msgid "Available packages"
 msgstr "Paquets disponibles"
 
-#: bin/downgrade:131
+#: bin/downgrade:124
+msgid "y"
+msgstr "o"
+
+#: bin/downgrade:143
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr ""
 "Ajouter $pkg dans la liste des paquets à ne pas mettre à jour "
 "automatiquement ? [o/N] "
 
-#: bin/downgrade:133
-msgid "y"
-msgstr "o"
-
-#: bin/downgrade:245
+#: bin/downgrade:257
 msgid "remote"
 msgstr "distant"
 
-#: bin/downgrade:303
+#: bin/downgrade:315
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
 
-#: bin/downgrade:320
+#: bin/downgrade:332
 msgid "Invalid choice"
 msgstr "Choix invalide"
 
-#: bin/downgrade:333
+#: bin/downgrade:345
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Impossible de rétrograder $name"
 
-#: bin/downgrade:362
+#: bin/downgrade:374
 msgid "Missing --pacman argument"
 msgstr "Argument --pacman manquant"
 
-#: bin/downgrade:375
+#: bin/downgrade:387
 msgid "Missing --pacman-conf argument"
 msgstr "Argument --pacman-conf manquant"
 
-#: bin/downgrade:388
+#: bin/downgrade:400
 msgid "Missing --ala-url argument"
 msgstr "Argument --ala-url manquant"
 
-#: bin/downgrade:401
+#: bin/downgrade:413
 msgid "Missing --pacman-cache argument"
 msgstr "Argument --pacman-cache manquant"
 
-#: bin/downgrade:414
+#: bin/downgrade:426
 msgid "Missing --pacman-log argument"
 msgstr "Argument --pacman-log manquant"
 
-#: bin/downgrade:427
+#: bin/downgrade:439
 msgid "Missing --maxdepth argument"
 msgstr "Argument --maxdepth manquant"
 
-#: bin/downgrade:448
+#: bin/downgrade:460
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Argument --pacman manquant"
 
-#: bin/downgrade:481
+#: bin/downgrade:493
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Option non reconnue $current_option"
 
-#: bin/downgrade:496
+#: bin/downgrade:508
 msgid "No packages provided for downgrading"
 msgstr "Aucun package fourni pour la rétrogradation"
 
-#: bin/downgrade:566
+#: bin/downgrade:578
 msgid "downgrade must be run as root"
 msgstr "le downgrade doit être exécuté en tant que root"
 

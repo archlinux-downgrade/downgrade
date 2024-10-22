@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-22 09:37-0400\n"
+"POT-Creation-Date: 2024-10-22 12:44-0400\n"
 "PO-Revision-Date: 2020-04-21 13:53+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -128,75 +128,75 @@ msgstr "Parinktys po simbolių -- bus traktuojamos kaip pacman parinktys."
 msgid "See downgrade(8) for details."
 msgstr "Išsamiau galite paskaityti downgrade(8)."
 
-#: bin/downgrade:101
+#: bin/downgrade:103
 msgid "Available packages"
 msgstr "Prieinami paketai"
 
-#: bin/downgrade:131
+#: bin/downgrade:124
+msgid "y"
+msgstr "t"
+
+#: bin/downgrade:143
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "pridėti $pkg į IgnorePkg? [t/N] "
 
-#: bin/downgrade:133
-msgid "y"
-msgstr "t"
-
-#: bin/downgrade:245
+#: bin/downgrade:257
 msgid "remote"
 msgstr "nutolęs"
 
-#: bin/downgrade:303
+#: bin/downgrade:315
 msgid "No results found"
 msgstr "Nieko nerasta"
 
-#: bin/downgrade:320
+#: bin/downgrade:332
 msgid "Invalid choice"
 msgstr "Netinkamas pasirinkimas"
 
-#: bin/downgrade:333
+#: bin/downgrade:345
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Neįmanoma paversti žemesnio lygio $name"
 
-#: bin/downgrade:362
+#: bin/downgrade:374
 msgid "Missing --pacman argument"
 msgstr "Trūksta argumento --pacman"
 
-#: bin/downgrade:375
+#: bin/downgrade:387
 msgid "Missing --pacman-conf argument"
 msgstr "Trūksta argumento --pacman-conf"
 
-#: bin/downgrade:388
+#: bin/downgrade:400
 msgid "Missing --ala-url argument"
 msgstr "Trūksta argumento --ala-url"
 
-#: bin/downgrade:401
+#: bin/downgrade:413
 msgid "Missing --pacman-cache argument"
 msgstr "Trūksta argumento --pacman-cache"
 
-#: bin/downgrade:414
+#: bin/downgrade:426
 msgid "Missing --pacman-log argument"
 msgstr "Trūksta argumento --pacman-log"
 
-#: bin/downgrade:427
+#: bin/downgrade:439
 msgid "Missing --maxdepth argument"
 msgstr "Trūksta argumento --maxdepth"
 
-#: bin/downgrade:448
+#: bin/downgrade:460
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Trūksta argumento --pacman"
 
-#: bin/downgrade:481
+#: bin/downgrade:493
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Neatpažinta parinktis $current_option"
 
-#: bin/downgrade:496
+#: bin/downgrade:508
 msgid "No packages provided for downgrading"
 msgstr "Nepateikta jokių pakuočių, leidžiančių pažengti žemiau"
 
-#: bin/downgrade:566
+#: bin/downgrade:578
 msgid "downgrade must be run as root"
 msgstr "downgrade turi būti paleistas kaip root"
 
