@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-21 22:52+0200\n"
+"POT-Creation-Date: 2024-10-22 09:37-0400\n"
 "PO-Revision-Date: 2020-04-21 23:16+0800\n"
 "Last-Translator:  <weih@opera.com>, <shankar.atreya@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -86,105 +86,110 @@ msgid "whether to add packages to IgnorePkg"
 msgstr "是否添加软件包到 IgnorePkg"
 
 #: bin/downgrade:30
+#, fuzzy
+msgid "remove packages from IgnorePkg"
+msgstr "是否添加软件包到 IgnorePkg"
+
+#: bin/downgrade:31
 msgid "pick latest matching version"
 msgstr ""
 
-#: bin/downgrade:31
+#: bin/downgrade:32
 msgid "pick oldest matching version"
 msgstr ""
 
-#: bin/downgrade:32
+#: bin/downgrade:33
 msgid "do not query ala if a matching package was found in cache"
 msgstr ""
 
-#: bin/downgrade:33
+#: bin/downgrade:34
 msgid "show downgrade version"
 msgstr "显示 downgrade 版本"
 
-#: bin/downgrade:34
+#: bin/downgrade:35
 msgid "show help script"
 msgstr "显示帮助脚本"
 
-#: bin/downgrade:36
+#: bin/downgrade:37
 msgid "Note"
 msgstr "注意"
 
-#: bin/downgrade:37
+#: bin/downgrade:38
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "-- 字符后的选项将被视为 pacman 选项。"
 
-#: bin/downgrade:38
+#: bin/downgrade:39
 msgid "See downgrade(8) for details."
 msgstr "详情请查看 downgrade(8)。"
 
-#: bin/downgrade:100
+#: bin/downgrade:101
 msgid "Available packages"
 msgstr "可选的包"
 
-#: bin/downgrade:130
+#: bin/downgrade:131
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "添加 $pkg 到 IgnorePkg? [y/N] "
 
-#: bin/downgrade:132
+#: bin/downgrade:133
 msgid "y"
 msgstr "y"
 
-#: bin/downgrade:244
+#: bin/downgrade:245
 msgid "remote"
 msgstr "远端"
 
-#: bin/downgrade:302
+#: bin/downgrade:303
 msgid "No results found"
 msgstr "未找到结果"
 
-#: bin/downgrade:319
+#: bin/downgrade:320
 msgid "Invalid choice"
 msgstr "选择无效"
 
-#: bin/downgrade:332
+#: bin/downgrade:333
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "无法降级 $name"
 
-#: bin/downgrade:361
+#: bin/downgrade:362
 msgid "Missing --pacman argument"
 msgstr "缺少 --pacman 参数"
 
-#: bin/downgrade:374
+#: bin/downgrade:375
 msgid "Missing --pacman-conf argument"
 msgstr "缺少 --pacman-conf 参数"
 
-#: bin/downgrade:387
+#: bin/downgrade:388
 msgid "Missing --ala-url argument"
 msgstr "缺少 --ala-url 参数"
 
-#: bin/downgrade:400
+#: bin/downgrade:401
 msgid "Missing --pacman-cache argument"
 msgstr "缺少 --pacman-cache 参数"
 
-#: bin/downgrade:413
+#: bin/downgrade:414
 msgid "Missing --pacman-log argument"
 msgstr "缺少 --pacman-log 参数"
 
-#: bin/downgrade:426
+#: bin/downgrade:427
 msgid "Missing --maxdepth argument"
 msgstr "缺少 --maxdepth 参数"
 
-#: bin/downgrade:447
+#: bin/downgrade:448
 msgid "Missing or wrong --ignore argument"
 msgstr "--pacman 参数缺失或有误"
 
-#: bin/downgrade:475
+#: bin/downgrade:481
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "无法识别的选项 $current_option"
 
-#: bin/downgrade:490
+#: bin/downgrade:496
 msgid "No packages provided for downgrading"
 msgstr "没有提供降级包"
 
-#: bin/downgrade:560
+#: bin/downgrade:566
 msgid "downgrade must be run as root"
 msgstr "downgrade 必须以 root 身份运行"
 
