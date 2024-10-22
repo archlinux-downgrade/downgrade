@@ -118,6 +118,16 @@ read_selection() {
   ((ans > 0 && ans <= $#)) && printf "%s" "${!ans}"
 }
 
+is_yes() {
+  local ans=${1,,} y
+
+  y=$(gettext 'y')
+
+  # Accept localized yes or english yes
+  # See https://github.com/archlinux-downgrade/downgrade/issues/219
+  [[ "${1,,}" == ${y}* ]] || [[ "${1,,}" == y* ]]
+}
+
 prompt_to_ignore() {
   local pkg ans
 
@@ -132,7 +142,7 @@ prompt_to_ignore() {
       else
         eval_gettext "add \$pkg to IgnorePkg? [y/N] "
         read -r ans
-        if [[ "${ans,,}" == $(gettext 'y')* ]]; then
+        if is_yes "$ans"; then
           pacignore add -c "$PACMAN_CONF" "$pkg"
         fi
       fi
