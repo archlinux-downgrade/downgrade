@@ -94,11 +94,19 @@ Command-line options can be set persistently in
 
 ## Development & Testing
 
-Install cram: https://aur.archlinux.org/packages/cram/
+Install `just` and `cram`: `pacman -S just python-cram`.
 
+```console
+just test
 ```
-make test
-```
+
+## Release
+
+Install aur-release: https://github.com/pbrisbin/aur-release
+
+1. Ensure completions and locale files are up to date
+2. Bump `DOWNGRADE_VERSION` in `bin/downgrade`
+3. Run `just release`
 
 ---
 
