@@ -118,3 +118,23 @@ Regression 1
   https://archive.archlinux.org/packages/c/cairo/cairo-1.16.0-2-x86_64.pkg.tar.xz
   https://archive.archlinux.org/packages/c/cairo/cairo-1.17.2+17+g52a7c79fd-1-x86_64.pkg.tar.xz
   https://archive.archlinux.org/packages/c/cairo/cairo-1.17.2+17+g52a7c79fd-2-x86_64.pkg.tar.xz
+
+Regression 2
+  $ DOWNGRADE_FROM_ALA=1 search_ala 'libc++'
+  https://archive.archlinux.org/packages/l/libc++/libc++-11.0.0-2-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-11.1.0-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-12.0.0-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-13.0.0-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-13.0.1-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-14.0.6-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-15.0.6-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-15.0.7-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-15.0.7-2-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-15.0.7-3-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-16.0.6-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-17.0.6-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-18.1.8-1-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-18.1.8-2-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-18.1.8-3-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-18.1.8-4-x86_64.pkg.tar.zst
+  https://archive.archlinux.org/packages/l/libc++/libc++-19.1.6-1-x86_64.pkg.tar.zst
