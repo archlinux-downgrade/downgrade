@@ -197,10 +197,17 @@ matches_name_version_filter() {
 }
 
 search_ala() {
-  local name=$1 pkgfile_re index
+  local name=$1 uriname pkgfile_re index
 
-  pkgfile_re="$name-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
-  index="$DOWNGRADE_ALA_URL/packages/${name:0:1}/$name/"
+  # This is a *very* naive URI encoding. Packages typically don't use characters
+  # that need encoding, so we'll just add them as we get bug reports. So far +
+  # seems to be the only one, which makes sense. If we ever move to a "real
+  # language", we can use a library for this bit.
+  # shellcheck disable=SC2001
+  uriname=$(sed 's/+/%2B/g' <<< "$name")
+
+  pkgfile_re="$uriname-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
+  index="$DOWNGRADE_ALA_URL/packages/${uriname:0:1}/$uriname/"
 
   curl --fail --silent "$index" | sed_msg "to parse A.L.A." -E '
     /.* href="('"$pkgfile_re"')".*/!d;
