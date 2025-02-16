@@ -87,12 +87,12 @@ msgstr "use apenas pacotes em cache"
 #: bin/downgrade:29
 #, fuzzy
 msgid "whether to add packages to IgnorePkg"
-msgstr "adicionar $pkg em IgnorePkg? [s/N] "
+msgstr "Adicionar $pkg à lista IgnorePkg? [s/N] "
 
 #: bin/downgrade:30
 #, fuzzy
 msgid "remove packages from IgnorePkg"
-msgstr "adicionar $pkg em IgnorePkg? [s/N] "
+msgstr "Remover $pkg da lista IgnorePkg? [s/N] "
 
 #: bin/downgrade:31
 msgid "pick latest matching version"
