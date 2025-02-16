@@ -19,6 +19,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+
 #: bin/downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr "Uso: downgrade [opções...] <pkg> [pkg...] [-- opções_do_pacman...]"
@@ -57,7 +58,7 @@ msgstr "ou o padrão é"
 
 #: bin/downgrade:19
 msgid "pacman log file,"
-msgstr "arquivo de log pacman"
+msgstr "Arquivo de log do Pacman,"
 
 #: bin/downgrade:20
 msgid "default value taken from pacman configuration file,"
@@ -95,15 +96,15 @@ msgstr "adicionar $pkg em IgnorePkg? [s/N] "
 
 #: bin/downgrade:31
 msgid "pick latest matching version"
-msgstr ""
+msgstr "Escolha a versão mais recente de correspondência"
 
 #: bin/downgrade:32
 msgid "pick oldest matching version"
-msgstr ""
+msgstr "Escolha a versão mais antiga de correspondência"
 
 #: bin/downgrade:33
 msgid "do not query ala if a matching package was found in cache"
-msgstr ""
+msgstr "Não consulte Ala se um pacote correspondente foi encontrado em cache"
 
 #: bin/downgrade:34
 msgid "show downgrade version"
