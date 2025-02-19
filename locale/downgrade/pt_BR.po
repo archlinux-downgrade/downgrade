@@ -57,7 +57,7 @@ msgstr "ou o padrão é"
 
 #: bin/downgrade:19
 msgid "pacman log file,"
-msgstr "Arquivo de log do Pacman,"
+msgstr "arquivo de log do Pacman,"
 
 #: bin/downgrade:20
 msgid "default value taken from pacman configuration file,"
