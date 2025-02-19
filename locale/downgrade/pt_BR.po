@@ -19,7 +19,6 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-
 #: bin/downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr "Uso: downgrade [opções...] <pkg> [pkg...] [-- opções_do_pacman...]"
