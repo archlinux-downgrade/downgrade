@@ -86,24 +86,24 @@ msgstr "use apenas pacotes em cache"
 #: bin/downgrade:29
 #, fuzzy
 msgid "whether to add packages to IgnorePkg"
-msgstr "Adicionar $pkg à lista IgnorePkg? [s/N] "
+msgstr "adicionar $pkg à lista IgnorePkg? [s/N] "
 
 #: bin/downgrade:30
 #, fuzzy
 msgid "remove packages from IgnorePkg"
-msgstr "Remover $pkg da lista IgnorePkg? [s/N] "
+msgstr "remover $pkg da lista IgnorePkg? [s/N] "
 
 #: bin/downgrade:31
 msgid "pick latest matching version"
-msgstr "Escolha a versão mais recente de correspondência"
+msgstr "escolha a versão mais recente de correspondência"
 
 #: bin/downgrade:32
 msgid "pick oldest matching version"
-msgstr "Escolha a versão mais antiga de correspondência"
+msgstr "escolha a versão mais antiga de correspondência"
 
 #: bin/downgrade:33
 msgid "do not query ala if a matching package was found in cache"
-msgstr "Não consulte Ala se um pacote correspondente foi encontrado em cache"
+msgstr "não consulte Ala se um pacote correspondente foi encontrado em cache"
 
 #: bin/downgrade:34
 msgid "show downgrade version"
