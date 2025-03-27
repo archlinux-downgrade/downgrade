@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Setup packages
-        run: sudo pacman -Sy --needed --noconfirm git nodejs
+        run: sudo pacman -Sy --needed --noconfirm git nodejs npm
 
       - uses: actions/checkout@v4
         with:
@@ -32,6 +32,5 @@ jobs:
 
       # TEMPORARY
       - run: |
-          git log --oneline --decorate --graph 30
           ./bin/downgrade --version
           grep DOWNGRADE_VERSION bin/downgrade
