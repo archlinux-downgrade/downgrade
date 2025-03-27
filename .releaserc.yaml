@@ -1,0 +1,20 @@
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - - "@semantic-release/github"
+    - successCommentCondition: false
+
+  - - "@semantic-release/exec"
+    - prepareCmd: |
+        sed -i 's/^DOWNGRADE_VERSION=".*"/DOWNGRADE_VERSION="${nextRelease.version}"/' bin/downgrade
+
+  - - "@semantic-release/git"
+    - assets: "bin/downgrade"
+      message: "chore(release): bump DOWNGRADE_VERSION"
+
+  - "semantic-release-aur"
+
+branches:
+  - main
+  - name: rc/*
+    prerelease: '${name.replace(/^rc\//, "rc-")}'
