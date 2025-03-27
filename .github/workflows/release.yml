@@ -14,15 +14,19 @@ jobs:
 
     steps:
       - name: Setup packages
-        run: sudo pacman -Sy --needed --noconfirm git nodejs npm
+        run: |
+          sudo pacman -Sy --needed --noconfirm \
+            git \
+            nodejs \
+            npm \
+            pacman-contrib
 
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
 
-      - run: |
-          git config --global --add safe.directory /__w/downgrade/downgrade
-          git remote show origin
+      - name: Fix git permissions
+        run: git config --global --add safe.directory "$PWD"
 
       - id: release
         uses: cycjimmy/semantic-release-action@v4
