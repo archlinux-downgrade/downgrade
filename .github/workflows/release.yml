@@ -20,6 +20,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - run: |
+          git remote show origin
+
       - id: release
         uses: cycjimmy/semantic-release-action@v4
         with:
