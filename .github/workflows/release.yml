@@ -34,6 +34,7 @@ jobs:
         env:
           FORCE_COLOR: 1
           GITHUB_TOKEN: ${{ github.token }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       # TEMPORARY
       - run: |
