@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - rc/*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    container:
+      image: "archlinux:base-devel"
+
+    steps:
+      - name: Setup packages
+        run: |
+          sudo pacman -Sy --needed --noconfirm \
+            git \
+            nodejs \
+            npm \
+            openssh \
+            pacman-contrib
+
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Fix git permissions
+        run: git config --global --add safe.directory "$PWD"
+
+      - id: release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          extra_plugins: |
+            @semantic-release/exec
+            @semantic-release/git
+            git+https://github.com/pbrisbin/semantic-release-aur.git#main
+        env:
+          FORCE_COLOR: 1
+          GITHUB_TOKEN: ${{ github.token }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # TEMPORARY
+      - run: |
+          ./bin/downgrade --version
+          grep DOWNGRADE_VERSION bin/downgrade
