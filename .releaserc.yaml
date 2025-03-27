@@ -1,0 +1,14 @@
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - - "@semantic-release/github"
+    - assets: "downgrade-*.tar.gz"
+      successCommentCondition: false
+      failCommentCondition: false
+  - - "@semantic-release/exec"
+    - prepareCmd: "just package ${nextRelease.version}"
+
+branches:
+  - main
+  - name: rc/*
+    prerelease: '${name.replace(/^rc\//, "rc-")}'
