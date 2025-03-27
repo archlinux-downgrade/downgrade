@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Setup packages
-        run: sudo pacman -S --needed --noconfirm git nodejs
+        run: sudo pacman -Sy --needed --noconfirm git nodejs
 
       - uses: actions/checkout@v4
         with:
