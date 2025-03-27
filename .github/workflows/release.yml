@@ -19,6 +19,7 @@ jobs:
             git \
             nodejs \
             npm \
+            openssh \
             pacman-contrib
 
       - uses: actions/checkout@v4
