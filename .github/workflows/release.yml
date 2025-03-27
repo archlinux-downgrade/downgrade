@@ -21,6 +21,7 @@ jobs:
           persist-credentials: false
 
       - run: |
+          git config --global --add safe.directory /__w/downgrade/downgrade
           git remote show origin
 
       - id: release
