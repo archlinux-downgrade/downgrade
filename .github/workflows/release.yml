@@ -29,6 +29,7 @@ jobs:
             git+https://github.com/pbrisbin/semantic-release-aur.git#main
         env:
           FORCE_COLOR: 1
+          GITHUB_TOKEN: ${{ github.token }}
 
       # TEMPORARY
       - run: |
