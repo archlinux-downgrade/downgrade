@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - rc/*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: gem install --user ronn-ng
+      - run: |
+          for bin in "$HOME"/.local/share/gem/ruby/*/bin; do
+            echo "$bin"
+          done >>"$GITHUB_PATH"
+
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - id: release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          extra_plugins: |
+            @semantic-release/exec
+        env:
+          FORCE_COLOR: 1
+          GITHUB_TOKEN: ${{ github.token }}
