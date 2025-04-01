@@ -1,2 +1,3 @@
+doc/*.html
 test/**/*.t.err
 locale/*/*~

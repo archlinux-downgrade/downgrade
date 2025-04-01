@@ -6,4 +6,3 @@ restylers:
   - prettier-markdown:
       include:
         - "*.md"
-        - "doc/*.md"
