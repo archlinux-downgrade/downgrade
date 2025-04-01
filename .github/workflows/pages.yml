@@ -1,0 +1,44 @@
+name: Pages
+
+on:
+  push:
+    branches: "main"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: gem install --user ronn-ng
+      - run: |
+          for bin in "$HOME"/.local/share/gem/ruby/*/bin; do
+            echo "$bin"
+          done >>"$GITHUB_PATH"
+      - uses: actions/checkout@v4
+
+      - name: Generate HTML man-pages
+        run: ronn --style toc --html doc/*.ronn
+
+      - name: Copy HTML sources to _site
+        run: |
+          mkdir -p _site
+          cp -v doc/*.html _site/
+          cp -v _site/downgrade.8.html _site/index.html
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
