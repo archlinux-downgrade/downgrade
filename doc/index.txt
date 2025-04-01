@@ -1,0 +1,10 @@
+# manuals included in this project:
+
+# external manuals
+pacman(8) https://man.archlinux.org/man/pacman.8
+vercmp(8) https://man.archlinux.org/man/vercmp.8
+sudo(8) https://man.archlinux.org/man/sudo.8
+pacman.conf(5) https://man.archlinux.org/man/pacman.conf.5
+find(1) https://man.archlinux.org/man/find.1
+su(1) https://man.archlinux.org/man/su.1
+fzf(1) https://man.archlinux.org/man/fzf.1
