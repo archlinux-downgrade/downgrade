@@ -1,6 +1,5 @@
 # Sources
 scripts := `find bin -type f -executable -printf "%f "`
-manpages := `find doc -type f -name '*.md' -printf "%f "`
 
 # Metadata
 version := 'v' + `./bin/downgrade --version`
@@ -33,16 +32,7 @@ _locales exec:
 
 # Re-generate man-pages
 manpages:
-  for manpage_ in {{manpages}}; do \
-    just _manpage "$manpage_"; \
-  done
-
-_manpage md:
-  pandoc \
-    --standalone \
-    --to man \
-    --output "doc/$(echo '{{md}}' | sed 's/.md$//')" \
-    'doc/{{md}}'
+  ronn --roff doc/*.ronn
 
 release:
   git tag --sign --message '{{version}}' '{{version}}'
