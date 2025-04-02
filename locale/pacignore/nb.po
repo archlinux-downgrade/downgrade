@@ -17,68 +17,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/pacignore:8
+#: src/pacignore:8
 msgid "Usage: pacignore ls [option...]"
 msgstr "Bruk: pacignore ls [option...]"
 
-#: bin/pacignore:9
+#: src/pacignore:9
 msgid "Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
 msgstr "Bruk: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
 
-#: bin/pacignore:11
+#: src/pacignore:11
 msgid "Subcommands"
 msgstr "Underkommandoer"
 
-#: bin/pacignore:12
+#: src/pacignore:12
 msgid "list existing packages in the IgnorePkg directive"
 msgstr "liste eksisterende pakker i IgnorePkg -direktivet"
 
-#: bin/pacignore:13
+#: src/pacignore:13
 msgid "check if a specified package is being ignored"
 msgstr "sjekk om en spesifisert pakke blir ignorert"
 
-#: bin/pacignore:14
+#: src/pacignore:14
 msgid "add package(s) to the IgnorePkg directive"
 msgstr "legg til pakke (er) i IgnorePkg -direktivet"
 
-#: bin/pacignore:15
+#: src/pacignore:15
 msgid "remove package(s) from the IgnorePkg directive"
 msgstr "fjern pakken (e) fra IgnorePkg -direktivet"
 
-#: bin/pacignore:17
+#: src/pacignore:17
 msgid "Options"
 msgstr "Alternativer"
 
-#: bin/pacignore:18
+#: src/pacignore:18
 msgid "path"
 msgstr "filsti"
 
-#: bin/pacignore:19
+#: src/pacignore:19
 msgid "pacman configuration file, defaults to"
 msgstr "pacman konfigurasjonsfil, er standard til"
 
-#: bin/pacignore:20
+#: src/pacignore:20
 msgid "show help script"
 msgstr "vis hjelpeskript"
 
-#: bin/pacignore:61
+#: src/pacignore:61
 #, sh-format
 msgid "Skipping $pkg as it is already ignored"
 msgstr "Hopper over $pkg som det allerede er ignorert"
 
-#: bin/pacignore:86
+#: src/pacignore:86
 #, sh-format
 msgid "Skipping $pkg as it is was never ignored"
 msgstr "Hopp over $pkg som det aldri ble ignorert"
 
-#: bin/pacignore:102
+#: src/pacignore:102
 msgid "Error in reading pacman configuration file"
 msgstr "Feil ved å lese pacman -konfigurasjonsfilen"
 
-#: bin/pacignore:163
+#: src/pacignore:163
 msgid "pacignore must be run as root for this subcommand"
 msgstr "pacignore må kjøres som root for denne underkommandoen"
 
-#: bin/pacignore:172
+#: src/pacignore:172
 msgid "No packages provided"
 msgstr "Ingen pakker levert"

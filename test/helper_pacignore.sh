@@ -2,7 +2,7 @@
 export SRCDIR=${TESTDIR/\/test*/}
 
 # Place mocks on $PATH (e.g. curl)
-export PATH="$SRCDIR/bin:$SRCDIR/test/bin:$PATH"
+export PATH="$SRCDIR/src:$SRCDIR/test/bin:$PATH"
 
 # Create pacignore test directory
 export TMP_PACIGNORE="/tmp/pacignore/test"

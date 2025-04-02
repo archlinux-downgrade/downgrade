@@ -16,68 +16,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: bin/pacignore:8
+#: src/pacignore:8
 msgid "Usage: pacignore ls [option...]"
 msgstr "用法：pacignore ls [option...]"
 
-#: bin/pacignore:9
+#: src/pacignore:9
 msgid "Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
 msgstr "用法：pacignore {check|add|rm} [option...] <包> [包...]"
 
-#: bin/pacignore:11
+#: src/pacignore:11
 msgid "Subcommands"
 msgstr "子命令"
 
-#: bin/pacignore:12
+#: src/pacignore:12
 msgid "list existing packages in the IgnorePkg directive"
 msgstr "在IgnorePkg指令中列出现有软件包"
 
-#: bin/pacignore:13
+#: src/pacignore:13
 msgid "check if a specified package is being ignored"
 msgstr "检查是否忽略了指定的软件包"
 
-#: bin/pacignore:14
+#: src/pacignore:14
 msgid "add package(s) to the IgnorePkg directive"
 msgstr "将软件包添加到IgnorePkg指令中"
 
-#: bin/pacignore:15
+#: src/pacignore:15
 msgid "remove package(s) from the IgnorePkg directive"
 msgstr "从IgnorePkg指令中删除软件包"
 
-#: bin/pacignore:17
+#: src/pacignore:17
 msgid "Options"
 msgstr "选件"
 
-#: bin/pacignore:18
+#: src/pacignore:18
 msgid "path"
 msgstr "文件路径"
 
-#: bin/pacignore:19
+#: src/pacignore:19
 msgid "pacman configuration file, defaults to"
 msgstr "pacman配置文件，默认为"
 
-#: bin/pacignore:20
+#: src/pacignore:20
 msgid "show help script"
 msgstr "显示帮助脚本"
 
-#: bin/pacignore:61
+#: src/pacignore:61
 #, sh-format
 msgid "Skipping $pkg as it is already ignored"
 msgstr "跳过$pkg，因为它已经被忽略了"
 
-#: bin/pacignore:86
+#: src/pacignore:86
 #, sh-format
 msgid "Skipping $pkg as it is was never ignored"
 msgstr "跳过$pkg，因为它从未被忽略"
 
-#: bin/pacignore:102
+#: src/pacignore:102
 msgid "Error in reading pacman configuration file"
 msgstr "阅读pacman配置文件中的错误"
 
-#: bin/pacignore:163
+#: src/pacignore:163
 msgid "pacignore must be run as root for this subcommand"
 msgstr "帕克尼奥尔必须作为此子命令作为root运行"
 
-#: bin/pacignore:172
+#: src/pacignore:172
 msgid "No packages provided"
 msgstr "没有提供包"

@@ -18,68 +18,68 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
 
-#: bin/pacignore:8
+#: src/pacignore:8
 msgid "Usage: pacignore ls [option...]"
 msgstr "Użycie: pacignore ls [opcje...]"
 
-#: bin/pacignore:9
+#: src/pacignore:9
 msgid "Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
 msgstr "Użycie: pacignore {check|add|rm} [opcje...] <pkg> [pkg...]"
 
-#: bin/pacignore:11
+#: src/pacignore:11
 msgid "Subcommands"
 msgstr "Podkomendy"
 
-#: bin/pacignore:12
+#: src/pacignore:12
 msgid "list existing packages in the IgnorePkg directive"
 msgstr "wymień istniejące pakiety w dyrektywie IgnorePkg"
 
-#: bin/pacignore:13
+#: src/pacignore:13
 msgid "check if a specified package is being ignored"
 msgstr "sprawdź, czy określony pakiet jest ignorowany"
 
-#: bin/pacignore:14
+#: src/pacignore:14
 msgid "add package(s) to the IgnorePkg directive"
 msgstr "Dodaj pakiety do dyrektywy IgnorePkg"
 
-#: bin/pacignore:15
+#: src/pacignore:15
 msgid "remove package(s) from the IgnorePkg directive"
 msgstr "usuń pakiety z dyrektywy IgnorePkg"
 
-#: bin/pacignore:17
+#: src/pacignore:17
 msgid "Options"
 msgstr "Opcje"
 
-#: bin/pacignore:18
+#: src/pacignore:18
 msgid "path"
 msgstr "ścieżka pliku"
 
-#: bin/pacignore:19
+#: src/pacignore:19
 msgid "pacman configuration file, defaults to"
 msgstr "plik konfiguracyjny pacmana, domyślnie"
 
-#: bin/pacignore:20
+#: src/pacignore:20
 msgid "show help script"
 msgstr "pokaż skrypt pomocy"
 
-#: bin/pacignore:61
+#: src/pacignore:61
 #, sh-format
 msgid "Skipping $pkg as it is already ignored"
 msgstr "Pomijanie $pkg, ponieważ jest już ignorowane"
 
-#: bin/pacignore:86
+#: src/pacignore:86
 #, sh-format
 msgid "Skipping $pkg as it is was never ignored"
 msgstr "Pomijanie $pkg, ponieważ nigdy nie zostało ignorowane"
 
-#: bin/pacignore:102
+#: src/pacignore:102
 msgid "Error in reading pacman configuration file"
 msgstr "Błąd w odczytaniu pliku konfiguracyjnego pacman"
 
-#: bin/pacignore:163
+#: src/pacignore:163
 msgid "pacignore must be run as root for this subcommand"
 msgstr "pacignore musi być uruchomiony jako root dla tego podkomenda"
 
-#: bin/pacignore:172
+#: src/pacignore:172
 msgid "No packages provided"
 msgstr "Brak pakietów"
