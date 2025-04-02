@@ -8,7 +8,7 @@ export SRCDIR=${TESTDIR/\/test*/}
 export PATH="$SRCDIR/test/bin:$PATH"
 
 # Load implementation
-source "$SRCDIR"/bin/downgrade
+source "$SRCDIR"/src/downgrade
 
 # Set script defaults for test environment
 export PACMAN_CONF=$(mktemp)
