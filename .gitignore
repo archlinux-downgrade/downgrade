@@ -1,3 +1,6 @@
-doc/*.html
-test/**/*.t.err
+doc/*
+!doc/index.txt
+!doc/*.ronn
 locale/*/*~
+locale/*.pot
+test/**/*.t.err
