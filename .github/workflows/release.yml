@@ -17,6 +17,8 @@ jobs:
             echo "$bin"
           done >>"$GITHUB_PATH"
 
+      - uses: extractions/setup-just@v3
+
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
