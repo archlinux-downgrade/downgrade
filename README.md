@@ -102,11 +102,33 @@ just test
 
 ## Release
 
-Install aur-release: https://github.com/pbrisbin/aur-release
+If your change is meant to trigger release, use a [conventional-commit][]
+prefix in your commit message:
 
-1. Ensure completions and locale files are up to date
-2. Bump `DOWNGRADE_VERSION` in `bin/downgrade`
-3. Run `just release`
+[contentional-commit]: https://www.conventionalcommits.org/en/v1.0.0/#summary
+
+1. `fix:` to trigger a patch release,
+1. `feat:` to trigger minor, or
+1. `feat!:` to trigger major
+
+When such a commit is merged to `main`, a new GitHub release will be prepared.
+
+Then, the following steps must be done manually (for now):
+
+```sh
+git clone ssh://aur@aur.archlinux.org/downgrade /tmp/downgrade
+cd /tmp/downgrade
+
+vim PKGBUILD # update `pkgver`
+
+updpkgsums
+makepkg --printsrcinfo >.SRCINFO
+makepkg --syncdeps --install --force # to test
+
+git add .SRCINFO PKGBUILD
+git commit -m 'Release vX.X.X'
+git push
+```
 
 ---
 
