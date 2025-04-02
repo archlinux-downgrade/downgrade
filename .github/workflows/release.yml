@@ -37,3 +37,22 @@ jobs:
         env:
           FORCE_COLOR: 1
           GITHUB_TOKEN: ${{ github.token }}
+
+    outputs:
+      published: ${{ steps.release.outputs.new_release_published }}
+      version: ${{ steps.release.outputs.new_release_version}}
+
+  pkgbuild:
+    needs: [release]
+    if: ${{ needs.release.outputs.published == 'true' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: archlinux-downgrade/aur-publish-action@v1
+        with:
+          package: downgrade
+          version: ${{ needs.release.outputs.version }}
+          publish: ${{ github.ref_name == 'main' }}
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
