@@ -1,20 +1,24 @@
 # Sources
 scripts := `find bin -type f -executable -printf "%f "`
 
-# Metadata
-version := 'v' + `./bin/downgrade --version`
-
 # Run tests
 test:
   cram test
 
+# Update version and package a tar.gz
+package version:
+  sed -i 's/^DOWNGRADE_VERSION=".*"/DOWNGRADE_VERSION="{{version}}"/' bin/downgrade
+  just locales "{{version}}"
+  just manpages
+  tar cvfz downgrade-{{version}}.tar.gz bin conf completion doc locale
+
 # Re-generate translations
-locales:
+locales version:
   for script_ in {{scripts}}; do \
-    just _locales "$script_"; \
+    just _locales "$script_" "{{version}}"; \
   done
 
-_locales exec:
+_locales exec version:
   xgettext \
     --from-code=utf-8 -L shell \
     --package-name={{exec}} \
@@ -24,17 +28,7 @@ _locales exec:
     'locale/{{exec}}' \
     -name "*.po" \
     -exec msgmerge --update {} 'locale/{{exec}}.pot' \;
-  sed -i '\
-    /^# Copyright.*$/d; \
-    s/^\(# This file is\).*$/\1 put in the public domain./\
-    ' \
-    'locale/{{exec}}.pot'
 
 # Re-generate man-pages
 manpages:
   ronn --roff doc/*.ronn
-
-release:
-  git tag --sign --message '{{version}}' '{{version}}'
-  git push --follow-tags
-  aur-release downgrade '{{version}}'
