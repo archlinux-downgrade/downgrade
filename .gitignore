@@ -1,6 +1,12 @@
+dist/bin
+dist/doc
+dist/locale
+
 doc/*
 !doc/index.txt
 !doc/*.ronn
-locale/*/*~
-locale/*.pot
+
+locale/*
+!locale/*.po
+
 test/**/*.t.err

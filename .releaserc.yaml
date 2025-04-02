@@ -6,7 +6,7 @@ plugins:
       successCommentCondition: false
       failCommentCondition: false
   - - "@semantic-release/exec"
-    - prepareCmd: "just package ${nextRelease.version}"
+    - prepareCmd: "just dist ${nextRelease.version}"
 
 branches:
   - main
