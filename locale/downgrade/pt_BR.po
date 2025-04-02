@@ -19,181 +19,181 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: bin/downgrade:7
+#: src/downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr "Uso: downgrade [opções...] <pkg> [pkg...] [-- opções_do_pacman...]"
 
-#: bin/downgrade:9
+#: src/downgrade:9
 msgid "Options"
 msgstr "Opções"
 
-#: bin/downgrade:10
+#: src/downgrade:10
 msgid "command"
 msgstr "comando"
 
-#: bin/downgrade:11
+#: src/downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr "comando pacman a usar, o padrão é"
 
-#: bin/downgrade:12 bin/downgrade:14 bin/downgrade:18
+#: src/downgrade:12 src/downgrade:14 src/downgrade:18
 msgid "path"
 msgstr "caminho de arquivo"
 
-#: bin/downgrade:13
+#: src/downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr "arquivo de configuração pacman, o padrão é"
 
-#: bin/downgrade:15
+#: src/downgrade:15
 msgid "pacman cache directory,"
 msgstr "diretório de cache pacman,"
 
-#: bin/downgrade:16
+#: src/downgrade:16
 msgid "default value(s) taken from pacman configuration file,"
 msgstr "valor padrão obtido do arquivo de configuração pacman,"
 
-#: bin/downgrade:17 bin/downgrade:21
+#: src/downgrade:17 src/downgrade:21
 msgid "or otherwise defaults to"
 msgstr "ou o padrão é"
 
-#: bin/downgrade:19
+#: src/downgrade:19
 msgid "pacman log file,"
 msgstr "arquivo de log do Pacman,"
 
-#: bin/downgrade:20
+#: src/downgrade:20
 msgid "default value taken from pacman configuration file,"
 msgstr "valor padrão obtido do arquivo de configuração pacman,"
 
-#: bin/downgrade:22
+#: src/downgrade:22
 msgid "integer"
 msgstr "inteiro"
 
-#: bin/downgrade:23
+#: src/downgrade:23
 msgid "maximum depth to search for cached packages, defaults to"
 msgstr "profundidade máxima para procurar pacotes em cache, o padrão é"
 
-#: bin/downgrade:25
+#: src/downgrade:25
 msgid "location of ALA server, defaults to"
 msgstr "localização do servidor ALA, o padrão é"
 
-#: bin/downgrade:26
+#: src/downgrade:26
 msgid "only use ALA server"
 msgstr "use apenas o servidor ALA"
 
-#: bin/downgrade:27
+#: src/downgrade:27
 msgid "only use cached packages"
 msgstr "use apenas pacotes em cache"
 
-#: bin/downgrade:29
+#: src/downgrade:29
 #, fuzzy
 msgid "whether to add packages to IgnorePkg"
 msgstr "adicionar $pkg à lista IgnorePkg? [s/N] "
 
-#: bin/downgrade:30
+#: src/downgrade:30
 #, fuzzy
 msgid "remove packages from IgnorePkg"
 msgstr "remover $pkg da lista IgnorePkg? [s/N] "
 
-#: bin/downgrade:31
+#: src/downgrade:31
 msgid "pick latest matching version"
 msgstr "escolha a versão mais recente de correspondência"
 
-#: bin/downgrade:32
+#: src/downgrade:32
 msgid "pick oldest matching version"
 msgstr "escolha a versão mais antiga de correspondência"
 
-#: bin/downgrade:33
+#: src/downgrade:33
 msgid "do not query ala if a matching package was found in cache"
 msgstr "não consulte Ala se um pacote correspondente foi encontrado em cache"
 
-#: bin/downgrade:34
+#: src/downgrade:34
 msgid "show downgrade version"
 msgstr "mostrar a versão downgrade"
 
-#: bin/downgrade:35
+#: src/downgrade:35
 msgid "show help script"
 msgstr "mostrar script de ajuda"
 
-#: bin/downgrade:37
+#: src/downgrade:37
 msgid "Note"
 msgstr "Nota"
 
-#: bin/downgrade:38
+#: src/downgrade:38
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "As opções após os caracteres -- serão tratadas como opções do pacman."
 
-#: bin/downgrade:39
+#: src/downgrade:39
 msgid "See downgrade(8) for details."
 msgstr "Veja downgrade(8) para mais detalhes."
 
-#: bin/downgrade:103
+#: src/downgrade:103
 msgid "Available packages"
 msgstr "Pacotes disponíveis"
 
-#: bin/downgrade:124
+#: src/downgrade:124
 msgid "y"
 msgstr "s"
 
-#: bin/downgrade:143
+#: src/downgrade:143
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "adicionar $pkg em IgnorePkg? [s/N] "
 
-#: bin/downgrade:257
+#: src/downgrade:265
 msgid "remote"
 msgstr "remoto"
 
-#: bin/downgrade:315
+#: src/downgrade:325
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
 
-#: bin/downgrade:332
+#: src/downgrade:342
 msgid "Invalid choice"
 msgstr "Escolha inválida"
 
-#: bin/downgrade:345
+#: src/downgrade:355
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Não foi possível fazer o downgrade $name"
 
-#: bin/downgrade:374
+#: src/downgrade:384
 msgid "Missing --pacman argument"
 msgstr "Argumento --pacman ausente"
 
-#: bin/downgrade:387
+#: src/downgrade:397
 msgid "Missing --pacman-conf argument"
 msgstr "Argumento --pacman-conf ausente"
 
-#: bin/downgrade:400
+#: src/downgrade:410
 msgid "Missing --ala-url argument"
 msgstr "Argumento --ala-url ausente"
 
-#: bin/downgrade:413
+#: src/downgrade:423
 msgid "Missing --pacman-cache argument"
 msgstr "Argumento --pacman-cache ausente"
 
-#: bin/downgrade:426
+#: src/downgrade:436
 msgid "Missing --pacman-log argument"
 msgstr "Argumento --pacman-log ausente"
 
-#: bin/downgrade:439
+#: src/downgrade:449
 msgid "Missing --maxdepth argument"
 msgstr "Argumento --maxdepth ausente"
 
-#: bin/downgrade:460
+#: src/downgrade:470
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Argumento --pacman ausente"
 
-#: bin/downgrade:493
+#: src/downgrade:503
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Opção não reconhecida $current_option"
 
-#: bin/downgrade:508
+#: src/downgrade:518
 msgid "No packages provided for downgrading"
 msgstr "Nenhum pacote fornecido para desatualização"
 
-#: bin/downgrade:578
+#: src/downgrade:588
 msgid "downgrade must be run as root"
 msgstr "downgrade deve ser executado como root"
 

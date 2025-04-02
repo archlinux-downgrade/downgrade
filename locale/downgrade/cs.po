@@ -16,184 +16,184 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: bin/downgrade:7
+#: src/downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr ""
 "Použití: downgrade [argumenty...] <balíček> [balíček...] [-- <argumenty "
 "Pacmanu>]"
 
-#: bin/downgrade:9
+#: src/downgrade:9
 msgid "Options"
 msgstr "Argumenty"
 
-#: bin/downgrade:10
+#: src/downgrade:10
 msgid "command"
 msgstr "příkaz"
 
-#: bin/downgrade:11
+#: src/downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr "příkaz pacman, výchozí nastavení je"
 
-#: bin/downgrade:12 bin/downgrade:14 bin/downgrade:18
+#: src/downgrade:12 src/downgrade:14 src/downgrade:18
 msgid "path"
 msgstr "soubor"
 
-#: bin/downgrade:13
+#: src/downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr "konfigurační soubor pacman, výchozí nastavení"
 
-#: bin/downgrade:15
+#: src/downgrade:15
 msgid "pacman cache directory,"
 msgstr "adresář mezipaměti pacman,"
 
-#: bin/downgrade:16
+#: src/downgrade:16
 msgid "default value(s) taken from pacman configuration file,"
 msgstr "výchozí hodnota převzatá z konfiguračního souboru pacman,"
 
-#: bin/downgrade:17 bin/downgrade:21
+#: src/downgrade:17 src/downgrade:21
 msgid "or otherwise defaults to"
 msgstr "nebo jinak výchozí"
 
-#: bin/downgrade:19
+#: src/downgrade:19
 msgid "pacman log file,"
 msgstr "soubor protokolu pacman"
 
-#: bin/downgrade:20
+#: src/downgrade:20
 msgid "default value taken from pacman configuration file,"
 msgstr "výchozí hodnota převzatá z konfiguračního souboru pacman,"
 
-#: bin/downgrade:22
+#: src/downgrade:22
 msgid "integer"
 msgstr "celé číslo"
 
-#: bin/downgrade:23
+#: src/downgrade:23
 msgid "maximum depth to search for cached packages, defaults to"
 msgstr ""
 "maximální hloubka pro vyhledávání balíčků v mezipaměti, výchozí hodnota"
 
-#: bin/downgrade:25
+#: src/downgrade:25
 msgid "location of ALA server, defaults to"
 msgstr "umístění serveru ALA, výchozí nastavení je"
 
-#: bin/downgrade:26
+#: src/downgrade:26
 msgid "only use ALA server"
 msgstr "používejte pouze server ALA"
 
-#: bin/downgrade:27
+#: src/downgrade:27
 msgid "only use cached packages"
 msgstr "používejte pouze balíčky v mezipaměti"
 
-#: bin/downgrade:29
+#: src/downgrade:29
 #, fuzzy
 msgid "whether to add packages to IgnorePkg"
 msgstr "přidat $pkg mezi ignorované? [a/N] "
 
-#: bin/downgrade:30
+#: src/downgrade:30
 #, fuzzy
 msgid "remove packages from IgnorePkg"
 msgstr "přidat $pkg mezi ignorované? [a/N] "
 
-#: bin/downgrade:31
+#: src/downgrade:31
 msgid "pick latest matching version"
 msgstr ""
 
-#: bin/downgrade:32
+#: src/downgrade:32
 msgid "pick oldest matching version"
 msgstr ""
 
-#: bin/downgrade:33
+#: src/downgrade:33
 msgid "do not query ala if a matching package was found in cache"
 msgstr ""
 
-#: bin/downgrade:34
+#: src/downgrade:34
 msgid "show downgrade version"
 msgstr "zobrazit downgrade verzi"
 
-#: bin/downgrade:35
+#: src/downgrade:35
 msgid "show help script"
 msgstr "zobrazit skript nápovědy"
 
-#: bin/downgrade:37
+#: src/downgrade:37
 msgid "Note"
 msgstr "Poznámka"
 
-#: bin/downgrade:38
+#: src/downgrade:38
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "Možnosti za znaky -- budou považovány za možnosti pacmanu."
 
-#: bin/downgrade:39
+#: src/downgrade:39
 msgid "See downgrade(8) for details."
 msgstr "Pro více informací vizte downgrade(8)"
 
-#: bin/downgrade:103
+#: src/downgrade:103
 msgid "Available packages"
 msgstr "Dostupné balíčky"
 
-#: bin/downgrade:124
+#: src/downgrade:124
 msgid "y"
 msgstr "a"
 
-#: bin/downgrade:143
+#: src/downgrade:143
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "přidat $pkg mezi ignorované? [a/N] "
 
-#: bin/downgrade:257
+#: src/downgrade:265
 msgid "remote"
 msgstr "vzdálený"
 
-#: bin/downgrade:315
+#: src/downgrade:325
 msgid "No results found"
 msgstr "Nebyly nalezeny žádné výsledky"
 
-#: bin/downgrade:332
+#: src/downgrade:342
 msgid "Invalid choice"
 msgstr "Neplatná volba"
 
-#: bin/downgrade:345
+#: src/downgrade:355
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Nelze downgradovat $name"
 
-#: bin/downgrade:374
+#: src/downgrade:384
 msgid "Missing --pacman argument"
 msgstr "Chybí argument --pacman"
 
-#: bin/downgrade:387
+#: src/downgrade:397
 msgid "Missing --pacman-conf argument"
 msgstr "Chybí argument --pacman-conf"
 
-#: bin/downgrade:400
+#: src/downgrade:410
 msgid "Missing --ala-url argument"
 msgstr "Chybí argument --ala-url"
 
-#: bin/downgrade:413
+#: src/downgrade:423
 msgid "Missing --pacman-cache argument"
 msgstr "Chybí argument --pacman-cache"
 
-#: bin/downgrade:426
+#: src/downgrade:436
 msgid "Missing --pacman-log argument"
 msgstr "Chybí argument --pacman-log"
 
-#: bin/downgrade:439
+#: src/downgrade:449
 msgid "Missing --maxdepth argument"
 msgstr "Chybí argument --maxdepth"
 
-#: bin/downgrade:460
+#: src/downgrade:470
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Chybí argument --pacman"
 
-#: bin/downgrade:493
+#: src/downgrade:503
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Nerozpoznaná možnost $current_option"
 
-#: bin/downgrade:508
+#: src/downgrade:518
 msgid "No packages provided for downgrading"
 msgstr "Pro downgradování nebyly poskytnuty žádné balíčky"
 
-#: bin/downgrade:578
+#: src/downgrade:588
 msgid "downgrade must be run as root"
 msgstr "downgrade musí být spuštěn jako root"
 

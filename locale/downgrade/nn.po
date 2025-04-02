@@ -18,182 +18,182 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/downgrade:7
+#: src/downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr "Bruk: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 
-#: bin/downgrade:9
+#: src/downgrade:9
 msgid "Options"
 msgstr "Alternativer"
 
-#: bin/downgrade:10
+#: src/downgrade:10
 msgid "command"
 msgstr "kommando"
 
-#: bin/downgrade:11
+#: src/downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr "pacman-kommando for å bruke, er standard for"
 
-#: bin/downgrade:12 bin/downgrade:14 bin/downgrade:18
+#: src/downgrade:12 src/downgrade:14 src/downgrade:18
 msgid "path"
 msgstr "filsti"
 
-#: bin/downgrade:13
+#: src/downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr "pacman konfigurasjonsfil, er standard til"
 
-#: bin/downgrade:15
+#: src/downgrade:15
 msgid "pacman cache directory,"
 msgstr "pacman cache-katalog,"
 
-#: bin/downgrade:16
+#: src/downgrade:16
 msgid "default value(s) taken from pacman configuration file,"
 msgstr "eller på annen måte standard til"
 
-#: bin/downgrade:17 bin/downgrade:21
+#: src/downgrade:17 src/downgrade:21
 msgid "or otherwise defaults to"
 msgstr "plassering av ALA-server, er standard til"
 
-#: bin/downgrade:19
+#: src/downgrade:19
 msgid "pacman log file,"
 msgstr "pacman-loggfil"
 
-#: bin/downgrade:20
+#: src/downgrade:20
 msgid "default value taken from pacman configuration file,"
 msgstr "eller på annen måte standard til"
 
-#: bin/downgrade:22
+#: src/downgrade:22
 msgid "integer"
 msgstr "heltall"
 
-#: bin/downgrade:23
+#: src/downgrade:23
 msgid "maximum depth to search for cached packages, defaults to"
 msgstr "maksimal dybde for å søke etter hurtigbufrede pakker, som standard"
 
-#: bin/downgrade:25
+#: src/downgrade:25
 msgid "location of ALA server, defaults to"
 msgstr "plassering av ALA-server, er standard til"
 
-#: bin/downgrade:26
+#: src/downgrade:26
 msgid "only use ALA server"
 msgstr "bruk bare ALA-serveren"
 
-#: bin/downgrade:27
+#: src/downgrade:27
 msgid "only use cached packages"
 msgstr "bruk bare hurtigbufrede pakker"
 
-#: bin/downgrade:29
+#: src/downgrade:29
 #, fuzzy
 msgid "whether to add packages to IgnorePkg"
 msgstr "legg til $pkg i IgnorePkg? [j/N] "
 
-#: bin/downgrade:30
+#: src/downgrade:30
 #, fuzzy
 msgid "remove packages from IgnorePkg"
 msgstr "legg til $pkg i IgnorePkg? [j/N] "
 
-#: bin/downgrade:31
+#: src/downgrade:31
 msgid "pick latest matching version"
 msgstr ""
 
-#: bin/downgrade:32
+#: src/downgrade:32
 msgid "pick oldest matching version"
 msgstr ""
 
-#: bin/downgrade:33
+#: src/downgrade:33
 msgid "do not query ala if a matching package was found in cache"
 msgstr ""
 
-#: bin/downgrade:34
+#: src/downgrade:34
 msgid "show downgrade version"
 msgstr "vis downgrade versjonen"
 
-#: bin/downgrade:35
+#: src/downgrade:35
 msgid "show help script"
 msgstr "vis hjelpeskript"
 
-#: bin/downgrade:37
+#: src/downgrade:37
 msgid "Note"
 msgstr "Merk"
 
-#: bin/downgrade:38
+#: src/downgrade:38
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 "Alternativer etter -- tegnene vil bli behandlet som pacman-alternativer."
 
-#: bin/downgrade:39
+#: src/downgrade:39
 msgid "See downgrade(8) for details."
 msgstr "Sjå downgrade(8) for detaljar."
 
-#: bin/downgrade:103
+#: src/downgrade:103
 msgid "Available packages"
 msgstr "Tilgjengelege pakkar"
 
-#: bin/downgrade:124
+#: src/downgrade:124
 msgid "y"
 msgstr "j"
 
-#: bin/downgrade:143
+#: src/downgrade:143
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "legg til $pkg i IgnorePkg? [j/N] "
 
-#: bin/downgrade:257
+#: src/downgrade:265
 msgid "remote"
 msgstr "ekstern"
 
-#: bin/downgrade:315
+#: src/downgrade:325
 msgid "No results found"
 msgstr "Ingen resultater"
 
-#: bin/downgrade:332
+#: src/downgrade:342
 msgid "Invalid choice"
 msgstr "Ugyldig valg"
 
-#: bin/downgrade:345
+#: src/downgrade:355
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Kan ikke nedgradere $name"
 
-#: bin/downgrade:374
+#: src/downgrade:384
 msgid "Missing --pacman argument"
 msgstr "Mangler --pacman -argumentet"
 
-#: bin/downgrade:387
+#: src/downgrade:397
 msgid "Missing --pacman-conf argument"
 msgstr "Mangler --pacman-conf -argumentet"
 
-#: bin/downgrade:400
+#: src/downgrade:410
 msgid "Missing --ala-url argument"
 msgstr "Mangler --ala-url -argumentet"
 
-#: bin/downgrade:413
+#: src/downgrade:423
 msgid "Missing --pacman-cache argument"
 msgstr "Mangler --pacman-cache -argumentet"
 
-#: bin/downgrade:426
+#: src/downgrade:436
 msgid "Missing --pacman-log argument"
 msgstr "Mangler --pacman-log -argumentet"
 
-#: bin/downgrade:439
+#: src/downgrade:449
 msgid "Missing --maxdepth argument"
 msgstr "Mangler --maxdepth -argumentet"
 
-#: bin/downgrade:460
+#: src/downgrade:470
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Mangler --pacman -argumentet"
 
-#: bin/downgrade:493
+#: src/downgrade:503
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Ukjent alternativ $current_option"
 
-#: bin/downgrade:508
+#: src/downgrade:518
 msgid "No packages provided for downgrading"
 msgstr "Ingen pakker gitt for nedgradering"
 
-#: bin/downgrade:578
+#: src/downgrade:588
 msgid "downgrade must be run as root"
 msgstr "downgrade må kjøres som root"
 

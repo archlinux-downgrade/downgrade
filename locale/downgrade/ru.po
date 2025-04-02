@@ -19,183 +19,183 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: bin/downgrade:7
+#: src/downgrade:7
 msgid "Usage: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 msgstr ""
 "использование: downgrade [option...] <pkg> [pkg...] [-- pacman_option...]"
 
-#: bin/downgrade:9
+#: src/downgrade:9
 msgid "Options"
 msgstr "Опции"
 
-#: bin/downgrade:10
+#: src/downgrade:10
 msgid "command"
 msgstr "команда"
 
-#: bin/downgrade:11
+#: src/downgrade:11
 msgid "pacman command to use, defaults to"
 msgstr "команда pacman для использования, по умолчанию"
 
-#: bin/downgrade:12 bin/downgrade:14 bin/downgrade:18
+#: src/downgrade:12 src/downgrade:14 src/downgrade:18
 msgid "path"
 msgstr "Путь файла"
 
-#: bin/downgrade:13
+#: src/downgrade:13
 msgid "pacman configuration file, defaults to"
 msgstr "Файл конфигурации pacman, по умолчанию"
 
-#: bin/downgrade:15
+#: src/downgrade:15
 msgid "pacman cache directory,"
 msgstr "каталог кеша pacman,"
 
-#: bin/downgrade:16
+#: src/downgrade:16
 msgid "default value(s) taken from pacman configuration file,"
 msgstr "значение по умолчанию берется из файла конфигурации pacman,"
 
-#: bin/downgrade:17 bin/downgrade:21
+#: src/downgrade:17 src/downgrade:21
 msgid "or otherwise defaults to"
 msgstr "или по умолчанию"
 
-#: bin/downgrade:19
+#: src/downgrade:19
 msgid "pacman log file,"
 msgstr "файл журнала pacman"
 
-#: bin/downgrade:20
+#: src/downgrade:20
 msgid "default value taken from pacman configuration file,"
 msgstr "значение по умолчанию берется из файла конфигурации pacman,"
 
-#: bin/downgrade:22
+#: src/downgrade:22
 msgid "integer"
 msgstr "целое число"
 
-#: bin/downgrade:23
+#: src/downgrade:23
 msgid "maximum depth to search for cached packages, defaults to"
 msgstr "максимальная глубина для поиска в кэшированных пакетах, по умолчанию"
 
-#: bin/downgrade:25
+#: src/downgrade:25
 msgid "location of ALA server, defaults to"
 msgstr "расположение сервера ALA, по умолчанию"
 
-#: bin/downgrade:26
+#: src/downgrade:26
 msgid "only use ALA server"
 msgstr "использовать только сервер ALA"
 
-#: bin/downgrade:27
+#: src/downgrade:27
 msgid "only use cached packages"
 msgstr "использовать только кэшированные пакеты"
 
-#: bin/downgrade:29
+#: src/downgrade:29
 #, fuzzy
 msgid "whether to add packages to IgnorePkg"
 msgstr "добавить $pkg в список проигнорированных пакетов? [д/Н] "
 
-#: bin/downgrade:30
+#: src/downgrade:30
 #, fuzzy
 msgid "remove packages from IgnorePkg"
 msgstr "добавить $pkg в список проигнорированных пакетов? [д/Н] "
 
-#: bin/downgrade:31
+#: src/downgrade:31
 msgid "pick latest matching version"
 msgstr ""
 
-#: bin/downgrade:32
+#: src/downgrade:32
 msgid "pick oldest matching version"
 msgstr ""
 
-#: bin/downgrade:33
+#: src/downgrade:33
 msgid "do not query ala if a matching package was found in cache"
 msgstr ""
 
-#: bin/downgrade:34
+#: src/downgrade:34
 msgid "show downgrade version"
 msgstr "показать версию downgrade"
 
-#: bin/downgrade:35
+#: src/downgrade:35
 msgid "show help script"
 msgstr "показать скрипт помощи"
 
-#: bin/downgrade:37
+#: src/downgrade:37
 msgid "Note"
 msgstr "Заметка"
 
-#: bin/downgrade:38
+#: src/downgrade:38
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr ""
 "Параметры после символов -- будут рассматриваться как параметры pacman."
 
-#: bin/downgrade:39
+#: src/downgrade:39
 msgid "See downgrade(8) for details."
 msgstr "см. downgrade(8) для подробностей."
 
-#: bin/downgrade:103
+#: src/downgrade:103
 msgid "Available packages"
 msgstr "Доступные пакеты"
 
-#: bin/downgrade:124
+#: src/downgrade:124
 msgid "y"
 msgstr "д"
 
-#: bin/downgrade:143
+#: src/downgrade:143
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "добавить $pkg в список проигнорированных пакетов? [д/Н] "
 
-#: bin/downgrade:257
+#: src/downgrade:265
 msgid "remote"
 msgstr "дистанционно"
 
-#: bin/downgrade:315
+#: src/downgrade:325
 msgid "No results found"
 msgstr "результаты не найдены"
 
-#: bin/downgrade:332
+#: src/downgrade:342
 msgid "Invalid choice"
 msgstr "Неверный выбор"
 
-#: bin/downgrade:345
+#: src/downgrade:355
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Невозможно понизить $name"
 
-#: bin/downgrade:374
+#: src/downgrade:384
 msgid "Missing --pacman argument"
 msgstr "Отсутствует аргумент --pacman"
 
-#: bin/downgrade:387
+#: src/downgrade:397
 msgid "Missing --pacman-conf argument"
 msgstr "Отсутствует аргумент --pacman-conf"
 
-#: bin/downgrade:400
+#: src/downgrade:410
 msgid "Missing --ala-url argument"
 msgstr "Отсутствует аргумент --ala-url"
 
-#: bin/downgrade:413
+#: src/downgrade:423
 msgid "Missing --pacman-cache argument"
 msgstr "Отсутствует аргумент --pacman-cache"
 
-#: bin/downgrade:426
+#: src/downgrade:436
 msgid "Missing --pacman-log argument"
 msgstr "Отсутствует аргумент --pacman-log"
 
-#: bin/downgrade:439
+#: src/downgrade:449
 msgid "Missing --maxdepth argument"
 msgstr "Отсутствует аргумент --maxdepth"
 
-#: bin/downgrade:460
+#: src/downgrade:470
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Отсутствует аргумент --pacman"
 
-#: bin/downgrade:493
+#: src/downgrade:503
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Нераспознанная опция $current_option"
 
-#: bin/downgrade:508
+#: src/downgrade:518
 msgid "No packages provided for downgrading"
 msgstr "Нет пакетов для понижения"
 
-#: bin/downgrade:578
+#: src/downgrade:588
 msgid "downgrade must be run as root"
 msgstr "downgrade должен запускаться как root"
 

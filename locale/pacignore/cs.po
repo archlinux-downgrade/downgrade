@@ -16,69 +16,69 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: bin/pacignore:8
+#: src/pacignore:8
 msgid "Usage: pacignore ls [option...]"
 msgstr "Použití: pacignore ls [argumenty...]"
 
-#: bin/pacignore:9
+#: src/pacignore:9
 msgid "Usage: pacignore {check|add|rm} [option...] <pkg> [pkg...]"
 msgstr ""
 "Použití: pacignore {check|add|rm} [argumenty...] <balíček> [balíček...]"
 
-#: bin/pacignore:11
+#: src/pacignore:11
 msgid "Subcommands"
 msgstr "Dílčí příkazy"
 
-#: bin/pacignore:12
+#: src/pacignore:12
 msgid "list existing packages in the IgnorePkg directive"
 msgstr "seznam existujících balíčků ve směrnici IgnorePkg"
 
-#: bin/pacignore:13
+#: src/pacignore:13
 msgid "check if a specified package is being ignored"
 msgstr "zkontrolujte, zda je zadaný balíček ignorován"
 
-#: bin/pacignore:14
+#: src/pacignore:14
 msgid "add package(s) to the IgnorePkg directive"
 msgstr "přidejte balení do směrnice IgnorePkg"
 
-#: bin/pacignore:15
+#: src/pacignore:15
 msgid "remove package(s) from the IgnorePkg directive"
 msgstr "odstraňte balíčky (balíčky) ze směrnice IgnorePkg"
 
-#: bin/pacignore:17
+#: src/pacignore:17
 msgid "Options"
 msgstr "Argumenty"
 
-#: bin/pacignore:18
+#: src/pacignore:18
 msgid "path"
 msgstr "soubor"
 
-#: bin/pacignore:19
+#: src/pacignore:19
 msgid "pacman configuration file, defaults to"
 msgstr "konfigurační soubor pacman, výchozí nastavení"
 
-#: bin/pacignore:20
+#: src/pacignore:20
 msgid "show help script"
 msgstr "zobrazit skript nápovědy"
 
-#: bin/pacignore:61
+#: src/pacignore:61
 #, sh-format
 msgid "Skipping $pkg as it is already ignored"
 msgstr "Přeskočení $pkg, jak je již ignorováno"
 
-#: bin/pacignore:86
+#: src/pacignore:86
 #, sh-format
 msgid "Skipping $pkg as it is was never ignored"
 msgstr "Přeskočení $pkg, protože to nebylo nikdy ignorováno"
 
-#: bin/pacignore:102
+#: src/pacignore:102
 msgid "Error in reading pacman configuration file"
 msgstr "Chyba při čtení konfiguračního souboru pacman"
 
-#: bin/pacignore:163
+#: src/pacignore:163
 msgid "pacignore must be run as root for this subcommand"
 msgstr "pacignore musí být spuštěn jako root pro tuto podskupinu"
 
-#: bin/pacignore:172
+#: src/pacignore:172
 msgid "No packages provided"
 msgstr "Žádné balíčky"
