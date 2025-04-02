@@ -106,6 +106,33 @@ on the ALA.
   * `-h`, `--help`:
     Show help script.
 
+## EXAMPLES
+
+Downgrade packages checking both local cache and the A.L.A, which is the default
+behavior:
+
+    # downgrade foo bar
+
+Downgrade packages, specifying multiple cache directories:
+
+    # downgrade --pacman-cache /path/to/cache --pacman-cache /path/to/other/cache foo bar
+
+Downgrade a package with version-filtering:
+
+    # downgrade 'foo=1.0.0-1' 'bar>=1.2.1-1' 'baz=~^1.2'
+
+Downgrade a package, looking in only local cache:
+
+    # downgrade --cached-only foo
+
+Downgrade a package, looking in only the A.L.A.:
+
+    # downgrade --ala-only foo
+
+Non-interactively downgrade `foo` to `1.0.0-1`
+
+    # downgrade --latest --prefer-cache --ignore never 'foo=1.0.0-1'
+
 ## CONFIGURATION FILE
 
 Command-line options can be set persistently in
