@@ -7,7 +7,8 @@ dist version:
   just dist-bin "{{version}}"
   just dist-locale
   just dist-manpages
-  tar cvfz downgrade-{{version}}.tar.gz -C dist .
+  tar cvfz downgrade-{{version}}.tar.gz \
+    --transform 's/^dist/downgrade-{{version}}/' dist
 
 # Create dist/bin
 dist-bin version:
