@@ -39,24 +39,10 @@ prefix in your commit message:
 1. `feat:` to trigger minor, or
 1. `feat!:` to trigger major
 
-When such a commit is merged to `main`, a new GitHub release will be prepared.
+When such a commit is merged to `main`, a new GitHub release will be created and
+a `PKGBUILD` update will be [published automatically][aur-publish-action].
 
-Then, the following steps must be done manually (for now):
-
-```sh
-git clone ssh://aur@aur.archlinux.org/downgrade /tmp/downgrade
-cd /tmp/downgrade
-
-vim PKGBUILD # update `pkgver`
-
-updpkgsums
-makepkg --printsrcinfo >.SRCINFO
-makepkg --syncdeps --install --force # to test
-
-git add .SRCINFO PKGBUILD
-git commit -m 'Release vX.X.X'
-git push
-```
+[aur-publish-action]: https://github.com/archlinux-downgrade/aur-publish-action
 
 ---
 
