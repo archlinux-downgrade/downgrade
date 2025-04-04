@@ -33,7 +33,7 @@ just test
 If your change is meant to trigger release, use a [conventional-commit][]
 prefix in your commit message:
 
-[contentional-commit]: https://www.conventionalcommits.org/en/v1.0.0/#summary
+[conventional-commit]: https://www.conventionalcommits.org/en/v1.0.0/#summary
 
 1. `fix:` to trigger a patch release,
 1. `feat:` to trigger minor, or
