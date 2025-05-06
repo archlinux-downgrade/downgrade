@@ -556,7 +556,7 @@ DOWNGRADE_TO_OLDEST=0
 DOWNGRADE_PREFER_CACHE=0
 
 # Main code execution
-if ((!LIB)); then
+if ((!DOWNGRADE_LIB)); then
   set -e
 
   locale="$(dirname "$0")"/../share/locale
