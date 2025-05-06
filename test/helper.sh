@@ -1,5 +1,5 @@
 # Prevent actual execution of script
-export LIB=1
+export DOWNGRADE_LIB=1
 
 # Provide access to project root
 export SRCDIR=${TESTDIR/\/test*/}
