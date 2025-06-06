@@ -56,8 +56,16 @@ read_pacman_conf() {
 
 read_downgrade_conf() {
   local var=$1
+  local raw
 
-  eval "$var=($(grep -E -v '^ *(#.*)?$' "$DOWNGRADE_CONF" 2>/dev/null | xargs printf '%q '))"
+  raw=$(grep -E -v '^ *(#.*)?$' "$DOWNGRADE_CONF" 2>/dev/null)
+
+  if [[ -z "$raw" ]]; then
+    # no real lines
+    eval "$var=()"
+  else
+    eval "$var=( $(printf '%q ' $raw) )"
+  fi
 }
 
 read_unique() {
