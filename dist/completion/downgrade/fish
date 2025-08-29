@@ -1,5 +1,5 @@
 set -l cmd downgrade
-complete -c $cmd -xa "(__fish_print_packages)"
+complete -c $cmd -xa "(__fish_print_pacman_packages)"
 complete -c $cmd -l pacman -xa "(complete -C(commandline -ct))" -d 'pacman command to use'
 complete -c $cmd -l pacman-conf -r -d 'pacman configuration file'
 complete -c $cmd -l pacman-cache -r -d 'pacman cache directory'
