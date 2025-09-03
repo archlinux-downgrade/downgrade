@@ -8,3 +8,4 @@ pacman.conf(5) https://man.archlinux.org/man/pacman.conf.5
 find(1) https://man.archlinux.org/man/find.1
 su(1) https://man.archlinux.org/man/su.1
 fzf(1) https://man.archlinux.org/man/fzf.1
+yay(1) https://linuxcommandlibrary.com/man/yay

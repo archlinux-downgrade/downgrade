@@ -8,6 +8,7 @@ XDGPREFIX    ?= /etc/xdg
 install:
 	install -Dm644 conf/downgrade.conf "$(DESTDIR)$(XDGPREFIX)/downgrade/downgrade.conf"
 	install -Dm644 doc/downgrade.8 "$(DESTDIR)$(MANPREFIX)/man8/downgrade.8"
+	install -Dm644 doc/downgrade.conf.5 "$(DESTDIR)$(MANPREFIX)/man5/downgrade.conf.5"
 	install -Dm644 doc/pacignore.8 "$(DESTDIR)$(MANPREFIX)/man8/pacignore.8"
 	for script_ in $(SCRIPTS); do \
 	  install -Dm755 "bin/$$script_" "$(DESTDIR)$(PREFIX)/bin/$$script_"; \
@@ -25,6 +26,7 @@ install:
 .PHONY: uninstall
 uninstall:
 	$(RM) "$(DESTDIR)$(XDGPREFIX)/downgrade/downgrade.conf" \
+	  "$(DESTDIR)$(MANPREFIX)/man5/downgrade.conf.5" \
 	  "$(DESTDIR)$(MANPREFIX)/man8/downgrade.8" \
 	  "$(DESTDIR)$(MANPREFIX)/man8/pacignore.8"
 	for script_ in $(SCRIPTS); do \
