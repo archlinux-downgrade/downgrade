@@ -139,7 +139,7 @@ any of the following scenarios for any of its arguments:
 ## FILES
 
 Command-line options can be set persistently in
-**/etc/xdg/downgrade/downgrade.conf**.
+**/etc/xdg/downgrade/downgrade.conf**. See **downgrade.conf(5)**.
 
 ## EXAMPLES
 

@@ -17,8 +17,7 @@ See [downgrade(8)](https://archlinux-downgrade.github.io/downgrade/downgrade.8).
 
 ## Configuration
 
-Command-line options can be set persistently in
-`/etc/xdg/downgrade/downgrade.conf`.
+See [downgrade.conf(5)](https://archlinux-downgrade.github.io/downgrade/downgrade.conf.5).
 
 ## Development & Testing
 
