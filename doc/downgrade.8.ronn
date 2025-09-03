@@ -106,6 +106,41 @@ on the ALA.
   * `-h`, `--help`:
     Show help script.
 
+## PACMAN OPTIONS
+
+As per the usage syntax, any options supplied after the **\--** character
+sequence will be treated as pacman options.
+
+## DEFAULT BEHAVIORS
+
+By default, **downgrade** will search both local caches and the ALA.
+
+If only one package with its corresponding location matches, the package will be
+installed without further prompt from the user.
+
+## VERSION FILTERING
+
+**downgrade** allows the use of the following version-filtering operators:
+**=**, **==**, **=~**, **\<=**, **>=**, **\<** and **>**. Note that **=~**
+represents a regex match operator and **=**/**==** are aliases.
+
+## EXIT STATUS
+
+**downgrade** will stop further processing and exit non-zero if it encounters
+any of the following scenarios for any of its arguments:
+
+* Execution from non-root user
+* No argument value(s) supplied where necessary
+* No package(s) found
+* Package(s) found, but an invalid selection was made
+* `pacman -U` returned non-zero
+* Unexpected error when handling `IgnorePkg` additions
+
+## FILES
+
+Command-line options can be set persistently in
+**/etc/xdg/downgrade/downgrade.conf**.
+
 ## EXAMPLES
 
 Downgrade packages checking both local cache and the A.L.A, which is the default
@@ -133,53 +168,16 @@ Non-interactively downgrade `foo` to `1.0.0-1`
 
     # downgrade --latest --prefer-cache --ignore never 'foo=1.0.0-1'
 
-## CONFIGURATION FILE
-
-Command-line options can be set persistently in
-**/etc/xdg/downgrade/downgrade.conf**. Note that these options are parsed first
-by **downgrade**, followed by any other command-line options provided by the
-user.
-
-## PACMAN OPTIONS
-
-As per the usage syntax, any options supplied after the **\--** character
-sequence will be treated as pacman options.
-
-## DEFAULT BEHAVIORS
-
-By default, **downgrade** will search both local caches and the ALA.
-
-If only one package with its corresponding location matches, the package will be
-installed without further prompt from the user.
-
-## VERSION FILTERING
-
-**downgrade** allows the use of the following version-filtering operators:
-**=**, **==**, **=~**, **\<=**, **>=**, **\<** and **>**. Note that **=~**
-represents a regex match operator and **=**/**==** are aliases.
-
-## EXIT CODES
-
-**downgrade** will stop further processing and exit non-zero if it encounters
-any of the following scenarios for any of its arguments:
-
-* Execution from non-root user
-* No argument value(s) supplied where necessary
-* No package(s) found
-* Package(s) found, but an invalid selection was made
-* `pacman -U` returned non-zero
-* Unexpected error when handling `IgnorePkg` additions
-
-## SEE ALSO
-
-**pacman(8)**, **vercmp(8)**, **sudo(8)**, **pacman.conf(5)**, **find(1)**,
-**su(1)**, **fzf(1)**.
-
-## BUGS
-
-Open a GitHub issue on *https://github.com/archlinux-downgrade/downgrade*.
-
 ## AUTHORS
 
 * Patrick Brisbin \<pbrisbin@gmail.com>
 * Atreya Shankar \<shankar.atreya@gmail.com>
+
+## REPORTING BUGS
+
+Open a GitHub issue on *https://github.com/archlinux-downgrade/downgrade*.
+
+## SEE ALSO
+
+**downgrade.conf(5)**, **pacman.conf(5)**, **find(1)**, **fzf(1)**, **su(1)**,
+**pacman(8)**, **sudo(8)**, **vercmp(8)**.
