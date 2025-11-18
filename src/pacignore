@@ -158,7 +158,7 @@ parse_options() {
   pkgs=("$@")
 
   # Check if run as root for `add` or `rm` subcommands
-  if ((UID)) && [[ "$PACIGNORE_SUBCOMMAND" =~ ^(add|rm)$ ]]; then
+  if ((EUID)) && [[ "$PACIGNORE_SUBCOMMAND" =~ ^(add|rm)$ ]]; then
     {
       gettext "pacignore must be run as root for this subcommand"
       printf "\n"
