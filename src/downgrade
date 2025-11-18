@@ -583,7 +583,7 @@ if ((!DOWNGRADE_LIB)); then
   done
 
   # Check to ensure downgrade running as root
-  if ((UID)); then
+  if ((EUID)); then
     {
       gettext "downgrade must be run as root"
       echo
