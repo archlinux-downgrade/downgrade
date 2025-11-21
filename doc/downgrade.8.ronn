@@ -72,6 +72,15 @@ on the ALA.
     Pacman log file, default value is extracted from pacman configuration file, or
     otherwise defaults to _/var/log/pacman.log_.
 
+  * `--git`:
+    If the pacman cache contains the source repository for the package (e.g. if
+    you use yay and are downgrading an AUR package), present any version-like
+    tags as available for downgrading (together with cached packages if
+    present). If selected, build and install the package from sources checked
+    out at that tag.
+
+    See [EXAMPLES].
+
   * `--maxdepth`=<INTEGER>:
     Maximum depth to search for cached packages, defaults to _1_.
 
@@ -167,6 +176,11 @@ Downgrade a package, looking in only the A.L.A.:
 Non-interactively downgrade `foo` to `1.0.0-1`
 
     # downgrade --latest --prefer-cache --ignore never 'foo=1.0.0-1'
+
+Present cached `downgrade` pkgbuilds together with tags with version greater
+than 9
+
+    # downgrade --git --pacman-cache ~/.cache/yay --maxdepth 2 'downgrade>9.0.0'
 
 ## AUTHORS
 
