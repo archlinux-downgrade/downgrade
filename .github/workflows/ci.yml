@@ -8,12 +8,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    container:
+      image: "archlinux:base-devel"
+
     env:
       FIXTURES_NO_RECORD: 1
 
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-python@v5
-      - run: pip install cram
-      - uses: extractions/setup-just@v2
-      - run: just test
+      - run: pacman -Sy --needed --noconfirm just python-cram
+      - run: |
+          useradd ci
+          runuser -u ci -- just test
