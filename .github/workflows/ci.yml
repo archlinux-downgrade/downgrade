@@ -16,7 +16,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - run: pacman -Sy --needed --noconfirm just python-cram
-      - run: |
-          useradd ci
-          runuser -u ci -- just test
+      - run: pacman -Sy --needed --noconfirm git just python-cram
+      - run: just test
