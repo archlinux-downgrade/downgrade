@@ -7,9 +7,12 @@ export SRCDIR=${TESTDIR/\/test*/}
 # Place mocks on $PATH (e.g. curl)
 export PATH="$SRCDIR/test/bin:$PATH"
 
+# Build as we would for distribution
+just --justfile "$SRCDIR/justfile" --quiet dist-bin 0
+
 # Load implementation
 # shellcheck disable=SC1091
-source "$SRCDIR"/src/downgrade
+source "$SRCDIR"/dist/bin/downgrade
 
 # Set script defaults for test environment
 PACMAN_CONF=$(mktemp)
