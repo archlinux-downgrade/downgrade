@@ -20,7 +20,6 @@ _downgrade () {
     '--pacman-conf[pacman configuration file]:pacman config file:_files' \
     '*--pacman-cache[pacman cache directory]:pacman cache directory:_path_files -/' \
     '--pacman-log[pacman log file]:pacman log file:_files' \
-    '--git[uses git for choosing version, viable only for aur packages]' \
     '--maxdepth[maximum depth to search for cached packages]:maximum search depth' \
     '--ala-url[location of ALA server]:ala url' \
     '--ala-only[only use ALA server]' \
