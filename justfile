@@ -13,7 +13,7 @@ dist version:
 # Create dist/bin
 dist-bin version:
   mkdir -p dist/bin
-  m4 -D '__VERSION__={{version}}' < src/downgrade > dist/bin/downgrade
+  sed 's|__VERSION__|{{version}}|g' src/downgrade > dist/bin/downgrade
   chmod +x dist/bin/downgrade
   cp -v src/pacignore dist/bin/
 
