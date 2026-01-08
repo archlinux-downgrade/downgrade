@@ -8,10 +8,12 @@ export SRCDIR=${TESTDIR/\/test*/}
 export PATH="$SRCDIR/test/bin:$PATH"
 
 # Load implementation
+# shellcheck disable=SC1091
 source "$SRCDIR"/src/downgrade
 
 # Set script defaults for test environment
-export PACMAN_CONF=$(mktemp)
+PACMAN_CONF=$(mktemp)
+export PACMAN_CONF
 export DOWNGRADE_FROM_ALA=0
 export DOWNGRADE_FROM_CACHE=0
 export DOWNGRADE_CONF="$SRCDIR/test/conf/downgrade_test.conf"
