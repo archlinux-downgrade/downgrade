@@ -48,25 +48,32 @@ Check that pacignore fails if no argument provided
   [options]
   IgnorePkg = foo bar
 
-Check that pacignore fails if no root access provided for add or rm
-
-  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore add 2>&1
-  > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF"
-  pacignore must be run as root for this subcommand
-  exit_code=1
-  [options]
-  IgnorePkg = foo bar
-
-  $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
-  > pacignore rm 2>&1
-  > printf "exit_code=%s\n" "$?"
-  > cat "$PACMAN_CONF"
-  pacignore must be run as root for this subcommand
-  exit_code=1
-  [options]
-  IgnorePkg = foo bar
+# TODO: Because CI is running on an archlinux container on GitHub Actions, the
+# tests must run as root there.
+#
+# https://docs.github.com/en/actions/reference/workflows-and-actions/dockerfile-support#user
+#
+# That means this test won't work there.
+#
+# Check that pacignore fails if no root access provided for add or rm
+#
+#   $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+#   > pacignore add 2>&1
+#   > printf "exit_code=%s\n" "$?"
+#   > cat "$PACMAN_CONF"
+#   pacignore must be run as root for this subcommand
+#   exit_code=1
+#   [options]
+#   IgnorePkg = foo bar
+#
+#   $ PACMAN_CONF="$(write_pacman_conf "[options]" "IgnorePkg = foo bar")"
+#   > pacignore rm 2>&1
+#   > printf "exit_code=%s\n" "$?"
+#   > cat "$PACMAN_CONF"
+#   pacignore must be run as root for this subcommand
+#   exit_code=1
+#   [options]
+#   IgnorePkg = foo bar
 
 Check that parsing fails if no package is package is specified for add or rm
 
