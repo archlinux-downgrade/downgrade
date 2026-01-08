@@ -19,7 +19,6 @@ $(gettext "Options"):
                   $(gettext "pacman log file,")
                   $(gettext "default value taken from pacman configuration file,")
                   $(gettext "or otherwise defaults to") "/var/log/pacman.log"
-  --git           $(gettext "uses git for choosing version, viable only for aur packages")
   --maxdepth      <$(gettext "integer")>
                   $(gettext "maximum depth to search for cached packages, defaults to") 1
   --ala-url       <url>
@@ -168,10 +167,8 @@ matches_name_version_filter() {
     return 0
   fi
 
-  # version: 2025.11.12.r15.g0eed3fe
-  version_regex="[a-zA-Z0-9.]+"
-  hash_or_minor="([0-9]+|[a-z0-9]{6,})"
-  pkg_version=$(sed -r "s/.*$name-($version_regex)(-$hash_or_minor)?-(any|$DOWNGRADE_ARCH)\\.(git)?pkg\\.tar\\.(gz|xz|zst)/\1\2/g" <<<"$pkg")
+  version_regex="[^-]+-[0-9.]+"
+  pkg_version=$(sed -r "s/.*$name-($version_regex)-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)/\1/g" <<<"$pkg")
   cmp=$(vercmp "$pkg_version" "$search_version")
 
   case "$operator" in
@@ -199,34 +196,6 @@ matches_name_version_filter() {
   esac
 }
 
-search_git() {
-  local name=$1 pairs path
-
-  # Delay this defaulting so #read_pacman_conf behavior is tested
-  if ((!${#PACMAN_CACHE[@]})); then
-    mapfile -t PACMAN_CACHE < <(read_pacman_conf CacheDir)
-  fi
-
-  for cache in "${PACMAN_CACHE[@]}"; do
-    path="$cache/$name" # directory name
-    if ! [[ -d "$path/.git" ]]; then
-      {
-        gettext "\`$path\" not a git directory, skipping..."
-        echo
-      } >&2
-      continue
-    fi
-
-    # TODO: in future could be enhanced by counting every commit
-    # that DOES NOT change version as minor like 0.0.1-2 instead of any
-    # pair = abcd12 1.0
-    pairs=$(git -C "$path" log -p --oneline --format="GIT: %h" PKGBUILD | grep -e 'GIT:.*' -e '+pkgver' | grep -Pzo 'GIT: .*\n\+pkgver=.*\n' | sed 's/GIT: \|+pkgver=//' | tr -d '\0')
-
-    # shellcheck disable=SC2086
-    echo "$path/$name" $pairs | awk '{for(i=2;i<NF;i+=2) printf "%s-%s-%s-any.gitpkg.tar.gz\n", $1, $(i+1), $i}' | sort -V
-  done
-}
-
 search_ala() {
   local name=$1 uriname pkgfile_re index
 
@@ -248,10 +217,7 @@ search_ala() {
 search_cache() {
   local name=$1 pkgfile_re index
 
-  # version: 2025.11.12.r15.g0eed3fe
-  version_regex="[a-zA-Z0-9.]+"
-  hash_or_minor="([0-9]+|[a-z0-9]{6,})"
-  pkgfile_re="$name-($version_regex)(-$hash_or_minor)?-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
+  pkgfile_re="$name-[^-]+-[0-9.]+-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
 
   # Delay this defaulting so #read_pacman_conf behavior is tested
   if ((!${#PACMAN_CACHE[@]})); then
@@ -292,7 +258,7 @@ output_package() {
   fi
 
   # Remote or local file
-  if [[ $path =~ ^/ && ! ($path =~ gitpkg) ]]; then
+  if [[ $path =~ ^/ ]]; then
     location="$(dirname "$path")"
     timestamp=$(stat -c '%y' "$path" | cut -d' ' -f1)
   else
@@ -327,7 +293,7 @@ extract_version_parts() {
     s|^.\{'${#pkgname}'\}-\?||;
 
     # Strip package extension
-    s|\.\(git\)\?pkg\(\.tar\)\?\(\.[a-z0-9A-Z]\+\)\?$||;
+    s|\.pkg\(\.tar\)\?\(\.[a-z0-9A-Z]\+\)\?$||;
 
     # (epoch:)?version(-release)?(-arch)? -> epoch,version,release,arch
     s|\(\([^:]*\):\)\?\([^-]*\)\(-\([^-]*\)\)\?\(-\(.*\)\)\?|\2,\3,\5,\7|;
@@ -353,11 +319,6 @@ process_term() {
   fi
 
   candidates=($(printf '%s\n' "${candidates[@]}" | sort_packages))
-
-  # this is already sorted
-  if ((DOWNGRADE_FROM_GIT)); then
-    candidates=($(search_git "$name" | filter_packages "$name" "$operator" "$version") "${candidates[@]}")
-  fi
 
   if (("${#candidates[@]}" == 0)); then
     {
@@ -479,9 +440,6 @@ parse_options() {
           exit 1
         fi
         ;;
-      --git)
-        DOWNGRADE_FROM_GIT=1
-        ;;
       --maxdepth)
         if [[ -n "$2" ]]; then
           shift
@@ -565,34 +523,6 @@ parse_options() {
   fi
 }
 
-build_pkg() {
-  local item="$1" path commit_hash build_failed versionreg hashreg gitpkgreg
-  if [[ "$item" =~ .*gitpkg.tar.gz ]]; then
-    # version: 2025.11.12.r15.g0eed3fe
-    versionreg="([a-zA-Z0-9]+\.?)*"
-    hashreg='[a-z0-9]{6,}'
-    #hash_or_minor="-([0-9]+|[a-z0-9]{6,})" # leaving this as a note, only hash should appear tho
-    gitpkgreg="(.*)-$versionreg-($hashreg)-(any|$DOWNGRADE_ARCH).gitpkg.tar.gz"
-    path=$(dirname "$item")
-    commit_hash=$(sed -r "s/$gitpkgreg/\3/" <<<"$item")
-
-    pushd "$path" >/dev/null
-    su -P "$(stat -c"%U" PKGBUILD)" -c "git checkout $commit_hash &>/dev/null && makepkg -fs | tee makepkg.log"
-    build_failed=$?
-    # NOTE: when force-canceling, users might need to manually do checkout master
-    # otherwise they won't be able to update that pkg using yay or whatever I guess...
-    su "$(stat -c"%U" PKGBUILD)" -c "git switch - &>/dev/null"
-    if ((build_failed)); then
-      exit 1
-    fi
-
-    item="$(find "$path" -maxdepth 1 -type f -name "$(sed -nr '/.*Finished making: ([^ ]+) ([^ ]+) .*/{s//\1-\2/;p}' makepkg.log)*" -print -quit)"
-    rm makepkg.log
-    popd >/dev/null
-  fi
-  printf "%s\0" "$item" >>new_to_install.downgrade
-}
-
 cli() {
   local conf_args=()
 
@@ -606,14 +536,6 @@ cli() {
 
   # Proceed with rest of workflow
   main "${terms[@]}"
-  if ((DOWNGRADE_FROM_GIT)); then
-    for item in "${to_install[@]}"; do
-      build_pkg "$item"
-    done
-    mapfile -d '' to_install <new_to_install.downgrade
-    rm new_to_install.downgrade
-  fi
-
   pacman -U "${pacman_args[@]}" "${to_install[@]}"
   prompt_to_ignore "${to_ignore[@]}"
 }
@@ -623,7 +545,6 @@ PACMAN="pacman"
 PACMAN_CONF="/etc/pacman.conf"
 DOWNGRADE_ARCH="$(pacman-conf Architecture | head -n 1)"
 DOWNGRADE_ALA_URL="https://archive.archlinux.org"
-DOWNGRADE_FROM_GIT=0
 DOWNGRADE_FROM_ALA=1
 DOWNGRADE_FROM_CACHE=1
 DOWNGRADE_MAXDEPTH=1
