@@ -169,7 +169,7 @@ matches_name_version_filter() {
   fi
 
   # version: 2025.11.12.r15.g0eed3fe
-  version_regex="[a-zA-Z0-9.]+"
+  version_regex="[a-zA-Z0-9._]+"
   hash_or_minor="([0-9]+|[a-z0-9]{6,})"
   pkg_version=$(sed -r "s/.*$name-($version_regex)(-$hash_or_minor)?-(any|$DOWNGRADE_ARCH)\\.(git)?pkg\\.tar\\.(gz|xz|zst)/\1\2/g" <<<"$pkg")
   cmp=$(vercmp "$pkg_version" "$search_version")
@@ -249,7 +249,7 @@ search_cache() {
   local name=$1 pkgfile_re index
 
   # version: 2025.11.12.r15.g0eed3fe
-  version_regex="[a-zA-Z0-9.]+"
+  version_regex="[a-zA-Z0-9._]+"
   hash_or_minor="([0-9]+|[a-z0-9]{6,})"
   pkgfile_re="$name-($version_regex)(-$hash_or_minor)?-(any|$DOWNGRADE_ARCH)\\.pkg\\.tar\\.(gz|xz|zst)"
 
@@ -569,7 +569,7 @@ build_pkg() {
   local item="$1" path commit_hash build_failed versionreg hashreg gitpkgreg
   if [[ "$item" =~ .*gitpkg.tar.gz ]]; then
     # version: 2025.11.12.r15.g0eed3fe
-    versionreg="([a-zA-Z0-9]+\.?)*"
+    versionreg="([a-zA-Z0-9_]+\.?)*"
     hashreg='[a-z0-9]{6,}'
     #hash_or_minor="-([0-9]+|[a-z0-9]{6,})" # leaving this as a note, only hash should appear tho
     gitpkgreg="(.*)-$versionreg-($hashreg)-(any|$DOWNGRADE_ARCH).gitpkg.tar.gz"
