@@ -577,8 +577,14 @@ build_pkg() {
     commit_hash=$(sed -r "s/$gitpkgreg/\3/" <<<"$item")
 
     pushd "$path" >/dev/null
-    su -P "$(stat -c"%U" PKGBUILD)" -c "git checkout $commit_hash &>/dev/null && makepkg -fs | tee makepkg.log"
+    su -P "$(stat -c"%U" PKGBUILD)" -c "git checkout $commit_hash &>/dev/null"
+    su -P "$(stat -c"%U" PKGBUILD)" -c "makepkg -fs"
     build_failed=$?
+
+    if ((!build_failed)); then
+      item=$(su "$(stat -c"%U" PKGBUILD)" -c "makepkg --packagelist" | head -n 1)
+    fi
+
     # NOTE: when force-canceling, users might need to manually do checkout master
     # otherwise they won't be able to update that pkg using yay or whatever I guess...
     su "$(stat -c"%U" PKGBUILD)" -c "git switch - &>/dev/null"
@@ -586,8 +592,6 @@ build_pkg() {
       exit 1
     fi
 
-    item="$(find "$path" -maxdepth 1 -type f -name "$(sed -nr '/.*Finished making: ([^ ]+) ([^ ]+) .*/{s//\1-\2/;p}' makepkg.log)*" -print -quit)"
-    rm makepkg.log
     popd >/dev/null
   fi
   printf "%s\0" "$item" >>new_to_install.downgrade
