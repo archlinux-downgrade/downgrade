@@ -83,3 +83,11 @@ With a version string included
   > DOWNGRADE_FROM_CACHE=1 search_cache 'foo' | filter_packages 'foo' '<' '2.0-1' | sort
   /tmp/*/foo-1.0-1-any.pkg.tar.gz (glob)
   /tmp/*/foo-1.1-1-any.pkg.tar.gz (glob)
+
+It finds packages with underscores in version
+  $ cache=$(mktemp -d)
+  > touch "$cache/pkg-1.2_3-1-any.pkg.tar.gz"
+  > touch "$cache/pkg-1.2-1-any.pkg.tar.gz"
+  > write_pacman_conf "[options]" "CacheDir = $cache/"
+  > DOWNGRADE_FROM_CACHE=1 search_cache 'pkg' | filter_packages 'pkg' '=' '1.2_3-1' | sort
+  /tmp/*/pkg-1.2_3-1-any.pkg.tar.gz (glob)
