@@ -164,7 +164,7 @@ filter_packages() {
 matches_name_version_filter() {
   local pkg=$1 name=$2 operator=$3 search_version=$4 pkg_version version_regex
 
-  if [[ -z "$operator" ]] || [[ -z "$version" ]]; then
+  if [[ -z "$operator" ]] || [[ -z "$search_version" ]]; then
     return 0
   fi
 
