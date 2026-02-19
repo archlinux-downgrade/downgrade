@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: downgrade\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-22 12:44-0400\n"
+"POT-Creation-Date: 2026-02-18 12:41-0700\n"
 "PO-Revision-Date: 2020-04-21 13:53+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>, "
 "<shankar.atreya@gmail.com>\n"
@@ -66,137 +66,145 @@ msgid "default value taken from pacman configuration file,"
 msgstr "numatytoji vertė, paimta iš pacman konfigūracijos failo,"
 
 #: src/downgrade:22
+msgid "uses git for choosing version, viable only for aur packages"
+msgstr ""
+
+#: src/downgrade:23
 msgid "integer"
 msgstr "sveikasis skaičius"
 
-#: src/downgrade:23
+#: src/downgrade:24
 msgid "maximum depth to search for cached packages, defaults to"
 msgstr ""
 "maksimalus gylis ieškant talpykloje esančių paketų, numatytasis reikšmė yra"
 
-#: src/downgrade:25
+#: src/downgrade:26
 msgid "location of ALA server, defaults to"
 msgstr "ALA serverio vieta, numatytoji reikšmė"
 
-#: src/downgrade:26
+#: src/downgrade:27
 msgid "only use ALA server"
 msgstr "naudoti tik ALA serverį"
 
-#: src/downgrade:27
+#: src/downgrade:28
 msgid "only use cached packages"
 msgstr "naudokite tik talpykloje laikomus paketus"
 
-#: src/downgrade:29
+#: src/downgrade:30
 #, fuzzy
 msgid "whether to add packages to IgnorePkg"
 msgstr "pridėti $pkg į IgnorePkg? [t/N] "
 
-#: src/downgrade:30
+#: src/downgrade:31
 #, fuzzy
 msgid "remove packages from IgnorePkg"
 msgstr "pridėti $pkg į IgnorePkg? [t/N] "
 
-#: src/downgrade:31
+#: src/downgrade:32
 msgid "pick latest matching version"
 msgstr ""
 
-#: src/downgrade:32
+#: src/downgrade:33
 msgid "pick oldest matching version"
 msgstr ""
 
-#: src/downgrade:33
+#: src/downgrade:34
 msgid "do not query ala if a matching package was found in cache"
 msgstr ""
 
-#: src/downgrade:34
+#: src/downgrade:35
 msgid "show downgrade version"
 msgstr "rodyti downgrade versiją"
 
-#: src/downgrade:35
+#: src/downgrade:36
 msgid "show help script"
 msgstr "rodyti pagalbos scenarijų"
 
-#: src/downgrade:37
+#: src/downgrade:38
 msgid "Note"
 msgstr "Pastaba"
 
-#: src/downgrade:38
+#: src/downgrade:39
 msgid "Options after the -- characters will be treated as pacman options."
 msgstr "Parinktys po simbolių -- bus traktuojamos kaip pacman parinktys."
 
-#: src/downgrade:39
+#: src/downgrade:40
+msgid "yay and paru cache directories are searched automatically if present."
+msgstr ""
+
+#: src/downgrade:41
 msgid "See downgrade(8) for details."
 msgstr "Išsamiau galite paskaityti downgrade(8)."
 
-#: src/downgrade:103
+#: src/downgrade:127
 msgid "Available packages"
 msgstr "Prieinami paketai"
 
-#: src/downgrade:124
+#: src/downgrade:148
 msgid "y"
 msgstr "t"
 
-#: src/downgrade:143
+#: src/downgrade:167
 #, sh-format
 msgid "add $pkg to IgnorePkg? [y/N] "
 msgstr "pridėti $pkg į IgnorePkg? [t/N] "
 
-#: src/downgrade:265
+#: src/downgrade:327
 msgid "remote"
 msgstr "nutolęs"
 
-#: src/downgrade:325
+#: src/downgrade:392
 msgid "No results found"
 msgstr "Nieko nerasta"
 
-#: src/downgrade:342
+#: src/downgrade:409
 msgid "Invalid choice"
 msgstr "Netinkamas pasirinkimas"
 
-#: src/downgrade:355
+#: src/downgrade:422
 #, sh-format
 msgid "Unable to downgrade $name"
 msgstr "Neįmanoma paversti žemesnio lygio $name"
 
-#: src/downgrade:384
+#: src/downgrade:451
 msgid "Missing --pacman argument"
 msgstr "Trūksta argumento --pacman"
 
-#: src/downgrade:397
+#: src/downgrade:464
 msgid "Missing --pacman-conf argument"
 msgstr "Trūksta argumento --pacman-conf"
 
-#: src/downgrade:410
+#: src/downgrade:477
 msgid "Missing --ala-url argument"
 msgstr "Trūksta argumento --ala-url"
 
-#: src/downgrade:423
+#: src/downgrade:490
 msgid "Missing --pacman-cache argument"
 msgstr "Trūksta argumento --pacman-cache"
 
-#: src/downgrade:436
+#: src/downgrade:503
 msgid "Missing --pacman-log argument"
 msgstr "Trūksta argumento --pacman-log"
 
-#: src/downgrade:449
+#: src/downgrade:519
 msgid "Missing --maxdepth argument"
 msgstr "Trūksta argumento --maxdepth"
 
-#: src/downgrade:470
+#: src/downgrade:540
 #, fuzzy
 msgid "Missing or wrong --ignore argument"
 msgstr "Trūksta argumento --pacman"
 
-#: src/downgrade:503
+#: src/downgrade:573
 #, sh-format
 msgid "Unrecognized option $current_option"
 msgstr "Neatpažinta parinktis $current_option"
 
-#: src/downgrade:518
+#: src/downgrade:588
 msgid "No packages provided for downgrading"
 msgstr "Nepateikta jokių pakuočių, leidžiančių pažengti žemiau"
 
-#: src/downgrade:588
+#: src/downgrade:695
 msgid "downgrade must be run as root"
 msgstr "downgrade turi būti paleistas kaip root"
 
