@@ -72,17 +72,8 @@ on the ALA.
     Pacman log file, default value is extracted from pacman configuration file, or
     otherwise defaults to _/var/log/pacman.log_.
 
-  * `--git`:
-    If the pacman cache contains the source repository for the package (e.g. if
-    you use yay and are downgrading an AUR package), present any version-like
-    tags as available for downgrading (together with cached packages if
-    present). If selected, build and install the package from sources checked
-    out at that tag.
-
-    See [EXAMPLES].
-
   * `--maxdepth`=<INTEGER>:
-    Maximum depth to search for cached packages, defaults to _1_.
+    Maximum depth to search for cached packages, defaults to _2_.
 
   * `--ala-url`=<URL>:
     Location of an ALA server, default is *https://archive.archlinux.org*.
@@ -122,7 +113,9 @@ sequence will be treated as pacman options.
 
 ## DEFAULT BEHAVIORS
 
-By default, **downgrade** will search both local caches and the ALA.
+By default, **downgrade** will search both local caches and the ALA. AUR helper
+cache directories (_~/.cache/yay_, _~/.cache/paru/clone_) are automatically
+included if present, so AUR packages are found without extra configuration.
 
 If only one package with its corresponding location matches, the package will be
 installed without further prompt from the user.
@@ -177,10 +170,10 @@ Non-interactively downgrade `foo` to `1.0.0-1`
 
     # downgrade --latest --prefer-cache --ignore never 'foo=1.0.0-1'
 
-Present cached `downgrade` pkgbuilds together with tags with version greater
-than 9
+Downgrade an AUR package with version-filtering (git versions are shown
+automatically when a git repo is found in the cache):
 
-    # downgrade --git --pacman-cache ~/.cache/yay --maxdepth 2 'downgrade>9.0.0'
+    # downgrade 'downgrade>9.0.0'
 
 ## AUTHORS
 
