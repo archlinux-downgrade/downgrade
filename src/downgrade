@@ -577,8 +577,7 @@ build_pkg() {
     commit_hash=$(sed -r "s/$gitpkgreg/\3/" <<<"$item")
 
     pushd "$path" >/dev/null
-    su -P "$(stat -c"%U" PKGBUILD)" -c "git checkout $commit_hash &>/dev/null"
-    su -P "$(stat -c"%U" PKGBUILD)" -c "makepkg -fs"
+    su -P "$(stat -c"%U" PKGBUILD)" -c "git checkout $commit_hash &>/dev/null && makepkg -fs"
     build_failed=$?
 
     if ((!build_failed)); then
