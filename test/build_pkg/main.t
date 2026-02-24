@@ -6,8 +6,8 @@
   >     shift
   >   done
   >   case "$cmd" in
+  >     *"makepkg -fs"*) return "${MAKEPKG_FAIL:-0}" ;;
   >     git*) return 0 ;;
-  >     "makepkg -fs") return "${MAKEPKG_FAIL:-0}" ;;
   >     "makepkg --packagelist") echo "/tmp/dummy-package-1.0-1-any.pkg.tar.zst" ;;
   >   esac
   > }
