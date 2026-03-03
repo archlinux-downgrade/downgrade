@@ -34,9 +34,9 @@ prefix in your commit message:
 
 [conventional-commit]: https://www.conventionalcommits.org/en/v1.0.0/#summary
 
-1. `fix:` to trigger a patch release,
-1. `feat:` to trigger minor, or
-1. `feat!:` to trigger major
+1. Use `fix:` to trigger a patch release
+1. Use `feat:` to trigger minor
+1. Use `<type>!:` or add a `BREAKING CHANGE` trailer to trigger major
 
 When such a commit is merged to `main`, a new GitHub release will be created and
 a `PKGBUILD` update will be [published automatically][aur-publish-action].
