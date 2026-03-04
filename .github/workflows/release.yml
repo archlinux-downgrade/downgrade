@@ -55,5 +55,9 @@ jobs:
           package: downgrade
           version: ${{ needs.release.outputs.version }}
           publish: ${{ github.ref_name == 'main' }}
+
+          # can remove after next release
+          sed: "s/^md5sums=.*/sha256sums=(x)/"
+
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
