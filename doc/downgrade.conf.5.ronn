@@ -7,7 +7,7 @@ downgrade.conf(5) - configuration file for downgrade
 
 ## DESCRIPTION
 
-Command-line options to use for all invocations of `downgrade` my be persisted
+Command-line options to use for all invocations of `downgrade` may be persisted
 in the file `/etc/xdg/downgrade/downgrade.conf`. These options are applied
 first, before options passed on the actual command-line.
 
