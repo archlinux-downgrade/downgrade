@@ -28,6 +28,21 @@ Detects both when both present
   /tmp/*/yay (glob)
   /tmp/*/paru/clone (glob)
 
+Detects both when both present, with xdg taking precedence
+
+  $ fake_home=$(mktemp -d --suffix @home)
+  $ fake_xdg=$(mktemp -d --suffix @xdg)
+  > XDG_CACHE_HOME="$fake_xdg"
+  > mkdir -p "$fake_xdg/yay"
+  > mkdir -p "$fake_xdg/paru/clone"
+  > mkdir -p "$fake_home/.cache/yay"
+  > mkdir -p "$fake_home/.cache/paru/clone"
+  > get_real_user_home() { echo "$fake_home"; }
+  > detect_aur_caches
+  > XDG_CACHE_HOME=
+  /tmp/*@xdg/yay (glob)
+  /tmp/*@xdg/paru/clone (glob)
+
 Returns nothing when neither present
 
   $ fake_home=$(mktemp -d)

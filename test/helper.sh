@@ -21,6 +21,7 @@ export DOWNGRADE_FROM_ALA=0
 export DOWNGRADE_FROM_CACHE=0
 export DOWNGRADE_CONF="$SRCDIR/test/conf/downgrade_test.conf"
 export PACIGNORE_DEFAULT_CHECK=1
+export XDG_CACHE_HOME=""
 
 # Stub functions that won't work (on CI) or need different behavior.
 pacsort() { cat; }

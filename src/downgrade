@@ -91,13 +91,13 @@ get_real_user_home() {
 }
 
 detect_aur_caches() {
-  local home
-  home=$(get_real_user_home)
+  local cache_home
+  cache_home="${XDG_CACHE_HOME:-$(get_real_user_home)/.cache}"
 
-  [[ -z "$home" ]] && return 0
+  [[ -z "$cache_home" ]] && return 0
 
-  [[ -d "$home/.cache/yay" ]] && printf '%s\n' "$home/.cache/yay"
-  [[ -d "$home/.cache/paru/clone" ]] && printf '%s\n' "$home/.cache/paru/clone"
+  [[ -d "$cache_home/yay" ]] && printf '%s\n' "$cache_home/yay"
+  [[ -d "$cache_home/paru/clone" ]] && printf '%s\n' "$cache_home/paru/clone"
 }
 
 currently_installed() {
