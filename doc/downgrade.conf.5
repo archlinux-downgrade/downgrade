@@ -1,0 +1,46 @@
+.Dd $Mdocdate: September 9 2026 $
+.Dt DOWNGRADE.CONF 5
+.Os
+.Sh NAME
+.Nm downgrade.conf
+.Nd configuration file for downgrade
+.Sh SYNOPSIS
+.Pa /etc/xdg/downgrade/downgrade\.conf
+.Sh DESCRIPTION
+Command\-line options to use for all invocations of
+.Cm downgrade
+may be persisted in the file
+.Pa /etc/xdg/downgrade/downgrade\.conf .
+.Pp
+These options are applied first, before options passed on the actual
+command\-line\.
+.Pp
+Options (and their argument(s)) should be placed one per line. Empty lines, or
+those prefixed by
+.Cm #
+are ignored.
+.Sh EXAMPLES
+To use an alternative package cache, e.g. the
+.Xr yay 1
+cache:
+.Bd -literal -offset indent
+# /etc/xdg/downgrade/downgrade.conf
+\-\-pacman\-cache /home/me/.cache/yay
+\-\-maxdepth 2
+
+.Ed
+To use an alternative source, e.g. for 32\-bit packages:
+.Bd -literal -offset indent
+# /etc/xdg/downgrade/downgrade.conf
+\-\-ala\-url https://archive.archlinux32.org
+
+.Ed
+.Sh AUTHORS
+.An Patrick Brisbin Aq Mt pbrisbin@gmail.com
+.An Atreya Shankar Aq Mt shankar.atreya@gmail.com
+.El
+.Sh REPORTING BUGS
+Open a GitHub issue on
+.Lk https://github.com/archlinux\-downgrade/downgrade .
+.Sh SEE ALSO
+.Xr downgrade 8

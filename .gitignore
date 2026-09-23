@@ -2,9 +2,7 @@ dist/bin
 dist/doc
 dist/locale
 
-doc/*
-!doc/index.txt
-!doc/*.ronn
+doc/*.html
 
 locale/*
 !locale/*.po

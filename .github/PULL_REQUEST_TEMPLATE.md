@@ -7,7 +7,7 @@
   - [ ] If adding new options, update `dist/completion/*`
   - [ ] If adding new options, update `dist/conf/downgrade.conf`
 * Documentation:
-  - [ ] If adding new options, update usage and `doc/*.ronn`
+  - [ ] If adding new options, update usage and `doc/`
   - [ ] If adding new strings, update `locale/*.po`
   - [ ] If necessary, update `README.md`
 
