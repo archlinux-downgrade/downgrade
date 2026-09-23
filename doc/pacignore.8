@@ -1,0 +1,77 @@
+.Dd $Mdocdate: September 9 2026 $
+.Dt PACIGNORE 8
+.Os
+.Sh NAME
+.Nm pacignore
+.Nd manage pacman IgnorePkg values
+.Sh SYNOPSIS
+.Nm
+.Cm ls
+.Op Fl c
+.Op Ar name ...
+.Nm
+.Cm check Ns | Ns Cm add Ns | Ns Cm rm
+.Op Fl c
+.Ar name
+.Op Ar name ...
+.Sh DESCRIPTION
+The
+.Nm
+utility lists, checks, adds, or removes values from the
+.Ar IgnorePkg
+setting in
+.Xr pacman.conf 5 .
+.Pp
+The options are as follows:
+.Bl -tag -width "-c PATH"
+.It Fl c Ar PATH
+Pacman configuration file, default is
+.Pa /etc/pacman.conf
+.It Fl h
+Show this help.
+.It Ar name
+The package to operate on. May be specified multiple times. Optional for
+.Cm ls ,
+which will list all ignored packages when omitted.
+.El
+.Sh EXIT STATUS
+.Ex -std
+.Pp
+Common errors are:
+.Bl -bullet -width indent
+.It
+Execution from non\-root user for
+.Cm add
+and
+.Cm rm
+subcommands
+.It
+If any packages supplied to the
+.Cm check
+subcommand are not included in the
+.Cm IgnorePkg
+directive
+.It
+If any packages supplied to
+.Cm rm
+subcommand are not included in the
+.Cm IgnorePkg
+directive
+.It
+If any packages supplied to
+.Cm add
+subcommand are already included in the
+.Cm IgnorePkg
+directive
+.El
+.Sh AUTHORS
+.An Patrick Brisbin Aq Mt pbrisbin@gmail.com
+.An Atreya Shankar Aq Mt shankar.atreya@gmail.com
+.El
+.Sh REPORTING BUGS
+Open a GitHub issue on
+.Lk https://github.com/archlinux\-downgrade/downgrade .
+.Sh SEE ALSO
+.Xr su 1 ,
+.Xr pacman.conf 5 ,
+.Xr sudo 8 ,

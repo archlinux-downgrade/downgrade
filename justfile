@@ -31,12 +31,11 @@ dist-locale-one exec:
 
 # Create dist/doc/ from doc/
 dist-manpages:
-  ronn --roff doc/*.ronn
   mkdir -p dist/doc
   find doc \
     -type f \
-    -not -name '*.ronn' \
-    -not -name 'index.txt' \
+    -not -name '*.css' \
+    -not -name '*.html' \
     -exec cp -v {} dist/doc \;
 
 # Clean up from building dist
@@ -49,3 +48,12 @@ update-locales exec:
   xgettext --from-code=utf-8 -L shell -o 'locale/{{exec}}.pot' 'src/{{exec}}'
   find 'locale/{{exec}}' -name "*.po" -exec \
     msgmerge --update {} 'locale/{{exec}}.pot' \;
+
+mandoc-options := 'man=./%N.%S.html;https://man.archlinux.org/man/%N.%S,style=./style.css'
+
+# Generate html docs from mandoc sources
+[working-directory: 'doc']
+docs-html:
+  mandoc -T html -O '{{mandoc-options}}' < downgrade.8 > downgrade.8.html
+  mandoc -T html -O '{{mandoc-options}}' < downgrade.conf.5 > downgrade.conf.5.html
+  mandoc -T html -O '{{mandoc-options}}' < pacignore.8 > pacignore.8.html

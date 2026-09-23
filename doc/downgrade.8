@@ -1,0 +1,248 @@
+.Dd $Mdocdate: September 9 2026 $
+.Dt DOWNGRADE 8
+.Os
+.Sh NAME
+.Nm downgrade
+.Nd downgrade arch linux packages
+.Sh SYNOPSIS
+.Nm
+.Bk -words
+.Op Fl h
+.Op Fl Fl ala\-only
+.Op Fl Fl ala\-url= Ns Ar url
+.Op Fl Fl cached\-only
+.Op Fl Fl ignore= Ns Ar prompt Ns | Ns Ar always Ns | Ns Ar never
+.Op Fl Fl latest | Fl Fl oldest
+.Op Fl Fl maxdepth= Ns Ar num
+.Op Fl Fl pacman\-cache= Ns Ar file
+.Op Fl Fl pacman\-conf= Ns Ar file
+.Op Fl Fl pacman\-log= Ns Ar file
+.Op Fl Fl pacman= Ns Ar command
+.Op Fl Fl prefer\-cache
+.Op Fl Fl unignore Ar name Op Ar name ...
+.Op Fl Fl version
+.Op Ar name ...
+.Op Ar \-\- pacman\-option ...
+.Ek
+.Sh DESCRIPTION
+The
+.Nm
+utility is a terminal user interface
+.Pq Qq TUI
+for downgrading arch linux packages.
+.Pp
+Packages can be located and installed from the local
+.Xr pacman 8
+cache or the remote Arch Linux Archive
+.Pq Qq ALA .
+.Pp
+Calling
+.Nm
+for the
+.Ar terraform
+package, for example, might show:
+.Bd -literal -offset indent
+\-  1)  terraform    0.11.11  2  remote
+\-  2)  terraform    0.11.12  1  /var/cache/pacman/pkg
++  3)  terraform    0.11.13  1  remote
++  4)  terraform    0.11.13  1  /var/cache/pacman/pkg
+\-  5)  terraform    0.12.0   1  remote
+\-  6)  terraform    0.12.0   1  /var/cache/pacman/pkg
+   7)  terraform    0.12.1   1  remote
+
+Available packages (community):
+7/7
+>
+
+.Ed
+The columns have the following meaning:
+.Bl -tag -width indent
+.It Cm indicator : Ar \- Ns | Ns Ar +
+An indication that the package was previously installed
+.Pq Qq Ar \- ,
+or is currently installed
+.Pq Qq Ar + .
+.It Cm enumeration
+An enumeration of the entries for selection.
+.It Cm package\-name
+The name of the package.
+.It Cm package\-epoch
+The epoch of the package in cache or ALA.
+.It Cm package\-version
+The version of the package in cache or ALA.
+.It Cm package\-release
+The release of the package in cache or ALA.
+.It Cm location : Pa /path/to/cache/dir Ns | Ns Ar remote
+If you have aleady downloaded this package, this will show the cache directory
+where the package is located, or
+.Qq Ar remote
+if it is available in the ALA.
+.El
+.Ss OPTIONS
+.Bl -tag -width indent
+.It Fl Fl pacman= Ns Ar command
+Pacman command, default is
+.Cm pacman .
+.It Fl Fl pacman\-conf= Ns Ar file
+Pacman configuration file, default is /etc/pacman.conf.
+.It Fl Fl pacman\-cache= Ns Ar file
+Pacman cache directory, default value(s) taken from pacman configuration file, or otherwise defaults to
+.Pa /var/cache/pacman/pkg .
+This option can be specified multiple times to indicate multiple cache directories.
+.It Fl Fl pacman\-log= Ns Ar file
+Pacman log file, default value is extracted from pacman configuration file, or otherwise defaults to
+.Pa /var/log/pacman.log .
+.It Fl Fl maxdepth= Ns Ar num
+Maximum depth to search for cached packages, defaults to
+.Cm 2 .
+.It Fl Fl ala\-url= Ns Ar url
+Location of an ALA server, default is
+.Cm Lk https://archive.archlinux.org.
+.It Fl Fl ala\-only
+Search ALA only.
+.It Fl Fl cached\-only
+Search local cache only.
+.It Fl Fl ignore= Ns Ar prompt Ns | Ns Ar always Ns | Ns Ar never
+Whether to add packages to IgnorePkg, default is prompt.
+.It Fl Fl unignore Ar package Op Ar package ...
+Remove packages from IgnorePkg. This is a pass\-through to
+.Xr pacignore 8
+.It Fl Fl latest | Fl Fl oldest
+Never prompt for version or location, automatically pick the most up to
+date/most out of date version. Allows for noninteractive downgrades when used in
+conjunction with
+.Fl Fl ignore .
+.It Fl Fl prefer\-cache
+If a package matching the version filter is found in the cache, skip querying
+the ALA. Unlike
+.Fl Fl cached\-only ,
+.Fl Fl prefer\-cache
+does query the ALA if no package could be matched in cache.
+.It Fl Fl version
+Show downgrade version.
+.It Fl h , Fl Fl help
+Show help script.
+.It Ar name
+Name of the package to downgrade.
+.Pp
+If multiple names are given, each is presented for version selection first, and
+remote packages are downloaded, before all selections are installed together via
+a single
+.Cm pacman \-U
+invocation. This allows for a coherent set of dependent packages to be dowgraded
+together.
+.El
+.Ss PACMAN OPTIONS
+As per the usage syntax, any options supplied after the
+.Cm \-\-
+character sequence will be treated as pacman options.
+.Ss DEFAULT BEHAVIORS
+By default, downgrade will search both local caches and the ALA.
+.Pp
+AUR helper
+cache directories
+.Pq Pa ~/.cache/yay , Pa ~/.cache/paru/clone
+are automatically included if present, so AUR packages are found without extra
+configuration.
+.Pp
+If only one package with its corresponding location matches, the package will be
+installed without further prompt from the user.
+.Ss VERSION FILTERING
+downgrade allows the use of the following version\-filtering operators:
+.Cm = ,
+.Cm == ,
+.Cm =~ ,
+.Cm <= ,
+.Cm >= ,
+.Cm <
+and
+.Cm > .
+.Pp
+Note that
+.Cm =~
+represents a regex match operator and
+.Cm = Ns / Ns Cm ==
+are aliases.
+.Sh EXIT STATUS
+.Ex -std
+.Pp
+Common errors are:
+.Bl -bullet -width indent
+.It
+Execution from non\-root user
+.It
+No argument value(s) supplied where necessary
+.It
+No package(s) found
+.It
+Package(s) found, but an invalid selection was made
+.It
+.Cm pacman \-U
+returned non\-zero
+.It
+Unexpected error when handling
+.Cm IgnorePkg
+additions
+.El
+.Sh FILES
+.Bl -tag -width indent
+.It Pa /etc/xdg/downgrade/downgrade.conf
+Command\-line options can be set persistently in this file.
+.Pp
+See
+.Xr downgrade.conf 5 .
+.El
+.Sh EXAMPLES
+Downgrade packages checking both local cache and the A.L.A, which is the default
+behavior:
+.Bd -literal -offset indent
+.Nm Ar foo Ar bar
+.Pp
+.Ed
+Downgrade packages, specifying multiple cache directories:
+.Bd -literal -offset indent
+.Nm Fl Fl pacman\-cache Pa /path/to/cache Fl Fl pacman\-cache Pa /path/to/other/cache Ar foo Ar bar
+.Pp
+.Ed
+Downgrade a package with version\-filtering:
+.Bd -literal -offset indent
+.Nm Ar 'foo=1.0.0\-1' Ar 'bar>=1.2.1\-1' Ar 'baz=~^1.2'
+.Pp
+.Ed
+Downgrade a package, looking in only local cache:
+.Bd -literal -offset indent
+.Nm Fl Fl cached\-only Ar foo
+.Pp
+.Ed
+Downgrade a package, looking in only the A.L.A.:
+.Bd -literal -offset indent
+.Nm Fl Fl ala\-only Ar foo
+.Pp
+.Ed
+Non\-interactively downgrade foo to 1.0.0\-1
+.Bd -literal -offset indent
+.Nm Fl Fl latest Fl Fl prefer\-cache Fl Fl ignore never Ar 'foo=1.0.0\-1'
+.Pp
+.Ed
+Downgrade an AUR package with version\-filtering (git versions are shown
+automatically when a git repo is found in the cache):
+.Bd -literal -offset indent
+.Nm Ar 'downgrade>9.0.0'
+.Pp
+.Ed
+.Sh AUTHORS
+.An Patrick Brisbin Aq Mt pbrisbin@gmail.com
+.An Atreya Shankar Aq Mt shankar.atreya@gmail.com
+.El
+.Sh REPORTING BUGS
+Open a GitHub issue on
+.Lk https://github.com/archlinux\-downgrade/downgrade .
+.Sh SEE ALSO
+.Xr find 1 ,
+.Xr fzf 1 ,
+.Xr su 1 ,
+.Xr downgrade.conf 5 ,
+.Xr pacman.conf 5 ,
+.Xr pacman 8 ,
+.Xr sudo 8 ,
+.Xr vercmp 8 .

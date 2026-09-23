@@ -20,20 +20,19 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - run: gem install --user ronn-ng
-      - run: |
-          for bin in "$HOME"/.local/share/gem/ruby/*/bin; do
-            echo "$bin"
-          done >>"$GITHUB_PATH"
-      - uses: actions/checkout@v4
+      - name: Install just as task-runner
+        uses: extractions/setup-just@v3
+
+      - name: Install mandoc for HTML conversion
+        run: sudo apt-get install -y mandoc
 
       - name: Generate HTML man-pages
-        run: ronn --style toc --html doc/*.ronn
+        run: just docs-html
 
       - name: Copy HTML sources to _site
         run: |
           mkdir -p _site
-          cp -v doc/*.html _site/
+          cp -v doc/*.css doc/*.html _site/
           cp -v _site/downgrade.8.html _site/index.html
 
       - uses: actions/configure-pages@v5
