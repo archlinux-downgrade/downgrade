@@ -1,19 +1,21 @@
-### Checklist
+## Checklist
 
-* Admin:
-  - [ ] No duplicate PRs
-* Integration:
-  - [ ] Always add unit tests for fixes or new functionality
-  - [ ] If adding new options, update `dist/completion/*`
-  - [ ] If adding new options, update `dist/conf/downgrade.conf`
-* Documentation:
-  - [ ] If adding new options, update usage and `doc/`
-  - [ ] If adding new strings, update `locale/*.po`
-  - [ ] If necessary, update `README.md`
+### Compliance
 
-<!-- These are likely side tasks that would need to be completed before merging the pull request -->
-<!-- If a task is not relevant to your pull request, simply remove its corresponding line -->
+- [ ] I confirm that I make this contribution in accordance with [Downgrade's AI
+  Policy](./CONTRIBUTING.md#use-of-generative-ai).
 
-### Description
+### Tests
 
-<!-- Describe your pull request and mention any issue(s) that it might be linked to -->
+- [ ] I have added necessary unit tests
+- [ ] I ran `just test` before pushing
+
+### Packaging
+
+- [ ] If adding new options, I have updated `dist/completion/*`
+- [ ] If adding new options, I have updated `dist/conf/downgrade.conf`
+
+### Documentation
+
+- [ ] If adding new options, I have updated usage and/or `doc/`
+- [ ] If adding new strings, I have update `locale/*.po`
