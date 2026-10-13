@@ -19,29 +19,9 @@ See [downgrade(8)](https://archlinux-downgrade.github.io/downgrade/downgrade.8).
 
 See [downgrade.conf(5)](https://archlinux-downgrade.github.io/downgrade/downgrade.conf.5).
 
-## Development & Testing
+## Development, Testing, & Release
 
-Install `just` and `cram`: `pacman -S just python-cram`.
-
-```console
-just test
-```
-
-## Release
-
-If your change is meant to trigger release, use a [conventional-commit][]
-prefix in your commit message:
-
-[conventional-commit]: https://www.conventionalcommits.org/en/v1.0.0/#summary
-
-1. Use `fix:` to trigger a patch release
-1. Use `feat:` to trigger minor
-1. Use `<type>!:` or add a `BREAKING CHANGE` trailer to trigger major
-
-When such a commit is merged to `main`, a new GitHub release will be created and
-a `PKGBUILD` update will be [published automatically][aur-publish-action].
-
-[aur-publish-action]: https://github.com/archlinux-downgrade/aur-publish-action
+See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ---
 
